@@ -3,9 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hola mundo</title>
+    <title>Inicio de Sesion</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="../css/login-css.css" rel="stylesheet">
+    <script src="../js/bootstrap.min.js"></script>
 </head>
 <body>
-    <h1>hola mundo</h1>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <div class="wrapper fadeInDown">
+        <div id="formInicio">
+
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img src="../imagenes/LogoFoodTruck.jpg" id="icon" alt="User Icon" />
+            </div>
+
+            <!-- Login Form -->
+            <form>
+                <input type="text" id="login" class="fadeIn second" name="login" placeholder="Usuario">
+                <input type="text" id="password" class="fadeIn third" name="login" placeholder="Clave">
+                <input type="submit" class="fadeIn fourth" value="Iniciar Sesion">
+            </form>
+
+        </div>
+    </div>
 </body>
 </html>
