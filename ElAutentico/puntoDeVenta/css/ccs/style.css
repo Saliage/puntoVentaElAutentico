@@ -1,0 +1,286 @@
+:root {
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  --text-primary: #ffffff;
+  --text-secondary: #ffd107c8;
+  --bg-primary: #252526;
+  --bg-secondary: #141418;
+}
+
+body {
+  color: rgb(255, 0, 157);
+  background: rgb(161, 159, 159);
+  margin: 0;
+  padding: 0;
+}
+
+/* Scrollbar */
+body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+body::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+body::-webkit-scrollbar-thumb {
+  background: #ff0000;
+}
+
+main {
+  margin-left: 5rem;
+  padding: 1rem;
+}
+
+.navbar {
+  width: 5rem;
+  height: 100vh;
+  position: fixed;
+  background: var(--bg-primary);
+  transition: width 0.4s ease;
+}
+.navbar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+.nav-item {
+  width: 100%;
+}
+.nav-item:last-child {
+  margin-top: auto;
+}
+.nav-link {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: 0.5s;
+}
+.nav-link-menu {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: 0.5s;
+}
+.nav-link:hover {
+  color: #ff0000;
+}
+.link-text {
+  display: none;
+  margin-left: 1.5rem;
+}
+.link-icon {
+  font-size: 2rem;
+  margin-left: 1.5rem;
+}
+.link-icon-io {
+  font-size: 2.2rem;
+  margin-left: 1.5rem;
+  color: #ff0000;
+}
+.logo {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  font-size: 1.5rem;
+  letter-spacing: 0.3ch;
+  width: 100%;
+}
+.logo .link-icon {
+  transform: rotate(0deg);
+  transition: 0.5s;
+}
+
+/* --------- When Hovering Navbar --------- */
+.navbar:hover .logo .link-icon {
+  transform: rotate(-540deg);
+}
+
+/* ======= Larg Screens ========= */
+@media (min-width: 600px) {
+  .navbar:hover {
+    width: 16rem;
+  }
+  .navbar:hover .link-text {
+    display: block;
+  }
+  .category-bar {
+    width: 100%;
+  }
+}
+
+/* ======= Small Screens ========= */
+@media (max-width: 600px) {
+  .navbar {
+    bottom: 0;
+    width: 100vw;
+    height: 5rem;
+  }
+  .navbar-nav {
+    flex-direction: row;
+  }
+  .logo {
+    display: none;
+  }
+  .nav-link {
+    justify-content: center;
+  }
+
+  .main {
+    margin: 0;
+  }
+  .category-bar {
+    width: 100%;
+  }
+}
+
+/* Estilos para la barra de búsqueda */
+.search-bar {
+  background: var(--bg-secondary);
+  padding: 21.5px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Estilos para la barra de búsqueda en vista PC o más grande */
+@media (min-width: 700px) {
+  .search-bar {
+    justify-content: flex-end; /* Mover la barra de búsqueda a la derecha */
+  }
+  .search-input {
+    margin-right: 30%;
+    margin-left: 5%;
+  }
+  .contact-info {
+  display: flex;
+  align-items: center;
+  margin-right: 5%; /* Separar el icono de contacto del nombre */
+}
+}
+
+.search-input {
+  display: flex;
+  align-items: center;
+  background: rgb(255, 255, 255); 
+  border: 1px solid red; /* Borde rojo */
+  padding: 5px;
+  border-radius: 7px;
+  flex-grow: 1; /* Hacer la barra de búsqueda más larga en vista PC o más grande */
+}
+
+.search-input input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  padding: 5px;
+  color: white;
+  font-weight: black; /* Hacer que el texto de búsqueda sea blanco */
+}
+
+.search-icon {
+  color: white;
+  font-size: 1.2rem;
+  margin-right: 5px;
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+  margin-left: 10px; /* Separar el icono de contacto del nombre */
+}
+
+.contact-icon {
+  color: red;
+  font-size: 1.5rem;
+  margin-right: 5px;
+}
+
+.seller-name {
+  color: white;
+  font-weight: bold;
+}
+
+/* Estilos responsivos */
+@media (max-width: 600px) {
+  .search-bar {
+    padding: 10px 20px; /* Ajusta el padding para pantallas pequeñas */
+  }
+
+  .search-input {
+    margin-right: 10px;
+  }
+
+  .category-bar {
+    width: 100%;
+  }
+  
+}
+
+/* Estilos para la barra de navegación horizontal */
+.category-bar {
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  padding: 15px 0;
+  width: 60%;
+  position: relative; /* Para estilizar la barra de desplazamiento */
+  margin-left: 5%;
+}
+
+.category-bar::-webkit-scrollbar {
+  width: 6px; /* Ancho de la barra de desplazamiento */
+}
+
+.category-bar::-webkit-scrollbar-track {
+  background: transparent; /* Color de fondo de la barra de desplazamiento */
+}
+
+.category-bar::-webkit-scrollbar-thumb {
+  background: red; /* Color de la barra de desplazamiento */
+  border-radius: 3px; /* Borde redondeado de la barra de desplazamiento */
+}
+
+.category-container {
+  display: flex;
+  align-items: center;
+}
+
+.category-arrow {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: red;
+  position:static /* Fijar las flechas */
+}
+
+.category-arrow ion-icon {
+  font-size: 1.5rem;
+  margin-right: 5px; /* Espacio entre el ícono y la fecha */
+  position:static /* Fijar las flechas */
+}
+
+.category-item {
+  padding: 7px 50px;
+  background-color: white;
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 5px; /* Espacio uniforme entre categorías */
+  white-space: nowrap; /* Evitar que el texto se divida en múltiples líneas */
+  flex: 0 0 auto; /* Los recuadros tienen un ancho fijo */
+}
