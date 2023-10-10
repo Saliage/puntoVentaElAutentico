@@ -284,3 +284,56 @@ main {
   white-space: nowrap; /* Evitar que el texto se divida en múltiples líneas */
   flex: 0 0 auto; /* Los recuadros tienen un ancho fijo */
 }
+
+/* Estilos para la sección de productos */
+.products {
+  width: 60%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px; /* Espacio vertical entre los productos */
+  grid-column-gap: 1px; /* Espacio horizontal entre los productos */
+  padding: 30px;
+  margin: 0 auto;
+  margin-left: 70px; /* ajustar margen izquierdo */
+}
+
+
+/* Estilos para cada producto */
+.product {
+  background-color: white;
+  border-radius: 15px;
+  padding: 5px; /* Aumenta el padding para hacer los productos más grandes */
+  text-align: center;
+  /* Tamaño más grande y rectángulo */
+  width: calc(90% - 10px); /* El 20px representa el espacio entre los productos */
+  /* Altura automática para acomodar el contenido */
+}
+
+/* Estilos para la imagen del producto */
+.product-image img {
+  max-width: 100%;
+  max-height: 100px; /* Ajusta la altura máxima según tus preferencias */
+  height: auto;
+}
+
+/* Estilos para el nombre del producto */
+.product-info h3 {
+  font-weight: bold;
+  color: black;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Estilos para el precio del producto */
+.precio-container {
+  background-color: black;
+  width: 100%;
+  border-radius: 15px;
+  padding: 1px 0;
+}
+
+.precio {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
