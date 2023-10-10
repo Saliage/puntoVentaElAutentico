@@ -2,21 +2,21 @@
   font-size: 16px;
   font-family: "Open Sans", sans-serif;
   --text-primary: #ffffff;
-  --text-secondary: #ffd107c8;
+  --text-secondary: #ffffff;
   --bg-primary: #252526;
   --bg-secondary: #141418;
 }
 
 body {
   color: rgb(255, 0, 157);
-  background: rgb(161, 159, 159);
+  background: rgba(161, 159, 159, 0.548);
   margin: 0;
   padding: 0;
 }
 
 /* Scrollbar */
 body::-webkit-scrollbar {
-  width: 0.25rem;
+  width: 0.90rem;
 }
 body::-webkit-scrollbar-track {
   background: #ffffff;
@@ -287,14 +287,14 @@ main {
 
 /* Estilos para la sección de productos */
 .products {
-  width: 60%;
+  width: 61%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 30px; /* Espacio vertical entre los productos */
   grid-column-gap: 1px; /* Espacio horizontal entre los productos */
   padding: 30px;
   margin: 0 auto;
-  margin-left: 70px; /* ajustar margen izquierdo */
+  margin-left: 70px; /* Ajusta este valor según sea necesario */
 }
 
 
@@ -336,4 +336,40 @@ main {
   color: white;
   font-weight: bold;
   text-align: center;
+}
+
+/* Estilos para la segunda sección (40% de ancho) */
+.right-section {
+  width: 40%; /* 40% del ancho total */
+  display: flex; /* Usar Flexbox para distribuir verticalmente */
+  flex-direction: column; /* Distribución vertical */
+  background-color: #252526; /* Color de fondo deseado */
+  color: white; /* Color de texto deseado */
+  padding: 10px; /* Espacio interior para las secciones */
+}
+
+/* Estilos para la sección "Calcular Productos" (75%) */
+.calculate-products {
+  height: 75%; /* 75% de altura */
+  background-color: #252526; /* Color de fondo deseado */
+  margin-bottom: 10px; /* Espacio entre secciones */
+}
+
+/* Estilos para la sección "Subtotal" (10%) */
+.subtotal {
+  height: 10%; /* 10% de altura */
+  background-color: #252526; /* Color de fondo deseado */
+  margin-bottom: 10px; /* Espacio entre secciones */
+}
+
+/* Estilos para la sección "Pagar" (15%) */
+.pay {
+  height: 15%; /* 15% de altura */
+  background-color: #252526; /* Color de fondo deseado */
+}
+
+/* Estilos para la sección "Calcular Productos", "Subtotal" y "Pagar" */
+.calculate-products, .subtotal, .pay {
+  width: 40%;
+  /* Otros estilos */
 }
