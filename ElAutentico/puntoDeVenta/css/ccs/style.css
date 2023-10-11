@@ -100,11 +100,6 @@ main {
   transition: 0.5s;
 }
 
-/* --------- When Hovering Navbar --------- */
-.navbar:hover .logo .link-icon {
-  transform: rotate(-540deg);
-}
-
 /* ======= Larg Screens ========= */
 @media (min-width: 600px) {
   .navbar:hover {
@@ -146,7 +141,7 @@ main {
 /* Estilos para la barra de búsqueda */
 .search-bar {
   background: var(--bg-secondary);
-  padding: 21.5px 50px;
+  padding: 21.5px 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -184,14 +179,14 @@ main {
   outline: none;
   width: 100%;
   padding: 5px;
-  color: white;
-  font-weight: black; /* Hacer que el texto de búsqueda sea blanco */
+  color: rgb(0, 0, 0);
+  font-weight: black; /* color texto barra busqueda*/
 }
 
 .search-icon {
-  color: white;
-  font-size: 1.2rem;
-  margin-right: 5px;
+  color: rgb(0, 0, 0);
+  font-size: 1.6rem;
+  margin-right: 10px;
 }
 
 .contact-info {
@@ -203,12 +198,13 @@ main {
 .contact-icon {
   color: red;
   font-size: 1.5rem;
-  margin-right: 5px;
+  margin-right: 330px;
 }
 
 .seller-name {
   color: white;
   font-weight: bold;
+  margin-right: 1px;
 }
 
 /* Estilos responsivos */
@@ -230,6 +226,8 @@ main {
 /* Estilos para la barra de navegación horizontal */
 .category-bar {
   background: transparent;
+  position: sticky;
+  top: 0;
   border: none;
   display: flex;
   align-items: center;
@@ -304,10 +302,15 @@ main {
   border-radius: 15px;
   padding: 5px; /* Aumenta el padding para hacer los productos más grandes */
   text-align: center;
-  /* Tamaño más grande y rectángulo */
-  width: calc(90% - 10px); /* El 20px representa el espacio entre los productos */
-  /* Altura automática para acomodar el contenido */
-}
+  width: calc(90% - 10px); /* El 90px representa el espacio entre los productos */
+  border: 2px solid transparent; /* Borde transparente por defecto */
+  transition: border-color 0.3s ease; /* Transición suave para el cambio de color del borde */
+
+    /* Estilos al pasar el mouse por encima */
+    &:hover {
+      border-color: red; /* Borde rojo al pasar el mouse por encima */
+    }
+  }
 
 /* Estilos para la imagen del producto */
 .product-image img {
@@ -328,7 +331,7 @@ main {
 /* Estilos para el precio del producto */
 .precio-container {
   background-color: black;
-  width: 100%;
+  width: 1;
   border-radius: 15px;
   padding: 1px 0;
 }
@@ -347,22 +350,27 @@ main {
 .seccion-derecha {
   width: 40%;
   float: left;
+  position: sticky;
+  top: 0;
 }
 
 /* Estilos para la sección "Calcular Productos" (75%) */
 .calculate-products {
-  height: 650px;
-  padding: 15;
-  margin-left: 15%;
+  height: 640px;
+  margin-right: 2%;
+  padding: 60;
+  margin-left: 17%;
   background-color: white;
   border-radius: 15px;
+  margin-top: 14px; /* Ajusta el margen superior según tus necesidades */
   margin-bottom: 10px; /* Espacio entre secciones */
 }
 
 /* Estilos para la sección "Subtotal" (10%) */
 .subtotal {
   height: 100px; /* 10% de altura */
-  margin-left: 15%;
+  margin-left: 17%;
+  margin-right: 2%;
   background-color: white;
   border-radius: 15px;
   margin-bottom: 10px; /* Espacio entre secciones */
@@ -371,9 +379,13 @@ main {
 /* Estilos para la sección "Pagar" (15%) */
 .pay {
   height: 100px; /* 15% de altura */
-  margin-left: 15%;
+  margin-left: 17%;
+  margin-right: 2%;
   background-color: white;
   border-radius: 15px;
 }
 
-
+.calculate-products, .subtotal, .pay {
+  position: sticky;
+  top: 0; /* o bottom: 0; según lo que necesites */
+}
