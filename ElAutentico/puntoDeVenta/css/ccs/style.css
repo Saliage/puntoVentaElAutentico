@@ -235,9 +235,9 @@ main {
   align-items: center;
   overflow-x: auto;
   padding: 15px 0;
-  width: 60%;
+  width: 100%;
   position: relative; /* Para estilizar la barra de desplazamiento */
-  margin-left: 5%;
+  margin-left: 9%;
 }
 
 .category-bar::-webkit-scrollbar {
@@ -287,7 +287,7 @@ main {
 
 /* Estilos para la sección de productos */
 .products {
-  width: 61%;
+  width: 103%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 30px; /* Espacio vertical entre los productos */
@@ -312,6 +312,7 @@ main {
 /* Estilos para la imagen del producto */
 .product-image img {
   max-width: 100%;
+  border-radius: 5px;
   max-height: 100px; /* Ajusta la altura máxima según tus preferencias */
   height: auto;
 }
@@ -338,30 +339,41 @@ main {
   text-align: center;
 }
 
-/* Estilos para la segunda sección (40% de ancho) */
-.right-section {
-  width: 40%; /* 40% del ancho total */
-  display: flex; /* Usar Flexbox para distribuir verticalmente */
-  flex-direction: column; /* Distribución vertical */
-  padding: 10px; /* Espacio interior para las secciones */
+.seccion-izquierda {
+  width: 60%;
+  float: left;
+}
+
+.seccion-derecha {
+  width: 40%;
+  float: left;
 }
 
 /* Estilos para la sección "Calcular Productos" (75%) */
 .calculate-products {
-  height: 75%; /* 75% de altura */
-  background-color: #252526; /* Color de fondo deseado */
+  height: 650px;
+  padding: 15;
+  margin-left: 15%;
+  background-color: white;
+  border-radius: 15px;
   margin-bottom: 10px; /* Espacio entre secciones */
 }
 
 /* Estilos para la sección "Subtotal" (10%) */
 .subtotal {
-  height: 10%; /* 10% de altura */
-  background-color: #252526; /* Color de fondo deseado */
+  height: 100px; /* 10% de altura */
+  margin-left: 15%;
+  background-color: white;
+  border-radius: 15px;
   margin-bottom: 10px; /* Espacio entre secciones */
 }
 
 /* Estilos para la sección "Pagar" (15%) */
 .pay {
-  height: 15%; /* 15% de altura */
-  background-color: #252526; /* Color de fondo deseado */
+  height: 100px; /* 15% de altura */
+  margin-left: 15%;
+  background-color: white;
+  border-radius: 15px;
 }
+
+
