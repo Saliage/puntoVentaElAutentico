@@ -343,8 +343,6 @@ main {
   width: 40%; /* 40% del ancho total */
   display: flex; /* Usar Flexbox para distribuir verticalmente */
   flex-direction: column; /* Distribución vertical */
-  background-color: #252526; /* Color de fondo deseado */
-  color: white; /* Color de texto deseado */
   padding: 10px; /* Espacio interior para las secciones */
 }
 
@@ -366,10 +364,4 @@ main {
 .pay {
   height: 15%; /* 15% de altura */
   background-color: #252526; /* Color de fondo deseado */
-}
-
-/* Estilos para la sección "Calcular Productos", "Subtotal" y "Pagar" */
-.calculate-products, .subtotal, .pay {
-  width: 40%;
-  /* Otros estilos */
 }
