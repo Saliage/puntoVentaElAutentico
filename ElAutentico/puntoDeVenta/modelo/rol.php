@@ -43,7 +43,7 @@ class Rol{
         }
 
         // Cerrar la conexión
-        mysqli_close($conexion);
+        $conexion->cerrarConexion();
     }
 
 

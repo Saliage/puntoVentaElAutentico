@@ -20,11 +20,11 @@ class Conexion {
         return $conn;
     }
 
-    public function cerrarConexion($conexion){
-        
-        mysqli_close($conexion);
-
-    }
+    public function cerrarConexion() {
+        // Verificar si la conexión está abierta antes de intentar cerrarla
+        if ($this->conn instanceof mysqli) {
+            $this->conn->close();
+        }
 
 }
 
