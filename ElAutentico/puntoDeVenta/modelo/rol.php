@@ -19,17 +19,31 @@ class Rol{
     }
 
 
-    public function crearRol(String $rol){
+    public function crearRol($nombreRol) {
 
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $conexion = new Conexion();
+        $conn = $conexion->abrirConexion();
 
-        $consulta = "inster into rol (nombre_rol) values($rol)";
+        $nombreRol = mysqli_real_escape_string($conn, $nombreRol);
 
-        $resultado = $conn->query($consulta);
+        //consulta SQL
+        $query = "INSERT INTO rol (nombre_rol) VALUES ('$nombreRol')";
 
-        return $resultado;
+        try {
+            // Ejecutar la consulta
+            $result = $conn->query($query);
 
+            if ($result) {
+                echo "Rol creado exitosamente.";
+            } else {
+                throw new Exception("Error al ejecutar la consulta: " . $conn->error);
+            }
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+
+        // Cerrar la conexión
+        $conexion->cerrarConexion();
     }
 
 
