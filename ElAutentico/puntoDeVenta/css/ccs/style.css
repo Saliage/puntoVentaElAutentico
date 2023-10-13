@@ -400,6 +400,15 @@ main {
   overflow-x: auto; /* Barra de desplazamiento horizontal cuando sea necesario */
 }
 
+.tabla-usuario {
+  background: var(--bg-secondary);
+  padding: 22px; /* Ajustado para una presentación más compacta */
+  margin: 20px auto; /* Centrar la tabla en el contenedor */
+  width: 75%; /* Ancho ajustado para una mejor visualización */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para resaltar la tabla */
+  overflow-x: auto; /* Barra de desplazamiento horizontal cuando sea necesario */
+}
+
 .table {
   width: 100%;
   border-collapse: collapse; /* Evitar espacios innecesarios entre celdas */
