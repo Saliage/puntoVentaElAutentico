@@ -21,10 +21,8 @@ class Conexion {
     }
 
     public function cerrarConexion() {
-        // Verificar si la conexión está abierta antes de intentar cerrarla
-        if ($this->conn instanceof mysqli) {
-            $this->conn->close();
-        }
+        
+    }
 
 }
 
