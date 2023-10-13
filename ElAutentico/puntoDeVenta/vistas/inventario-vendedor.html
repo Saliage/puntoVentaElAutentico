@@ -9,7 +9,7 @@
     <title>Carta Vendedor</title>
 
     <!-- ====================== ESTILOS CSS ==================== -->
-    <link rel="stylesheet" href="/ElAutentico/puntoDeVenta/css/ccs/style.css">
+    <link rel="stylesheet" href="../css/ccs/style.css">
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <!-- ====== ionicons ======= -->
@@ -51,7 +51,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="/ElAutentico/puntoDeVenta/vistas/login.html" class="nav-link">
                     <span class="link-icon"><ion-icon name="log-in-outline"></ion-icon></i></span>
                     <span class="link-text">Cerrar Sesión</span>
                 </a>
@@ -69,7 +69,50 @@
             <ion-icon name="person" class="contact-icon"></ion-icon>
             <span class="seller-name">Nombre del vendedor</span>
         </div>
+
     </div>
+
+     <!-- Tabla para mostrar los insumos con Bootstrap -->
+  
+    <div class="tabla-inventario">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Código de Insumo</th>
+                    <th>Imagen de Insumo</th>
+                    <th>Nombre de Insumo</th>
+                    <th>Cantidad Disponible</th>
+                    <th>Fecha de Vencimiento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>
+                        <img src="imagen1.jpg" alt="Insumo 1">
+                    </td>
+                    <td>Completo</td>
+                    <td>50</td>
+                    <td>2023-12-31</td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>
+                        <img src="imagen2.jpg" alt="Insumo 2">
+                    </td>
+                    <td>Churrasco</td>
+                    <td>30</td>
+                    <td>2024-06-15</td>
+                </tr>
+                <!-- Agrega más filas con datos de prueba aquí -->
+            </tbody>
+        </table>
+    </div>
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
 </body>
