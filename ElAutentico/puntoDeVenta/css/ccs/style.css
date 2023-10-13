@@ -389,3 +389,36 @@ main {
   position: sticky;
   top: 0; /* o bottom: 0; según lo que necesites */
 }
+
+
+.tabla-inventario {
+  background: var(--bg-secondary);
+  padding: 22px; /* Ajustado para una presentación más compacta */
+  margin: 22px auto; /* Centrar la tabla en el contenedor */
+  width: 80%; /* Ancho ajustado para una mejor visualización */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para resaltar la tabla */
+  overflow-x: auto; /* Barra de desplazamiento horizontal cuando sea necesario */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse; /* Evitar espacios innecesarios entre celdas */
+  border-collapse: separate; /* Utiliza el modelo de caja separada para el espaciado */
+  border-spacing: 0 10px; /* Agrega un espaciado vertical de 10px entre filas */
+}
+
+
+th, td {
+  padding: 12px; /* Espaciado en celdas para mejorar la legibilidad */
+  text-align: left; /* Alineación del texto a la izquierda */
+}
+
+th {
+  background-color: var(--bg-primary); /* Fondo para las celdas del encabezado */
+  color: #fff; /* Texto en color blanco en el encabezado */
+}
+
+tr {
+  background-color: #d3d3d3; /* Fondo alternativo para filas pares */
+
+}
