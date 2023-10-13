@@ -1,7 +1,7 @@
 <?php
 
 
-require('rol.php');
+require('../modelo/rol.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar si el campo de texto está presente en el formulario
