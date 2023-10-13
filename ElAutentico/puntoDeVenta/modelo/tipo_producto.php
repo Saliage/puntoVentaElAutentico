@@ -2,66 +2,61 @@
 
 require('conexion.php');
 
-class Rol {
+class TipoProducto {
 
-    // Agregar rol
-    public function agregarRol($nombre) {
+    // Agregar tipo de producto
+    public function agregarTipoProducto($nombre) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $nombre = mysqli_real_escape_string($conn, $nombre);
-
-        $consulta = "INSERT INTO rol (nombre_rol) VALUES ('$nombre')";
+        $consulta = "INSERT INTO tipo_producto (nombre_tipo) VALUES ('$nombre')";
 
         $resultado = $conn->query($consulta);
 
         return $resultado;
     }
 
-    // Obtener todos los roles
-    public function listarRoles() {
+    // Obtener todos los tipos de productos
+    public function listarTiposProductos() {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "SELECT * FROM rol";
+        $consulta = "SELECT * FROM tipo_producto";
 
         $resultado = $conn->query($consulta);
 
         return $resultado;
     }
 
-    // Buscar rol por id
-    public function buscarRolId($id) {
+    // Buscar tipo de producto por id
+    public function buscarTipoProductoId($id) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "SELECT * FROM rol WHERE id_rol = '$id'";
+        $consulta = "SELECT * FROM tipo_producto WHERE id_tipo = '$id'";
 
         $resultado = $conn->query($consulta);
 
         return $resultado;
     }
 
-    // Actualizar datos de rol
-    public function actualizarRol($id, $nombre) {
+    // Actualizar datos de tipo de producto
+    public function actualizarTipoProducto($id, $nombre) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
-
-        $nombre = mysqli_real_escape_string($conn, $nombre);
-
-        $consulta = "UPDATE rol SET nombre_rol = '$nombre' WHERE id_rol = '$id'";
+        $consulta = "UPDATE tipo_producto SET nombre_tipo = '$nombre' WHERE id_tipo = '$id'";
 
         $resultado = $conn->query($consulta);
 
         return $resultado;
     }
 
-    // Eliminar rol por id
-    public function eliminarRol($id) {
+    // Eliminar tipo de producto por id
+    public function eliminarTipoProducto($id) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "DELETE FROM rol WHERE id_rol = '$id'";
+        $consulta = "DELETE FROM tipo_producto WHERE id_tipo = '$id'";
 
         $resultado = $conn->query($consulta);
 
