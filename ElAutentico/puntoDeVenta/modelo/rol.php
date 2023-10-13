@@ -4,7 +4,7 @@ require('conexion.php');
 
 class Rol{
 
-    
+    //listar roles
     public function obteberRol(){
 
         $conectar = new Conexion();
@@ -18,7 +18,7 @@ class Rol{
 
     }
 
-
+    //crear rol
     public function crearRol($nombreRol) {
 
         $conexion = new Conexion();
@@ -46,7 +46,31 @@ class Rol{
         $conexion->cerrarConexion();
     }
 
+    public function buscarRol($id_rol){
 
+        $conectar = new Conexion();
+        $conn = $conectar->abrirConexion();
+
+        $consulta = "SELECT * from rol WHERE id_rol ='$id_rol'";
+
+        $resultado = $conn->query($consulta);
+
+        return $resultado;
+
+    }
+
+    public function borrarRol($id_rol){
+
+        $conectar = new Conexion();
+        $conn = $conectar->abrirConexion();
+
+        $consulta = "DELETE from rol WHERE id_rol ='$id_rol'";
+
+        $resultado = $conn->query($consulta);
+
+        return $resultado;
+
+    }
 
 
 } 
