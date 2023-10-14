@@ -400,7 +400,7 @@ main {
   overflow-x: auto; /* Barra de desplazamiento horizontal cuando sea necesario */
 }
 
-.tabla-usuario {
+.tabla-usuario, .tabla-usuario, .tabla-ventas {
   background: var(--bg-secondary);
   padding: 22px; /* Ajustado para una presentación más compacta */
   margin: 20px auto; /* Centrar la tabla en el contenedor */
