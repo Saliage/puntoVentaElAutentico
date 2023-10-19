@@ -18,6 +18,27 @@ class Ruta
         self::$rutas['POST'][$uri] = $callback;
     }
         
+    //recuperar URI
+    public static function dispatch()
+    {
+        $uri =$_SERVER['REQUEST_URI'];
+        $uri = trim($uri,'/');
+
+        $method = $_SERVER['REQUEST_METHOD'];
+
+        foreach (self::$routes[$method] as $rutas => $callback)
+        {
+            if($rutas == $uri)
+            {
+                $callback();
+                return;
+            }
+        }
+
+        echo '404 Not Found';
+    }
+
+
 }
 
 
