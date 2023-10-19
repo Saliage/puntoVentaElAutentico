@@ -1,0 +1,433 @@
+:root {
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  --text-primary: #ffffff;
+  --text-secondary: #ffffff;
+  --bg-primary: #252526;
+  --bg-secondary: #141418;
+}
+
+body {
+  color: rgb(255, 0, 157);
+  background: rgba(161, 159, 159, 0.548);
+  margin: 0;
+  padding: 0;
+}
+
+/* Scrollbar */
+body::-webkit-scrollbar {
+  width: 0.90rem;
+}
+body::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+body::-webkit-scrollbar-thumb {
+  background: #ff0000;
+}
+
+main {
+  margin-left: 5rem;
+  padding: 1rem;
+}
+
+.navbar {
+  width: 5rem;
+  height: 100vh;
+  position: fixed;
+  background: var(--bg-primary);
+  transition: width 0.4s ease;
+}
+.navbar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+.nav-item {
+  width: 100%;
+}
+.nav-item:last-child {
+  margin-top: auto;
+}
+.nav-link {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: 0.5s;
+}
+.nav-link-menu {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: 0.5s;
+}
+.nav-link:hover {
+  color: #ff0000;
+}
+.link-text {
+  display: none;
+  margin-left: 1.5rem;
+}
+.link-icon {
+  font-size: 2rem;
+  margin-left: 1.5rem;
+}
+.link-icon-io {
+  font-size: 2.2rem;
+  margin-left: 1.5rem;
+  color: #ff0000;
+}
+.logo {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  font-size: 1.5rem;
+  letter-spacing: 0.3ch;
+  width: 100%;
+}
+.logo .link-icon {
+  transform: rotate(0deg);
+  transition: 0.5s;
+}
+
+/* ======= Larg Screens ========= */
+@media (min-width: 600px) {
+  .navbar:hover {
+    width: 16rem;
+  }
+  .navbar:hover .link-text {
+    display: block;
+  }
+  .category-bar {
+    width: 100%;
+  }
+}
+
+/* ======= Small Screens ========= */
+@media (max-width: 600px) {
+  .navbar {
+    bottom: 0;
+    width: 100vw;
+    height: 5rem;
+  }
+  .navbar-nav {
+    flex-direction: row;
+  }
+  .logo {
+    display: none;
+  }
+  .nav-link {
+    justify-content: center;
+  }
+
+  .main {
+    margin: 0;
+  }
+  .category-bar {
+    width: 100%;
+  }
+}
+
+/* Estilos para la barra de búsqueda */
+.search-bar {
+  background: var(--bg-secondary);
+  padding: 21.5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Estilos para la barra de búsqueda en vista PC o más grande */
+@media (min-width: 700px) {
+  .search-bar {
+    justify-content: flex-end; /* Mover la barra de búsqueda a la derecha */
+  }
+  .search-input {
+    margin-right: 30%;
+    margin-left: 5%;
+  }
+  .contact-info {
+  display: flex;
+  align-items: center;
+  margin-right: 5%; /* Separar el icono de contacto del nombre */
+}
+}
+
+.search-input {
+  display: flex;
+  align-items: center;
+  background: rgb(255, 255, 255); 
+  border: 1px solid red; /* Borde rojo */
+  padding: 5px;
+  border-radius: 7px;
+  flex-grow: 1; /* Hacer la barra de búsqueda más larga en vista PC o más grande */
+}
+
+.search-input input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  padding: 5px;
+  color: rgb(0, 0, 0);
+  font-weight: black; /* color texto barra busqueda*/
+}
+
+.search-icon {
+  color: rgb(0, 0, 0);
+  font-size: 1.6rem;
+  margin-right: 10px;
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+  margin-left: 10px; /* Separar el icono de contacto del nombre */
+}
+
+.contact-icon {
+  color: red;
+  font-size: 1.5rem;
+  margin-right: 330px;
+}
+
+.seller-name {
+  color: white;
+  font-weight: bold;
+  margin-right: 1px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 600px) {
+  .search-bar {
+    padding: 10px 20px; /* Ajusta el padding para pantallas pequeñas */
+  }
+
+  .search-input {
+    margin-right: 10px;
+  }
+
+  .category-bar {
+    width: 100%;
+  }
+  
+}
+
+/* Estilos para la barra de navegación horizontal */
+.category-bar {
+  background: transparent;
+  position: sticky;
+  top: 0;
+  border: none;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  padding: 15px 0;
+  width: 100%;
+  position: relative; /* Para estilizar la barra de desplazamiento */
+  margin-left: 9%;
+}
+
+.category-bar::-webkit-scrollbar {
+  width: 6px; /* Ancho de la barra de desplazamiento */
+}
+
+.category-bar::-webkit-scrollbar-track {
+  background: transparent; /* Color de fondo de la barra de desplazamiento */
+}
+
+.category-bar::-webkit-scrollbar-thumb {
+  background: red; /* Color de la barra de desplazamiento */
+  border-radius: 3px; /* Borde redondeado de la barra de desplazamiento */
+}
+
+.category-container {
+  display: flex;
+  align-items: center;
+}
+
+.category-arrow {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: red;
+  position:static /* Fijar las flechas */
+}
+
+.category-arrow ion-icon {
+  font-size: 1.5rem;
+  margin-right: 5px; /* Espacio entre el ícono y la fecha */
+  position:static /* Fijar las flechas */
+}
+
+.category-item {
+  padding: 7px 50px;
+  background-color: white;
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 5px; /* Espacio uniforme entre categorías */
+  white-space: nowrap; /* Evitar que el texto se divida en múltiples líneas */
+  flex: 0 0 auto; /* Los recuadros tienen un ancho fijo */
+}
+
+/* Estilos para la sección de productos */
+.products {
+  width: 103%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px; /* Espacio vertical entre los productos */
+  grid-column-gap: 1px; /* Espacio horizontal entre los productos */
+  padding: 30px;
+  margin: 0 auto;
+  margin-left: 70px; /* Ajusta este valor según sea necesario */
+}
+
+
+/* Estilos para cada producto */
+.product {
+  background-color: white;
+  border-radius: 15px;
+  padding: 5px; /* Aumenta el padding para hacer los productos más grandes */
+  text-align: center;
+  width: calc(90% - 10px); /* El 90px representa el espacio entre los productos */
+  border: 2px solid transparent; /* Borde transparente por defecto */
+  transition: border-color 0.3s ease; /* Transición suave para el cambio de color del borde */
+
+    /* Estilos al pasar el mouse por encima */
+    &:hover {
+      border-color: red; /* Borde rojo al pasar el mouse por encima */
+    }
+  }
+
+/* Estilos para la imagen del producto */
+.product-image img {
+  max-width: 100%;
+  border-radius: 5px;
+  max-height: 100px; /* Ajusta la altura máxima según tus preferencias */
+  height: auto;
+}
+
+/* Estilos para el nombre del producto */
+.product-info h3 {
+  font-weight: bold;
+  color: black;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Estilos para el precio del producto */
+.precio-container {
+  background-color: black;
+  width: 1;
+  border-radius: 15px;
+  padding: 1px 0;
+}
+
+.precio {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.seccion-izquierda {
+  width: 60%;
+  float: left;
+}
+
+.seccion-derecha {
+  width: 40%;
+  float: left;
+  position: sticky;
+  top: 0;
+}
+
+/* Estilos para la sección "Calcular Productos" (75%) */
+.calculate-products {
+  height: 640px;
+  margin-right: 2%;
+  padding: 60;
+  margin-left: 17%;
+  background-color: white;
+  border-radius: 15px;
+  margin-top: 14px; /* Ajusta el margen superior según tus necesidades */
+  margin-bottom: 10px; /* Espacio entre secciones */
+}
+
+/* Estilos para la sección "Subtotal" (10%) */
+.subtotal {
+  height: 100px; /* 10% de altura */
+  margin-left: 17%;
+  margin-right: 2%;
+  background-color: white;
+  border-radius: 15px;
+  margin-bottom: 10px; /* Espacio entre secciones */
+}
+
+/* Estilos para la sección "Pagar" (15%) */
+.pay {
+  height: 100px; /* 15% de altura */
+  margin-left: 17%;
+  margin-right: 2%;
+  background-color: white;
+  border-radius: 15px;
+}
+
+.calculate-products, .subtotal, .pay {
+  position: sticky;
+  top: 0; /* o bottom: 0; según lo que necesites */
+}
+
+
+.tabla-inventario {
+  background: var(--bg-secondary);
+  padding: 22px; /* Ajustado para una presentación más compacta */
+  margin: 22px auto; /* Centrar la tabla en el contenedor */
+  width: 80%; /* Ancho ajustado para una mejor visualización */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para resaltar la tabla */
+  overflow-x: auto; /* Barra de desplazamiento horizontal cuando sea necesario */
+}
+
+.tabla-usuario, .tabla-usuario, .tabla-ventas {
+  background: var(--bg-secondary);
+  padding: 22px; /* Ajustado para una presentación más compacta */
+  margin: 20px auto; /* Centrar la tabla en el contenedor */
+  width: 75%; /* Ancho ajustado para una mejor visualización */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para resaltar la tabla */
+  overflow-x: auto; /* Barra de desplazamiento horizontal cuando sea necesario */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse; /* Evitar espacios innecesarios entre celdas */
+  border-collapse: separate; /* Utiliza el modelo de caja separada para el espaciado */
+  border-spacing: 0 10px; /* Agrega un espaciado vertical de 10px entre filas */
+}
+
+
+th, td {
+  padding: 12px; /* Espaciado en celdas para mejorar la legibilidad */
+  text-align: left; /* Alineación del texto a la izquierda */
+}
+
+th {
+  background-color: var(--bg-primary); /* Fondo para las celdas del encabezado */
+  color: #fff; /* Texto en color blanco en el encabezado */
+}
+
+tr {
+  background-color: #d3d3d3; /* Fondo alternativo para filas pares */
+
+}
