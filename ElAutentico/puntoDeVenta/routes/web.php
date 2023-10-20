@@ -2,7 +2,7 @@
 
 use lib\Ruta;
 
-Ruta::get('/',function(){
+Ruta::get('',function(){
     echo 'desde acá se puede cargar pagina principal';
 });
 
