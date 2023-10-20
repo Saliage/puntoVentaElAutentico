@@ -7,14 +7,14 @@ class Ruta
     private static $rutas = [];
 
     // agrega rutas de metodo GET
-    public static function get($uri, $callback)
+    public static function GET($uri, $callback)
     {
         $uri = substr($uri,55,null);
         self::$rutas['GET'][$uri] = $callback;
     }
 
     // agrega rutas de metodo POST
-    public static function post($uri, $callback)
+    public static function POST($uri, $callback)
     {   
         $uri = substr($uri,55,null);
         self::$rutas['POST'][$uri] = $callback;
