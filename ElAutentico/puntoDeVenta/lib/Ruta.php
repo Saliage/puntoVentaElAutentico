@@ -30,16 +30,18 @@ class Ruta
         $method = $_SERVER['REQUEST_METHOD'];
         echo $method;
 
-        foreach (self::$rutas[$method] as $rutas => $callback)
+        foreach (self::$rutas[$method] as $ruta => $callback)
         {
+            echo "| $rutas , $uri |"; 
             if($rutas == $uri)
             {
                 $callback();
                 return;
+                
             }
         }
 
-        echo '404 Not Found';
+        //echo '404 Not Found';
     }
 
 
