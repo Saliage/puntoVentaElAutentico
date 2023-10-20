@@ -1,6 +1,6 @@
 <?php
-
-use lib\Ruta;
+require_once '../routes/web.php';
+use Lib\Ruta;
 
 Ruta::get('',function(){
     echo 'desde acá se puede cargar pagina principal';
