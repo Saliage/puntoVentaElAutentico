@@ -6,7 +6,7 @@ class Ruta
 {
     private static $rutas = ["/","administrador","vendedor"];
 
-    // agrega rutas de metodo GET
+/*     // agrega rutas de metodo GET
     public static function GET($uri, $callback)
     {
         $uri = substr($uri,55,null);
@@ -18,7 +18,7 @@ class Ruta
     {   
         $uri = substr($uri,55,null);
         self::$rutas['POST'][$uri] = $callback;
-    }
+    } */
         
     //recuperar URI
     public static function dispatch()
