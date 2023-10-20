@@ -23,8 +23,6 @@ class Ruta
     {
         $uri =$_SERVER['REQUEST_URI'];
         echo $uri;
-        $uri = trim($uri,'/');
-        echo $uri;
 
         $method = $_SERVER['REQUEST_METHOD'];
 
