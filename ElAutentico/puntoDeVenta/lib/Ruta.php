@@ -28,6 +28,7 @@ class Ruta
         echo $uri;
 
         $method = $_SERVER['REQUEST_METHOD'];
+        echo $method;
 
         foreach (self::$rutas[$method] as $rutas => $callback)
         {
