@@ -4,7 +4,7 @@ namespace Lib;
 
 class Ruta
 {
-    private static $rutas = [];
+    private static $rutas = ["/","administrador","vendedor"];
 
     // agrega rutas de metodo GET
     public static function GET($uri, $callback)
