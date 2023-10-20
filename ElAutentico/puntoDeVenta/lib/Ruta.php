@@ -22,7 +22,9 @@ class Ruta
     public static function dispatch()
     {
         $uri =$_SERVER['REQUEST_URI'];
+        echo $uri;
         $uri = trim($uri,'/');
+        echo $uri;
 
         $method = $_SERVER['REQUEST_METHOD'];
 
