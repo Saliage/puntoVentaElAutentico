@@ -31,7 +31,6 @@ class Ruta
         foreach (self::$rutas[$method] as $ruta => $callback)
         {
             echo "| $ruta , $uri |";
-            print_r(self::$rutas);
             if($ruta == $uri)
             {
                 $callback();
