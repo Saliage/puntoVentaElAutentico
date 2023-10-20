@@ -9,14 +9,14 @@ class Ruta
     // agrega rutas de metodo GET
     public static function get($uri, $callback)
     {
-        $uri = substr($uri,56,null);
+        $uri = substr($uri,55,null);
         self::$rutas['GET'][$uri] = $callback;
     }
 
     // agrega rutas de metodo POST
     public static function post($uri, $callback)
     {   
-        $uri = substr($uri,56,null);
+        $uri = substr($uri,55,null);
         self::$rutas['POST'][$uri] = $callback;
     }
         
@@ -24,7 +24,7 @@ class Ruta
     public static function dispatch()
     {
         $uri =$_SERVER['REQUEST_URI'];
-        $uri = substr($uri,56,null);
+        $uri = substr($uri,55,null);
         echo $uri;
 
         $method = $_SERVER['REQUEST_METHOD'];
