@@ -1,5 +1,5 @@
 <?php
-require_once '../routes/web.php';
+
 use Lib\Ruta;
 
 Ruta::get('',function(){
