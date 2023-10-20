@@ -26,7 +26,7 @@ class Ruta
 
         $method = $_SERVER['REQUEST_METHOD'];
 
-        foreach (self::$routes[$method] as $rutas => $callback)
+        foreach (self::$rutas[$method] as $rutas => $callback)
         {
             if($rutas == $uri)
             {

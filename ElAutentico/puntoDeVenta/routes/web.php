@@ -1,6 +1,6 @@
 <?php
 
-use Lib\Ruta;
+use lib\Ruta;
 
 Ruta::get('/',function(){
     echo 'desde acá se puede cargar pagina principal';
@@ -16,10 +16,5 @@ Ruta::get('/vendedor',function(){
 
 
 Ruta::dispatch();
-
-
-
-
-
 
 ?>
