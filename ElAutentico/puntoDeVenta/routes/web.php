@@ -15,7 +15,7 @@ Ruta::get('/vendedor',function(){
 });
 
 
-
+Ruta::dispatch();
 
 
 
