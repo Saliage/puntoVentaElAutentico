@@ -1,8 +1,8 @@
 <?php
-
+require_once "../lib/Ruta.php";
 use Lib\Ruta;
 
-Ruta::get('',function(){
+Ruta::GET('',function(){
     echo 'desde acá se puede cargar pagina principal';
 });
 
