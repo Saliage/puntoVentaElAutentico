@@ -14,6 +14,7 @@ Ruta::get('vendedor',function(){
     echo 'desde acá se puede cargar pagina vendedor';
 });
 
+//test
 
 Ruta::dispatch();
 
