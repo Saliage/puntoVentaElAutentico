@@ -5,12 +5,12 @@ require('conexion.php');
 class DetalleEntradaInsumos {
 
     // Agregar detalle de entrada de insumos
-    public function agregarDetalleEntradaInsumos($insumos_id, $entrada_id) {
+    public function agregarDetalleEntradaInsumos($insumos_id, $entrada_id, $cantidad) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "INSERT INTO detalle_entrada_insumos (insumos_id_insumo, entrada_id_entrada)
-                     VALUES ('$insumos_id', '$entrada_id')";
+        $consulta = "INSERT INTO detalle_entrada_insumos (insumos_id_insumo, entrada_id_entrada, cantidad)
+                     VALUES ('$insumos_id', '$entrada_id','$cantidad')";
 
         $resultado = $conn->query($consulta);
 
@@ -42,13 +42,14 @@ class DetalleEntradaInsumos {
     }
 
     // Actualizar datos de detalle de entrada de insumos
-    public function actualizarDetalleEntradaInsumos($id, $insumos_id, $entrada_id) {
+    public function actualizarDetalleEntradaInsumos($id, $insumos_id, $entrada_id, $cantidad) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
         $consulta = "UPDATE detalle_entrada_insumos SET
                     insumos_id_insumo = '$insumos_id',
-                    entrada_id_entrada = '$entrada_id'
+                    entrada_id_entrada = '$entrada_id',
+                    cantidad = '$cantidad'
                     WHERE id_detalle_entrada = '$id'";
 
         $resultado = $conn->query($consulta);

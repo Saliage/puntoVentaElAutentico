@@ -20,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 } else {
     // Acceso incorrecto al script
-    echo "Acceso incorrecto al script.";
+    echo "Acceso incorrecto al script."
 }
+
 ?>

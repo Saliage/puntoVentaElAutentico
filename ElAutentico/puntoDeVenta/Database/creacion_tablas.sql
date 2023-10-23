@@ -203,6 +203,7 @@ CREATE TABLE producto_promocion (
 
 CREATE TABLE detalle_venta (
     id_detalle INT NOT NULL AUTO_INCREMENT,
+    cantidad INT NOT NULL,
     producto_id_producto INT NOT NULL,
     ventas_id_venta INT NOT NULL,
     PRIMARY KEY (id_detalle),
