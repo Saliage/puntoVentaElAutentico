@@ -42,7 +42,6 @@ body {
     position: relative;
     width: 80%;
     left: 15%;
-    right: 30%;
   }
 
   .caja{
@@ -66,4 +65,19 @@ body {
   }
 .card-img-top{
   height: 150px;
+}
+
+#productos{
+  background-color: red;
+  width: 70%;
+  float: left;
+  padding: 1%;
+}
+
+#venta{
+  background-color: blue;
+  width: auto;
+  height: auto;
+  margin-left: 2%;
+  float: left;
 }
