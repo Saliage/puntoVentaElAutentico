@@ -1,3 +1,5 @@
+USE autentico;
+
 CREATE TABLE almacen (
     id_almacen INT NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
@@ -6,7 +8,7 @@ CREATE TABLE almacen (
 
 CREATE TABLE categoria_insumo (
     id_categoria INT NOT NULL AUTO_INCREMENT,
-    nombre_categoria VARCHAR(50) NOT NULL,
+    nombre_categoria VARCHAR(50) NOT NULL,autenticoautentico
     PRIMARY KEY (id_categoria)
 );
 
