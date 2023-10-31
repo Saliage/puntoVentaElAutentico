@@ -75,9 +75,13 @@ body {
 }
 
 #venta{
-  background-color: blue;
+  background-color: rgb(0, 255, 234);
   width: auto;
   height: auto;
   margin-left: 2%;
   float: left;
+}
+
+#ver{
+  background-color: black;
 }
