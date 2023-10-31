@@ -43,10 +43,16 @@
                 if ($roles->num_rows > 0) {
                     // Recorrer roles presentes
                     while ($dato = $resultado->fetch_assoc()) {
-                        echo '<option value="' . $dato['id_rol'] . '">' . $dato['nombre_rol'] . '</option>';
+                        ?>
+                        <option value=" <?php echo $dato['id_rol'] ?>">'<?php echo $dato['nombre_rol'] ?></option>';
+
+                        <?php
                     }
                 } else {
-                    echo '<option value="0">No Existen Datos</option>';
+                    ?>
+                    <option value="0" >NULL</option>
+
+                    <?php
                 }
                 ?>
             </select>
