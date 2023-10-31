@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $apellido = $_POST["apellido"];
     $usuario = $_POST["usuario"];
     $clave = $_POST["clave"];
-    $activo = $_POST["activo"];
+    $activo = ($_POST['activo'] == 'True') ? 1 : 0; // 1 para Verdadero y  0 para Falso
     $rol_id = $_POST["rol_id"];
 
     // Llama al método agregarTrabajador con los datos del formulario
