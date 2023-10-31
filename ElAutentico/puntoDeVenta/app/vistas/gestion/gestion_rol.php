@@ -1,7 +1,7 @@
 <?php
 
 
-include("../puntoVentaElAutentico/ElAutentico/puntoDeVenta/app/modelo/rol.php");
+require("../puntoVentaElAutentico/ElAutentico/puntoDeVenta/app/modelo/rol.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar si el campo de texto está presente en el formulario
