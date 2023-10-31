@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nombreRol = $_POST["textoInput"];
 
         $rol = new Rol();
-        $resultado = $rol->crearRol($nombreRol);
+        $resultado = $rol->agregarRol($nombreRol);
 
         echo $resultado;
         

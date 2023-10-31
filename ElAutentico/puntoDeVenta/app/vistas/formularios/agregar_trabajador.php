@@ -1,5 +1,5 @@
 <?php 
-    include("../puntoVentaElAutentico/ElAutentico/puntoDeVenta/app/modelo/rol.php");
+    require("../../modelo/rol.php");
     $rol = new Rol();
     $roles = $rol->listarRoles();
 ?>
@@ -52,7 +52,7 @@
             </select>
     
             <input type="submit" value="Agregar Trabajador">
-            
+
         </form>
     
 </body>

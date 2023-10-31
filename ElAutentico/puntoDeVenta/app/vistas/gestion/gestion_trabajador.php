@@ -1,5 +1,5 @@
 <?php
-include("../puntoVentaElAutentico/ElAutentico/puntoDeVenta/app/modelo/trabajador.php");
+require("../../modelo/trabajador.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rut = $_POST["rut"];
