@@ -15,6 +15,7 @@ class Rol {
 
         $resultado = $conn->query($consulta);
 
+        $conn->close();
         return $resultado;
     }
 

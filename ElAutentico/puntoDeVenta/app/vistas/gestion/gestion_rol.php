@@ -18,9 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // El campo de texto no está presente en el formulario
         echo "Error: El campo de texto no está presente en el formulario.";
     }
-} else {
-    // Acceso incorrecto al script
-    echo "Acceso incorrecto al script.";
+} else
+{
+    //redireccionar en caso de no llegar a la pagina como corresponde
+    header("location: ../formularios/agregar_trabajador.php"); 
+    die();
+
 }
 
 

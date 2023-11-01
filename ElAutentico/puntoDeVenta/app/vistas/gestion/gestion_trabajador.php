@@ -22,7 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 else
 {
-    header("location: ../formularios/agregar_trabajador.html"); 
+    //redireccionar en caso de no llegar a la pagina como corresponde
+    header("location: ../formularios/agregar_trabajador.php"); 
     die();
 
 }
