@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar proveedor</title>
+</head>
+<body>
+    <!-- formulario simple para agregar proveedor-->
+
+    <form method="post" action="../gestion/gestion_proveedor.php">
+
+        <label for="nombre_proveedor">Nombre:</label>
+        <input type="text" name="nombre_proveedor" id="nombre_proveedor" required><br>
+
+        <label for="rut">RUT:</label>
+        <input type="text" name="rut_proveedor" id="rut_proveedor" required><br>
+
+        <label for="fono">Telefono:</label>
+        <input type="text" name="fono" id="fono" required><br>
+
+        <label for="mail">Correo:</label>
+        <input type="text" name="mail" id="mail" required><br>
+
+        <label for="direccion">Direccion:</label>
+        <input type="text" name="direccion" id="direccion" required><br>
+
+
+        <input type="submit" value="Agregar Proveedor">
+    </form>
+</body>
+</html>
