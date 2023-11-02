@@ -17,7 +17,7 @@ body {
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(10deg, #e6e6e6, #0099ff, #f7d298, #a0d4f798);
+  background: linear-gradient(10deg, #e6e6e6, #a8d6f5, #f7d298, #a0d4f798);
   background-size: 400% 400%;
   animation: animacionDegrade 5s linear infinite;
 }
@@ -35,7 +35,7 @@ body {
 
 /* Scrollbar */
 body::-webkit-scrollbar {
-  width: 0;
+  width: 0.5rem;
   height: 0;
 }
 body::-webkit-scrollbar-track {
@@ -53,7 +53,7 @@ body::-webkit-scrollbar-thumb {
   position: fixed;
   background: var(--bg-primary);
   transition: width 0.6s ease;
-  z-index: 100; /* Asegurar que esté en la parte superior de otros elementos */  
+  z-index: 3; /* Asegurar que esté en la parte superior de otros elementos */  
 }
 .navbar-nav {
   list-style: none;
@@ -77,6 +77,7 @@ body::-webkit-scrollbar-thumb {
   color: var(--text-primary);
   text-decoration: none;
   transition: 0.5s;
+  z-index: 100;
 }
 .nav-link-menu {
   display: flex;
@@ -178,339 +179,82 @@ body::-webkit-scrollbar-thumb {
   margin-right: 90px;
 }
 
-/* ==================================== Contenedores principales de la pagina ============================================== */
-.seccion-izquierda {
-  width: 60%;
-  float: left;
-}
+/* ========================================= Estilo Inventario ========================================= */
 
-.seccion-derecha {
-  width: 37%;
-  float: right;
-  margin-left: 2%;
-  display: flex;
-  flex-direction: column;
-}
-
-/* ================ Estilos para la barra de categorias productos ================*/
-.barra-categorias {
-  position: fixed; /* Para estilizar la barra de desplazamiento */
+.tabla-inventario {
   background: transparent;
-  position: sticky;
-  top: 5rem;
-  border: none;
-  display: flex;
-  align-items: center;
-  overflow-x: auto;
-  padding: 2% 1%;
+  padding: 130px 13%; /* Ajustado para una presentación más compacta */
+  width: 80%; /* Ancho ajustado para una mejor visualización */
+}
+
+.tabla-usuario, .tabla-usuario, .tabla-ventas {
+  background:#ffffff;
+  padding: 22px; /* Ajustado para una presentación más compacta */
+  margin: 40px 100%; /* Centrar la tabla en el contenedor */
+  width: 75%; /* Ancho ajustado para una mejor visualización */
+  overflow-x: auto; /* Barra de desplazamiento horizontal cuando sea necesario */
+}
+
+.table {
   width: 100%;
-  margin-left: 100px;
-}
-
-.item-categoria.seleccionado {
-  border: 3px solid #000dffd7;
-}
-
-.barra-categorias::-webkit-scrollbar {
-  width: 12px; /* Ancho de la barra de desplazamiento */
-}
-
-.barra-categorias::-webkit-scrollbar-track {
-  background: transparent; /* Color de fondo de la barra de desplazamiento */
-  width: 12px;
-}
-
-.barra-categorias::-webkit-scrollbar-thumb {
-  background: #000dffd7; /* Color de la barra de desplazamiento */
-  border-radius: 3px; /* Borde redondeado de la barra de desplazamiento */
-  width: 12px;
-}
-
-.container-categorias {
-  display: flex;
-  align-items: center;
-}
-
-.category-arrow {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  text-decoration: none;
-  color: #000dffd7;
-  position:sticky /* Fijar las flechas */
-}
-
-.category-arrow ion-icon {
-  font-size: 1.5rem;
-  margin-right: 5px; /* Espacio entre el ícono y la fecha */
-  position:static /* Fijar las flechas */
-}
-
-.item-categoria {
-  padding: 7px 50px;
-  background-color: white;
-  color: #000dffd7;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
-  margin: 0 5px; /* Espacio uniforme entre categorías */
-  white-space: nowrap; /* Evitar que el texto se divida en múltiples líneas */
-  flex: 0 0 auto; /* Los recuadros tienen un ancho fijo */
-}
-
-/*======================================= Seccion productos Carta ======================================*/
-
-/* Estilos para la sección de productos */
-.todos-los-productos {
-  width: 103% ; /*ancho*/
-  display: grid;
-  position: static;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 4%; /* Espacio vertical entre los productos */
-  grid-column-gap: 0.7%; /* Espacio horizontal entre los productos */
-  margin: auto;
-  top: 4px;
-  overflow-y: auto; /* Activa la barra de desplazamiento vertical cuando sea necesario */
-  max-height: 600px;
-  margin-top: 100px;
-  margin-left: 100px;
-}
-
-.todos-los-productos::-webkit-scrollbar {
-  width: 14px; /* Ancho de la barra de desplazamiento */
-}
-
-.todos-los-productos::-webkit-scrollbar-track {
-  background: transparent; /* Color de fondo de la barra de desplazamiento */
-  width: 14px;
-}
-
-.todos-los-productos::-webkit-scrollbar-thumb {
-  background: #000dffd7; /* Color de la barra de desplazamiento */
-  border-radius: 3px; /* Borde redondeado de la barra de desplazamiento */
-  width: 14px;
+  border-collapse: collapse; /* Evitar espacios innecesarios entre celdas */
+  border-collapse: separate; /* Utiliza el modelo de caja separada para el espaciado */
+  border-spacing: 0 10px; /* Agrega un espaciado vertical de 10px entre filas */
 }
 
 
-/* Estilos para cada producto */
-.producto {
-  background-color: white;
-  border-radius: 15px;
-  padding: 5px; /* Aumenta el padding para hacer los productos más grandes */
-  text-align: center;
-  width: calc(90% - 10px); /* El 90px representa el espacio entre los productos */
-  border: 2px solid transparent; /* Borde transparente por defecto */
-  transition: border-color 0.3s ease; /* Transición suave para el cambio de color del borde */
+th, td {
+  background:#ffffff;
+  padding: 12px; /* Espaciado en celdas para mejorar la legibilidad */
+  text-align: center; /* Alineación del texto a la izquierda */
+  color: #000000;
+}
 
-    /* Estilos al pasar el mouse por encima */
-    &:hover {
-      border: 3px solid #000dffd7;
-    }
-  }
-
-/* Estilos para la imagen del producto */
-.imagen-producto img {
+ /* Estilos para la imagen del producto */
+ td img {
   max-width: 100%;
   border-radius: 5px;
   max-height: 100px; /* Ajusta la altura máxima según tus preferencias */
   height: auto;
 }
 
-/* Estilos para el nombre del producto */
-.informacion-producto h3 {
-  font-weight: bold;
-  color: black;
-  margin-top: 10px;
-  font-size: 14px;
+th {
+  background-color: var(--bg-primary); /* Fondo para las celdas del encabezado */
+  color: #fff; /* Texto en color blanco en el encabezado */
 }
 
-/* Estilos para el precio del producto */
-.precio-container {
-  background-color: black;
-  width: 1;
-  border-radius: 15px;
-  padding: 1px 0;
-}
-
-.precio {
-  color: white;
-  font-weight: bold;
-  text-align: center;
-}
-
-/*======================================= Containers derechos ======================================*/
-
-/* =================Estilos para la sección "Calcular Productos" (75%)====================== */
-.calcular-productos {
-  height: 19rem;
-  margin-left: 20%;
-  margin-right: 3%;
-  background-color: white;
-  border-radius: 15px;
-  margin-top: 95px; /* Ajusta el margen superior según tus necesidades */
-  margin-bottom: 10px; /* Espacio entre secciones */
-  max-height: 10%;
-  overflow-y: auto;
-}
-
-.calcular-productos::-webkit-scrollbar {
-  width: 14px; /* Ancho de la barra de desplazamiento */
-}
-
-.calcular-productos::-webkit-scrollbar-track {
-  background: transparent; /* Color de fondo de la barra de desplazamiento */
-  width: 14px;
-}
-
-.calcular-productos::-webkit-scrollbar-thumb {
-  background: #000dffd7; /* Color de la barra de desplazamiento */
-  border-radius: 3px; /* Borde redondeado de la barra de desplazamiento */
-  width: 14px;
-}
-
-.producto-carrito {
-  display: flex;
-  align-items: center;
-  color: black;
-  margin: 0 5%; /* Margen del 1% a la izquierda y derecha */
-  font-weight: bold; /* Texto en negrita */
-  justify-content: space-between; /* Centra los elementos y crea espacio entre ellos */
-}
-
-.producto-carrito ion-icon[name="remove-circle-outline"] {
-  margin-left: 1%; /* 1% de margen a la izquierda */
-  font-size: 1.3rem;
-}
-
-.producto-carrito ion-icon[name="close-outline"] {
-  margin-left: 1%; /* 1% de margen a la izquierda */
-  font-size: 1.3rem;
-}
-
-.producto-carrito ion-icon[name="add-circle-outline"] {
-  margin-right: 10px; /* Ajuste de margen a la derecha del icono + */
-  font-size: 1.3rem;
-}
-
-.producto-carrito h3 {
-  font-size: 1rem;
-  margin: 0 px; /* Margen de 10px a la izquierda y derecha */
-}
-
-.producto-carrito h3:last-child {
-  margin-right: 0; /* Elimina el margen derecho para el último elemento h3 (precio) */
-}
-
-/* =========================== Estilos para la sección "Subtotal" (10%)================================== */
-.subtotal {
-  height: 4rem;
-  margin-left: 20%;
-  margin-right: 3%;
-  background-color: white;
-  border-radius: 15px;
-  margin-bottom: 10px; /* Espacio entre secciones */
-  max-height: 10%
-}
-
-/* Estilos para el contenedor "subtotal-carrito" */
-.subtotal-carrito {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 2% 25%; /* Margen del 2% arriba y abajo, y a la izquierda y derecha */
-  font-weight: bold; /* Texto en negrita */
-  font-size: 1rem; /* Tamaño de fuente igual al de h3 */
-  color: black; /* Texto en color negro */
+tr {
+  background-color: #ffffff; /* Fondo alternativo para filas pare
 
 }
 
-.subtotal-carrito h3 {
-  font-size: 1rem;
+/* CSS para el contenedor de botones redondeados */
+.rounded-buttons-container {
+  text-align: center; /* Centrar horizontalmente el contenido */
+  margin-top: 20px; /* Añade un espacio superior para separar los botones del contenido anterior */
 }
 
-.subtotal-carrito h3:last-child {
-  margin-right: 0; /* Elimina el margen derecho del último h3 (precio) */
-}
-
-
-/* =====================================Estilos para la sección "Pagar" (10%) =============================================*/
-/* Estilos para el contenedor "pagar-carrito" */
-.pagar-carrito {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin: 2% 2%; /* Margen del 2% arriba y abajo, y a la izquierda y derecha */
-  background-color: #000dffd7; /* Fondo con color específico */
-  border-radius: 15px; /* Bordes redondeados */
-  max-height: 10%; /* Máxima altura del contenedor */
-  height: 4rem; /* Misma altura que .pagar */
-  margin-left: 20%; /* Mismo margen izquierdo que .pagar */
-  margin-right: 3%; /* Mismo margen derecho que .pagar */
-  overflow: hidden; /* Oculta el desbordamiento del botón */
-}
-
-/* Estilos para el botón "Pagar" */
-.boton-pagar {
-  background-color: #000dffd7; /* Color de fondo */
-  color: white; /* Texto en color blanco */
-  padding: 0;
+/* Estilo del botón "Añadir" con fondo verde */
+.green-button {
+  background-color: green;
   border: none;
-  height: 4rem; /* Misma altura que .pagar */
-  width: 100%; /* Ancho del 100% del contenedor */
-  font-size: 1rem; /* Tamaño de fuente */
-  font-weight: bold; /* Texto en negrita */
-  cursor: pointer; /* Cursor de puntero al pasar por encima */
-  transition: background-color 0.3s; /* Animación de cambio de color de fondo */
-}
-
-.boton-pagar:hover {
-  background-color: #007bff; /* Cambia el color de fondo al pasar por encima */
-}
-
-/* Estilos para el popup */
-.popup {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
-  z-index: 1; /* Coloca el popup encima de todo */
-  display:flexbox;
-  justify-content: center;
-  align-items: center;
-}
-
-.popup-contenido {
-  background-color: white;
-  border: 2px solid #000dffd7; /* Bordes de color #000dffd7 */
-  border-radius: 15px;
-  max-width: 400px;
-  padding: 20px;
-  text-align: center; /* Centra el texto */
-}
-
-/* Estilos para los botones de pago en el popup */
-.boton-pago {
-  background-color: #000dffd7;
-  color: white;
-  font-weight: bold;
-  padding: 15px 30px;
-  margin: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/* Estilos para el botón de Pagar en el carrito */
-.boton-pagar {
-  background-color: #000dffd7;
+  border-radius: 20px;
   color: white;
   font-weight: bold;
   padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+/* Estilo del botón "Agregar Categoría" con fondo amarillo mostaza */
+.yellow-button {
+  background-color: #FFD700; /* Amarillo mostaza */
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin: 10px;
   cursor: pointer;
 }
 
