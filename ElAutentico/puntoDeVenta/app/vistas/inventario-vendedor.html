@@ -5,27 +5,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/ElAutentico/puntoDeVenta/public/imagenes/LogoFoodTruck.jpg">
 
-    <title>Carta Vendedor</title>
+    <title>Inventario Vendedor</title>
 
     <!-- ====================== ESTILOS CSS ==================== -->
-    <link rel="stylesheet" href="../../public/css/ccs/style.css">
-    <!-- fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/ElAutentico/puntoDeVenta/public/css/ccs/inventario-vendedor.css">
+    <!-- ====================== JS ==================== -->
+    <script src="/ElAutentico/puntoDeVenta/public/js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 
 <body>
- 
     <!-- -------- BARRA DE NAVEGACION ------- -->
     <nav class="navbar">
         <ul class="navbar-nav">
             <li class="logo">
-                <a href="carta-vendedor.html" class="nav-link-menu">
+                <a href="/ElAutentico/puntoDeVenta/app/vistas/carta-vendedor.html" class="nav-link-menu">
                     <span class="link-icon"><ion-icon name="menu-outline"></ion-icon></i></span>
                     <span class="link-text">Menu</span>
                 </a>
@@ -33,25 +30,25 @@
 
             <!-- -------- ITEMS DE BARRA DE NAVEGACION ------- -->
             <li class="nav-item">
-                <a href="carta-vendedor.html" class="nav-link">
+                <a href="/ElAutentico/puntoDeVenta/app/vistas/carta-vendedor.html" class="nav-link">
                     <span class="link-icon"><ion-icon name="fast-food-outline"></ion-icon></i></span>
                     <span class="link-text">Carta</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="inventario-vendedor.html" class="nav-link">
+                <a href="/ElAutentico/puntoDeVenta/app/vistas/inventario-vendedor.html" class="nav-link">
                     <span class="link-icon-io"><ion-icon name="clipboard-outline"></ion-icon></i></span>
                     <span class="link-text">Inventario</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="hist_ventas-vendedor.html" class="nav-link">
+                <a href="/ElAutentico/puntoDeVenta/app/vistas/hist_ventas-vendedor.html" class="nav-link">
                     <span class="link-icon"><ion-icon name="book-outline"></ion-icon></i></span>
                     <span class="link-text">Historial Ventas</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="login.html" class="nav-link">
+                <a href="/ElAutentico/puntoDeVenta/app/vistas/login-v2.html" class="nav-link">
                     <span class="link-icon"><ion-icon name="log-in-outline"></ion-icon></i></span>
                     <span class="link-text">Cerrar Sesión</span>
                 </a>
@@ -59,62 +56,186 @@
         </ul>
     </nav>
 
-    <!-- Barra de busqueda y usuario -->
-    <div class="search-bar">
-        <div class="search-input">
-            <input type="text" placeholder="Buscar">
-            <ion-icon name="search" class="search-icon"></ion-icon>
+    <!-- Contenido principal que deseas desenfocar -->
+    <main class="contenido-a-desenfocar">
+
+        <!-- Barra de busqueda y usuario -->
+        <div class="barra-busqueda">
+            <div class="entrada-busqueda">
+                <input type="text" placeholder="Buscar">
+                <ion-icon name="search" class="icono-busqueda"></ion-icon>
+            </div>
+            <div class="vendedor">
+                <ion-icon name="person" class="icono-vendedor"></ion-icon>
+                <span class="nombre-vendedor">Maria Helena Saldaña</span>
+            </div>
         </div>
-        <div class="contact-info">
-            <ion-icon name="person" class="contact-icon"></ion-icon>
-            <span class="seller-name">Nombre del vendedor</span>
+
+        <!-- Tabla para mostrar los insumos con Bootstrap -->
+        <div>
+        <div class="tabla-inventario">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id de Insumo</th>
+                        <th>Imagen de Insumo</th>
+                        <th>Nombre de Insumo</th>
+                        <th>Cantidad Disponible</th>
+                        <th>Fecha de Vencimiento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>
+                            <img src="/ElAutentico/puntoDeVenta/public/imagenes/coca-cola-zero.jpg" alt="Insumo 1">
+                        </td>
+                        <td>Cola Cola Zero 591ml</td>
+                        <td>49</td>
+                        <td>2024-05-31</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>
+                            <img src="/ElAutentico/puntoDeVenta/public/imagenes/fanta-zero.jpeg" alt="Insumo 2">
+                        </td>
+                        <td>Fanta Zero 591ml</td>
+                        <td>30</td>
+                        <td>2024-06-15</td>
+                    </tr>
+                    <tr>
+                        <td>001</td>
+                        <td>
+                            <img src="/ElAutentico/puntoDeVenta/public/imagenes/coca-cola-zero.jpg" alt="Insumo 1">
+                        </td>
+                        <td>Cola Cola Zero 591ml</td>
+                        <td>49</td>
+                        <td>2024-05-31</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>
+                            <img src="/ElAutentico/puntoDeVenta/public/imagenes/fanta-zero.jpeg" alt="Insumo 2">
+                        </td>
+                        <td>Fanta Zero 591ml</td>
+                        <td>30</td>
+                        <td>2024-06-15</td>
+                    </tr>
+                    <tr>
+                        <td>001</td>
+                        <td>
+                            <img src="/ElAutentico/puntoDeVenta/public/imagenes/coca-cola-zero.jpg" alt="Insumo 1">
+                        </td>
+                        <td>Cola Cola Zero 591ml</td>
+                        <td>49</td>
+                        <td>2024-05-31</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>
+                            <img src="/ElAutentico/puntoDeVenta/public/imagenes/fanta-zero.jpeg" alt="Insumo 2">
+                        </td>
+                        <td>Fanta Zero 591ml</td>
+                        <td>30</td>
+                        <td>2024-06-15</td>
+                    </tr>
+                    <tr>
+                        <td>001</td>
+                        <td>
+                            <img src="/ElAutentico/puntoDeVenta/public/imagenes/coca-cola-zero.jpg" alt="Insumo 1">
+                        </td>
+                        <td>Cola Cola Zero 591ml</td>
+                        <td>49</td>
+                        <td>2024-05-31</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>
+                            <img src="/ElAutentico/puntoDeVenta/public/imagenes/fanta-zero.jpeg" alt="Insumo 2">
+                        </td>
+                        <td>Fanta Zero 591ml</td>
+                        <td>30</td>
+                        <td>2024-06-15</td>
+                    </tr>
+                    <tr>
+                        <td>001</td>
+                        <td>
+                            <img src="/ElAutentico/puntoDeVenta/public/imagenes/coca-cola-zero.jpg" alt="Insumo 1">
+                        </td>
+                        <td>Cola Cola Zero 591ml</td>
+                        <td>49</td>
+                        <td>2024-05-31</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>
+                            <img src="/ElAutentico/puntoDeVenta/public/imagenes/fanta-zero.jpeg" alt="Insumo 2">
+                        </td>
+                        <td>Fanta Zero 591ml</td>
+                        <td>30</td>
+                        <td>2024-06-15</td>
+                    </tr>
+                    <tr>
+                        <td>001</td>
+                        <td>
+                            <img src="/ElAutentico/puntoDeVenta/public/imagenes/coca-cola-zero.jpg" alt="Insumo 1">
+                        </td>
+                        <td>Cola Cola Zero 591ml</td>
+                        <td>49</td>
+                        <td>2024-05-31</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>
+                            <img src="/ElAutentico/puntoDeVenta/public/imagenes/fanta-zero.jpeg" alt="Insumo 2">
+                        </td>
+                        <td>Fanta Zero 591ml</td>
+                        <td>30</td>
+                        <td>2024-06-15</td>
+                    </tr>
+                    <tr>
+                        <td>001</td>
+                        <td>
+                            <img src="/ElAutentico/puntoDeVenta/public/imagenes/coca-cola-zero.jpg" alt="Insumo 1">
+                        </td>
+                        <td>Cola Cola Zero 591ml</td>
+                        <td>49</td>
+                        <td>2024-05-31</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>
+                            <img src="/ElAutentico/puntoDeVenta/public/imagenes/fanta-zero.jpeg" alt="Insumo 2">
+                        </td>
+                        <td>Fanta Zero 591ml</td>
+                        <td>30</td>
+                        <td>2024-06-15</td>
+                    </tr>
+                    <tr>
+                        <td>001</td>
+                        <td>
+                            <img src="/ElAutentico/puntoDeVenta/public/imagenes/coca-cola-zero.jpg" alt="Insumo 1">
+                        </td>
+                        <td>Cola Cola Zero 591ml</td>
+                        <td>49</td>
+                        <td>2024-05-31</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>
+                            <img src="/ElAutentico/puntoDeVenta/public/imagenes/fanta-zero.jpeg" alt="Insumo 2">
+                        </td>
+                        <td>Fanta Zero 591ml</td>
+                        <td>30</td>
+                        <td>2024-06-15</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-
     </div>
-
-     <!-- Tabla para mostrar los insumos con Bootstrap -->
-  
-    <div class="tabla-inventario">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Código de Insumo</th>
-                    <th>Imagen de Insumo</th>
-                    <th>Nombre de Insumo</th>
-                    <th>Cantidad Disponible</th>
-                    <th>Fecha de Vencimiento</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>001</td>
-                    <td>
-                        <img src="imagen1.jpg" alt="Insumo 1">
-                    </td>
-                    <td>Completo</td>
-                    <td>50</td>
-                    <td>2023-12-31</td>
-                </tr>
-                <tr>
-                    <td>002</td>
-                    <td>
-                        <img src="imagen2.jpg" alt="Insumo 2">
-                    </td>
-                    <td>Churrasco</td>
-                    <td>30</td>
-                    <td>2024-06-15</td>
-                </tr>
-                <!-- Agrega más filas con datos de prueba aquí -->
-            </tbody>
-        </table>
-    </div>
-    
-
+    </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
 </body>
-
 </html>
