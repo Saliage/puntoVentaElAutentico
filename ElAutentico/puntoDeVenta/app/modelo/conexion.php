@@ -4,9 +4,9 @@ class Conexion {
 
     private $host = "localhost";
     private $user = "root";
-    private $password = "161192-4";
+    private $password = "admin";
     private $database = "autentico";
-    private $port = 3307;
+    private $port = 3306;
     private $conn;
 
     public function abrirConexion(){ 
