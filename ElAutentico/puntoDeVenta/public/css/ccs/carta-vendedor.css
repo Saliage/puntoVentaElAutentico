@@ -14,6 +14,25 @@ body {
   padding: 0;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(10deg, #e6e6e6, #a8d6f5, #f7d298, #a0d4f798);
+  background-size: 400% 400%;
+  animation: animacionDegrade 5s linear infinite;
+}
+@keyframes animacionDegrade {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
 /* Scrollbar */
 body::-webkit-scrollbar {
   width: 0;

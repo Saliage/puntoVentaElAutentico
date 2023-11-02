@@ -10,8 +10,7 @@
     <title>Carta Vendedor</title>
 
     <!-- ====================== ESTILOS CSS ==================== -->
-    <link rel="stylesheet" href="/ElAutentico/puntoDeVenta/public/css/carta-vendedor.css">
-    <link rel="stylesheet" href="/ElAutentico/puntoDeVenta/public/bootstrap-5.3.2-dist/css">
+    <link rel="stylesheet" href="/ElAutentico/puntoDeVenta/public/css/ccs/carta-vendedor.css">
     <!-- ====================== JS ==================== -->
     <script src="/ElAutentico/puntoDeVenta/public/js"></script>
     <!-- ====== ionicons ======= -->
@@ -50,7 +49,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="/ElAutentico/puntoDeVenta/app/vistas/login-v2.html" class="nav-link">
                     <span class="link-icon"><ion-icon name="log-in-outline"></ion-icon></i></span>
                     <span class="link-text">Cerrar Sesión</span>
                 </a>
@@ -508,6 +507,10 @@
 function mostrarPopup() {
   const popup = document.getElementById('popup');
   popup.style.display = 'block';
+
+              // Reproducir el sonido cuando se muestra el popup
+              const audio = new Audio('/ElAutentico/puntoDeVenta/public/music/sonido_de_dinero.mp3');
+            audio.play();
 }
 
 // Función para realizar el pago
@@ -517,7 +520,6 @@ function realizarPago(medioPago) {
   const popup = document.getElementById('popup');
   popup.style.display = 'none'; // Cierra el popup
 }
-
     </script>
 
 </body>
