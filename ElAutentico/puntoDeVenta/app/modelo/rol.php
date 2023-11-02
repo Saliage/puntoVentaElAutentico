@@ -43,6 +43,18 @@ class Rol {
         return $resultado;
     }
 
+    // Buscar rol por parte del nombre
+    public function buscarRolNombre($busqueda){
+        
+        $conectar = new Conexion();
+        $conn = $conectar->abrirConexion();
+
+        $consulta = "SELECT * FROM rol WHERE nombre_rol LIKE '%$busqueda%' LIMIT 5";
+
+        $resultado = $conn->query($consulta);
+        return $resultado;
+    }
+
     // Actualizar datos de rol
     public function actualizarRol($id, $nombre) {
         $conectar = new Conexion();

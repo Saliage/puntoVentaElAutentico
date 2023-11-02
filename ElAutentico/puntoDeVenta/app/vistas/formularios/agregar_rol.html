@@ -1,20 +1,219 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingresar Rol</title>
+
+    <title>Carta Vendedor</title>
+
+    <!-- ====================== ESTILOS CSS ==================== -->
+    <link rel="stylesheet" href="../../../public/css/ccs/style.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
+
 <body>
+ 
+    <!-- -------- BARRA DE NAVEGACION ------- -->
+    <nav class="navbar">
+        <ul class="navbar-nav">
+            <li class="logo">
+                <a href="carta-vendedor.html" class="nav-link-menu">
+                    <span class="link-icon"><ion-icon name="menu-outline"></ion-icon></i></span>
+                    <span class="link-text">Menu</span>
+                </a>
+            </li>
 
-    <form action="../gestion/gestion_rol.php" method="post">
-        <!-- Etiqueta de entrada de texto -->
-        <label for="textoInput">Ingresa Nombre ROL: </label>
-        <input type="text" id="textoInput" name="textoInput">
+            <!-- -------- ITEMS DE BARRA DE NAVEGACION ------- -->
+            <li class="nav-item">
+                <a href="carta-vendedor.html" class="nav-link">
+                    <span class="link-icon"><ion-icon name="fast-food-outline"></ion-icon></i></span>
+                    <span class="link-text">Carta</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="inventario-vendedor.html" class="nav-link">
+                    <span class="link-icon-io"><ion-icon name="clipboard-outline"></ion-icon></i></span>
+                    <span class="link-text">Inventario</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="hist_ventas-vendedor.html" class="nav-link">
+                    <span class="link-icon"><ion-icon name="book-outline"></ion-icon></i></span>
+                    <span class="link-text">Historial Ventas</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="login.html" class="nav-link">
+                    <span class="link-icon"><ion-icon name="log-in-outline"></ion-icon></i></span>
+                    <span class="link-text">Cerrar Sesión</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
-        <!-- Botón para enviar el formulario -->
-        <input type="submit" value="Agregar Rol">
-    </form>
+    <!-- Barra de busqueda y usuario -->
+    <div class="search-bar">
+        <div class="search-input">
+            <input type="text" placeholder="Buscar">
+            <ion-icon name="search" class="search-icon"></ion-icon>
+        </div>
+        <div class="contact-info">
+            <ion-icon name="person" class="contact-icon"></ion-icon>
+            <span class="seller-name">Nombre del vendedor</span>
+        </div>
+
+    </div>
+
+     <!-- Tabla para mostrar los insumos con Bootstrap -->
+  
+    <div class="tabla-inventario">
+
+        <div class="container">
+            <h1 class="text-center">ROLES</h1>
+            <hr>
+            <div class="row text-center">
+                <div class="col">
+                    
+                    
+                    <label for="buscador">Ingresa Nombre ROL: </label>
+                    <input type="text" name="buscador" id="buscador" class="form-control" onkeypress="mi_busqueda();">
+                    <input type="button" class="btn btn-primary" value="Agregar Rol" onclick="mostrar(1);">
+                    <input type="button" class="btn btn-primary" value="Ver Roles" onclick="mostrar(2);">
+    
+                </div>
+              
+            </div>
+    
+            <hr>
+            <h2 class="text-center">DETALLES</h2>
+            <div class="row justify-content-md-center">		
+                <div class="col-md-8">
+                    <div id="mostrar_mensaje"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--
+        <form action="../gestion/gestion_rol.php" method="post">
+             Etiqueta de entrada de texto 
+            <label for="textoInput">Ingresa Nombre ROL: </label>
+            <input type="text" id="textoInput" name="textoInput">
+    
+             Botón para enviar el formulario 
+            <input type="submit" value="Agregar Rol">
+        </form>
+
+        -->
+
+        <!--
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Código de Insumo</th>
+                    <th>Imagen de Insumo</th>
+                    <th>Nombre de Insumo</th>
+                    <th>Cantidad Disponible</th>
+                    <th>Fecha de Vencimiento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>
+                        <img src="imagen1.jpg" alt="Insumo 1">
+                    </td>
+                    <td>Completo</td>
+                    <td>50</td>
+                    <td>2023-12-31</td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>
+                        <img src="imagen2.jpg" alt="Insumo 2">
+                    </td>
+                    <td>Churrasco</td>
+                    <td>30</td>
+                    <td>2024-06-15</td>
+                </tr>
+            </tbody>
+        </table>
+
+        -->
+    </div>
+
+    <!--   CODIGO AJAX PARA CONTROLAR EVENTOS -->
+    <script>
+        function mi_busqueda()
+        { 
+            buscar = document.getElementById('buscador').value;
+          var parametros = 
+          {
+            "mi_busqueda" : buscar,
+            "opcion" : "3"
+          };
+    
+          $.ajax({
+            data: parametros,
+            url: '../gestion/gestion_rol.php',
+            type: 'POST',
+            
+            beforesend: function()
+            {
+              $('#mostrar_mensaje').html("Error de comunicación");
+            },
+    
+            success: function(mensaje)
+            {
+              $('#mostrar_mensaje').html(mensaje);
+            }
+          });
+        }
+    
+        function mostrar(opcion)
+        { 
+            buscar = document.getElementById('buscador').value;
+          var parametros = 
+          {
+            "nombre" : buscar,
+            "opcion" : opcion
+          };
+    
+          $.ajax({
+            data: parametros,
+            url: '../gestion/gestion_rol.php',
+            type: 'POST',
+            
+            beforesend: function()
+            {
+              $('#mostrar_mensaje').html("Error de comunicación");
+            },
+    
+            success: function(mensaje)
+            {
+              $('#mostrar_mensaje').html(mensaje);
+            }
+          });
+        }
+    </script>
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
 </body>
+
 </html>
