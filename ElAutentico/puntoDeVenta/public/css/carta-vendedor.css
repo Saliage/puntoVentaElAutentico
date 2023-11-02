@@ -285,7 +285,7 @@ body::-webkit-scrollbar-thumb {
 
     /* Estilos al pasar el mouse por encima */
     &:hover {
-      border-color: #000dffd7; /* Borde rojo al pasar el mouse por encima */
+      border: 3px solid #000dffd7;
     }
   }
 
@@ -332,6 +332,21 @@ body::-webkit-scrollbar-thumb {
   margin-bottom: 10px; /* Espacio entre secciones */
   max-height: 10%;
   overflow-y: auto;
+}
+
+.calcular-productos::-webkit-scrollbar {
+  width: 14px; /* Ancho de la barra de desplazamiento */
+}
+
+.calcular-productos::-webkit-scrollbar-track {
+  background: transparent; /* Color de fondo de la barra de desplazamiento */
+  width: 14px;
+}
+
+.calcular-productos::-webkit-scrollbar-thumb {
+  background: #000dffd7; /* Color de la barra de desplazamiento */
+  border-radius: 3px; /* Borde redondeado de la barra de desplazamiento */
+  width: 14px;
 }
 
 .producto-carrito {
