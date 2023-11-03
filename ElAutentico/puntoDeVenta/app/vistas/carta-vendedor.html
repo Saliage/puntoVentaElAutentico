@@ -478,18 +478,17 @@
                 <div class="pagar-carrito">
                     <button class="boton-pagar" onclick="mostrarPopup()">Pagar</button>
                 </div>
-                
-                <!-- El contenedor del popup (inicialmente oculto) -->
-                <div class="popup" id="popup">
-                    <div class="popup-contenido">
-                        <h2>Medio de pago:</h2>
-                        <button class="boton-pago" onclick="realizarPago('Efectivo')">Efectivo</button>
-                        <button class="boton-pago" onclick="realizarPago('Tarjeta')">Tarjeta</button>
-                    </div>
-                </div>
             </div>
         </div>
     </main>
+    <!-- El contenedor del popup (inicialmente oculto) -->
+    <div class="popup" id="popup">
+        <div class="popup-contenido">
+            <h2>Medio de pago:</h2>
+            <button class="boton-pago" onclick="realizarPago('Efectivo')">Efectivo</button>
+            <button class="boton-pago" onclick="realizarPago('Tarjeta')">Tarjeta</button>
+        </div>
+     </div>
     <!-- JavaScript para manejar el evento de clic y agregar/eliminar la clase "seleccionado" al elemento seleccionado. -->
     <script>
     // Obtenemos todos los elementos de categoría
