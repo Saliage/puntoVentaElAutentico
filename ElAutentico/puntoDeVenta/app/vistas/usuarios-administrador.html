@@ -11,6 +11,8 @@
 
     <!-- ====================== ESTILOS CSS ==================== -->
     <link rel="stylesheet" href="../../public/css/ccs/carta-administrador.css">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <!-- ====================== JS ==================== -->
     <script src="../../public/js"></script>
     <!-- ====== ionicons ======= -->
@@ -68,7 +70,6 @@
             </li>
         </ul>
     </nav>
-
     <!-- Contenido principal que deseas desenfocar -->
     <main class="contenido-a-desenfocar">
 
@@ -88,8 +89,8 @@
             <table class="table">
                 <div class="rounded-buttons-container">
 
-                    <button class="rounded-button green-button">
-                        <ion-icon name="add-circle-outline"></ion-icon>
+                    <button type="button" class="btn btn-outline-dark">
+                        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
                         <span class="button-text">Añadir usuario</span>
                     </button>
 
@@ -107,36 +108,37 @@
                         <td>001</td>
                         <td>Jose Jaramillo</td>
                         <td>Administrador</td>
-                        <td><a href="#">Editar</a></td>
-                        <td><a href="#">Eliminar</a></td>
+                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
                     </tr>
                     <tr>
                         <td>001</td>
                         <td>Jose Jaramillo</td>
                         <td>Administrador</td>
-                        <td><a href="#">Editar</a></td>
-                        <td><a href="#">Eliminar</a></td>
+                        <button type="button" class="btn btn-outline-dark">Dark</button>
+                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
                     </tr>
                     <tr>
                         <td>001</td>
                         <td>Jose Jaramillo</td>
                         <td>Administrador</td>
-                        <td><a href="#">Editar</a></td>
-                        <td><a href="#">Eliminar</a></td>
+                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
                     </tr>
                     <tr>
                         <td>001</td>
                         <td>Jose Jaramillo</td>
                         <td>Administrador</td>
-                        <td><a href="#">Editar</a></td>
-                        <td><a href="#">Eliminar</a></td>
+                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
                     </tr>
                     <tr>
                         <td>001</td>
                         <td>Jose Jaramillo</td>
                         <td>Administrador</td>
-                        <td><a href="#">Editar</a></td>
-                        <td><a href="#">Eliminar</a></td>
+                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
                     </tr>
                 </tbody>
             </table>

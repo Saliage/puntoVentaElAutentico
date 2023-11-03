@@ -228,35 +228,17 @@ tr {
 
 }
 
-/* CSS para el contenedor de botones redondeados */
-.rounded-buttons-container {
-  text-align: center; /* Centrar horizontalmente el contenido */
-  margin-top: 20px; /* Añade un espacio superior para separar los botones del contenido anterior */
+/* Estilos para los iconos de editar y eliminar */
+.icono-editar {
+  font-size: 24px; /* Ajusta el tamaño según tus necesidades */
+  color: #000dffd7; /* Cambia el color si es necesario */
 }
 
-/* Estilo del botón "Añadir" con fondo verde */
-.green-button {
-  background-color: green;
-  border: none;
-  border-radius: 20px;
-  color: white;
-  font-weight: bold;
-  padding: 10px 20px;
-  margin: 10px;
-  cursor: pointer;
+.icono-eliminar {
+  font-size: 24px; /* Ajusta el tamaño según tus necesidades */
+  color: red; /* Cambia el color si es necesario */
 }
 
-/* Estilo del botón "Agregar Categoría" con fondo amarillo mostaza */
-.yellow-button {
-  background-color: #FFD700; /* Amarillo mostaza */
-  border: none;
-  border-radius: 20px;
-  color: white;
-  font-weight: bold;
-  padding: 10px 20px;
-  margin: 10px;
-  cursor: pointer;
-}
 
 
 /* ========================================= Pantallas largas ========================================= */
