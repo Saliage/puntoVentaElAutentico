@@ -53,7 +53,7 @@ body::-webkit-scrollbar-thumb {
   position: fixed;
   background: var(--bg-primary);
   transition: width 0.6s ease;
-  z-index: 3; /* Asegurar que esté en la parte superior de otros elementos */  
+  z-index: 5; /* Asegurar que esté en la parte superior de otros elementos */  
 }
 .navbar-nav {
   list-style: none;
@@ -223,11 +223,6 @@ th {
   color: #fff; /* Texto en color blanco en el encabezado */
 }
 
-tr {
-  background-color: #ffffff; /* Fondo alternativo para filas pare
-
-}
-
 /* Estilos para los iconos de editar y eliminar */
 .icono-editar {
   font-size: 24px; /* Ajusta el tamaño según tus necesidades */
@@ -238,6 +233,7 @@ tr {
   font-size: 24px; /* Ajusta el tamaño según tus necesidades */
   color: red; /* Cambia el color si es necesario */
 }
+/* ======================================== VISTA AGREGAR USUARIOS ========================================== */
 
 
 
@@ -285,4 +281,5 @@ tr {
     height: 40px;
     margin: left 40rem;;
   }
+}
 }

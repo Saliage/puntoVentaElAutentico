@@ -15,8 +15,11 @@
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <!-- ====================== JS ==================== -->
     <script src="../../public/js"></script>
+    <script src="../../public/js/scripts.js"></script>
+    <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    
 </head>
 
 <body>
@@ -63,6 +66,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="../../app/vistas/carta-vendedor.html" class="nav-link">
+                    <span class="link-icon"><ion-icon name="person-outline"></ion-icon></i></span>
+                    <span class="link-text">Vista vendedor</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="../../app/vistas/login.html" class="nav-link">
                     <span class="link-icon"><ion-icon name="log-in-outline"></ion-icon></i></span>
                     <span class="link-text">Cerrar Sesión</span>
@@ -87,15 +96,15 @@
         <div class="tabla-inventario">
 
             <table class="table">
-                <div class="rounded-buttons-container">
-
-                    <button type="button" class="btn btn-outline-dark">
-                        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
-                        <span class="button-text">Añadir usuario</span>
-                    </button>
-
-                </div>
                 <thead>
+                    <div class="rounded-buttons-container">
+
+                        <button class="rounded-button green-button" onclick="openPopup()">
+                            <ion-icon name="add-circle-outline"></ion-icon>
+                            <span class="button-text">Añadir usuario</span>
+                        </button>                        
+                        
+                    </div>
                     <tr>
                         <th>Id usuario</th>
                         <th>Nombre y apellido</th>
@@ -115,9 +124,8 @@
                         <td>001</td>
                         <td>Jose Jaramillo</td>
                         <td>Administrador</td>
-                        <button type="button" class="btn btn-outline-dark">Dark</button>
                         <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td>  
                     </tr>
                     <tr>
                         <td>001</td>
@@ -144,5 +152,44 @@
             </table>
         </div>
     </main>
+    <div id="popup" class="popup" style="display: none;">
+        <div class="popup-content">
+          <span class="popup-close" onclick="closePopup()">&times;</span>
+          <h2>Agregar Usuario</h2>
+          <div class="popup-inputs">
+            <label for="id-usuario">Id usuario:</label>
+            <input type="text" id="id-usuario" name="id-usuario" required>
+      
+            <label for="nombre-apellido">Nombre y Apellido:</label>
+            <input type="text" id="nombre-apellido" name="nombre-apellido" required>
+      
+            <label for="tipo-usuario">Tipo de usuario:</label>
+            <select id="tipo-usuario" name="tipo-usuario" required>
+              <option value="administrador">Administrador</option>
+              <option value="vendedor">Vendedor</option>
+            </select>
+          </div>
+      
+          <button class="popup-button" onclick="agregarUsuario()">Agregar Usuario</button>
+        </div>
+      </div>
+      
+      <script>
+        // JavaScript para mostrar y ocultar el popup
+        function openPopup() {
+          document.getElementById("popup").style.display = "block";
+        }
+      
+        function closePopup() {
+          document.getElementById("popup").style.display = "none";
+        }
+      
+        // JavaScript para agregar un usuario (debes implementar esta función)
+        function agregarUsuario() {
+          // Aquí puedes agregar la lógica para procesar los datos del usuario y cerrar el popup
+          alert("Usuario agregado"); // Ejemplo de mensaje de alerta
+          closePopup(); // Cierra el popup después de agregar el usuario
+        }
+      </script>
 </body>
 </html>
