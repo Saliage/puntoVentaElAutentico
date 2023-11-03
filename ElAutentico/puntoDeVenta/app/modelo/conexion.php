@@ -3,8 +3,13 @@
 class Conexion {
 
     private $host = "localhost";
+<<<<<<< HEAD
     private $user = "root";
     private $password = "admin";
+=======
+    private $user = "autentico";
+    private $password = "autentico";
+>>>>>>> c662bc9eb51447074243433c81897f7438c72a94
     private $database = "autentico";
     private $port = 3306;
     private $conn;

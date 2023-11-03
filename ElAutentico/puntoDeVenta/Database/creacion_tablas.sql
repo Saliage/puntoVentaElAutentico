@@ -1,3 +1,10 @@
+CREATE USER 'autentico'@'localhost' IDENTIFIED BY 'autentico';
+GRANT SELECT, ALTER, CREATE, DELETE, INSERT, REFERENCES, UPDATE  ON *.* TO 'autentico'@'localhost';
+FLUSH PRIVILEGES;
+SHOW GRANTS FOR 'autentico'@'localhost';
+
+CREATE DATABASE autentico;
+
 USE autentico;
 
 CREATE TABLE almacen (
