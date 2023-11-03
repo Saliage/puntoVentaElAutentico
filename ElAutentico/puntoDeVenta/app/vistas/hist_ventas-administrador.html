@@ -5,165 +5,139 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">
+    
 
-    <title>Historial Ventas Administrador</title>
+    <title>Historial ventas Administrador</title>
 
     <!-- ====================== ESTILOS CSS ==================== -->
-    <link rel="stylesheet" href="../../public/css/ccs/style.css">
-    <!--
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    -->
-    <!-- fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../public/css/ccs/carta-administrador.css">
+    <!-- ====================== JS ==================== -->
+    <script src="../../public/js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 
 <body>
  
     <!-- -------- BARRA DE NAVEGACION ------- -->
-        <!-- -------- BARRA DE NAVEGACION ------- -->
-        <nav class="navbar">
-            <ul class="navbar-nav">
-                <li class="logo">
-                    <a href="carta-vendedor.html" class="nav-link-menu">
-                        <span class="link-icon"><ion-icon name="menu-outline"></ion-icon></i></span>
-                        <span class="link-text">Menu</span>
-                    </a>
-                </li>
-    
-                <!-- -------- ITEMS DE BARRA DE NAVEGACION ------- -->
-                <li class="nav-item">
-                    <a href="carta-administrador.html" class="nav-link">
-                        <span class="link-icon"><ion-icon name="fast-food-outline"></ion-icon></i></span>
-                        <span class="link-text">Carta</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="inventario-administrador.html" class="nav-link">
-                        <span class="link-icon"><ion-icon name="clipboard-outline"></ion-icon></i></span>
-                        <span class="link-text">Inventario</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="hist_ventas-administrador.html" class="nav-link">
-                        <span class="link-icon-io"><ion-icon name="book-outline"></ion-icon></i></span>
-                        <span class="link-text">Historial Ventas</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="usuarios-administrador.html" class="nav-link">
-                        <span class="link-icon"><ion-icon name="body"></ion-icon></i></span>
-                        <span class="link-text">Usuarios</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="reporte_ventas-administrador.html" class="nav-link">
-                        <span class="link-icon"><ion-icon name="document"></ion-icon></i></span>
-                        <span class="link-text">Reporte Ventas</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="login.html" class="nav-link">
-                        <span class="link-icon"><ion-icon name="log-in-outline"></ion-icon></i></span>
-                        <span class="link-text">Cerrar Sesión</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+    <nav class="navbar">
+        <ul class="navbar-nav">
+            <li class="logo">
+                <a href="../../app/vistas/carta-administrador.html" class="nav-link-menu">
+                    <span class="link-icon"><ion-icon name="menu-outline"></ion-icon></i></span>
+                    <span class="link-text">Menu</span>
+                </a>
+            </li>
 
-    <!-- Barra de busqueda y usuario -->
-    <div class="search-bar">
-        <div class="search-input">
-            <input type="text" placeholder="Buscar">
-            <ion-icon name="search" class="search-icon"></ion-icon>
+            <!-- -------- ITEMS DE BARRA DE NAVEGACION ------- -->
+            <li class="nav-item">
+                <a href="../../app/vistas/carta-administrador.html" class="nav-link">
+                    <span class="link-icon"><ion-icon name="fast-food-outline"></ion-icon></i></span>
+                    <span class="link-text">Carta</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../../app/vistas/inventario-administrador.html" class="nav-link">
+                    <span class="link-icon"><ion-icon name="clipboard-outline"></ion-icon></i></span>
+                    <span class="link-text">Inventario</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../../app/vistas/hist_ventas-administrador.html" class="nav-link">
+                    <span class="link-icon-io"><ion-icon name="book-outline"></ion-icon></i></span>
+                    <span class="link-text">Historial Ventas</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../../app/vistas/usuarios-administrador.html" class="nav-link">
+                    <span class="link-icon"><ion-icon name="body"></ion-icon></i></span>
+                    <span class="link-text">Usuarios</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../../app/vistas/reporte_ventas-administrador.html" class="nav-link">
+                    <span class="link-icon"><ion-icon name="document"></ion-icon></i></span>
+                    <span class="link-text">Reporte Ventas</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../../app/vistas/login.html" class="nav-link">
+                    <span class="link-icon"><ion-icon name="log-in-outline"></ion-icon></i></span>
+                    <span class="link-text">Cerrar Sesión</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Contenido principal que deseas desenfocar -->
+    <main class="contenido-a-desenfocar">
+
+        <!-- Barra de busqueda y usuario -->
+        <div class="barra-busqueda">
+            <div class="entrada-busqueda">
+                <input type="text" placeholder="Buscar por fecha">
+                <ion-icon name="search" class="icono-busqueda"></ion-icon>
+            </div>
+            <div class="vendedor">
+                <ion-icon name="person" class="icono-vendedor"></ion-icon>
+                <span class="nombre-vendedor">Nombre administrador</span>
+            </div>
         </div>
-        <div class="contact-info">
-            <ion-icon name="person" class="contact-icon"></ion-icon>
-            <span class="seller-name">Nombre del administrador</span>
+
+        <div class="tabla-inventario">
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Código Venta</th>
+                        <th>Nombre Vendedor</th>
+                        <th>Fecha</th>
+                        <th>Monto</th>
+                        <th colspan="2"></th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>Juan Villegas</td>
+                        <td>10-10-2023</td>
+                        <td>10123</td>
+                        <td><a href="#">Ver detalles</a></td>
+                    </tr>
+                    <tr>
+                        <td>001</td>
+                        <td>Juan Villegas</td>
+                        <td>10-10-2023</td>
+                        <td>10123</td>
+                        <td><a href="#">Ver detalles</a></td>
+                    </tr>
+                    <tr>
+                        <td>001</td>
+                        <td>Juan Villegas</td>
+                        <td>10-10-2023</td>
+                        <td>10123</td>
+                        <td><a href="#">Ver detalles</a></td>
+                    </tr>
+                    <tr>
+                        <td>001</td>
+                        <td>Juan Villegas</td>
+                        <td>10-10-2023</td>
+                        <td>10123</td>
+                        <td><a href="#">Ver detalles</a></td>
+                    </tr>
+                    <tr>
+                        <td>001</td>
+                        <td>Juan Villegas</td>
+                        <td>10-10-2023</td>
+                        <td>10123</td>
+                        <td><a href="#">Ver detalles</a></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </div>
 
-    <div class="tabla-ventas">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Código Venta</th>
-                    <th>Nombre Vendedor</th>
-                    <th>Fecha</th>
-                    <th>Monto</th>
-                    <th>Acciones</th>
-
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>001</td>
-                    <td>Juan</td>
-                    <td>10-10-2023</td>
-                    <td>10123</td>
-                    <td><a href="#">Ver detalles</a></td>
-                </tr>
-                <tr>
-                    <td>001</td>
-                    <td>Juan</td>
-                    <td>10-10-2023</td>
-                    <td>10123</td>
-                    <td><a href="#">Ver detalles</a></td>
-                </tr>
-                <tr>
-                    <td>001</td>
-                    <td>Juan</td>
-                    <td>10-10-2023</td>
-                    <td>10123</td>
-                    <td><a href="#">Ver detalles</a></td>
-                </tr>
-                <tr>
-                    <td>001</td>
-                    <td>Juan</td>
-                    <td>10-10-2023</td>
-                    <td>10123</td>
-                    <td><a href="#">Ver detalles</a></td>
-                </tr>
-                <tr>
-                    <td>001</td>
-                    <td>Juan</td>
-                    <td>10-10-2023</td>
-                    <td>10123</td>
-                    <td><a href="#">Ver detalles</a></td>
-                </tr>
-                <tr>
-                    <td>001</td>
-                    <td>Juan</td>
-                    <td>10-10-2023</td>
-                    <td>10123</td>
-                    <td><a href="#">Ver detalles</a></td>
-                </tr>
-                <tr>
-                    <td>001</td>
-                    <td>Juan</td>
-                    <td>10-10-2023</td>
-                    <td>10123</td>
-                    <td><a href="#">Ver detalles</a></td>
-                </tr>
-                <tr>
-                    <td>001</td>
-                    <td>Juan</td>
-                    <td>10-10-2023</td>
-                    <td>10123</td>
-                    <td><a href="#">Ver detalles</a></td>
-                </tr>
-
-                
-                <!-- Agrega más filas con datos de prueba aquí -->
-            </tbody>
-        </table>
-    </div>
-
+        
+    </main>
 </body>
-
 </html>

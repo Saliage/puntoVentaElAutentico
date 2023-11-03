@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/ElAutentico/puntoDeVenta/public/imagenes/LogoFoodTruck.jpg">
+    <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">
 
     <title>Carta administrador</title>
 
     <!-- ====================== ESTILOS CSS ==================== -->
-    <link rel="stylesheet" href="/ElAutentico/puntoDeVenta/public/css/ccs/carta-administrador.css">
+    <link rel="stylesheet" href="../../public/css/ccs/carta-administrador.css">
     <!-- ====================== JS ==================== -->
-    <script src="/ElAutentico/puntoDeVenta/public/js"></script>
+    <script src="../../public/js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>
@@ -23,7 +23,7 @@
     <nav class="navbar">
         <ul class="navbar-nav">
             <li class="logo">
-                <a href="/ElAutentico/puntoDeVenta/app/vistas/carta-administrador.html" class="nav-link-menu">
+                <a href="../../app/vistas/carta-administrador.html" class="nav-link-menu" placeholder="holactm">
                     <span class="link-icon"><ion-icon name="menu-outline"></ion-icon></i></span>
                     <span class="link-text">Menu</span>
                 </a>
@@ -31,37 +31,37 @@
 
             <!-- -------- ITEMS DE BARRA DE NAVEGACION ------- -->
             <li class="nav-item">
-                <a href="/ElAutentico/puntoDeVenta/app/vistas/carta-administrador.html" class="nav-link">
+                <a href="../../app/vistas/carta-administrador.html" class="nav-link">
                     <span class="link-icon-io"><ion-icon name="fast-food-outline"></ion-icon></i></span>
                     <span class="link-text">Carta</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/ElAutentico/puntoDeVenta/app/vistas/inventario-administrador.html" class="nav-link">
+                <a href="../../app/vistas/inventario-administrador.html" class="nav-link">
                     <span class="link-icon"><ion-icon name="clipboard-outline"></ion-icon></i></span>
                     <span class="link-text">Inventario</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/ElAutentico/puntoDeVenta/app/vistas/hist_ventas-administrador.html" class="nav-link">
+                <a href="../../app/vistas/hist_ventas-administrador.html" class="nav-link">
                     <span class="link-icon"><ion-icon name="book-outline"></ion-icon></i></span>
                     <span class="link-text">Historial Ventas</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/ElAutentico/puntoDeVenta/app/vistas/usuarios-administrador.html" class="nav-link">
+                <a href="../../app/vistas/usuarios-administrador.html" class="nav-link">
                     <span class="link-icon"><ion-icon name="body"></ion-icon></i></span>
                     <span class="link-text">Usuarios</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/ElAutentico/puntoDeVenta/app/vistas/reporte_ventas-administrador.html" class="nav-link">
+                <a href="../../app/vistas/reporte_ventas-administrador.html" class="nav-link">
                     <span class="link-icon"><ion-icon name="document"></ion-icon></i></span>
                     <span class="link-text">Reporte Ventas</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/ElAutentico/puntoDeVenta/app/vistas/login.html" class="nav-link">
+                <a href="../../app/vistas/login.html" class="nav-link">
                     <span class="link-icon"><ion-icon name="log-in-outline"></ion-icon></i></span>
                     <span class="link-text">Cerrar Sesión</span>
                 </a>
@@ -75,29 +75,25 @@
         <!-- Barra de busqueda y usuario -->
         <div class="barra-busqueda">
             <div class="entrada-busqueda">
-                <input type="text" placeholder="Buscar">
+                <input type="text" placeholder="Buscar producto">
                 <ion-icon name="search" class="icono-busqueda"></ion-icon>
             </div>
             <div class="vendedor">
                 <ion-icon name="person" class="icono-vendedor"></ion-icon>
-                <span class="nombre-vendedor">Maria Helena Saldaña</span>
+                <span class="nombre-vendedor">Nombre Administrador</span>
             </div>
         </div>
 
-
-
-        <!-- Tabla para mostrar los insumos con Bootstrap -->
         <div class="tabla-inventario">
             
             <table class="table">
                 <div class="rounded-buttons-container">
-                    <!-- Botón "Añadir" con fondo verde -->
+
                     <button class="rounded-button green-button">
                         <ion-icon name="add-circle-outline"></ion-icon>
                         <span class="button-text">Añadir</span>
                     </button>
                 
-                    <!-- Botón "Agregar Categoría" con fondo amarillo mostaza -->
                     <button class="rounded-button yellow-button">
                         <ion-icon name="add-circle-outline"></ion-icon>
                         <span class="button-text">Agregar Categoría</span>
@@ -105,7 +101,7 @@
                 </div>
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        <th>Id producto</th>
                         <th>Imagen</th>
                         <th>Nombre</th>
                         <th>Categoria</th>
@@ -116,7 +112,7 @@
                 <tbody>
                     <tr>
                         <td>001</td>
-                        <td> <img src="/ElAutentico/puntoDeVenta/public/imagenes/completo-italiano.jpg"></td>
+                        <td> <img src="../../public/imagenes/completo-italiano.jpg"></td>
                         <td>Completo</td>
                         <td>Hot Dogs</td>
                         <td>$1.300</td>
@@ -125,7 +121,7 @@
                     </tr>
                     <tr>
                         <td>001</td>
-                        <td> <img src="/ElAutentico/puntoDeVenta/public/imagenes/completo-italiano.jpg"></td>
+                        <td> <img src="../../public/imagenes/completo-italiano.jpg"></td>
                         <td>Completo</td>
                         <td>Hot Dogs</td>
                         <td>$1.300</td>
@@ -134,7 +130,7 @@
                     </tr>
                     <tr>
                         <td>001</td>
-                        <td> <img src="/ElAutentico/puntoDeVenta/public/imagenes/completo-italiano.jpg"></td>
+                        <td> <img src="../../public/imagenes/completo-italiano.jpg"></td>
                         <td>Completo</td>
                         <td>Hot Dogs</td>
                         <td>$1.300</td>
@@ -143,7 +139,7 @@
                     </tr>
                     <tr>
                         <td>001</td>
-                        <td> <img src="/ElAutentico/puntoDeVenta/public/imagenes/completo-italiano.jpg"></td>
+                        <td> <img src="../../public/imagenes/completo-italiano.jpg"></td>
                         <td>Completo</td>
                         <td>Hot Dogs</td>
                         <td>$1.300</td>
@@ -152,7 +148,7 @@
                     </tr>
                     <tr>
                         <td>001</td>
-                        <td> <img src="/ElAutentico/puntoDeVenta/public/imagenes/completo-italiano.jpg"></td>
+                        <td> <img src="../../public/imagenes/completo-italiano.jpg"></td>
                         <td>Completo</td>
                         <td>Hot Dogs</td>
                         <td>$1.300</td>
