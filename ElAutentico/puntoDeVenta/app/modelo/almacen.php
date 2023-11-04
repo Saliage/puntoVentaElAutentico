@@ -1,6 +1,6 @@
 <?php
 
-require('conexion.php');
+require_once('conexion.php');
 
 class Almacen {
 
@@ -28,6 +28,7 @@ class Almacen {
         $resultado = $conn->query($consulta);
 
         return $resultado;
+        $conn ->close();
     }
 
     // Buscar almacen por id
@@ -41,6 +42,18 @@ class Almacen {
 
         return $resultado;
     }
+
+        // Buscar almacen por parte del nombre
+        public function buscarAlmacenNombre($busqueda){
+        
+            $conectar = new Conexion();
+            $conn = $conectar->abrirConexion();
+    
+            $consulta = "SELECT * FROM almacen WHERE nombre LIKE '%$busqueda%' LIMIT 5";
+    
+            $resultado = $conn->query($consulta);
+            return $resultado;
+        }
 
     // Actualizar datos de almacen
     public function actualizarAlmacen($id, $nombre) {

@@ -1,20 +1,97 @@
 <?php
+
 require("../../modelo/zona.php");
+require("../../modelo/almacen.php");
 
+// Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = $_POST["nombre"];
-    $almacen_id = $_POST["almacen_id"];
 
-    // Llama al método agregarZona con los datos del formulario
-    $zona = new Zona();
-    $resultado = $zona->agregarZona($nombre, $almacen_id);
+    echo 
+	'
+		<table class="table table-hover">
+	    <tr>
+	      <th scope="col">#ID</th>
+	      <th scope="col">NOMBRE ZONA</th>
+          <th scope="col">NOMBRE ALMACEN</th>
+	    </tr>
+	';
+    
+    $opcion = $_POST['opcion']; //obtener valor de la opción para contalmacenar eventos
 
-    if ($resultado) {
-        echo "Zona agregada exitosamente.";
-    } else {
-        echo "Error al agregar la zona.";
-    }
-}
+    if($opcion == 3)
+	{
+        $mi_busqueda = $_POST['mi_busqueda'];
+		$zona = new zona();
+        $resultado = $zona->buscarzonaNombre($mi_busqueda);
+        
+        $almacen = new Almacen();
+
+	  while($consulta = mysqli_fetch_array($resultado)) 
+	  {
+        $consultaAlmacen = $almacen->buscarAlmacenId($consulta['almacen_id_almacen']);
+        $nombreAlmacen = mysqli_fetch_assoc($consultaAlmacen);
+	    echo 
+	    '
+			<tr>
+		      <td>'.$consulta['id_zona'].'</td>
+		      <td>'.$consulta['nombre_zona'].'</td>
+              <td>'.$nombreAlmacen['nombre'].'</td>
+		    </tr>
+	    ';
+	  }	
+
+	}
+	else
+	{
+		if($opcion == 1)
+        {
+            $nombrezona = $_POST["nombre"];
+            $almacenId = $_POST["almacen_id"];
+
+            if($nombrezona != ""){
+                
+                $zona = new zona();
+                $resultado = $zona->agregarzona($nombrezona,$almacenId);
+                if($resultado > 0){
+                echo "se agregó el zona: ".$nombrezona;
+                }        
+
+            }
+                
+        }
+
+
+
+		if($opcion == 2)
+        {
+                
+            $zona = new zona();
+            $resultado = $zona->listarZonas();
+            //CONSULTAR
+	        $almacen = new Almacen();
+
+            while($consulta = mysqli_fetch_array($resultado)) 
+            {
+                $consultaAlmacen = $almacen->buscarAlmacenId($consulta['almacen_id_almacen']);
+                $nombreAlmacen = mysqli_fetch_assoc($consultaAlmacen);
+                echo 
+                '
+                    <tr>
+                    <td>'.$consulta['id_zona'].'</td>
+                    <td>'.$consulta['nombre_zona'].'</td>
+                    <td>'.$nombreAlmacen['nombre'].'</td>
+                    </tr>
+                ';
+            }		     
+
+                            
+        }
+
+
+	  
+	}
+
+} 
 else
 {
     //redireccionar en caso de no llegar a la pagina como corresponde

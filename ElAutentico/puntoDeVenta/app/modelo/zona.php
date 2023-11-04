@@ -1,6 +1,6 @@
 <?php
 
-require('conexion.php');
+require_once('conexion.php');
 
 class Zona {
 
@@ -13,8 +13,9 @@ class Zona {
                      VALUES ('$nombre', '$almacen_id')";
 
         $resultado = $conn->query($consulta);
-
+        
         return $resultado;
+        $conn ->close();
     }
 
     // Obtener todas las zonas
@@ -27,6 +28,7 @@ class Zona {
         $resultado = $conn->query($consulta);
 
         return $resultado;
+        $conn ->close();
     }
 
     // Buscar zona por id
@@ -39,6 +41,20 @@ class Zona {
         $resultado = $conn->query($consulta);
 
         return $resultado;
+        $conn ->close();
+    }
+
+        // Buscar rol por parte del nombre
+    public function buscarZonaNombre($busqueda){
+        
+        $conectar = new Conexion();
+        $conn = $conectar->abrirConexion();
+
+        $consulta = "SELECT * FROM zona WHERE nombre_zona LIKE '%$busqueda%' LIMIT 5";
+
+        $resultado = $conn->query($consulta);
+        return $resultado;
+        $conn ->close();
     }
 
     // Actualizar datos de zona
@@ -54,6 +70,7 @@ class Zona {
         $resultado = $conn->query($consulta);
 
         return $resultado;
+        $conn ->close();
     }
 
     // Eliminar zona por id
@@ -66,6 +83,7 @@ class Zona {
         $resultado = $conn->query($consulta);
 
         return $resultado;
+        $conn ->close();
     }
 }
 ?>
