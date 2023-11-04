@@ -151,15 +151,21 @@
         <div class="popup" id="popup">
             <div class="popup-contenido">
                 <h2>Añadir usuario:</h2>
-                <form>
+                <form action="procesar_formulario.php" method="POST">
                     <label for="id-usuario">Id usuario:</label>
-                    <input type="number" id="id-usuario" name="id-usuario" required>
+                    <input type="hidden" name="id_trabajador" value=""> <!-- Agrega un campo oculto para el ID del usuario -->
           
-                    <label for="nombre-apellido">Nombre y Apellidos:</label>
-                    <input type="text" id="nombre-apellido" name="nombre-apellido" required>
+                    <label for="nombre-apellido">Nombre:</label>
+                    <input type="text" name="nombre" placeholder="Nombre" required>
+
+                    <label for="nombre-apellido">Apellido:</label>
+                    <input type="text" name="apellido" placeholder="Apellido" required>
+
+                    <label for="nombre-apellido">Usuario:</label>
+                    <input type="text" name="usuario" placeholder="Nombre de usuario" required>
           
                     <label for="contrasena">Contraseña:</label>
-                    <input type="password" id="contrasena" name="contrasena" required>
+                    <input type="password" name="clave" placeholder="Contraseña" required>
                     
                     <label for="tipo-usuario">Tipo de usuario:</label>
                     <select id="tipo-usuario" name="tipo-usuario" required>
@@ -167,7 +173,7 @@
                         <option value="vendedor">Vendedor</option>
                     </select>
                 </form>
-                <button class="boton-pago">Agregar usuario</button>
+                <button class="boton-pago" type="submit" name="agregar" value="Agregar">Agregar usuario</button>
                 <div class="cerrar-popup" onclick="cerrarPopup()"><ion-icon name="close-circle"></ion-icon></div>
             </div>
         </div>         
