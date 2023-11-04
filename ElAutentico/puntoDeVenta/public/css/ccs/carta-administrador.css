@@ -179,6 +179,18 @@ body::-webkit-scrollbar-thumb {
   margin-right: 90px;
 }
 
+/* Estilo personalizado para la etiqueta <thead> con la clase "contenedor-datos" */
+.bordes-izq {
+  border-bottom-left-radius: 15px !important; /* Aplica un radio de borde de 15px */
+  border-top-left-radius: 15px !important;
+}
+
+.bordes-der {
+  border-right: 15px !important; /* Aplica un radio de borde de 15px */
+  border-top-left-radius: 15px !important;
+}
+
+
 /* ========================================= Estilo Inventario ========================================= */
 
 .tabla-inventario {
