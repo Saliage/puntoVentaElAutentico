@@ -98,12 +98,7 @@
             <table class="table">
                 <thead>
                     <div class="rounded-buttons-container">
-
-                        <button class="rounded-button green-button" onclick="openPopup()">
-                            <ion-icon name="add-circle-outline"></ion-icon>
-                            <span class="button-text">Añadir usuario</span>
-                        </button>                        
-                        
+                        <button class="boton-pagar" onclick="mostrarPopup()">Añadir usuario</button>                         
                     </div>
                     <tr>
                         <th>Id usuario</th>
@@ -152,44 +147,56 @@
             </table>
         </div>
     </main>
-    <div id="popup" class="popup" style="display: none;">
-        <div class="popup-content">
-          <span class="popup-close" onclick="closePopup()">&times;</span>
-          <h2>Agregar Usuario</h2>
-          <div class="popup-inputs">
-            <label for="id-usuario">Id usuario:</label>
-            <input type="text" id="id-usuario" name="id-usuario" required>
-      
-            <label for="nombre-apellido">Nombre y Apellido:</label>
-            <input type="text" id="nombre-apellido" name="nombre-apellido" required>
-      
-            <label for="tipo-usuario">Tipo de usuario:</label>
-            <select id="tipo-usuario" name="tipo-usuario" required>
-              <option value="administrador">Administrador</option>
-              <option value="vendedor">Vendedor</option>
-            </select>
-          </div>
-      
-          <button class="popup-button" onclick="agregarUsuario()">Agregar Usuario</button>
-        </div>
-      </div>
-      
-      <script>
-        // JavaScript para mostrar y ocultar el popup
-        function openPopup() {
-          document.getElementById("popup").style.display = "block";
-        }
-      
-        function closePopup() {
-          document.getElementById("popup").style.display = "none";
-        }
-      
-        // JavaScript para agregar un usuario (debes implementar esta función)
-        function agregarUsuario() {
-          // Aquí puedes agregar la lógica para procesar los datos del usuario y cerrar el popup
-          alert("Usuario agregado"); // Ejemplo de mensaje de alerta
-          closePopup(); // Cierra el popup después de agregar el usuario
-        }
-      </script>
+        <!-- El contenedor del popup (inicialmente oculto) -->
+        <div class="popup" id="popup">
+            <div class="popup-contenido">
+                <h2>Añadir usuario:</h2>
+                <form>
+                    <label for="id-usuario">Id usuario:</label>
+                    <input type="number" id="id-usuario" name="id-usuario" required>
+          
+                    <label for="nombre-apellido">Nombre y Apellidos:</label>
+                    <input type="text" id="nombre-apellido" name="nombre-apellido" required>
+          
+                    <label for="contrasena">Contraseña:</label>
+                    <input type="password" id="contrasena" name="contrasena" required>
+                    
+                    <label for="tipo-usuario">Tipo de usuario:</label>
+                    <select id="tipo-usuario" name="tipo-usuario" required>
+                        <option value="administrador">Administrador</option>
+                        <option value="vendedor">Vendedor</option>
+                    </select>
+                </form>
+                <button class="boton-pago">Agregar usuario</button>
+                <div class="cerrar-popup" onclick="cerrarPopup()"><ion-icon name="close-circle"></ion-icon></div>
+            </div>
+        </div>         
+        
+        <!-- JavaScript para manejar el evento de clic y agregar/eliminar la clase "seleccionado" al elemento seleccionado. -->
+        <script>
+        // Obtenemos todos los elementos de categoría
+        const itemsCategoria = document.querySelectorAll('.item-categoria'); 
+        // Agregamos un controlador de eventos de clic a cada elemento de categoría    
+        itemsCategoria.forEach(item => {
+            item.addEventListener('click', () => {        
+                // Eliminamos la clase 'seleccionado' de todos los elementos
+                itemsCategoria.forEach(otherItem => otherItem.classList.remove('seleccionado'));
+                // Agregamos la clase 'seleccionado' solo al elemento seleccionado
+                item.classList.add('seleccionado');
+            });
+        });
+        </script>
+        <script>
+        // Función para mostrar el popup
+        function mostrarPopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'flex';}
+        </script>
+        <script>function cerrarPopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'none';
+          }
+          </script>
+
 </body>
 </html>

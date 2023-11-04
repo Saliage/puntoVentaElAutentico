@@ -233,8 +233,98 @@ th {
   font-size: 24px; /* Ajusta el tamaño según tus necesidades */
   color: red; /* Cambia el color si es necesario */
 }
-/* ======================================== VISTA AGREGAR USUARIOS ========================================== */
 
+/* Estilos para el botón de Pagar en el carrito */
+.boton-pagar {
+  background-color: #000dffd7;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* ======================================== VISTA AGREGAR USUARIOS ========================================== */
+/* Estilos para el popup */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 3;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-contenido {
+  background-color: white;
+  border: 2px solid #000dffd7;
+  border-radius: 15px;
+  max-width: 400px;
+  padding: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-top: 8%;
+  margin-bottom: 20px; /* Ajusta el valor según el espacio deseado */
+  flex: 2;
+}
+
+/* Estilos para el botón de cierre en la esquina superior derecha */
+.cerrar-popup {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: red;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+/* Estilos para los botones de pago en el popup */
+.boton-pago {
+  background-color: #000dffd7;
+  color: white;
+  font-weight: bold;
+  padding: 15px 30px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.boton-pago-salir {
+  background-color: rgb(255, 0, 0);
+  color: white;
+  font-weight: bold;
+  padding: 15px 30px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Estilos para los elementos dentro del popup */
+.popup-contenido label {
+  font-weight: bold;
+  color: black;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+/* Estilos para los campos de entrada y selección en el popup */
+.popup-contenido input,
+.popup-contenido select {
+  width: 100%;
+  padding: 5px;
+  border: 2px solid #000dffd7;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
 
 
 /* ========================================= Pantallas largas ========================================= */
