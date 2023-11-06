@@ -293,6 +293,31 @@ th {
   flex: 2;
 }
 
+.formulario {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-element {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+label {
+  text-align: right;
+  width: 150px; /* Ancho fijo para los labels */
+  margin-right: 10px; /* Espacio entre el label y el input */
+}
+
+input, select {
+  flex: 1;
+  margin: 0; /* Elimina cualquier margen interno de los input o select */
+}
+
+
 /* Estilos para el botón de cierre en la esquina superior derecha */
 .cerrar-popup {
   position: absolute;
