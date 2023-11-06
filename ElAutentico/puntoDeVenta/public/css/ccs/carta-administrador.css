@@ -253,6 +253,20 @@ th {
 /* Estilos para el botón de Pagar en el carrito */
 .boton-pagar {
   user-select: none;
+  background-color: #358911d7;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  border-radius: 15px;
+  border-color: #ffffff;
+  margin-right: 1%;
+}
+
+.boton-pagar2 {
+  user-select: none;
   background-color: #000dffd7;
   color: white;
   font-weight: bold;
@@ -260,6 +274,31 @@ th {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  border-radius: 15px;
+  border-color: #ffffff;
+  margin-right: 1%;
+}
+
+.boton-pagar-mas {
+  user-select: none;
+  background-color: #358911d7;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  border-radius: 15px;
+  border-color: #ffffff;
+  margin-right: 1%;
+  width: 100px; /* Ajusta el valor en píxeles según el ancho deseado */
+  margin: 0 auto;
+}
+
+.boton-pagar-mas ion-icon {
+  font-size: 25px; /* Ajusta el tamaño del icono según tus preferencias */
+  font-weight: bold; /* Aplica negrita al icono */
+  /* Otros estilos del icono, como color, pueden seguir aquí */
 }
 
 
@@ -276,6 +315,7 @@ th {
   z-index: 3;
   justify-content: center;
   align-items: center;
+  overflow-y: auto;
 }
 
 .popup-contenido {
@@ -293,6 +333,7 @@ th {
   margin-bottom: 20px; /* Ajusta el valor según el espacio deseado */
   flex: 2;
   animation: animacionDegrade 5s linear infinite;
+  overflow-y: auto;
 }
 @keyframes animacionDegrade {
   0% {
@@ -316,8 +357,22 @@ th {
 .form-element {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
+
+.form-element input {
+  display: flex;
+  align-items: center;
+}
+
+.form-element button {
+  height: 100%;
+  margin-left: 10px;
+  align-self: center;
+  /* Otros estilos que desees aplicar al botón */
+}
+
+
 
 label {
   text-align: right;
@@ -352,6 +407,8 @@ input, select {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  border-radius: 15px;
+  border-color: #ffffff;
 }
 
 .boton-pago-salir {
@@ -379,9 +436,24 @@ input, select {
 .popup-contenido select {
   width: 100%;
   padding: 5px;
-  border: 2px solid #000dffd7;
+  border: 2px solid #000000d7;
   border-radius: 5px;
   margin-bottom: 10px;
+}
+
+/* Styles for the "Añadir producto" button */
+.boton-pagar ion-icon {
+  font-size: 24px;
+  color: #fff; /* Set the color to white */
+}
+
+/* Styles for the fixed header row */
+.fixed-header {
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-primary); /* Use your preferred background color */
+  z-index: 1; /* Ensure it stays above the content */
+  user-select: none; /* Prevent text selection in the header row */
 }
 
 

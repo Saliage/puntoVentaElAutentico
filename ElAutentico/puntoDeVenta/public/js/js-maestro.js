@@ -14,11 +14,24 @@
     });
 
     // Función para mostrar el popup
+
+    function cerrarPopup() {
+        const popup = document.getElementById('popup');
+        popup.style.display = 'none';
+    }
+
     function mostrarPopup() {
         const popup = document.getElementById('popup');
-        popup.style.display = 'flex';}
-        
-        function cerrarPopup() {
-            const popup = document.getElementById('popup');
-            popup.style.display = 'none';
-        }
+        popup.style.display = 'flex';
+    }
+
+    function mostrarPopup2() {
+        const popup = document.getElementById('popup2');
+        popup.style.display = 'flex';
+    }
+
+    function cerrarPopup2() {
+        const popup = document.getElementById('popup2');
+        popup.style.display = 'none';
+    }
+
