@@ -261,6 +261,8 @@ th {
   border-radius: 5px;
   cursor: pointer;
 }
+
+
 /* ======================================== VISTA AGREGAR USUARIOS ========================================== */
 /* Estilos para el popup */
 .popup {
@@ -277,8 +279,7 @@ th {
 }
 
 .popup-contenido {
-  user-select: none;
-  background-color: white;
+  background: linear-gradient(10deg, #e6e6e6, #a8d6f5, #f7d298, #a0d4f7);
   border: 2px solid #000dffd7;
   border-radius: 15px;
   max-width: 400px;
@@ -291,6 +292,18 @@ th {
   margin-top: 8%;
   margin-bottom: 20px; /* Ajusta el valor según el espacio deseado */
   flex: 2;
+  animation: animacionDegrade 5s linear infinite;
+}
+@keyframes animacionDegrade {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
 }
 
 .formulario {

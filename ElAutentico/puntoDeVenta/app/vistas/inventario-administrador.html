@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="../../public/css/ccs/carta-administrador.css">
     <!-- ====================== JS ==================== -->
     <script src="../../public/js"></script>
+    <script src="../../public/js/scripts.js"></script>
+    <script src="../../public/js/jquery-3.7.1.min.js"></script>
+    <script src="../../public/js/js-maestro.js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>
@@ -81,7 +84,7 @@
         <!-- Barra de busqueda y usuario -->
         <div class="barra-busqueda">
             <div class="entrada-busqueda">
-                <input type="text" placeholder="Buscar insumo">
+                <input type="search" placeholder="Buscar insumo">
                 <ion-icon name="search" class="icono-busqueda"></ion-icon>
             </div>
             <div class="vendedor">
@@ -93,25 +96,17 @@
         <div class="tabla-inventario">
 
             <table class="table">
-                <div class="rounded-buttons-container">
-
-                    <button class="rounded-button green-button">
-                        <ion-icon name="add-circle-outline"></ion-icon>
-                        <span class="button-text">Añadir insumo</span>
-                    </button>
-                    <button class="rounded-button green-button">
-                        <ion-icon name="add-circle-outline"></ion-icon>
-                        <span class="button-text">Categoria</span>
-                    </button>
-
-                </div>
                 <thead>
+                    <button class="boton-pagar" onclick="mostrarPopup()">Añadir insumo</button>
+                    <button class="boton-pagar" onclick="">Categorias</button>
+                    <button class="boton-pagar" onclick="">Zonas y almacenes</button>
+                    <p></p>   
                     <tr>
                         <th></th>
                         <th>Nombre</th>
                         <th>Id insumo</th>
                         <th>Stock</th>
-                        <th>Fecha de Vencimiento</th>
+                        <th>Fecha proximo vencimiento</th>
                         <th>Costo</th>
                         <th>Categoria</th>
                         <th>Zona</th>
@@ -194,5 +189,61 @@
             </table>
         </div>
     </main>
+    <!-- El contenedor del popup (inicialmente oculto) -->
+    <div class="popup" id="popup">
+        <div class="popup-contenido">
+            <h2>Añadir insumo:</h2>
+            <p></p>
+            <form action="" method="POST" class="formulario">
+                <div class="form-element">
+                  <label for="name">Nombre:</label>
+                  <input type="text" name="nombre" placeholder="Nombre insumo" required>
+                </div>
+                
+                <div class="form-element">
+                  <label for="Id">Id:</label>
+                  <input type="number" min="1" name="id" placeholder="Id insumo" required>
+                </div>
+                
+                <div class="form-element">
+                  <label for="user">Stock:</label>
+                  <input type="number" min="1" name="stock" placeholder="Cantidad" required>
+                </div>
+                
+                <div class="form-element">
+                  <label for="vencimiento">Fecha proximo vencimiento:</label>
+                  <input type="date" name="vencimiento" placeholder="vencimiento" required>
+                </div>
+
+                <div class="form-element">
+                    <label for="costo">Costo:</label>
+                    <input type="number" min="1" name="costo" placeholder="Precio costo" required>
+                </div>
+                
+                <div class="form-element">
+                  <label for="cat-insumo">Categoria:</label>
+                  <select id="cat-insumo" name="cat-insumo" required>
+                    <option value="verduras">verduras</option>
+                    <option value="congelados">congelados</option>
+                    <option value="frituras">frituras</option>
+                  </select>
+                </div>
+
+                <div class="form-element">
+                    <label for="zona">Zona:</label>
+                    <input type="number" min="1" name="zona" placeholder="Zona donde se ubica insumo" required>
+                </div>
+
+                <div class="form-element">
+                    <label for="almacen">Almacen:</label>
+                    <input type="number" min="1" name="almacen" placeholder="Almacen donde se ubica insumo" required>
+                </div>
+
+                <button class="boton-pago" type="submit" name="agregar" value="Agregar">Agregar Insumo</button>
+              </form>
+                                
+            <div class="cerrar-popup" onclick="cerrarPopup()"><ion-icon name="close-circle"></ion-icon></div>
+        </div>
+    </div>
 </body>
 </html>
