@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="../../public/css/ccs/carta-administrador.css">
     <!-- ====================== JS ==================== -->
     <script src="../../public/js"></script>
+    <script src="../../public/js/scripts.js"></script>
+    <script src="../../public/js/jquery-3.7.1.min.js"></script>
+    <script src="../../public/js/js-maestro.js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>
@@ -81,7 +84,7 @@
         <!-- Barra de busqueda y usuario -->
         <div class="barra-busqueda">
             <div class="entrada-busqueda">
-                <input type="text" placeholder="Buscar producto">
+                <input type="seach" placeholder="Buscar producto">
                 <ion-icon name="search" class="icono-busqueda"></ion-icon>
             </div>
             <div class="vendedor">
@@ -93,19 +96,10 @@
         <div class="tabla-inventario">
             
             <table class="table">
-                <div class="rounded-buttons-container">
-
-                    <button class="rounded-button green-button">
-                        <ion-icon name="add-circle-outline"></ion-icon>
-                        <span class="button-text">Añadir</span>
-                    </button>
-                
-                    <button class="rounded-button yellow-button">
-                        <ion-icon name="add-circle-outline"></ion-icon>
-                        <span class="button-text">Agregar Categoría</span>
-                    </button>
-                </div>
                 <thead>
+                    <button class="boton-pagar" onclick="mostrarPopup()">Añadir producto</button>
+                    <button class="boton-pagar" onclick="">Categorias</button>
+                    <p></p>   
                     <tr>
                         <th></th>
                         <th>Nombre</th>
