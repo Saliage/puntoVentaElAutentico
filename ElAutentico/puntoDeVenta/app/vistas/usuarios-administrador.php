@@ -1,3 +1,8 @@
+<?php 
+    require_once ("../modelo/rol.php");     
+    $rol = new Rol();
+    $roles = $rol->listarRoles();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +13,6 @@
     <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">
 
     <title>Administracion de usuarios</title>
-
     <!-- ====================== ESTILOS CSS ==================== -->
     <link rel="stylesheet" href="../../public/css/ccs/carta-administrador.css">
     <!--Import materialize.css-->
@@ -151,29 +155,35 @@
         <div class="popup" id="popup">
             <div class="popup-contenido">
                 <h2>Añadir usuario:</h2>
-                <form action="../modelo/procesar_formulario.php" method="POST">
-                    <label for="id-usuario">Id usuario:</label>
-                    <input type="hidden" name="id_trabajador" value=""> <!-- Agrega un campo oculto para el ID del usuario -->
+                <form action="#" id="formAgregarTrabajador" class="formAgregarTrabajador" method="POST">
           
                     <label for="nombre-apellido">Nombre:</label>
-                    <input type="text" name="nombre" placeholder="Nombre" required>
+                    <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
 
                     <label for="nombre-apellido">Apellido:</label>
-                    <input type="text" name="apellido" placeholder="Apellido" required>
+                    <input type="text" name="apellido" id="apellido" placeholder="Apellido" required>
 
-                    <label for="nombre-apellido">Usuario:</label>
-                    <input type="text" name="usuario" placeholder="Nombre de usuario" required>
+                    <label for="usuario">Usuario:</label>
+                    <input type="text" name="usuario" id="usuario" placeholder="Nombre de usuario" required>
           
-                    <label for="contrasena">Contraseña:</label>
-                    <input type="password" name="clave" placeholder="Contraseña" required>
+                    <label for="clave">Contraseña:</label>
+                    <input type="password" name="clave" id="clave" placeholder="Contraseña" required>
                     
-                    <label for="tipo-usuario">Tipo de usuario:</label>
-                    <select id="tipo-usuario" name="tipo-usuario" required>
-                        <option value="administrador">Administrador</option>
-                        <option value="vendedor">Vendedor</option>
+                    <label for="rol">Tipo de usuario:</label>
+                    <select id="rol" name="tipo-usuario" required>
+                        <?php 
+                            if ($roles->num_rows > 0) {
+                                // Recorrer almacenes presentes
+                                while ($dato = $roles->fetch_assoc()) {
+                                    echo '<option value="' . $dato['id_rol'] . '">' . $dato['nombre_rol'] . '</option>';
+                                }
+                            } else {
+                                echo '<option value="0">Sin datos</option>';
+                            }
+                        ?>                                 
                     </select>
                 </form>
-                <button class="boton-pago" type="submit" name="agregar" value="Agregar">Agregar usuario</button>
+                <button class="boton-pago" type="submit" name="agregar" onclick="agregarTrabajador()" value="Agregar">Agregar usuario</button>
                 <div class="cerrar-popup" onclick="cerrarPopup()"><ion-icon name="close-circle"></ion-icon></div>
             </div>
         </div>         
@@ -196,13 +206,45 @@
         // Función para mostrar el popup
         function mostrarPopup() {
             const popup = document.getElementById('popup');
-            popup.style.display = 'flex';}
-        </script>
-        <script>function cerrarPopup() {
+            popup.style.display = 'flex';
+        }
+
+
+        function cerrarPopup() {
             const popup = document.getElementById('popup');
             popup.style.display = 'none';
-          }
-          </script>
+        
+        }
+
+        function agregarTrabajador()
+        { 
+            formulario = document.getElementById('formAgregarTrabajador');
+
+       /* var parametros = 
+        {
+            "formulario" : formulario
+        }; */
+
+        $.ajax({
+            data: formulario,
+            url: '../gestion/gestion_trabajador.php',
+            type: 'POST',
+            
+            beforesend: function()
+            {
+            //$('#mostrar_mensaje').html("Error de comunicación");
+            alert("Error!/nNo se pudo agregar el usuario: " + document.getElementById('nombre').value);
+            },
+
+            success: function(mensaje)
+            {
+            //$('#mostrar_mensaje').html(mensaje);
+            alert("Se a agregado el usuaro: " + mensaje);
+            }
+        });
+        }
+        
+        </script>
 
 </body>
 </html>
