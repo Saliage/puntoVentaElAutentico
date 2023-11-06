@@ -1,3 +1,8 @@
+<?php 
+    require_once ("../modelo/rol.php");     
+    $rol = new Rol();
+    $roles = $rol->listarRoles();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +13,6 @@
     <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">
 
     <title>Administracion de usuarios</title>
-
     <!-- ====================== ESTILOS CSS ==================== -->
     <link rel="stylesheet" href="../../public/css/ccs/carta-administrador.css">
     <!--Import materialize.css-->
@@ -17,7 +21,6 @@
     <script src="../../public/js"></script>
     <script src="../../public/js/scripts.js"></script>
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
-    <script src="../../public/js/js-maestro.js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     
@@ -86,7 +89,7 @@
         <!-- Barra de busqueda y usuario -->
         <div class="barra-busqueda">
             <div class="entrada-busqueda">
-                <input type="search" placeholder="Buscar usuario">
+                <input type="text" placeholder="Buscar usuario">
                 <ion-icon name="search" class="icono-busqueda"></ion-icon>
             </div>
             <div class="vendedor">
@@ -98,8 +101,9 @@
 
             <table class="table">
                 <thead class="contenedor-datos">
-                        <button class="boton-pagar" onclick="mostrarPopup()">Añadir usuario</button>
-                        <p></p>                     
+                    <div class="rounded-buttons-container">
+                        <button class="boton-pagar" onclick="mostrarPopup()">Añadir usuario</button>                         
+                    </div>
                     <tr>
                         <th>Id usuario</th>
                         <th>Nombre y apellido</th>
@@ -151,41 +155,96 @@
         <div class="popup" id="popup">
             <div class="popup-contenido">
                 <h2>Añadir usuario:</h2>
-                <p></p>
-                <form action="../modelo/procesar_formulario.php" method="POST" class="formulario">
-                    <div class="form-element">
-                      <label for="name">Nombre:</label>
-                      <input type="text" name="nombre" placeholder="Nombre" required>
-                    </div>
+                <form action="#" id="formAgregarTrabajador" class="formAgregarTrabajador" method="POST">
+          
+                    <label for="nombre-apellido">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+
+                    <label for="nombre-apellido">Apellido:</label>
+                    <input type="text" name="apellido" id="apellido" placeholder="Apellido" required>
+
+                    <label for="usuario">Usuario:</label>
+                    <input type="text" name="usuario" id="usuario" placeholder="Nombre de usuario" required>
+          
+                    <label for="clave">Contraseña:</label>
+                    <input type="password" name="clave" id="clave" placeholder="Contraseña" required>
                     
-                    <div class="form-element">
-                      <label for="apellido">Apellidos:</label>
-                      <input type="text" name="apellido" placeholder="Apellido" required>
-                    </div>
-                    
-                    <div class="form-element">
-                      <label for="user">Usuario:</label>
-                      <input type="text" name="usuario" placeholder="Nombre de usuario" required>
-                    </div>
-                    
-                    <div class="form-element">
-                      <label for="clave">Contraseña:</label>
-                      <input type="password" name="clave" placeholder="Contraseña" required>
-                    </div>
-                    
-                    <div class="form-element">
-                      <label for="tipo-usuario">Tipo de usuario:</label>
-                      <select id="tipo-usuario" name="tipo-usuario" required>
-                        <option value="administrador">Administrador</option>
-                        <option value="vendedor">Vendedor</option>
-                      </select>
-                    </div>
-                    <p></p>
-                    <button class="boton-pago" type="submit" name="agregar" value="Agregar">Agregar usuario</button>
-                  </form>
-                                    
+                    <label for="rol">Tipo de usuario:</label>
+                    <select id="rol" name="tipo-usuario" required>
+                        <?php 
+                            if ($roles->num_rows > 0) {
+                                // Recorrer almacenes presentes
+                                while ($dato = $roles->fetch_assoc()) {
+                                    echo '<option value="' . $dato['id_rol'] . '">' . $dato['nombre_rol'] . '</option>';
+                                }
+                            } else {
+                                echo '<option value="0">Sin datos</option>';
+                            }
+                        ?>                                 
+                    </select>
+                </form>
+                <button class="boton-pago" type="submit" name="agregar" onclick="agregarTrabajador()" value="Agregar">Agregar usuario</button>
                 <div class="cerrar-popup" onclick="cerrarPopup()"><ion-icon name="close-circle"></ion-icon></div>
             </div>
-        </div>
+        </div>         
+        
+        <!-- JavaScript para manejar el evento de clic y agregar/eliminar la clase "seleccionado" al elemento seleccionado. -->
+        <script>
+        // Obtenemos todos los elementos de categoría
+        const itemsCategoria = document.querySelectorAll('.item-categoria'); 
+        // Agregamos un controlador de eventos de clic a cada elemento de categoría    
+        itemsCategoria.forEach(item => {
+            item.addEventListener('click', () => {        
+                // Eliminamos la clase 'seleccionado' de todos los elementos
+                itemsCategoria.forEach(otherItem => otherItem.classList.remove('seleccionado'));
+                // Agregamos la clase 'seleccionado' solo al elemento seleccionado
+                item.classList.add('seleccionado');
+            });
+        });
+        </script>
+        <script>
+        // Función para mostrar el popup
+        function mostrarPopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'flex';
+        }
+
+
+        function cerrarPopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'none';
+        
+        }
+
+        function agregarTrabajador()
+        { 
+            formulario = document.getElementById('formAgregarTrabajador');
+
+       /* var parametros = 
+        {
+            "formulario" : formulario
+        }; */
+
+        $.ajax({
+            data: formulario,
+            url: '../gestion/gestion_trabajador.php',
+            type: 'POST',
+            
+            beforesend: function()
+            {
+            //$('#mostrar_mensaje').html("Error de comunicación");
+            alert("Error!/nNo se pudo agregar el usuario: " + document.getElementById('nombre').value);
+            },
+
+            success: function(mensaje)
+            {
+            //$('#mostrar_mensaje').html(mensaje);
+            alert("Se a agregado el usuaro: " + mensaje);
+            }
+        });
+        }
+        
+        </script>
+
 </body>
 </html>
