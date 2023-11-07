@@ -90,7 +90,7 @@
         <!-- Barra de busqueda y usuario -->
         <div class="barra-busqueda">
             <div class="entrada-busqueda">
-                <input type="search" placeholder="Buscar usuario">
+                <input type="text" placeholder="Buscar usuario">
                 <ion-icon name="search" class="icono-busqueda"></ion-icon>
             </div>
             <div class="vendedor">
@@ -102,8 +102,11 @@
 
             <table class="table">
                 <thead class="contenedor-datos">
-                        <button class="boton-pagar" onclick="mostrarPopup()">Añadir usuario</button>
-                        <p></p>                     
+                    <div class="rounded-buttons-container">
+                        <button class="boton-pagar" onclick="mostrarPopup()">Añadir usuario</button>  
+                        <button class="boton-pagar2" onclick="mostrarPopup2()">Categorias</button>         
+                        <p></p>                 
+                    </div>
                     <tr>
                         <th>Id usuario</th>
                         <th>Nombre y apellido</th>
@@ -155,7 +158,7 @@
         <div class="popup" id="popup">
             <div class="popup-contenido">
                 <h2>Añadir usuario:</h2>
-                <form action="#" id="formAgregarTrabajador" class="formAgregarTrabajador" method="POST">
+                <form action="" id="formAgregarTrabajador" class="formAgregarTrabajador" method="POST">
           
                     <label for="nombre-apellido">Nombre:</label>
                     <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
@@ -186,7 +189,41 @@
                 <button class="boton-pago" type="submit" name="agregar" onclick="agregarTrabajador()" value="Agregar">Agregar usuario</button>
                 <div class="cerrar-popup" onclick="cerrarPopup()"><ion-icon name="close-circle"></ion-icon></div>
             </div>
-        </div>         
+        </div>
+        
+        <div class="popup" id="popup2">
+            <div class="popup-contenido">
+                <h2>Roles</h2>
+    
+                <p></p>
+
+                <form action="" method="POST" class="formulario">
+                    <div class="form-element">
+                        <label for="name">Agregar</label>
+                        <input type="text" name="nombre" required>
+                        <button class="boton-pagar" type="submit" name="agregar" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
+                    </div>
+                </form>
+    
+                <p></p>
+    
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Roles</th>
+                            <th colspan="1"> </th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="cerrar-popup" onclick="cerrarPopup2()"><ion-icon name="close-circle"></ion-icon></div>
+            </div>
+        </div>
         
         <!-- JavaScript para manejar el evento de clic y agregar/eliminar la clase "seleccionado" al elemento seleccionado. -->
         <script>
@@ -203,19 +240,7 @@
         });
         </script>
         <script>
-        // Función para mostrar el popup
-        function mostrarPopup() {
-            const popup = document.getElementById('popup');
-            popup.style.display = 'flex';
-        }
-
-
-        function cerrarPopup() {
-            const popup = document.getElementById('popup');
-            popup.style.display = 'none';
-        
-        }
-
+            
         function agregarTrabajador()
         { 
             formulario = document.getElementById('formAgregarTrabajador');
