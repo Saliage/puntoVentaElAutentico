@@ -266,6 +266,10 @@ th {
   border-color: #ffffff;
   margin-right: 1%;
   transition: background-color 0.3s, box-shadow 0.3s;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 2;
+  top: 133px;
 }
 
 .boton-pagar:hover {
@@ -274,6 +278,22 @@ th {
   box-shadow: 0 0 5px 5px rgba(53, 137, 17, 0.7); /* Agrega un efecto de destello */
 }
 
+.fila-titulos {
+  user-select: none; /* Evita la selección de texto en la fila de títulos */
+  background-color: var(--bg-primary); /* Fondo de la fila de títulos */
+  color: #fff; /* Color del texto en la fila de títulos */
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 2;
+  top: 190px;
+}
+
+.fila-detalles {
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 0;
+  top: 2%;
+}
 
 .boton-pagar2 {
   user-select: none;
@@ -287,7 +307,12 @@ th {
   border-color: #ffffff;
   margin-right: 1%;
   transition: background-color 0.3s, box-shadow 0.3s;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 2;
+  top: 133px;
 }
+
 
 .boton-pagar2:hover {
   /* Estilos cuando el cursor está sobre el botón (hover) */
@@ -308,6 +333,10 @@ th {
   border-color: #ffffff;
   margin-right: 1%;
   transition: background-color 0.3s, box-shadow 0.3s;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 2;
+  top: 133px;
 }
 
 .boton-pagar3:hover {
@@ -329,6 +358,10 @@ th {
   border-color: #ffffff;
   margin-right: 1%;
   transition: background-color 0.3s, box-shadow 0.3s;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 2;
+  top: 133px;
 }
 
 .boton-pagar4:hover {
@@ -350,6 +383,10 @@ th {
   border-color: #ffffff;
   margin-right: 1%;
   transition: background-color 0.3s, box-shadow 0.3s;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 2;
+  top: 133px;
 }
 
 .boton-pagar5:hover {
