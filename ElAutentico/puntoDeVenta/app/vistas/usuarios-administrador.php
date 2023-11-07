@@ -104,7 +104,7 @@
                 <thead class="contenedor-datos">
                     <div class="rounded-buttons-container">
                         <button class="boton-pagar" onclick="mostrarPopup()">Añadir usuario</button>  
-                        <button class="boton-pagar2" onclick="mostrarPopup2()">Categorias</button>         
+                        <button class="boton-pagar2" onclick="mostrarPopup2()">Roles</button>         
                         <p></p>                 
                     </div>
                     <tr>
@@ -194,98 +194,79 @@
         <div class="popup" id="popup2">
             <div class="popup-contenido">
                 <h2>Roles</h2>
-    
                 <p></p>
                 <?php
-                require("../../modelo/rol.php");
                 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo 
-<table class="table table-hover">
-	    <tr>
-	      <th scope="col">#ID</th>
-	      <th scope="col">NOMBRE ROL</th>
-	    </tr>
-	';
-    
-    $opcion = $_POST['opcion']; //obtener valor de la opción para controlar eventos
-
-    if($opcion == 3)
-	{
-        $mi_busqueda = $_POST['mi_busqueda'];
-		$rol = new Rol();
-        $resultado = $rol->buscarRolNombre($mi_busqueda);
-	  while($consulta = mysqli_fetch_array($resultado))
-	  {
-	    echo 
-	    '
-			<tr>
-		      <td>'.$consulta['id_rol'].'</td>
-		      <td>'.$consulta['nombre_rol'].'</td>
-		    </tr>
-	    ';
-	  }	
-
-	}
-	else
-	{
-		if($opcion == 1)
-        {
-            $nombreRol = $_POST["nombre"];
-
-            if($nombreRol != ""){
-                
-                $rol = new Rol();
-                $resultado = $rol->agregarRol($nombreRol);
-                if($resultado > 0){
-                echo "se agregó el rol: ".$nombreRol;
-                }        
-
-            }
-                
-        }
-
-
-
-		if($opcion == 2)
-        {
-                
-            $rol = new Rol();
-            $resultado = $rol->listarRoles();
-            //CONSULTAR
-	        while($consulta = mysqli_fetch_array($resultado))
-            {
-                echo 
-                '
-                    <tr>
-                    <td>'.$consulta['id_rol'].'</td>
-                    <td>'.$consulta['nombre_rol'].'</td>
-                    </tr>
-                ';
-            }	     
-
+                    '
+                    <table class="table table-hover">
+                        <tr>
+                            <th scope="col">#ID</th>
+                            <th scope="col">NOMBRE ROL</th>
+                        </tr>
+                        ';
+                        $opcion = $_POST['opcion']; //obtener valor de la opción para controlar eventos
+                        if($opcion == 3)
+                        {
+                            $mi_busqueda = $_POST['mi_busqueda'];
+                            $rol = new Rol();
+                            $resultado = $rol->buscarRolNombre($mi_busqueda);
+                            while($consulta = mysqli_fetch_array($resultado))
+                            {
+                                echo 
+                                '
+                                <tr>
+                                    <td>'.$consulta['id_rol'].'</td>
+                                    <td>'.$consulta['nombre_rol'].'</td>
+                                </tr>
+                                ';
+                            }	
+                        }
+                        else
+                        {
+                            if($opcion == 1)
+                            {
+                                $nombreRol = $_POST["nombre"];
+                                if($nombreRol != ""){
+                                    $rol = new Rol();
+                                    $resultado = $rol->agregarRol($nombreRol);
+                                    if($resultado > 0){
+                                        echo "se agregó el rol: ".$nombreRol;
+                                    }        
+                                }
+                            }
                             
-        }
+                            if($opcion == 2)
+                            {
+                                $rol = new Rol();
+                                $resultado = $rol->listarRoles();
+                                //CONSULTAR
+                                while($consulta = mysqli_fetch_array($resultado))
+                                {
+                                    echo 
+                                    '
+                                    <tr>
+                                        <td>'.$consulta['id_rol'].'</td>
+                                        <td>'.$consulta['nombre_rol'].'</td>
+                                    </tr>
+                                    ';
+                                }	     
 
-
-	  
-	}
-
-} 
-else
-{
-    //redireccionar en caso de no llegar a la pagina como corresponde
-    header("location: ../formularios/agregar_trabajador.php"); 
-    die();
-
-}
-
-
-?>
-
-                <div class="cerrar-popup" onclick="cerrarPopup2()"><ion-icon name="close-circle"></ion-icon></div>
+                            }
+                        }
+                    } 
+                    else
+                    {
+                        //redireccionar en caso de no llegar a la pagina como corresponde
+                        header("location: ../formularios/agregar_trabajador.php");
+                        die();
+                    }
+                    ?>
+                    
+                    <div class="cerrar-popup" onclick="cerrarPopup2()"><ion-icon name="close-circle"></ion-icon></div>
+                </div>
             </div>
-        </div>
         
         <!-- JavaScript para manejar el evento de clic y agregar/eliminar la clase "seleccionado" al elemento seleccionado. -->
         <script>
