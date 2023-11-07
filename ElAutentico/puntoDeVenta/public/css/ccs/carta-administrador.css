@@ -35,7 +35,7 @@ body {
 
 /* Scrollbar */
 body::-webkit-scrollbar {
-  width: 0.5rem;
+  width: 1rem;
   height: 0;
 }
 body::-webkit-scrollbar-track {
@@ -196,8 +196,8 @@ body::-webkit-scrollbar-thumb {
 
 .tabla-inventario {
   background: transparent;
-  padding: 130px 13%; /* Ajustado para una presentación más compacta */
-  width: 80%; /* Ancho ajustado para una mejor visualización */
+  padding: 130px 15%; /* Ajustado para una presentación más compacta */
+  width: 75%; /* Ancho ajustado para una mejor visualización */
 }
 
 .tabla-usuario, .tabla-usuario, .tabla-ventas {
@@ -289,10 +289,7 @@ th {
 }
 
 .fila-detalles {
-  position: -webkit-sticky;
-  position: sticky;
-  z-index: 0;
-  top: 2%;
+  max-height: 90%;
 }
 
 .boton-pagar2 {
