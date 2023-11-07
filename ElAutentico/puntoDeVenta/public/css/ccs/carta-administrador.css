@@ -233,6 +233,7 @@ th, td {
 }
 
 th {
+  position: sticky;
   user-select: none;
   background-color: var(--bg-primary); /* Fondo para las celdas del encabezado */
   color: #fff; /* Texto en color blanco en el encabezado */
@@ -252,6 +253,21 @@ th {
 
 /* Estilos para el botón de Pagar en el carrito */
 .boton-pagar {
+  position: relative;
+  user-select: none;
+  background-color: #358911d7;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  border-radius: 15px;
+  border-color: #ffffff;
+  margin-right: 1%;
+}
+
+.boton-pagar2 {
   user-select: none;
   background-color: #000dffd7;
   color: white;
@@ -260,6 +276,59 @@ th {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  border-radius: 15px;
+  border-color: #ffffff;
+  margin-right: 1%;
+}
+
+.boton-pagar3 {
+  user-select: none;
+  background-color: rgba(219, 10, 10, 0.843);
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  border-radius: 15px;
+  border-color: #ffffff;
+  margin-right: 1%;
+}
+
+.boton-pagar4 {
+  user-select: none;
+  background-color: rgba(219, 167, 10, 0.843);
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  border-radius: 15px;
+  border-color: #ffffff;
+  margin-right: 1%;
+}
+
+.boton-pagar-mas {
+  user-select: none;
+  background-color: #358911d7;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  border-radius: 15px;
+  border-color: #ffffff;
+  margin-right: 1%;
+  width: 100px; /* Ajusta el valor en píxeles según el ancho deseado */
+  margin: 0 auto;
+}
+
+.boton-pagar-mas ion-icon {
+  font-size: 25px; /* Ajusta el tamaño del icono según tus preferencias */
+  font-weight: bold; /* Aplica negrita al icono */
+  /* Otros estilos del icono, como color, pueden seguir aquí */
 }
 
 
@@ -282,7 +351,10 @@ th {
   background: linear-gradient(10deg, #e6e6e6, #a8d6f5, #f7d298, #a0d4f7);
   border: 2px solid #000dffd7;
   border-radius: 15px;
-  max-width: 400px;
+  max-width: 30%;
+  max-height: 75%;
+  min-width: 350px;
+  min-height: 20%;
   padding: 20px;
   text-align: left;
   display: flex;
@@ -293,6 +365,7 @@ th {
   margin-bottom: 20px; /* Ajusta el valor según el espacio deseado */
   flex: 2;
   animation: animacionDegrade 5s linear infinite;
+  overflow-y: auto;
 }
 @keyframes animacionDegrade {
   0% {
@@ -306,6 +379,22 @@ th {
   }
 }
 
+.popup-contenido::-webkit-scrollbar {
+  width: 7px; /* Ancho de la barra de desplazamiento */
+  height: 5px;
+}
+
+.popup-contenido::-webkit-scrollbar-track {
+  background: transparent; /* Color de fondo de la barra de desplazamiento */
+  width: 7x;
+}
+
+.popup-contenido::-webkit-scrollbar-thumb {
+  background: #000dffd7; /* Color de la barra de desplazamiento */
+  border-radius: 3px; /* Borde redondeado de la barra de desplazamiento */
+  width: 14px;
+}
+
 .formulario {
   display: flex;
   flex-direction: column;
@@ -316,8 +405,23 @@ th {
 .form-element {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
+
+.form-element input {
+  display: flex;
+  align-items: center;
+  min-width: 50%;
+}
+
+.form-element button {
+  height: 100%;
+  margin-left: 10px;
+  align-self: center;
+  /* Otros estilos que desees aplicar al botón */
+}
+
+
 
 label {
   text-align: right;
@@ -352,6 +456,8 @@ input, select {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  border-radius: 15px;
+  border-color: #ffffff;
 }
 
 .boton-pago-salir {
@@ -379,12 +485,14 @@ input, select {
 .popup-contenido select {
   width: 100%;
   padding: 5px;
-  border: 2px solid #000dffd7;
+  border: 2px solid #000000d7;
   border-radius: 5px;
   margin-bottom: 10px;
 }
 
-
+.fixed{
+  position: absolute;
+}
 /* ========================================= Pantallas largas ========================================= */
 @media (min-width: 600px) {
 

@@ -98,8 +98,9 @@
             <table class="table">
                 <thead>
                     <button class="boton-pagar" onclick="mostrarPopup()">Añadir insumo</button>
-                    <button class="boton-pagar" onclick="">Categorias</button>
-                    <button class="boton-pagar" onclick="">Zonas y almacenes</button>
+                    <button class="boton-pagar2" onclick="mostrarPopup2()">Categorias</button>
+                    <button class="boton-pagar3" onclick="mostrarPopup3()">Zonas</button>
+                    <button class="boton-pagar4" onclick="mostrarPopup4()">Almacenes</button>
                     <p></p>   
                     <tr>
                         <th></th>
@@ -192,7 +193,7 @@
     <!-- El contenedor del popup (inicialmente oculto) -->
     <div class="popup" id="popup">
         <div class="popup-contenido">
-            <h2>Añadir insumo:</h2>
+            <h2>Añadir insumo</h2>
             <p></p>
             <form action="" method="POST" class="formulario">
                 <div class="form-element">
@@ -243,6 +244,192 @@
               </form>
                                 
             <div class="cerrar-popup" onclick="cerrarPopup()"><ion-icon name="close-circle"></ion-icon></div>
+        </div>
+    </div>
+
+    <div class="popup" id="popup2">
+        <div class="popup-contenido">
+            <h2>Categorias</h2>
+
+            <p></p>
+            
+            <form action="" method="POST" class="formulario">
+                <div class="form-element">
+                    <label for="name">Agregar</label>
+                    <input type="text" name="nombre" required>
+                    <button class="boton-pagar" type="submit" name="agregar" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
+                </div>
+            </form>
+
+            <p></p>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Categorias productos</th>
+                        <th colspan="1"> </th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Verduras</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>Congelados</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>Pan</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>Frituras</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>Carnes</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>Utencilios</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>Frituras</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>Promociones</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                </tbody>
+            </table>
+            <div class="cerrar-popup" onclick="cerrarPopup2()"><ion-icon name="close-circle"></ion-icon></div>
+        </div>
+    </div>
+
+    <div class="popup" id="popup3">
+        <div class="popup-contenido">
+            <h2>Zonas</h2>
+
+            <p></p>
+            
+            <form action="" method="POST" class="formulario">
+                <div class="form-element">
+                    <label for="name">Agregar</label>
+                    <input type="text" name="nombre" required>
+                    <button class="boton-pagar" type="submit" name="agregar" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
+                </div>
+            </form>
+
+            <p></p>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Zonas</th>
+                        <th colspan="1"> </th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                </tbody>
+            </table>
+            <div class="cerrar-popup" onclick="cerrarPopup3()"><ion-icon name="close-circle"></ion-icon></div>
+        </div>
+    </div>
+
+    <div class="popup" id="popup4">
+        <div class="popup-contenido">
+            <h2>Almacenes</h2>
+
+            <p></p>
+            
+            <form action="" method="POST" class="formulario">
+                <div class="form-element">
+                    <label for="name">Agregar</label>
+                    <input type="text" name="nombre" required>
+                    <button class="boton-pagar" type="submit" name="agregar" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
+                </div>
+            </form>
+
+            <p></p>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Almacenes</th>
+                        <th colspan="1"> </th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
+                    </tr>
+                </tbody>
+            </table>
+            <div class="cerrar-popup" onclick="cerrarPopup4()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
     </div>
 </body>
