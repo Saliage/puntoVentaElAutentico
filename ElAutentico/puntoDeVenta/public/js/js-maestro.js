@@ -35,3 +35,23 @@
         popup.style.display = 'none';
     }
 
+    function mostrarPopup3() {
+        const popup = document.getElementById('popup3');
+        popup.style.display = 'flex';
+    }
+
+    function cerrarPopup3() {
+        const popup = document.getElementById('popup3');
+        popup.style.display = 'none';
+    }
+
+    function mostrarPopup4() {
+        const popup = document.getElementById('popup4');
+        popup.style.display = 'flex';
+    }
+
+    function cerrarPopup4() {
+        const popup = document.getElementById('popup4');
+        popup.style.display = 'none';
+    }
+
