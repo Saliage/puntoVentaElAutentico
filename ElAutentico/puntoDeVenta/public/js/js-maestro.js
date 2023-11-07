@@ -55,3 +55,13 @@
         popup.style.display = 'none';
     }
 
+    function mostrarPopup5() {
+        const popup = document.getElementById('popup5');
+        popup.style.display = 'flex';
+    }
+
+    function cerrarPopup5() {
+        const popup = document.getElementById('popup5');
+        popup.style.display = 'none';
+    }
+

@@ -251,6 +251,7 @@ th {
   color: red; /* Cambia el color si es necesario */
 }
 
+
 /* Estilos para el botón de Pagar en el carrito */
 .boton-pagar {
   position: relative;
@@ -262,10 +263,17 @@ th {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  border-radius: 15px;
   border-color: #ffffff;
   margin-right: 1%;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
+
+.boton-pagar:hover {
+  /* Estilos cuando el cursor está sobre el botón (hover) */
+  background-color: #358911; /* Cambia el color de fondo al pasar el cursor */
+  box-shadow: 0 0 5px 5px rgba(53, 137, 17, 0.7); /* Agrega un efecto de destello */
+}
+
 
 .boton-pagar2 {
   user-select: none;
@@ -276,10 +284,17 @@ th {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  border-radius: 15px;
   border-color: #ffffff;
   margin-right: 1%;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
+
+.boton-pagar2:hover {
+  /* Estilos cuando el cursor está sobre el botón (hover) */
+  background-color: #000dff; /* Cambia el color de fondo al pasar el cursor */
+  box-shadow: 0 0 5px 5px rgba(0, 13, 255, 0.7); /* Agrega un efecto de destello */
+}
+
 
 .boton-pagar3 {
   user-select: none;
@@ -290,24 +305,59 @@ th {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  border-radius: 15px;
   border-color: #ffffff;
   margin-right: 1%;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
+
+.boton-pagar3:hover {
+  /* Estilos cuando el cursor está sobre el botón (hover) */
+  background-color: rgba(219, 10, 10, 0.5); /* Cambia el color de fondo al pasar el cursor */
+  box-shadow: 0 0 5px 5px rgba(219, 10, 10, 0.7); /* Agrega un efecto de destello */
+}
+
 
 .boton-pagar4 {
   user-select: none;
-  background-color: rgba(219, 167, 10, 0.843);
+  background-color: rgba(249, 194, 30, 0.843);
   color: white;
   font-weight: bold;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  border-radius: 15px;
   border-color: #ffffff;
   margin-right: 1%;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
+
+.boton-pagar4:hover {
+  /* Estilos cuando el cursor está sobre el botón (hover) */
+  background-color: rgba(249, 194, 30, 0.5); /* Cambia el color de fondo al pasar el cursor */
+  box-shadow: 0 0 5px 5px rgba(249, 194, 30, 0.7); /* Agrega un efecto de destello */
+}
+
+
+.boton-pagar5 {
+  user-select: none;
+  background-color: rgba(68, 68, 67, 0.843);
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  border-color: #ffffff;
+  margin-right: 1%;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.boton-pagar5:hover {
+  /* Estilos cuando el cursor está sobre el botón (hover) */
+  background-color: rgba(68, 68, 67, 0.5); /* Cambia el color de fondo al pasar el cursor */
+  box-shadow: 0 0 5px 5px rgba(68, 68, 67, 0.7); /* Agrega un efecto de destello */
+}
+
 
 .boton-pagar-mas {
   user-select: none;
