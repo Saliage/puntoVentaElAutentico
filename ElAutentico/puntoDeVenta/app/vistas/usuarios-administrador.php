@@ -21,6 +21,7 @@
     <script src="../../public/js"></script>
     <script src="../../public/js/scripts.js"></script>
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
+    <script src="../../public/js/js-maestro.js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     
@@ -89,7 +90,7 @@
         <!-- Barra de busqueda y usuario -->
         <div class="barra-busqueda">
             <div class="entrada-busqueda">
-                <input type="text" placeholder="Buscar usuario">
+                <input type="search" placeholder="Buscar usuario">
                 <ion-icon name="search" class="icono-busqueda"></ion-icon>
             </div>
             <div class="vendedor">
@@ -101,9 +102,8 @@
 
             <table class="table">
                 <thead class="contenedor-datos">
-                    <div class="rounded-buttons-container">
-                        <button class="boton-pagar" onclick="mostrarPopup()">Añadir usuario</button>                         
-                    </div>
+                        <button class="boton-pagar" onclick="mostrarPopup()">Añadir usuario</button>
+                        <p></p>                     
                     <tr>
                         <th>Id usuario</th>
                         <th>Nombre y apellido</th>
