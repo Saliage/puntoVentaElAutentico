@@ -195,7 +195,7 @@
                     </select>
                 </div>
                 </form>
-                <button class="boton-pagar-mas" type="submit" name="agregar" onclick="agregarTrabajador()" value="Agregar">Agregar usuario</button>
+                <button class="boton-pagar-mas" type="submit" name="agregar" onclick="agregarTrabajador()" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
                 <div class="cerrar-popup" onclick="cerrarPopup()"><ion-icon name="close-circle"></ion-icon></div>
             </div>
         </div>
@@ -216,9 +216,7 @@
                             
                             <label for="buscador">Crear nuevo ROL: </label>
                             <input type="text" name="buscador" id="buscador" class="form-control">
-                            <div class="row"><input type="button" class="boton-pagar-mas" value="Agregar Rol" onclick="gestionarRol(1);"  onmouseout="gestionarRol(2);"><ion-icon name="add-circle-outline"></ion-icon></div>
-                            <button class="boton-pagar-mas" type="submit" name="agregar" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
-                            
+                            <div class="row"><input type="button" class="boton-pagar-mas" value="Agregar Rol" onclick="gestionarRol(1);"  onmouseout="gestionarRol(2);"><ion-icon name="add-circle-outline"></ion-icon></div>                  
                         </div>
                     
                     </div>
