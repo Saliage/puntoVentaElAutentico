@@ -160,20 +160,27 @@
             <div class="popup-contenido">
                 <h2>Añadir usuario:</h2>
                 <form action="" id="formAgregarTrabajador" class="formAgregarTrabajador" method="POST">
-          
+                    
+                <div class="form-element">
                     <label for="nombre-apellido">Nombre:</label>
                     <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
-
-                    <label for="nombre-apellido">Apellido:</label>
+                </div>
+                    
+                <div class="form-element"><label for="nombre-apellido">Apellido:</label>
                     <input type="text" name="apellido" id="apellido" placeholder="Apellido" required>
+                </div>
 
+                <div class="form-element">
                     <label for="usuario">Usuario:</label>
                     <input type="text" name="usuario" id="usuario" placeholder="Nombre de usuario" required>
-          
+                </div>
+
+                <div class="form-element">
                     <label for="clave">Contraseña:</label>
                     <input type="password" name="clave" id="clave" placeholder="Contraseña" required>
+                </div>
                     
-                    <label for="rol">Tipo de usuario:</label>
+                <div class="form-element"><label for="rol">Tipo de usuario:</label>
                     <select id="rol" name="tipo-usuario" required>
                         <?php 
                             if ($roles->num_rows > 0) {
@@ -186,8 +193,9 @@
                             }
                         ?>                                 
                     </select>
+                </div>
                 </form>
-                <button class="boton-pago" type="submit" name="agregar" onclick="agregarTrabajador()" value="Agregar">Agregar usuario</button>
+                <button class="boton-pagar-mas" type="submit" name="agregar" onclick="agregarTrabajador()" value="Agregar">Agregar usuario</button>
                 <div class="cerrar-popup" onclick="cerrarPopup()"><ion-icon name="close-circle"></ion-icon></div>
             </div>
         </div>
@@ -208,7 +216,7 @@
                             
                             <label for="buscador">Crear nuevo ROL: </label>
                             <input type="text" name="buscador" id="buscador" class="form-control">
-                            <div class="row"><input type="button" value="Agregar Rol" onclick="gestionarRol(1);"  onmouseout="gestionarRol(2);"></div> 
+                            <div class="row"><input type="button" class="boton-pagar-mas" value="Agregar Rol" onclick="gestionarRol(1);"  onmouseout="gestionarRol(2);"></div> 
                             
                         </div>
                     
