@@ -196,6 +196,7 @@
                     </select>
                 </div>
                 </form>
+                <p></p>
                 <button class="boton-pagar-mas" type="submit" name="agregar" onclick="agregarTrabajador()" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
                 <div class="cerrar-popup" onclick="cerrarPopup()"><ion-icon name="close-circle"></ion-icon></div>
             </div>
