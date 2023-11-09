@@ -209,7 +209,8 @@
         <div class="popup" id="popup2">
             <div class="popup-contenido">
                 <h2>Roles</h2>
-                <div class="container">
+                <p></p>
+                <div class="formulario">
                     <hr>
                     <div class="row text-center">
                         <div class="col">
