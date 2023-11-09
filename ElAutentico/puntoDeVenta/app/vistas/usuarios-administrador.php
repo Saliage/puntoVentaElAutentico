@@ -157,7 +157,7 @@
     </main>
         <!-- El contenedor del popup (inicialmente oculto) -->
         <div class="popup" id="popup">
-            <div class="popup-contenido2">
+            <div class="popup-contenido">
                 <h2>Añadir usuario:</h2>
                 <form action="" id="formAgregarTrabajador" class="formAgregarTrabajador" method="POST">
           
