@@ -11,6 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    <tr>
 	      <th scope="col">#ID</th>
 	      <th scope="col">NOMBRE ROL</th>
+          <th>EDITAR</ion-icon></th>
+          <th>ELIMINAR</ion-icon></th> 
 	    </tr>
 	';
     
@@ -65,12 +67,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 '
                     <tr>
                     <td>'.$consulta['id_rol'].'</td>
-                    <td>'.$consulta['nombre_rol'].'</td>
+                    <td>
+                        <span  id="nombre_rolSpan'.$consulta['id_rol'].'">'.$consulta['nombre_rol'].'</span>                        
+                        <input style="display:none" type="text" id="nombre_rolTxt'.$consulta['id_rol'].'" value="'.$consulta['nombre_rol'].'"> <!-- inicia oculto-->
+                    </td>
+                    <td>
+                        <ion-icon id="btnEdit'.$consulta['id_rol'].'" name="pencil-outline" class="icono-editar" onclick="editarRol('.$consulta['id_rol'].')"></ion-icon>                        
+                        <button style="display:none" id="guardarEdit'.$consulta['id_rol'].'" onclick="guardarRolEdit('.$consulta['id_rol'].')">OK</button> <!-- inicia oculto-->
+                    </td>
+                    <td><ion-icon name="trash-outline" class="icono-eliminar" onclick="eliminarRol('.$consulta['id_rol'].')"></ion-icon></td> 
                     </tr>
                 ';
             }	     
 
                             
+        }
+
+        //editar
+
+        if($opcion == "U")
+        {
+            $id_rol = $_POST["id"];
+            $nombreRol = $_POST["nombre"];
+
+            if($id_rol != ""){
+                
+                $rol = new Rol();
+                $resultado = $rol->actualizarRol($id_rol, $nombreRol);
+                if($resultado > 0){
+                echo "se actualizó el rol: ".$nombreRol;
+                }        
+
+            }
+                
+        }
+
+        // eliminar
+        if($opcion == "D")
+        {
+            $id_rol = $_POST["id"];
+
+            if($id_rol != ""){
+                
+                $rol = new Rol();
+                $resultado = $rol->eliminarRol($id_rol);
+                if($resultado > 0){
+                echo "se eliminó el rol: ".$id_rol;
+                }        
+
+            }
+                
         }
 
 

@@ -15,19 +15,20 @@
     <title>Administracion de usuarios</title>
     <!-- ====================== ESTILOS CSS ==================== -->
     <link rel="stylesheet" href="../../public/css/ccs/carta-administrador.css">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <!--Import materialize.css
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/> -->
     <!-- ====================== JS ==================== -->
     <script src="../../public/js"></script>
-    <script src="../../public/js/scripts.js"></script>
+    
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
+    <script src="../../public/js/scripts.js"></script>
     <script src="../../public/js/js-maestro.js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     
 </head>
 
-<body>
+<body onload="gestionarRol(2);">
  
     <!-- -------- BARRA DE NAVEGACION ------- -->
     <nav class="navbar">
@@ -156,7 +157,7 @@
     </main>
         <!-- El contenedor del popup (inicialmente oculto) -->
         <div class="popup" id="popup">
-            <div class="popup-contenido">
+            <div class="popup-contenido2">
                 <h2>Añadir usuario:</h2>
                 <form action="" id="formAgregarTrabajador" class="formAgregarTrabajador" method="POST">
           
@@ -190,83 +191,43 @@
                 <div class="cerrar-popup" onclick="cerrarPopup()"><ion-icon name="close-circle"></ion-icon></div>
             </div>
         </div>
-        
+
+
+        <!--------------------------------------------------------------------------------------------------------------------------------------->
+        <!----------------------------------------------             MOSTRAR ROLES                ----------------------------------------------->
+        <!--------------------------------------------------------------------------------------------------------------------------------------->
+
+
         <div class="popup" id="popup2">
             <div class="popup-contenido">
                 <h2>Roles</h2>
-                <p></p>
-                <?php
-                // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    echo 
-                    '
-                    <table class="table table-hover">
-                        <tr>
-                            <th scope="col">#ID</th>
-                            <th scope="col">NOMBRE ROL</th>
-                        </tr>
-                        ';
-                        $opcion = $_POST['opcion']; //obtener valor de la opción para controlar eventos
-                        if($opcion == 3)
-                        {
-                            $mi_busqueda = $_POST['mi_busqueda'];
-                            $rol = new Rol();
-                            $resultado = $rol->buscarRolNombre($mi_busqueda);
-                            while($consulta = mysqli_fetch_array($resultado))
-                            {
-                                echo 
-                                '
-                                <tr>
-                                    <td>'.$consulta['id_rol'].'</td>
-                                    <td>'.$consulta['nombre_rol'].'</td>
-                                </tr>
-                                ';
-                            }	
-                        }
-                        else
-                        {
-                            if($opcion == 1)
-                            {
-                                $nombreRol = $_POST["nombre"];
-                                if($nombreRol != ""){
-                                    $rol = new Rol();
-                                    $resultado = $rol->agregarRol($nombreRol);
-                                    if($resultado > 0){
-                                        echo "se agregó el rol: ".$nombreRol;
-                                    }        
-                                }
-                            }
+                <div class="container">
+                    <hr>
+                    <div class="row text-center">
+                        <div class="col">
                             
-                            if($opcion == 2)
-                            {
-                                $rol = new Rol();
-                                $resultado = $rol->listarRoles();
-                                //CONSULTAR
-                                while($consulta = mysqli_fetch_array($resultado))
-                                {
-                                    echo 
-                                    '
-                                    <tr>
-                                        <td>'.$consulta['id_rol'].'</td>
-                                        <td>'.$consulta['nombre_rol'].'</td>
-                                    </tr>
-                                    ';
-                                }	     
-
-                            }
-                        }
-                    } 
-                    else
-                    {
-                        //redireccionar en caso de no llegar a la pagina como corresponde
-                        header("location: ../formularios/agregar_trabajador.php");
-                        die();
-                    }
-                    ?>
+                            <label for="buscador">Crear nuevo ROL: </label>
+                            <input type="text" name="buscador" id="buscador" class="form-control" onkeypress="mi_busqueda();">
+                            <div class="row"><input type="button" value="Agregar Rol" onclick="gestionarRol(1);"  onmouseup="gestionarRol(2);"></div> 
+                            
+                        </div>
                     
-                    <div class="cerrar-popup" onclick="cerrarPopup2()"><ion-icon name="close-circle"></ion-icon></div>
+                    </div>
+            
+                    <hr>
+                    <div class="row justify-content-md-center">		
+                        <div class="col-md-8">
+                            <div id="mostrar_mensaje"></div>
+                        </div>
+                    </div>
+        </div>
+                    
+                <div class="cerrar-popup" onclick="cerrarPopup2()"><ion-icon name="close-circle"></ion-icon></div>
+                
                 </div>
-            </div>
+        </div>
+
+    </body>
         
         <!-- JavaScript para manejar el evento de clic y agregar/eliminar la clase "seleccionado" al elemento seleccionado. -->
         <script>
@@ -296,6 +257,15 @@
         
         }
 
+        </script>
+        
+
+        <!--------------------------------------------------------------------------------------------------------------------------------------->
+        <!----------------------------------------------           AGREGAR TRABAJADORES           ----------------------------------------------->
+        <!--------------------------------------------------------------------------------------------------------------------------------------->
+
+        <script>
+
         function agregarTrabajador()
         { 
             formulario = document.getElementById('formAgregarTrabajador');
@@ -307,7 +277,7 @@
 
         $.ajax({
             data: formulario,
-            url: '../gestion/gestion_trabajador.php',
+            url: '/gestion/gestion_trabajador.php',
             type: 'POST',
             
             beforesend: function()
@@ -325,6 +295,161 @@
         }
         
         </script>
+        <!--------------------------------------------------------------------------------------------------------------------------------------->
+        <!----------------------------------------------               GESTION ROLES              ----------------------------------------------->
+        <!--------------------------------------------------------------------------------------------------------------------------------------->
 
-</body>
+
+
+        <script>
+        function mi_busqueda()
+        { 
+            buscar = document.getElementById('buscador').value;
+          var parametros = 
+          {
+            "mi_busqueda" : buscar,
+            "opcion" : "3"
+          };
+    
+          $.ajax({
+            data: parametros,
+            url: 'gestion/gestion_rol.php',
+            type: 'POST',
+            
+            beforesend: function()
+            {
+              $('#mostrar_mensaje').html("Error de comunicación");
+            },
+    
+            success: function(mensaje)
+            {
+              $('#mostrar_mensaje').html(mensaje);
+            }
+          });
+        }
+    
+        function gestionarRol(opcion)
+        { 
+            buscar = document.getElementById('buscador').value;
+          var parametros = 
+          {
+            "nombre" : buscar,
+            "opcion" : opcion
+          };
+    
+          $.ajax({
+            data: parametros,
+            url: 'gestion/gestion_rol.php',
+            type: 'POST',
+            
+            beforesend: function()
+            {
+              $('#mostrar_mensaje').html("Error de comunicación");
+            },
+    
+            success: function(mensaje)
+            {
+              $('#mostrar_mensaje').html(mensaje);
+            }
+          });
+        }
+
+
+        function editarRol(id_rol) {
+
+            var rolSpan = document.getElementById('nombre_rolSpan'+id_rol);
+            var rolTxt = document.getElementById('nombre_rolTxt'+id_rol);
+            var btnOK = document.getElementById('guardarEdit'+id_rol);
+            var btnEdit = document.getElementById('btnEdit'+id_rol);
+
+            // Mostrar el campo de texto y ocultar el span
+            rolSpan.style.display = 'none';
+            rolTxt.style.display = 'inline';
+            btnEdit.style.display = 'none';
+            btnOK.style.display = 'inline';
+
+            // Agregar el valor del texto al valor original del span
+            rolTxt.value = rolSpan.innerText;
+
+        }
+
+        function guardarRolEdit(id_rol){
+
+            var rolSpan = document.getElementById('nombre_rolSpan'+id_rol);
+            var rolTxt = document.getElementById('nombre_rolTxt'+id_rol);
+            var btnOK = document.getElementById('guardarEdit'+id_rol);
+            var btnEdit = document.getElementById('btnEdit'+id_rol);
+            var parametros = 
+            {
+                "id" : id_rol,
+                "nombre" : rolTxt.value,
+                "opcion" : 'U'
+            };
+
+            rolSpan.style.display = 'inline';
+            rolTxt.style.display = 'none';
+            btnEdit.style.display = 'inline';
+            btnOK.style.display = 'none';
+            gestionarRol(2);
+    
+          $.ajax({
+            data: parametros,
+            url: 'gestion/gestion_rol.php',
+            type: 'POST',
+            
+            beforeSend: function()
+            {
+              $('#mostrar_mensaje').html("Error de comunicación");
+            },
+    
+            success: function(mensaje)
+            {
+              $('#mostrar_mensaje').html(mensaje);
+            }
+            
+
+          });
+
+            
+        }
+
+        function eliminarRol(id_rol){
+
+            var parametros = 
+            {
+                "id" : id_rol,
+                "opcion" : 'D'
+            };
+
+            gestionarRol(2);
+    
+          $.ajax({
+            data: parametros,
+            url: 'gestion/gestion_rol.php',
+            type: 'POST',
+            
+            beforeSend: function()
+            {
+              $('#mostrar_mensaje').html("Error de comunicación");
+            },
+    
+            success: function(mensaje)
+            {
+              $('#mostrar_mensaje').html(mensaje);
+            }
+            
+
+          });
+
+            
+        }
+
+
+
+
+    </script>
+
+
+
+    
 </html>
