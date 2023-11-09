@@ -216,7 +216,8 @@
                             
                             <label for="buscador">Crear nuevo ROL: </label>
                             <input type="text" name="buscador" id="buscador" class="form-control">
-                            <div class="row"><input type="button" class="boton-pagar-mas" value="Agregar Rol" onclick="gestionarRol(1);"  onmouseout="gestionarRol(2);"></div> 
+                            <div class="row"><input type="button" class="boton-pagar-mas" value="Agregar Rol" onclick="gestionarRol(1);"  onmouseout="gestionarRol(2);"><ion-icon name="add-circle-outline"></ion-icon></div>
+                            <button class="boton-pagar-mas" type="submit" name="agregar" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
                             
                         </div>
                     
