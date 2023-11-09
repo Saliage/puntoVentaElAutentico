@@ -159,7 +159,7 @@
         <div class="popup" id="popup">
             <div class="popup-contenido">
                 <h2>Añadir usuario:</h2>
-                <div></div>
+                <p></p>
                 <form action="" id="formAgregarTrabajador" class="formAgregarTrabajador" method="POST">
                     
                 <div class="form-element">
