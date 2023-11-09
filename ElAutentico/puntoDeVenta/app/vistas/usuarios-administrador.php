@@ -399,36 +399,40 @@
 
         function eliminarRol(id_rol){
 
-            var parametros = 
-            {
-                "id" : id_rol,
-                "opcion" : 'D'
-            };
+            var confirmacion = confirm("¿Estás seguro de que deseas eliminar el rol: "+id_rol+"?");
 
-            
-    
-          $.ajax({
-            data: parametros,
-            url: 'gestion/gestion_rol.php',
-            type: 'POST',
-            
-            beforeSend: function()
-            {
-              $('#mostrar_mensaje').html("Error! No se puede realizar la operación.");
-              $('#mostrar_mensaje').css('color', 'red');
-              
-            },
-    
-            success: function(mensaje)
-            {
-              $('#mostrar_mensaje').html(mensaje);
-              gestionarRol(2);
+            if (confirmacion) {
+                
+                var parametros = 
+                {
+                    "id" : id_rol,
+                    "opcion" : 'D'
+                };                
+
+                $.ajax({
+                data: parametros,
+                url: 'gestion/gestion_rol.php',
+                type: 'POST',
+                
+                beforeSend: function()
+                {
+                $('#mostrar_mensaje').html("Error! No se puede realizar la operación.");
+                $('#mostrar_mensaje').css('color', 'red');
+                
+                },
+
+                success: function(mensaje)
+                {
+                $('#mostrar_mensaje').html(mensaje);
+                gestionarRol(2);
+                }
+                
+                });
+
             }
-            
+                
 
-          });
 
-            
         }
 
 
