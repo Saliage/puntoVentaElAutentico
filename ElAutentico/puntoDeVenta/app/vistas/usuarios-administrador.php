@@ -207,8 +207,8 @@
                         <div class="col">
                             
                             <label for="buscador">Crear nuevo ROL: </label>
-                            <input type="text" name="buscador" id="buscador" class="form-control" onkeypress="mi_busqueda();">
-                            <div class="row"><input type="button" value="Agregar Rol" onclick="gestionarRol(1);"  onmouseup="gestionarRol(2);"></div> 
+                            <input type="text" name="buscador" id="buscador" class="form-control">
+                            <div class="row"><input type="button" value="Agregar Rol" onclick="gestionarRol(1);"  onmouseout="gestionarRol(2);"></div> 
                             
                         </div>
                     
@@ -302,31 +302,6 @@
 
 
         <script>
-        function mi_busqueda()
-        { 
-            buscar = document.getElementById('buscador').value;
-          var parametros = 
-          {
-            "mi_busqueda" : buscar,
-            "opcion" : "3"
-          };
-    
-          $.ajax({
-            data: parametros,
-            url: 'gestion/gestion_rol.php',
-            type: 'POST',
-            
-            beforesend: function()
-            {
-              $('#mostrar_mensaje').html("Error de comunicación");
-            },
-    
-            success: function(mensaje)
-            {
-              $('#mostrar_mensaje').html(mensaje);
-            }
-          });
-        }
     
         function gestionarRol(opcion)
         { 
@@ -421,7 +396,7 @@
                 "opcion" : 'D'
             };
 
-            gestionarRol(2);
+            
     
           $.ajax({
             data: parametros,
@@ -430,12 +405,15 @@
             
             beforeSend: function()
             {
-              $('#mostrar_mensaje').html("Error de comunicación");
+              $('#mostrar_mensaje').html("Error! No se puede realizar la operación.");
+              $('#mostrar_mensaje').css('color', 'red');
+              
             },
     
             success: function(mensaje)
             {
               $('#mostrar_mensaje').html(mensaje);
+              gestionarRol(2);
             }
             
 

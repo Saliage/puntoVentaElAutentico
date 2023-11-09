@@ -571,9 +571,8 @@ input, select {
   padding: 5px;
   border: 2px solid #000000d7;
   border-radius: 5px;
-  margin-bottom: 2px;
+  margin-bottom: 10px;
 }
-
 
 .fixed{
   position: absolute;

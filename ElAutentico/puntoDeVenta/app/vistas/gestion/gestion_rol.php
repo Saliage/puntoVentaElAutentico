@@ -110,9 +110,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if($id_rol != ""){
                 
                 $rol = new Rol();
-                $resultado = $rol->eliminarRol($id_rol);
-                if($resultado > 0){
-                echo "se eliminó el rol: ".$id_rol;
+                try{
+
+                    $resultado = $rol->eliminarRol($id_rol);
+                    if($resultado > 0){
+                    echo "se eliminó el rol: ".$id_rol;
+                    }
+
+                }
+                catch(Exception $e)
+                {
+                    echo "<script>alert('No sepuede eliminar el rol: ".$id_rol."; Asegurese de que no esté asignado a un trabajador.');</script>";
                 }        
 
             }
