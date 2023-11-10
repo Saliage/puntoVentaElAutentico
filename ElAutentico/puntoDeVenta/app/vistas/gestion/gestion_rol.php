@@ -3,20 +3,40 @@
 
 require_once ("../../modelo/rol.php");
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    echo 
-	'
-		<table class="table table-hover">
-	    <tr>
-	      <th scope="col">#ID</th>
-	      <th scope="col">NOMBRE ROL</th>
-          <th>EDITAR</ion-icon></th>
-          <th>ELIMINAR</ion-icon></th> 
-	    </tr>
-	';
-    
     $opcion = $_POST['opcion']; //obtener valor de la opción para controlar eventos
+
+    if ($opcion == "mostrar") {
+        $rol = new Rol();
+        $resultado = $rol->listarRoles();
+    
+        
+            echo '
+                    <label for="rol">Tipo de usuario:</label>
+                    <select id="rol" name="rol">
+                '; 
+            while ($consulta = mysqli_fetch_array($resultado)) {
+                echo '<option value=' . $consulta['id_rol'] . '>' . $consulta['nombre_rol'] . '</option>';
+            }
+            echo '</select>';
+    
+    }
+    else{
+
+        echo 
+        '
+            <table class="table table-hover">
+            <tr>
+            <th scope="col">#ID</th>
+            <th scope="col">NOMBRE ROL</th>
+            <th>EDITAR</ion-icon></th>
+            <th>ELIMINAR</ion-icon></th> 
+            </tr>
+        ';
+    
+    }
 
     if($opcion == 3)
 	{
@@ -102,18 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
         }
 
-        if ($opcion == "mostrar") {
-            $rol = new Rol();
-            $resultado = $rol->listarRoles();
         
-            
-                echo '<select id="rol" name="rol">'; 
-                while ($consulta = mysqli_fetch_array($resultado)) {
-                    echo '<option value=' . $consulta['id_rol'] . '>' . $consulta['nombre_rol'] . '</option>';
-                }
-                echo '</select>';
-            
-        }
         
 
         // eliminar

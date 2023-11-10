@@ -136,7 +136,7 @@
                     <input type="password" name="clave" id="clave" placeholder="Contraseña" required>
                 </div>
                     
-                <div id="mostrarRoles" class="form-element"><label for="rol">Tipo de usuario:</label>
+                <div id="mostrarRoles" class="form-element">
                    
                 </div>
                 </form>
@@ -217,11 +217,11 @@
                 function inicializar(){
                     gestionarRol(2);
                     listarTrabajadores();
+                    mostrarRoles();
                 }
 
 
                 function  mostrarRoles(){
-                    alert("mostrar roles");
                     var parametros = 
                     {
                         "opcion" : "mostrar"
@@ -232,10 +232,10 @@
                         url: 'gestion/gestion_rol.php',
                         type: 'POST',
                         beforeSend: function() {
-                            $('#mostrarTrabajadores').html("No hay trabajadores para mostrar");
+                            $('#mostrarRoles').html("No hay trabajadores para mostrar");
                         },
                         success: function(mensaje) {
-                            $('#mostrarTrabajadores').html(mensaje);
+                            $('#mostrarRoles').html(mensaje);
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
                             console.error('Error en la solicitud AJAX:', textStatus, errorThrown); //ver errores
