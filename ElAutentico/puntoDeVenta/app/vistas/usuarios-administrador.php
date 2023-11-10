@@ -136,10 +136,8 @@
                     <input type="password" name="clave" id="clave" placeholder="Contraseña" required>
                 </div>
                     
-                <div class="form-element"><label for="rol">Tipo de usuario:</label>
-                    <select id="rol" name="tipo-usuario" required>
-                        <option value="">nada</option>                               
-                    </select>
+                <div id="mostrarRoles" class="form-element"><label for="rol">Tipo de usuario:</label>
+                   
                 </div>
                 </form>
                 <p></p>
@@ -219,6 +217,30 @@
                 function inicializar(){
                     gestionarRol(2);
                     listarTrabajadores();
+                }
+
+
+                function  mostrarRoles(){
+                    alert("mostrar roles");
+                    var parametros = 
+                    {
+                        "opcion" : "mostrar"
+                    };
+                
+                    $.ajax({
+                        data : parametros,
+                        url: 'gestion/gestion_rol.php',
+                        type: 'POST',
+                        beforeSend: function() {
+                            $('#mostrarTrabajadores').html("No hay trabajadores para mostrar");
+                        },
+                        success: function(mensaje) {
+                            $('#mostrarTrabajadores').html(mensaje);
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.error('Error en la solicitud AJAX:', textStatus, errorThrown); //ver errores
+                        }
+                    });
                 }
             </script>
             

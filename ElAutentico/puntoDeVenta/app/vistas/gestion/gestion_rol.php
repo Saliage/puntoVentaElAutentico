@@ -102,6 +102,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
         }
 
+        if ($opcion == "mostrar") {
+            $rol = new Rol();
+            $resultado = $rol->listarRoles();
+        
+            
+                echo '<select id="rol" name="rol">'; 
+                while ($consulta = mysqli_fetch_array($resultado)) {
+                    echo '<option value=' . $consulta['id_rol'] . '>' . $consulta['nombre_rol'] . '</option>';
+                }
+                echo '</select>';
+            
+        }
+        
+
         // eliminar
         if($opcion == "D")
         {
