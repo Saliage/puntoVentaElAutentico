@@ -1,6 +1,6 @@
 <?php
 
-require('conexion.php');
+require_once('conexion.php');
 
 class Rol {
 
@@ -15,8 +15,9 @@ class Rol {
 
         $resultado = $conn->query($consulta);
 
-        $conn->close();
+        
         return $resultado;
+        $conn->close();
     }
 
     // Obtener todos los roles
@@ -29,6 +30,7 @@ class Rol {
         $resultado = $conn->query($consulta);
 
         return $resultado;
+        $conn->close();
     }
 
     // Buscar rol por id
@@ -41,6 +43,7 @@ class Rol {
         $resultado = $conn->query($consulta);
 
         return $resultado;
+        $conn->close();
     }
 
     // Buscar rol por parte del nombre
@@ -53,6 +56,7 @@ class Rol {
 
         $resultado = $conn->query($consulta);
         return $resultado;
+        $conn->close();
     }
 
     // Actualizar datos de rol
@@ -67,6 +71,7 @@ class Rol {
         $resultado = $conn->query($consulta);
 
         return $resultado;
+        $conn->close();
     }
 
     // Eliminar rol por id
@@ -79,6 +84,7 @@ class Rol {
         $resultado = $conn->query($consulta);
 
         return $resultado;
+        $conn->close();
     }
 }
 ?>

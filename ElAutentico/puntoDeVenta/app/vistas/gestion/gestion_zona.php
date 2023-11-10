@@ -1,7 +1,7 @@
 <?php
 
-require("../../modelo/zona.php");
-require("../../modelo/almacen.php");
+require_once("../../modelo/zona.php");
+require_once("../../modelo/almacen.php");
 
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -1,6 +1,6 @@
 <?php
 
-require('conexion.php');
+require_once('conexion.php');
 
 class Trabajador {
 
@@ -27,6 +27,7 @@ class Trabajador {
         $resultado = $conn->query($consulta);
 
         return $resultado;
+        $conn->close();
     }
 
     // Buscar trabajador por id
@@ -39,6 +40,8 @@ class Trabajador {
         $resultado = $conn->query($consulta);
 
         return $resultado;
+        $conn->close();
+    
     }
 
     // Actualizar datos de trabajador
