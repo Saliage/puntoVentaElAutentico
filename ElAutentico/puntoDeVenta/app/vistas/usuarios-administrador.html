@@ -13,10 +13,8 @@
     <!--Import materialize.css
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/> -->
     <!-- ====================== JS ==================== -->
-    <script src="../../public/js"></script>
     
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
-    <script src="../../public/js/scripts.js"></script>
     <script src="../../public/js/js-maestro.js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -115,14 +113,18 @@
             <div class="popup-contenido">
                 <h2>Añadir usuario:</h2>
                 <p></p>
-                <form action="" id="formAgregarTrabajador" class="formAgregarTrabajador" method="POST">
+                <form id="formAgregarTrabajador" onsubmit="return agregarTrabajador(event)" method="post">
                     
                 <div class="form-element">
-                    <label for="nombre-apellido">Nombre:</label>
-                    <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+                    <label for="rut">Rut:</label>
+                    <input type="text" name="rut" id="rut" placeholder="rut" minlength="9" maxlength="11"  pattern="[0-9kK\-]+"  title="Rut con sin puntos y con guion" required>
                 </div>
+                <div class="form-element">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+                </div>                
                     
-                <div class="form-element"><label for="nombre-apellido">Apellido:</label>
+                <div class="form-element"><label for="apellido">Apellido:</label>
                     <input type="text" name="apellido" id="apellido" placeholder="Apellido" required>
                 </div>
 
@@ -136,12 +138,13 @@
                     <input type="password" name="clave" id="clave" placeholder="Contraseña" required>
                 </div>
                     
-                <div id="mostrarRoles" class="form-element">
+                <div id="mostrarRoles" class="form-element"> <!-- listar roles en combobox -->
                    
                 </div>
+                <input class="boton-pagar-mas" type="submit" name="agregar">
                 </form>
                 <p></p>
-                <button class="boton-pagar-mas" type="submit" name="agregar" onclick="agregarTrabajador()" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
+                
                 <div class="cerrar-popup" onclick="cerrarPopup()"><ion-icon name="close-circle"></ion-icon></div>
             </div>
         </div>
@@ -162,40 +165,26 @@
                         <div class="col">
                             <label for="buscador">Crear nuevo ROL: </label>
                             <input type="text" name="buscador" id="buscador" class="form-control">
-                            <div class="row"> <button class="boton-pagar" type="submit" name="agregar" value="Agregar Rol" onclick="gestionarRol(1);"  onmouseout="gestionarRol(2);"><ion-icon name="add-circle-outline"></ion-icon></button>              
-                         </div>
+                            <div class="row"> 
+                                <button class="boton-pagar" type="submit" name="agregar" value="Agregar Rol" onclick="gestionarRol(1);"  onmouseout="gestionarRol(2);"><ion-icon name="add-circle-outline"></ion-icon></button>              
+                            </div>
                     
+                        </div>
                     </div>
-            
                     <hr>
                     <div class="row justify-content-md-center">		
                         <div class="col-md-8">
                             <div id="mostrar_mensaje"></div> <!-- div que mostrará el contenido del ajax -->
                         </div>
                     </div>
-        </div>
+                </div>
                     
                 <div class="cerrar-popup" onclick="cerrarPopup2()"><ion-icon name="close-circle"></ion-icon></div>
+            </div>  
                 
-                </div>
         </div>
 
     </body>
-        
-            <!-- JavaScript para manejar el evento de clic y agregar/eliminar la clase "seleccionado" al elemento seleccionado. -->
-            <script>
-            // Obtenemos todos los elementos de categoría
-            const itemsCategoria = document.querySelectorAll('.item-categoria'); 
-            // Agregamos un controlador de eventos de clic a cada elemento de categoría    
-            itemsCategoria.forEach(item => {
-                item.addEventListener('click', () => {        
-                    // Eliminamos la clase 'seleccionado' de todos los elementos
-                    itemsCategoria.forEach(otherItem => otherItem.classList.remove('seleccionado'));
-                    // Agregamos la clase 'seleccionado' solo al elemento seleccionado
-                    item.classList.add('seleccionado');
-                });
-            });
-            </script>
             <script>
             // Función para mostrar el popup
             function mostrarPopup() {
@@ -232,7 +221,7 @@
                         url: 'gestion/gestion_rol.php',
                         type: 'POST',
                         beforeSend: function() {
-                            $('#mostrarRoles').html("No hay trabajadores para mostrar");
+                            $('#mostrarRoles').html("No roles para mostrar");
                         },
                         success: function(mensaje) {
                             $('#mostrarRoles').html(mensaje);
@@ -263,7 +252,7 @@
                     url: 'gestion/gestion_trabajador.php',
                     type: 'POST',
                     beforeSend: function() {
-                        $('#mostrarTrabajadores').html("No hay trabajadores para mostrar");
+                        //$('#mostrarTrabajadores').html("No hay trabajadores para mostrar");
                     },
                     success: function(mensaje) {
                         $('#mostrarTrabajadores').html(mensaje);
@@ -405,6 +394,38 @@
             }
 
             function eliminarUsuario(id){
+
+                var confirmacion = confirm("¿Estás seguro de que deseas eliminar al trabajador: "+id+"?");
+
+                if (confirmacion) {
+                    
+                    var parametros = 
+                    {
+                        "id" : id,
+                        "opcion" : 'D'
+                    };                
+
+                    $.ajax({
+                    data: parametros,
+                    url: 'gestion/gestion_trabajador.php',
+                    type: 'POST',
+                    
+                    beforeSend: function()
+                    {
+                    $('#mostrar_mensaje').html("Error! No se puede realizar la operación.");
+                    $('#mostrar_mensaje').css('color', 'red');
+                    listarTrabajadores();
+                    },
+
+                    success: function(mensaje)
+                    {
+                    $('#mostrar_mensaje').html(mensaje);
+                    listarTrabajadores();
+                    }
+                    
+                    });
+
+                }
                 
             }
 
@@ -424,25 +445,50 @@
 
 
 
-            function agregarTrabajador()
+            function agregarTrabajador(event)
             { 
-                formulario = document.getElementById('formAgregarTrabajador');
+                event.preventDefault(); // Evita que el formulario se envíe a la nada
+
+                // rescatar valores del form
+                var formulario = document.getElementById('formAgregarTrabajador');
+                var rut = formulario.elements['rut'].value;
+                var nombre = formulario.elements['nombre'].value;
+                var apellido = formulario.elements['apellido'].value;
+                var usuario = formulario.elements['usuario'].value;
+                var clave = formulario.elements['clave'].value;
+                var estado = 1; //siempre se agregarán los usuarios en estado "activos"
+                var rol = formulario.elements['rol'].value;
+
+                var parametros = 
+                {
+                    "rut" : rut,
+                    "nombre" : nombre,
+                    "apellido" : apellido,
+                    "usuario" : usuario,
+                    "clave" : clave,
+                    "estado" : estado,
+                    "rol" : rol,
+                    "opcion" : 'guardar'
+                };
 
             $.ajax({
-                data: formulario,
+                data: parametros,
                 url: 'gestion/gestion_trabajador.php',
                 type: 'POST',
                 
                 beforeSend: function()
                 {
                 //$('#mostrar_mensaje').html("Error de comunicación");
-                alert("Error!/nNo se pudo agregar el usuario: " + document.getElementById('nombre').value);
+                listarTrabajadores();
                 },
 
                 success: function(mensaje)
                 {
                 //$('#mostrar_mensaje').html(mensaje);
-                alert("Se a agregado el usuaro: " + mensaje);
+                alert(mensaje);
+                listarTrabajadores();
+                cerrarPopup();
+                document.getElementById("formAgregarTrabajador").reset();
                 }
             });
             }

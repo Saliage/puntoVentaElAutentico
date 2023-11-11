@@ -6,22 +6,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $opcion = $_POST['opcion']; //obtener valor de la opción para controlar eventos
 
-    echo
-    '
-        <tr>
-            <th>Id usuario</th>
-            <th>Rut</th>
-            <th>Nombre</th>
-            <th>apellido</th>
-            <th>Usuario</th>
-            <th>Clave</th>
-            <th>Estado</th>
-            <th>Tipo de usuario</th>
-            <th>Editar</th> 
-            <th>Elimnar</th> 
-        </tr>
-        
-    ';
+    //guardar
+        if($opcion == "guardar")
+        {   
+            $rut = $_POST['rut'];
+            $nombre = $_POST['nombre'];
+            $apellido = $_POST['apellido'];
+            $usuario = $_POST['usuario'];
+            $clave = $_POST['clave'];
+            $estado = $_POST['estado'];
+            $rol = $_POST['rol']; 
+
+            $trabajador = new Trabajador();
+            try{
+
+                $resultado = $trabajador->agregarTrabajador($rut,$nombre,$apellido,$usuario,$clave,$estado,$rol);
+                if($resultado > 0){
+                echo "Se agregó al trabajador: ".$nombre." ".$apellido;
+                }
+
+            }
+            catch(Exception $e)
+            {
+                echo "error inesperado?";
+            }        
+
+            
+                
+        }
+        else{
+            echo
+            '
+                <tr>
+                    <th>Id usuario</th>
+                    <th>Rut</th>
+                    <th>Nombre</th>
+                    <th>apellido</th>
+                    <th>Usuario</th>
+                    <th>Clave</th>
+                    <th>Estado</th>
+                    <th>Tipo de usuario</th>
+                    <th>Editar</th> 
+                    <th>Elimnar</th> 
+                </tr>
+                
+            ';
+        }
+
 
     if($opcion == "mostrar")
 	{
@@ -30,6 +61,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $rol = new Rol();
         $roles = $rol->listarRoles();
+        $arrayRoles = array();
+        //rellenar arrayRoles
+        while ($cadaRol = $roles->fetch_assoc()) {
+            $arrayRoles[] = $cadaRol;
+        }
+
 	  while($consulta = mysqli_fetch_array($resultado))
 	  {
         $icono ='<ion-icon name="ban-outline"></ion-icon>';
@@ -83,8 +120,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <span  id="rolSpan'.$id.'">'.$nombreRol['nombre_rol'].'</span>
                     <select id="rolSelect'.$id.'" style="display: none;">';
 
-                    while ($dato = $roles->fetch_assoc()) {
-                        echo '<option value="' . $dato['id_rol'] . '" '.($dato['id_rol'] == $consulta['rol_id_rol'] ? 'selected' : '').' >' . $dato['nombre_rol'] . '</option>';
+                    foreach ($arrayRoles as $dato) {
+                        echo '<option value="' . $dato['id_rol'] . '" ' . ($dato['id_rol'] == $consulta['rol_id_rol'] ? 'selected' : '') . ' >' . $dato['nombre_rol'] . '</option>';
                     }
                     
                     echo '</select>
@@ -102,6 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	}
 
+    //editar
     try {
         if ($opcion == "U") {
             $id = $_POST['id'];
@@ -127,94 +165,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }
-    
-
-    
-
-	
-    /*
-    else
-	{
-		if($opcion == 1)
-        {
-            $nombreRol = $_POST["nombre"];
-
-            if($nombreRol != ""){
-                
-                $rol = new Rol();
-                $resultado = $rol->agregarRol($nombreRol);
-                if($resultado > 0){
-                echo "se agregó el rol: ".$nombreRol;
-                }        
-
-            }
-                
-        }
 
 
+    // eliminar
 
-		if($opcion == 2)
-        {
-                
-            $rol = new Rol();
-            $resultado = $rol->listarRoles();
-            //CONSULTAR
-	        while($consulta = mysqli_fetch_array($resultado))
-            {
-                echo 
-                '
-                    <tr>
-                    <td>'.$consulta['id_rol'].'</td>
-                    <td>
-                        <span  id="nombre_rolSpan'.$consulta['id_rol'].'">'.$consulta['nombre_rol'].'</span>                        
-                        <input style="display:none" type="text" id="nombre_rolTxt'.$consulta['id_rol'].'" value="'.$consulta['nombre_rol'].'"> <!-- inicia oculto-->
-                    </td>
-                    <td>
-                        <ion-icon id="btnEdit'.$consulta['id_rol'].'" name="pencil-outline" class="icono-editar" onclick="editarRol('.$consulta['id_rol'].')"></ion-icon>                        
-                        <button style="display:none" id="guardarEdit'.$consulta['id_rol'].'" onclick="guardarRolEdit('.$consulta['id_rol'].')">OK</button> <!-- inicia oculto-->
-                    </td>
-                    <td><ion-icon name="trash-outline" class="icono-eliminar" onclick="eliminarRol('.$consulta['id_rol'].')"></ion-icon></td> 
-                    </tr>
-                ';
-            }	     
+    try {
 
-                            
-        }
-
-        //editar
-
-        
-
-        // eliminar
         if($opcion == "D")
         {
-            $id_rol = $_POST["id"];
+            $id = $_POST["id"];
 
-            if($id_rol != ""){
+            if($id != ""){
                 
-                $rol = new Rol();
+                $trabajador = new Trabajador();
                 try{
 
-                    $resultado = $rol->eliminarRol($id_rol);
+                    $resultado = $trabajador->eliminarTrabajador($id);
                     if($resultado > 0){
-                    echo "se eliminó el rol: ".$id_rol;
+                    echo "se eliminó el trabajador: ".$id;
                     }
 
                 }
                 catch(Exception $e)
                 {
-                    echo "<script>alert('No sepuede eliminar el rol: ".$id_rol."; Asegurese de que no esté asignado a un trabajador.');</script>";
+                    echo "<script>alert('No sepuede eliminar al trabajador: ".$id.".');</script>";
                 }        
 
             }
                 
         }
-
-
-	  
-	}
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+    }
     
-    */
 
 } 
 else
