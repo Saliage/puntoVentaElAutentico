@@ -1,6 +1,8 @@
 <?php
-require_once("../../modelo/trabajador.php");
-require_once("../../modelo/rol.php");
+require_once("../modelo/trabajador.php");
+require_once("../modelo/rol.php");
+
+
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -34,64 +36,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
                 
         }
+        
         else{
 
-            // Valida Inicio de sesion
-
-            if($opcion == "validar"){
-
-                echo'<script>alert("Intenta validar");</script>';
-
-                $usuario = $_POST['usuario'];
-                $clave = $_POST['clave'];
-
-                $trabajador = new Trabajador();
-                $resultado = $trabajador->verificarTrabajador($usuario,$clave);
-
-                if ($result->num_rows > 0) {
-                    // Usuario válido, crear sesión
-                    session_start();
-                
-                    // almacenar datos del trabajador en la session
-
-                    $row = $result->fetch_assoc();
-                    $_SESSION['rol'] = $row['rol'];
-                    $_SESSION['usuario'] = $row['usuario'];
-                    $_SESSION['nombre'] = $row['nombre'];
-                    $_SESSION['apellido'] = $row['apellido'];
-                
-                
-                    $response = array("success" => true);
-                } else {
-                    $response = array("success" => false, "message" => '<h6 class="text-center mb-4" id="text-error">--Usuario o contraseña invalido--</h6>');
-                }
-                
-                // Enviar respuesta al usuario
-                echo json_encode($response);
-                
-
-            }
-            else{
-
-                echo
+            echo
                 '
-                    <tr>
-                        <th>Id usuario</th>
-                        <th>Rut</th>
-                        <th>Nombre</th>
-                        <th>apellido</th>
-                        <th>Usuario</th>
-                        <th>Clave</th>
-                        <th>Estado</th>
-                        <th>Tipo de usuario</th>
-                        <th>Editar</th> 
-                        <th>Elimnar</th> 
-                    </tr>
-                    
-                ';
-            }
-            
+                <tr>
+                    <th>Id usuario</th>
+                    <th>Rut</th>
+                    <th>Nombre</th>
+                    <th>apellido</th>
+                    <th>Usuario</th>
+                    <th>Clave</th>
+                    <th>Estado</th>
+                    <th>Tipo de usuario</th>
+                    <th>Editar</th> 
+                    <th>Elimnar</th> 
+                </tr>
+                
+            ';
         }
+            
+        
 
 
     if($opcion == "mostrar")

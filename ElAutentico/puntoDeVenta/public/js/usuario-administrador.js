@@ -31,7 +31,7 @@ function cerrarPopup() {
     
         $.ajax({
             data : parametros,
-            url: 'gestion/gestion_rol.php',
+            url: '../Controlador/gestion_rol.php',
             type: 'POST',
             beforeSend: function() {
                 $('#mostrarRoles').html("No roles para mostrar");
@@ -62,7 +62,7 @@ function listarTrabajadores() {
     
     $.ajax({
         data : parametros,
-        url: 'gestion/gestion_trabajador.php',
+        url: '../Controlador/gestion_trabajador.php',
         type: 'POST',
         beforeSend: function() {
             //$('#mostrarTrabajadores').html("No hay trabajadores para mostrar");
@@ -187,7 +187,7 @@ function guardarUsuarioEdit(id){
 
 $.ajax({
         data : parametros,
-        url: 'gestion/gestion_trabajador.php',
+        url: '../Controlador/gestion_trabajador.php',
         type: 'POST',
     beforeSend: function()
     {
@@ -220,7 +220,7 @@ function eliminarUsuario(id){
 
         $.ajax({
         data: parametros,
-        url: 'gestion/gestion_trabajador.php',
+        url: '../Controlador/gestion_trabajador.php',
         type: 'POST',
         
         beforeSend: function()
@@ -286,7 +286,7 @@ function agregarTrabajador(event)
 
 $.ajax({
     data: parametros,
-    url: 'gestion/gestion_trabajador.php',
+    url: '../Controlador/gestion_trabajador.php',
     type: 'POST',
     
     beforeSend: function()
@@ -326,7 +326,7 @@ var parametros =
 
 $.ajax({
     data: parametros,
-    url: 'gestion/gestion_rol.php',
+    url: '../Controlador/gestion_rol.php',
     type: 'POST',
     
     beforesend: function()
@@ -381,7 +381,7 @@ function guardarRolEdit(id_rol){
 
 $.ajax({
     data: parametros,
-    url: 'gestion/gestion_rol.php',
+    url: '../Controlador/gestion_rol.php',
     type: 'POST',
     
     beforeSend: function()
@@ -416,7 +416,7 @@ function eliminarRol(id_rol){
 
         $.ajax({
         data: parametros,
-        url: 'gestion/gestion_rol.php',
+        url: '../Controlador/gestion_rol.php',
         type: 'POST',
         
         beforeSend: function()

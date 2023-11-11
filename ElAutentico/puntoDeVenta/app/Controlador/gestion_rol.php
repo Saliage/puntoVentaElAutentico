@@ -1,7 +1,7 @@
 <?php
 
 
-require_once ("../../modelo/rol.php");
+require_once ("../modelo/rol.php");
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

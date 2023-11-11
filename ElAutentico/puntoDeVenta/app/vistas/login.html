@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="../../public/css/ccs/login-v2.css">
 
         <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">
+        
 
         
 
@@ -61,35 +62,29 @@
 
             var usuario = document.getElementById("usuario").value;
             var clave = document.getElementById("clave").value;
-
             
-
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "gestion/gestion_trabajador.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-            // Manejar la respuesta
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-                        var response = JSON.parse(xhr.responseText);
-                        alert(response);
-                        if (response.success) {
-                            // Iniciar sesión y redirigir pag principal
-                            window.location.href = "carta-vendedor.html";
-                        } else {
-                            document.getElementById("mostrarError").innerHTML = response.message;
-                            alert(usuario + clave);
-                        }
-                    } else {
-                        // Manejar errores del servidor aquí
-                        console.error("Error en la solicitud. Código de estado: " + xhr.status);
-                    }
-                }
+            var parametros = {
+                "usuario": usuario,
+                "clave": clave
             };
+            
+            $.ajax({
+                data: parametros,
+                url: 'gestion/iniciar_sesion.php',
+                type: 'POST',
+                
+                beforeSend: function()
+                {
+                    $('#mostrarError').html("Error de comunicación");
+                    alert("falla");
+                },
 
-            // Enviar datos del formulario al servidor
-            xhr.send("usuario=" + encodeURIComponent(usuario) + "&clave=" + encodeURIComponent(clave) + "&opcion=" + encodeURIComponent("validar"));
+                success: function(mensaje)
+                {
+                    $('#mostrarError').html(mensaje);
+                    alert("vuelve");
+                }
+            });
         }
 
 
