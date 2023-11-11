@@ -3,15 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
         
-        <link rel="stylesheet" href="/ElAutentico/puntoDeVenta/public/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
 
-        <link rel="stylesheet" href="../css/estilo.css">
-        <link rel="stylesheet" href="/ElAutentico/puntoDeVenta/public/css/ccs/login-v2.css">
+        <link rel="stylesheet" href="../../public/css/ccs/login-v2.css">
+        <link rel="stylesheet" href="../../public/css/ccs/login-v2.css">
 
-        <link rel="icon" href="/ElAutentico/puntoDeVenta/public/imagenes/LogoFoodTruck.jpg">
+        <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">
 
         
 
@@ -24,40 +23,77 @@
 
             <!-- Logo y texto debajo del logo -->
             <div class="text-center mb-4 d-flex-custom">
-                <img class="mb-3 mt-2 user-select-none" src="/ElAutentico/puntoDeVenta/public/imagenes/LogoFoodTruck.jpg" alt="Logo-LogoFoodTruck"
+                <img class="mb-3 mt-2 user-select-none" src="../../public/imagenes/LogoFoodTruck.jpg" alt="Logo-LogoFoodTruck"
                     width="auto" height="72" draggable="false">
                 <h1 class="mb-3">Bienvenido</h1>
-                <p class="d-block-custom">Ingrese sus credenciales para acceder</p>
+                <p class="d-block-custom">Ingrese su nombre de usuario y contraseña</p>
             </div>
 
-            <!-- Email -->
+            <!-- Usuario -->
             <div class="form-label-group">
-                <input type="text" id="inputEmail" class="form-control" placeholder="Correo" required="">
-                <label for="inputEmail">Correo</label>
+                <input type="text" id="usuario" class="form-control" placeholder="Usuario" required="">
+                <label for="usuario">Nombre de usuario</label>
             </div>
 
             <!-- Contraseña -->
             <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control no-select" placeholder="Contraseña" required="">
-                <label for="inputPassword">Contraseña</label>
+                <input type="password" id="clave" class="form-control no-select" placeholder="Contraseña" required="">
+                <label for="clave">Contraseña</label>
             </div>
 
-            <!-- Recordarme -->
-            <div class="mb-4 mt-4">
-                <h6 class="text-center mb-4" id="text-error">--Usuario o contraseña invalido--</h6>
-                <input class="form-check-input" type="checkbox" value="recordar-contrasena" id="recordar-contrasena">
-                <label class="form-check-label" for="recordar-contrasena">Recordar contraseña</label>
+            <!-- Mensaje -->
+            <div class="mb-4 mt-4" id="mostrarError">
+                
             </div>
 
             
             <!-- Boton -->
-            <button class="btn btn-primary btn-lg w-100 py-2" type="submit">Iniciar sesion</button>
+            <button class="btn btn-primary btn-lg w-100 py-2" type="submit" onclick="iniciarSesion()">Iniciar sesion</button>
 
-            <p class="mt-4 mb-3 text-muted text-center">@Capstone</p>
+            
         </form>
     </div>
 
-    <script src="/ElAutentico/puntoDeVenta/public/js/jquery-3.7.1.min.js"></script>
+    <script src="../../public/js/jquery-3.7.1.min.js"></script>
+    <script>
+
+        function iniciarSesion() {
+
+            var usuario = document.getElementById("usuario").value;
+            var clave = document.getElementById("clave").value;
+
+            
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "gestion/gestion_trabajador.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            // Manejar la respuesta
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        alert(response);
+                        if (response.success) {
+                            // Iniciar sesión y redirigir pag principal
+                            window.location.href = "carta-vendedor.html";
+                        } else {
+                            document.getElementById("mostrarError").innerHTML = response.message;
+                            alert(usuario + clave);
+                        }
+                    } else {
+                        // Manejar errores del servidor aquí
+                        console.error("Error en la solicitud. Código de estado: " + xhr.status);
+                    }
+                }
+            };
+
+            // Enviar datos del formulario al servidor
+            xhr.send("usuario=" + encodeURIComponent(usuario) + "&clave=" + encodeURIComponent(clave) + "&opcion=" + encodeURIComponent("validar"));
+        }
+
+
+    </script>
 </body>
 
 </html>

@@ -44,6 +44,22 @@ class Trabajador {
     
     }
 
+    // verificar sesion
+    public function verificarTrabajador($usuario, $clave) {
+        $conectar = new Conexion();
+        $conn = $conectar->abrirConexion();
+
+        $consulta = "SELECT * FROM trabajador WHERE usuario = '$usuario' and clave = '$clave' and activo != 0";
+
+        $resultado = $conn->query($consulta);
+
+        return $resultado;
+        $conn->close();
+    
+    }
+
+
+
     // Actualizar datos de trabajador
     public function actualizarTrabajador($id, $rut, $nombre, $apellido, $usuario, $clave, $activo, $rol_id) {
         $conectar = new Conexion();
