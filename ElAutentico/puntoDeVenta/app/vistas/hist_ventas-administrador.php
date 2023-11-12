@@ -16,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
+    <script src="../../public/js/logOut.js"></script>
     
 
     <title>Historial ventas Administrador</title>

@@ -23,6 +23,7 @@
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
+    <script src="../../public/js/logOut.js"></script>
 </head>
 
 <body>
@@ -532,45 +533,6 @@
         const popup = document.getElementById('popup');
         popup.style.display = 'none'; // Cierra el popup
         }
-
-
-        function confirmarCerrarSesion() {
-            var respuesta = confirm("¿Realmente desea cerrar sesión?");
-            if (respuesta) {
-                cerrarSesion();
-            }
-        }
-
-        function cerrarSesion() {
-            var parametros = {
-                "usuario": "x",
-                "clave": "x",
-                "lleve": "cerrar"
-            };
-            $.ajax({
-
-                data: parametros,
-                url: '../Controlador/iniciar_sesion.php',
-                type: 'POST', 
-                success: function(json)
-                {
-                    try {
-                        var data = JSON.parse(json);
-                        // Acceder a las propiedades específicas del JSON
-                        var mensaje = data.mensaje
-                        if(mensaje == 'cerrar')
-                        {
-                            window.location.href = "carta-vendedor.php";
-                        }                        
-                    } catch (error) {
-                        // Maneja el error de análisis JSON
-                        console.error("Error al analizar el JSON: " + error);
-                        window.location.href = "login.php";
-                    }
-                }
-            });
-        }
-
 
     </script>
 

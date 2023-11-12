@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="../../public/css/ccs/carta-administrador.css">
     <!-- ====================== JS ==================== -->
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
+    <script src="../../public/js/logOut.js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>

@@ -21,7 +21,7 @@
     <!-- ====================== ESTILOS CSS ==================== -->
     <link rel="stylesheet" href="../../public/css/ccs/carta-administrador.css">
     <!-- ====================== JS ==================== -->
-    <script src="../../public/js"></script>
+    <script src="../../public/js/logOut.js"></script>
     <script src="../../public/js/scripts.js"></script>
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../../public/js/js-maestro.js"></script>
