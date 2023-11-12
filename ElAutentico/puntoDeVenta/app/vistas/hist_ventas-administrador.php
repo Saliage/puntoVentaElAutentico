@@ -15,6 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">
+    <script src="../../public/js/jquery-3.7.1.min.js"></script>
     
 
     <title>Historial ventas Administrador</title>
@@ -77,7 +78,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="../../app/vistas/login.php" class="nav-link">
+                <a class="nav-link" onclick="confirmarCerrarSesion();">
                     <span class="link-icon"><ion-icon name="log-in-outline"></ion-icon></i></span>
                     <span class="link-text">Cerrar Sesión</span>
                 </a>
@@ -96,7 +97,7 @@
             </div>
             <div class="vendedor">
                 <ion-icon name="person" class="icono-vendedor"></ion-icon>
-                <span class="nombre-vendedor">Nombre administrador</span>
+                <span class="nombre-vendedor"><?php echo $_SESSION['nombre'].' '.$_SESSION['apellido'] ?></span>
             </div>
         </div>
 

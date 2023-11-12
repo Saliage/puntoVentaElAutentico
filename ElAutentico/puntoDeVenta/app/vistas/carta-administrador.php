@@ -80,7 +80,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="../../app/vistas/login.php" class="nav-link">
+                <a class="nav-link" onclick="confirmarCerrarSesion();">
                     <span class="link-icon"><ion-icon name="log-in-outline"></ion-icon></i></span>
                     <span class="link-text">Cerrar Sesión</span>
                 </a>
@@ -99,7 +99,7 @@
             </div>
             <div class="vendedor">
                 <ion-icon name="person" class="icono-vendedor"></ion-icon>
-                <span class="nombre-vendedor">Nombre Administrador</span>
+                <span class="nombre-vendedor"><?php echo $_SESSION['nombre'].' '.$_SESSION['apellido'] ?></span>
             </div>
         </div>
 

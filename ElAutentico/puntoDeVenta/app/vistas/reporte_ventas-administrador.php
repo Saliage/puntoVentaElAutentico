@@ -14,14 +14,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/ElAutentico/puntoDeVenta/public/imagenes/LogoFoodTruck.jpg">
+    <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">
 
     <title>Reporte ventas</title>
 
     <!-- ====================== ESTILOS CSS ==================== -->
-    <link rel="stylesheet" href="/ElAutentico/puntoDeVenta/public/css/ccs/carta-administrador.css">
+    <link rel="stylesheet" href="../../public/css/ccs/carta-administrador.css">
     <!-- ====================== JS ==================== -->
-    <script src="/ElAutentico/puntoDeVenta/public/js"></script>
+    <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>
@@ -32,7 +32,7 @@
     <nav class="navbar">
         <ul class="navbar-nav">
             <li class="logo">
-                <a href="/ElAutentico/puntoDeVenta/app/vistas/carta-administrador.php" class="nav-link-menu">
+                <a href="../../app/vistas/carta-administrador.php" class="nav-link-menu">
                     <span class="link-icon"><ion-icon name="menu-outline"></ion-icon></i></span>
                     <span class="link-text">Menu</span>
                 </a>
@@ -40,31 +40,31 @@
 
             <!-- -------- ITEMS DE BARRA DE NAVEGACION ------- -->
             <li class="nav-item">
-                <a href="/ElAutentico/puntoDeVenta/app/vistas/carta-administrador.php" class="nav-link">
+                <a href="../../app/vistas/carta-administrador.php" class="nav-link">
                     <span class="link-icon"><ion-icon name="fast-food-outline"></ion-icon></i></span>
                     <span class="link-text">Carta</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/ElAutentico/puntoDeVenta/app/vistas/inventario-administrador.php" class="nav-link">
+                <a href="../../app/vistas/inventario-administrador.php" class="nav-link">
                     <span class="link-icon"><ion-icon name="clipboard-outline"></ion-icon></i></span>
                     <span class="link-text">Inventario</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/ElAutentico/puntoDeVenta/app/vistas/hist_ventas-administrador.php" class="nav-link">
+                <a href="../../app/vistas/hist_ventas-administrador.php" class="nav-link">
                     <span class="link-icon"><ion-icon name="book-outline"></ion-icon></i></span>
                     <span class="link-text">Historial Ventas</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/ElAutentico/puntoDeVenta/app/vistas/usuarios-administrador.php" class="nav-link">
+                <a href="../../app/vistas/usuarios-administrador.php" class="nav-link">
                     <span class="link-icon"><ion-icon name="body"></ion-icon></i></span>
                     <span class="link-text">Usuarios</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/ElAutentico/puntoDeVenta/app/vistas/reporte_ventas-administrador.php" class="nav-link">
+                <a href="../../app/vistas/reporte_ventas-administrador.php" class="nav-link">
                     <span class="link-icon-io"><ion-icon name="document"></ion-icon></i></span>
                     <span class="link-text">Reporte Ventas</span>
                 </a>
@@ -76,7 +76,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/ElAutentico/puntoDeVenta/app/vistas/login.php" class="nav-link">
+                <a class="nav-link" onclick="confirmarCerrarSesion();">
                     <span class="link-icon"><ion-icon name="log-in-outline"></ion-icon></i></span>
                     <span class="link-text">Cerrar Sesión</span>
                 </a>
@@ -95,7 +95,7 @@
             </div>
             <div class="vendedor">
                 <ion-icon name="person" class="icono-vendedor"></ion-icon>
-                <span class="nombre-vendedor">Nombre administrador</span>
+                <span class="nombre-vendedor"><?php echo $_SESSION['nombre'].' '.$_SESSION['apellido'] ?></span>
             </div>
         </div>        
     </main>

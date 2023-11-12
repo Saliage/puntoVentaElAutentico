@@ -15,6 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">
+    
 
     <title>Ventas Vendedor</title>
 
@@ -22,6 +23,7 @@
     <link rel="stylesheet" href="../../public/css/ccs/carta-administrador.css">
     <!-- ====================== JS ==================== -->
     <script src="../../public/js"></script>
+    <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>
@@ -63,7 +65,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="../../app/vistas/login-v2.php" class="nav-link">
+                <a class="nav-link" onclick="confirmarCerrarSesion();">
                     <span class="link-icon"><ion-icon name="log-in-outline"></ion-icon></i></span>
                     <span class="link-text">Cerrar Sesión</span>
                 </a>
@@ -82,7 +84,7 @@
             </div>
             <div class="vendedor">
                 <ion-icon name="person" class="icono-vendedor"></ion-icon>
-                <span class="nombre-vendedor">Maria Helena Saldaña</span>
+                <span class="nombre-vendedor"><?php echo $_SESSION['nombre'].' '.$_SESSION['apellido'] ?></span>
             </div>
         </div>
 
