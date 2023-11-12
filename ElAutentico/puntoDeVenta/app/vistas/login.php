@@ -1,3 +1,12 @@
+<?php 
+    session_start();
+    ob_start();
+
+    if($_SESSION['sesion'] == 1)
+    {
+      header('Location:carta-vendedor.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +29,7 @@
 
 <body class="animacion-fondo">
     <div class="container">
-        <form class="form-login" id="form-login">
+        <div class="form-login" id="form-login">
 
             <!-- Logo y texto debajo del logo -->
             <div class="text-center mb-4 d-flex-custom">
@@ -52,7 +61,7 @@
             <button class="btn btn-primary btn-lg w-100 py-2" type="submit" onclick="iniciarSesion()">Iniciar sesion</button>
 
             
-        </form>
+        </div>
     </div>
 
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
@@ -65,24 +74,41 @@
             
             var parametros = {
                 "usuario": usuario,
-                "clave": clave
+                "clave": clave,
+                "llave": "nada"
             };
             
             $.ajax({
                 data: parametros,
-                url: 'gestion/iniciar_sesion.php',
+                url: '../Controlador/iniciar_sesion.php',
                 type: 'POST',
                 
                 beforeSend: function()
                 {
                     $('#mostrarError').html("Error de comunicación");
-                    alert("falla");
                 },
 
-                success: function(mensaje)
+                success: function(json)
                 {
-                    $('#mostrarError').html(mensaje);
-                    alert("vuelve");
+                    try {
+                        var data = JSON.parse(json);
+
+                        // Acceder a las propiedades específicas del JSON
+                        var mensaje = data.mensaje
+                        if(mensaje == 'ok')
+                        {
+                            window.location.href = "carta-vendedor.php";
+                        }
+                        else
+                        {
+                            $('#mostrarError').html(mensaje);
+                        }
+                        
+                    } catch (error) {
+                        // Maneja el error de análisis JSON
+                        console.error("Error al analizar el JSON: " + error);
+                        $('#mostrarError').html("Error al procesar la respuesta del servidor");
+                    }
                 }
             });
         }

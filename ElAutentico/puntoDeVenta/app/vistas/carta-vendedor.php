@@ -1,3 +1,12 @@
+<?php 
+    session_start();
+    ob_start();
+
+    if($_SESSION['sesion'] <>1)
+    {
+      header('Location:login.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +22,7 @@
     <link rel="stylesheet" href="../../public/css/ccs/carta-vendedor.css">
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="../../public/js/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
@@ -21,7 +31,7 @@
     <nav class="navbar">
         <ul class="navbar-nav">
             <li class="logo">
-                <a href="../../app/vistas/carta-vendedor.html" class="nav-link-menu">
+                <a href="../../app/vistas/carta-vendedor.php" class="nav-link-menu">
                     <span class="link-icon"><ion-icon name="menu-outline"></ion-icon></i></span>
                     <span class="link-text">Menu</span>
                 </a>
@@ -29,31 +39,31 @@
 
             <!-- -------- ITEMS DE BARRA DE NAVEGACION ------- -->
             <li class="nav-item">
-                <a href="../../app/vistas/carta-vendedor.html" class="nav-link">
+                <a href="../../app/vistas/carta-vendedor.php" class="nav-link">
                     <span class="link-icon-io"><ion-icon name="fast-food-outline"></ion-icon></i></span>
                     <span class="link-text">Carta</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="../../app/vistas/inventario-vendedor.html" class="nav-link">
+                <a href="../../app/vistas/inventario-vendedor.php" class="nav-link">
                     <span class="link-icon"><ion-icon name="clipboard-outline"></ion-icon></i></span>
                     <span class="link-text">Inventario</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="../../app/vistas/hist_ventas-vendedor.html" class="nav-link">
+                <a href="../../app/vistas/hist_ventas-vendedor.php" class="nav-link">
                     <span class="link-icon"><ion-icon name="book-outline"></ion-icon></i></span>
                     <span class="link-text">Historial Ventas</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="../../app/vistas/carta-administrador.html" class="nav-link">
+                <a href="../../app/vistas/carta-administrador.php" class="nav-link">
                     <span class="link-icon"><ion-icon name="person-outline"></ion-icon></i></span>
                     <span class="link-text">Vista vendedor</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="../../app/vistas/login-v2.html" class="nav-link">
+                <a class="nav-link" onclick="confirmarCerrarSesion();">
                     <span class="link-icon"><ion-icon name="log-in-outline"></ion-icon></i></span>
                     <span class="link-text">Cerrar Sesión</span>
                 </a>
@@ -72,7 +82,7 @@
             </div>
             <div class="vendedor">
                 <ion-icon name="person" class="icono-vendedor"></ion-icon>
-                <span class="nombre-vendedor">Maria Helena Saldaña</span>
+                <span class="nombre-vendedor"><?php echo $_SESSION['nombre'].' '.$_SESSION['apellido'] ?></span>
             </div>
         </div>
 
@@ -493,36 +503,75 @@
      </div>
     <!-- JavaScript para manejar el evento de clic y agregar/eliminar la clase "seleccionado" al elemento seleccionado. -->
     <script>
-    // Obtenemos todos los elementos de categoría
-    const itemsCategoria = document.querySelectorAll('.item-categoria'); 
-    // Agregamos un controlador de eventos de clic a cada elemento de categoría    
-    itemsCategoria.forEach(item => {
-        item.addEventListener('click', () => {        
-            // Eliminamos la clase 'seleccionado' de todos los elementos
-            itemsCategoria.forEach(otherItem => otherItem.classList.remove('seleccionado'));
-            // Agregamos la clase 'seleccionado' solo al elemento seleccionado
-            item.classList.add('seleccionado');
+        // Obtenemos todos los elementos de categoría
+        const itemsCategoria = document.querySelectorAll('.item-categoria'); 
+        // Agregamos un controlador de eventos de clic a cada elemento de categoría    
+        itemsCategoria.forEach(item => {
+            item.addEventListener('click', () => {        
+                // Eliminamos la clase 'seleccionado' de todos los elementos
+                itemsCategoria.forEach(otherItem => otherItem.classList.remove('seleccionado'));
+                // Agregamos la clase 'seleccionado' solo al elemento seleccionado
+                item.classList.add('seleccionado');
+            });
         });
-    });
-    </script>
-    <script>
+
         // Función para mostrar el popup
-function mostrarPopup() {
-  const popup = document.getElementById('popup');
-  popup.style.display = 'flex';
+        function mostrarPopup() {
+        const popup = document.getElementById('popup');
+        popup.style.display = 'flex';
 
-              // Reproducir el sonido cuando se muestra el popup
-              const audio = new Audio('../../public/music/sonido_de_dinero.mp3');
+            // Reproducir el sonido cuando se muestra el popup
+            const audio = new Audio('../../public/music/sonido_de_dinero.mp3');
             audio.play();
-}
+        }
 
-// Función para realizar el pago
-function realizarPago(medioPago) {
-  alert(`Has elegido pagar con ${medioPago}`);
-  // Puedes agregar aquí la lógica para procesar el pago
-  const popup = document.getElementById('popup');
-  popup.style.display = 'none'; // Cierra el popup
-}
+        // Función para realizar el pago
+        function realizarPago(medioPago) {
+        alert(`Has elegido pagar con ${medioPago}`);
+        // Puedes agregar aquí la lógica para procesar el pago
+        const popup = document.getElementById('popup');
+        popup.style.display = 'none'; // Cierra el popup
+        }
+
+
+        function confirmarCerrarSesion() {
+            var respuesta = confirm("¿Realmente desea cerrar sesión?");
+            if (respuesta) {
+                cerrarSesion();
+            }
+        }
+
+        function cerrarSesion() {
+            var parametros = {
+                "usuario": "x",
+                "clave": "x",
+                "lleve": "cerrar"
+            };
+            $.ajax({
+
+                data: parametros,
+                url: '../Controlador/iniciar_sesion.php',
+                type: 'POST', 
+                success: function(json)
+                {
+                    try {
+                        var data = JSON.parse(json);
+                        // Acceder a las propiedades específicas del JSON
+                        var mensaje = data.mensaje
+                        if(mensaje == 'cerrar')
+                        {
+                            window.location.href = "carta-vendedor.php";
+                        }                        
+                    } catch (error) {
+                        // Maneja el error de análisis JSON
+                        console.error("Error al analizar el JSON: " + error);
+                        window.location.href = "login.php";
+                    }
+                }
+            });
+        }
+
+
     </script>
 
 </body>

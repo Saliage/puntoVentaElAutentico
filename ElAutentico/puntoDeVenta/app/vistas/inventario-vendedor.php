@@ -1,3 +1,12 @@
+<?php 
+    session_start();
+    ob_start();
+
+    if($_SESSION['sesion'] <>1)
+    {
+      header('Location:login.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +31,7 @@
     <nav class="navbar">
         <ul class="navbar-nav">
             <li class="logo">
-                <a href="../../app/vistas/carta-vendedor.html" class="nav-link-menu">
+                <a href="../../app/vistas/carta-vendedor.php" class="nav-link-menu">
                     <span class="link-icon"><ion-icon name="menu-outline"></ion-icon></i></span>
                     <span class="link-text">Menu</span>
                 </a>
@@ -30,31 +39,31 @@
 
             <!-- -------- ITEMS DE BARRA DE NAVEGACION ------- -->
             <li class="nav-item">
-                <a href="../../app/vistas/carta-vendedor.html" class="nav-link">
+                <a href="../../app/vistas/carta-vendedor.php" class="nav-link">
                     <span class="link-icon"><ion-icon name="fast-food-outline"></ion-icon></i></span>
                     <span class="link-text">Carta</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="../../app/vistas/inventario-vendedor.html" class="nav-link">
+                <a href="../../app/vistas/inventario-vendedor.php" class="nav-link">
                     <span class="link-icon-io"><ion-icon name="clipboard-outline"></ion-icon></i></span>
                     <span class="link-text">Inventario</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="../../app/vistas/hist_ventas-vendedor.html" class="nav-link">
+                <a href="../../app/vistas/hist_ventas-vendedor.php" class="nav-link">
                     <span class="link-icon"><ion-icon name="book-outline"></ion-icon></i></span>
                     <span class="link-text">Historial Ventas</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="../../app/vistas/carta-administrador.html" class="nav-link">
+                <a href="../../app/vistas/carta-administrador.php" class="nav-link">
                     <span class="link-icon"><ion-icon name="person-outline"></ion-icon></i></span>
                     <span class="link-text">Vista administrador</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="../../app/vistas/login-v2.html" class="nav-link">
+                <a href="../../app/vistas/login-v2.php" class="nav-link">
                     <span class="link-icon"><ion-icon name="log-in-outline"></ion-icon></i></span>
                     <span class="link-text">Cerrar Sesión</span>
                 </a>
