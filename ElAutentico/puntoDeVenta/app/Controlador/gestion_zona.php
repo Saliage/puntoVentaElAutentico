@@ -1,22 +1,52 @@
 <?php
 
-require_once("../../modelo/zona.php");
-require_once("../../modelo/almacen.php");
+require_once("../modelo/zona.php");
+require_once("../modelo/almacen.php");
 
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    echo 
-	'
-		<table class="table table-hover">
-	    <tr>
-	      <th scope="col">#ID</th>
-	      <th scope="col">NOMBRE ZONA</th>
-          <th scope="col">NOMBRE ALMACEN</th>
-	    </tr>
-	';
-    
     $opcion = $_POST['opcion']; //obtener valor de la opción para contalmacenar eventos
+
+    //rellenar combobox con datos de almacenes
+    if($opcion == 'cargarAlmacenes'){
+
+        $almacen = new Almacen();
+        $almacenes = $almacen->listarAlmacenes();
+        echo'<select name="almacen_id" id="almacen_id" required>';
+        echo '<option selected >-seleccionar-</option>';
+
+        if ($almacenes->num_rows > 0) {
+            // Recorrer almacenes presentes
+            while ($dato = $almacenes->fetch_assoc()) {
+                echo '<option value="' . $dato['id_almacen'] . '">' . $dato['nombre'] . '</option>';
+            }
+        } else {
+            echo '<option value="0">NULL</option>';
+        }
+
+        echo'</select>';
+
+    }
+    else{
+        
+        echo 
+        '
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Almacen</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th> 
+                </tr>
+                
+            </thead>
+        ';
+        
+    }
+   
 
     if($opcion == 3)
 	{
@@ -43,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 	else
 	{
-		if($opcion == 1)
+		if($opcion == "guardar")
         {
             $nombrezona = $_POST["nombre"];
             $almacenId = $_POST["almacen_id"];
@@ -60,9 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
         }
 
-
-
-		if($opcion == 2)
+		if($opcion == "cargarZonas")
         {
                 
             $zona = new zona();
@@ -77,18 +105,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo 
                 '
                     <tr>
-                    <td>'.$consulta['id_zona'].'</td>
-                    <td>'.$consulta['nombre_zona'].'</td>
-                    <td>'.$nombreAlmacen['nombre'].'</td>
+                        <td>'.$consulta['id_zona'].'</td>
+                        <td>'.$consulta['nombre_zona'].'</td>
+                        <td>'.$nombreAlmacen['nombre'].'</td>
+                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
                     </tr>
                 ';
             }		     
 
                             
-        }
-
-
-	  
+        }	  
 	}
 
 } 

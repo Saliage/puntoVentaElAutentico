@@ -25,11 +25,12 @@
     <script src="../../public/js/scripts.js"></script>
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../../public/js/js-maestro.js"></script>
+    <script src="../../public/js/inventario-administrador.js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>
 
-<body>
+<body onload="inicializar()">
  
     <!-- -------- BARRA DE NAVEGACION ------- -->
     <nav class="navbar">
@@ -122,206 +123,12 @@
                         <th class="celda-titulo">Categoria</th>
                         <th class="celda-titulo">Zona</th>
                         <th class="celda-titulo">Almacen</th>
-                        <th colspan="3"></th> 
+                        <th>Editar</th>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="fila-detalles">
-                        <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
-                        <td>Tomates</td>
-                        <td>001</td>
-                        <td>20</td>
-                        <td>2023-12-31</td>
-                        <td>$300</td>
-                        <td>Verduras</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
-                        <td>Tomates</td>
-                        <td>001</td>
-                        <td>20</td>
-                        <td>2023-12-31</td>
-                        <td>$300</td>
-                        <td>Verduras</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
-                        <td>Tomates</td>
-                        <td>001</td>
-                        <td>20</td>
-                        <td>2023-12-31</td>
-                        <td>$300</td>
-                        <td>Verduras</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
-                        <td>Tomates</td>
-                        <td>001</td>
-                        <td>20</td>
-                        <td>2023-12-31</td>
-                        <td>$300</td>
-                        <td>Verduras</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
-                        <td>Tomates</td>
-                        <td>001</td>
-                        <td>20</td>
-                        <td>2023-12-31</td>
-                        <td>$300</td>
-                        <td>Verduras</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
-                        <td>Tomates</td>
-                        <td>001</td>
-                        <td>20</td>
-                        <td>2023-12-31</td>
-                        <td>$300</td>
-                        <td>Verduras</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
-                        <td>Tomates</td>
-                        <td>001</td>
-                        <td>20</td>
-                        <td>2023-12-31</td>
-                        <td>$300</td>
-                        <td>Verduras</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
-                        <td>Tomates</td>
-                        <td>001</td>
-                        <td>20</td>
-                        <td>2023-12-31</td>
-                        <td>$300</td>
-                        <td>Verduras</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
-                        <td>Tomates</td>
-                        <td>001</td>
-                        <td>20</td>
-                        <td>2023-12-31</td>
-                        <td>$300</td>
-                        <td>Verduras</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
-                        <td>Tomates</td>
-                        <td>001</td>
-                        <td>20</td>
-                        <td>2023-12-31</td>
-                        <td>$300</td>
-                        <td>Verduras</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
-                        <td>Tomates</td>
-                        <td>001</td>
-                        <td>20</td>
-                        <td>2023-12-31</td>
-                        <td>$300</td>
-                        <td>Verduras</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
-                        <td>Tomates</td>
-                        <td>001</td>
-                        <td>20</td>
-                        <td>2023-12-31</td>
-                        <td>$300</td>
-                        <td>Verduras</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
-                        <td>Tomates</td>
-                        <td>001</td>
-                        <td>20</td>
-                        <td>2023-12-31</td>
-                        <td>$300</td>
-                        <td>Verduras</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
-                        <td>Tomates</td>
-                        <td>001</td>
-                        <td>20</td>
-                        <td>2023-12-31</td>
-                        <td>$300</td>
-                        <td>Verduras</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
+                    <div id="listarInsumos"></div>
                     <tr>
                         <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
                         <td>Tomates</td>
@@ -354,11 +161,15 @@
             </table>
         </div>
     </main>
-    <!-- El contenedor del popup (inicialmente oculto) -->
+
+<!----------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------                 GESTION INSUMOS                ------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------->  
+
+
     <div class="popup" id="popup">
         <div class="popup-contenido">
             <h2>Añadir insumo</h2>
-            <p></p>
             <form action="" method="POST" class="formulario">
                 <div class="form-element">
                   <label for="name">Nombre:</label>
@@ -416,6 +227,10 @@
             <div class="cerrar-popup" onclick="cerrarPopup()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
     </div>
+
+<!----------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------                 GESTION CATEGORIAS             -------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------->    
 
     <div class="popup" id="popup2">
         <div class="popup-contenido">
@@ -479,67 +294,37 @@
         </div>
     </div>
 
+<!----------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------                 GESTION ZONAS                 -------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------->
+
     <div class="popup" id="popup3">
         <div class="popup-contenido">
             <h2>Zonas</h2>
-
-            <p></p>
             
-            <form action="" method="POST" class="formulario">
-                <div class="form-element">
-                    <label for="name">Agregar</label>
-                    <input type="text" name="nombre" required>
-                    <button class="boton-pagar" type="submit" name="agregar" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
+            <div class="formulario" id="formZonas">
+                <div>
+                    <label for="nombreZonaTxt">Nombre:</label>
+                    <input type="text" name="nombre" id="nombreZonaTxt" required>
                 </div>
-            </form>
-
-            <p></p>
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Zonas</th>
-                        <th colspan="1"> </th> 
-                    </tr>
-                </thead>
+                <div>
+                    <label for="almacen_id">Almacen:</label>
+                    <div aria-colspan="1" id="slectAlmacenes" style="display: inline;"></div> <!-- genera un select vía AJAX desde el servidor con el contenido de la BD -->                    
+                </div>
+                <button class="boton-pagar" type="submit" onclick="agregarZona();"><ion-icon name="add-circle-outline" ></ion-icon></button>
+            </div>
+            <hr>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
+                    <div id="mostrarZonas"></div>
                 </tbody>
             </table>
             <div class="cerrar-popup" onclick="cerrarPopup3()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
     </div>
+
+<!----------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------                GESTION ALMACENES              -------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------->
 
     <div class="popup" id="popup4">
         <div class="popup-contenido">
@@ -602,6 +387,9 @@
             <div class="cerrar-popup" onclick="cerrarPopup4()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
     </div>
+<!----------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------               GESTION PROVEEDORES             -------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------->
 
     <div class="popup" id="popup5">
         <div class="popup-contenido">
@@ -658,60 +446,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Lider</td>
-                        <td>11.111.111-1</td>
-                        <td>111111111</td>
-                        <td>lider123@liderchile.cl</td>
-                        <td>Av La Florida #201</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Lider</td>
-                        <td>11.111.111-1</td>
-                        <td>111111111</td>
-                        <td>lider123@liderchile.cl</td>
-                        <td>Av La Florida #201</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Lider</td>
-                        <td>11.111.111-1</td>
-                        <td>111111111</td>
-                        <td>lider123@liderchile.cl</td>
-                        <td>Av La Florida #201</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Lider</td>
-                        <td>11.111.111-1</td>
-                        <td>111111111</td>
-                        <td>lider123@liderchile.cl</td>
-                        <td>Av La Florida #201</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Lider</td>
-                        <td>11.111.111-1</td>
-                        <td>111111111</td>
-                        <td>lider123@liderchile.cl</td>
-                        <td>Av La Florida #201</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Lider</td>
-                        <td>11.111.111-1</td>
-                        <td>111111111</td>
-                        <td>lider123@liderchile.cl</td>
-                        <td>Av La Florida #201</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
+                    
                     <tr>
                         <td>1</td>
                         <td>Lider</td>

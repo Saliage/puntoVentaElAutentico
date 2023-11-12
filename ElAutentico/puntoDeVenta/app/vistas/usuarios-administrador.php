@@ -168,7 +168,6 @@
         <div class="popup" id="popup2">
             <div class="popup-contenido">
                 <h2>Roles</h2>
-                <p></p>
                 <div class="formulario">
                     <hr>
                     <div class="row text-center">

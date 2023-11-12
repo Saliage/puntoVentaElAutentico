@@ -237,6 +237,7 @@ function eliminarUsuario(id){
         }
         
         });
+        listarTrabajadores();
 
     }
     
