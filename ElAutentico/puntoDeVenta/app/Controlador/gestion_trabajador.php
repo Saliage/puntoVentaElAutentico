@@ -19,19 +19,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $estado = $_POST['estado'];
             $rol = $_POST['rol']; 
 
-            $trabajador = new Trabajador();
-            try{
+            if($rut != "" && $nombre != "" && $apellido != "" && $usuario != "" && $clave != "" && $estado!= "" && $rol != ""){
 
-                $resultado = $trabajador->agregarTrabajador($rut,$nombre,$apellido,$usuario,$clave,$estado,$rol);
-                if($resultado > 0){
-                echo "Se agregó al trabajador: ".$nombre." ".$apellido;
+                $trabajador = new Trabajador();
+                try{
+
+                    $resultado = $trabajador->agregarTrabajador($rut,$nombre,$apellido,$usuario,$clave,$estado,$rol);
+                    if($resultado > 0){
+                    echo "Se agregó al trabajador: ".$nombre." ".$apellido;
+                    }
+
                 }
-
-            }
-            catch(Exception $e)
-            {
-                echo "error inesperado?";
-            }        
+                catch(Exception $e)
+                {
+                    echo "Error, no se puede guardar al trabajador, asegurese que el rut: ".$rut." no se encuentre registrado";
+                }     
+            }   
 
             
                 
