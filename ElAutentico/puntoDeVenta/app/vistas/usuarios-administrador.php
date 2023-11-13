@@ -145,7 +145,8 @@
 
                 <div class="form-element">
                     <label for="clave">Contraseña:</label>
-                    <input type="password" name="clave" id="clave" placeholder="Contraseña" required>
+                    <input type="password" name="clave" id="clave" minlength="8" maxlength="16"
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#/!%*?&-+.,;:])[A-Za-z\@$#/!%*?&-+.,;:]{8,}$" placeholder="Contraseña" required>
                 </div>
                     
                 <div id="mostrarRoles" class="form-element"> <!-- listar roles en combobox -->

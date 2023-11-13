@@ -476,6 +476,7 @@
                         <h3>$1.000</h3>
                         <ion-icon name="close-outline"></ion-icon>
                     </div>
+                    
                 </div>
     
                 <!-- Sección "Subtotal" -->
@@ -493,6 +494,7 @@
                 </div>
             </div>
         </div>
+        
     </main>
     <!-- El contenedor del popup (inicialmente oculto) -->
     <div class="popup" id="popup">

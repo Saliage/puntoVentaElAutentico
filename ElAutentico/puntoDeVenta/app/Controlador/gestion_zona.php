@@ -7,7 +7,7 @@ require_once("../modelo/almacen.php");
 
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    
     $opcion = $_POST['opcion']; //obtener valor de la opción para contalmacenar eventos
 
     //rellenar combobox con datos de almacenes
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($almacenes->num_rows > 0) {
             // Recorrer almacenes presentes
             while ($dato = $almacenes->fetch_assoc()) {
-                echo '<option value="' . $dato['id_almacen'] . '">' . $dato['id_almacen']. $dato['nombre'] . '</option>';
+                echo '<option value="' . $dato['id_almacen'] . '">' . $dato['nombre'] . '</option>';
             }
         } else {
             echo '<option value="0">NULL</option>';
