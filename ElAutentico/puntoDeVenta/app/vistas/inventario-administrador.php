@@ -310,7 +310,7 @@
                 </div>
                 <div>
                     <label for="almacen_id">Almacen:</label>
-                    <div aria-colspan="1" id="slectAlmacenes" style="display: inline;"></div> <!-- genera un select vía AJAX desde el servidor con el contenido de la BD -->                    
+                    <div id="slectAlmacenes" style="display: inline;"></div> <!-- genera un select vía AJAX desde el servidor con el contenido de la BD -->                    
                 </div>
                 <button onclick="addZona();"><ion-icon name="add-circle-outline" ></ion-icon></button>
             </div>

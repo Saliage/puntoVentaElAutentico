@@ -1,11 +1,6 @@
 <?php 
     session_start();
     ob_start();
-
-    if($_SESSION['sesion'] == 1)
-    {
-      header('Location:carta-vendedor.php');
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,10 +10,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
         
         <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
-
         <link rel="stylesheet" href="../../public/css/ccs/login-v2.css">
-        <link rel="stylesheet" href="../../public/css/ccs/login-v2.css">
-
         <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">
         
 

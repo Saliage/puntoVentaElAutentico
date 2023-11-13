@@ -56,20 +56,18 @@ function listarZonas(){
 }
 
 function addZona(){ 
-    alert("llega a la función");
     // rescatar valores del form
     var nombre = document.getElementById('nombreZonaTxt').value;
-    var almacen_id = document.getElementById('slectAlmacenes').value;
+    var almacen_id = document.getElementById('almacen_id').value;
 
-    alert("se recibe: "+nombre+almacen);
-
+    alert("se recibe: "+nombre+' '+almacen_id);
     var parametros = 
     {
         "nombre" : nombre,
-        "almacen_id" : almacen_id,
+        "' '+" : almacen_id,
         "opcion" : 'guardar'
     };
-    alert("se envia: "+nombre+almacen);
+    alert("se envia: "+nombre+almacen_id);
     $.ajax({
         data: parametros,
         url: '../Controlador/gestion_zona.php',
@@ -83,10 +81,11 @@ function addZona(){
         success: function(mensaje)
         {
             alert(mensaje);
+            
         }
         
     });
-    
+    listarZonas();
 
 }
 
