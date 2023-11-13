@@ -1,6 +1,6 @@
 <?php
 
-require('conexion.php');
+require_once('conexion.php');
 
 class DetalleSalidaInsumos {
 
@@ -42,7 +42,7 @@ class DetalleSalidaInsumos {
     }
 
     // Actualizar datos de detalle de salida de insumos
-    public function actualizarDetalleSalidaInsumos($id, $salida_id, $insumos_id) {
+    public function actualizarDetalleSalidaInsumos($id, $salida_id, $insumos_id,$cantidad) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 

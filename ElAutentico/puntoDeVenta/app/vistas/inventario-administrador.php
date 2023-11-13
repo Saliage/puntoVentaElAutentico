@@ -237,58 +237,16 @@
         <div class="popup-contenido">
             <h2>Categorias</h2>
 
-            <p></p>
-            
-            <form action="" method="POST" class="formulario">
-                <div class="form-element">
-                    <label for="name">Agregar</label>
-                    <input type="text" name="nombre" required>
-                    <button class="boton-pagar" type="submit" name="agregar" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
+            <div class="formulario" id="formAlmacenes">
+                <div>
+                    <label for="nombreCategoriaTxt">Nombre:</label>
+                    <input type="text" name="nombre" id="nombreCategoriaTxt" pattern=".{5,}"  required>
                 </div>
-            </form>
-
-            <p></p>
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Categorias productos</th>
-                        <th colspan="1"> </th> 
-                    </tr>
-                </thead>
+                <button type="submit" onclick="agregarCategoria();"><ion-icon name="add-circle-outline" ></ion-icon></button>
+            </div>
+            <hr>
                 <tbody>
-                    <tr>
-                        <td>Verduras</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>Congelados</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>Pan</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>Frituras</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>Carnes</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>Utencilios</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>Frituras</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>Promociones</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
+                    <div id="verCategorias"></div>
                 </tbody>
             </table>
             <div class="cerrar-popup" onclick="cerrarPopup2()"><ion-icon name="close-circle"></ion-icon></div>
@@ -306,7 +264,7 @@
             <div class="formulario" id="formZonas">
                 <div>
                     <label for="nombreZonaTxt">Nombre:</label>
-                    <input type="text" name="nombre" id="nombreZonaTxt" required>
+                    <input type="text" name="nombre" id="nombreZonaTxt" pattern=".{5,}"   required>
                 </div>
                 <div>
                     <label for="almacen_id">Almacen:</label>
@@ -330,59 +288,17 @@
     <div class="popup" id="popup4">
         <div class="popup-contenido">
             <h2>Almacenes</h2>
-
-            <p></p>
             
-            <form action="" method="POST" class="formulario">
-                <div class="form-element">
-                    <label for="name">Agregar</label>
-                    <input type="text" name="nombre" required>
-                    <button class="boton-pagar" type="submit" name="agregar" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
+            <div class="formulario" id="formAlmacenes">
+                <div>
+                    <label for="nombreAlmacenTxt">Nombre:</label>
+                    <input type="text" name="nombre" id="nombreAlmacenTxt" pattern=".{5,}"  required>
                 </div>
-            </form>
-
-            <p></p>
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Almacenes</th>
-                        <th colspan="1"> </th> 
-                    </tr>
-                </thead>
+                <button onclick="agregarAlmacen();"><ion-icon name="add-circle-outline" ></ion-icon></button>
+            </div>
+            <hr>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
+                    <div id="verAlmacenes"></div>
                 </tbody>
             </table>
             <div class="cerrar-popup" onclick="cerrarPopup4()"><ion-icon name="close-circle"></ion-icon></div>

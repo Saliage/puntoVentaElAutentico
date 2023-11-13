@@ -50,6 +50,8 @@ CREATE TABLE proveedor (
     PRIMARY KEY (id_proveedor)
 );
 
+ALTER TABLE `proveedor` ADD UNIQUE INDEX `rut_proveedor` (`rut_proveedor`);
+
 CREATE TABLE rol (
     id_rol INT NOT NULL AUTO_INCREMENT,
     nombre_rol VARCHAR(30) NOT NULL,
@@ -108,6 +110,7 @@ CREATE TABLE trabajador (
     PRIMARY KEY (id_trabajador),
     FOREIGN KEY (rol_id_rol) REFERENCES rol (id_rol)
 );
+ALTER TABLE `trabajador` ADD UNIQUE INDEX `rut` (`rut`);
 
 CREATE TABLE salida (
     id_salida INT NOT NULL AUTO_INCREMENT,
