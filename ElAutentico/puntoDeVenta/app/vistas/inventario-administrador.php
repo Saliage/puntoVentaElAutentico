@@ -312,41 +312,30 @@
         <div class="popup-contenido">
             <h2>Proovedores</h2>
 
-            <p></p>
-            
-            <form action="" method="POST" class="formulario">
-                <div class="form-element">
-                  <label for="id">Id</label>
-                  <input type="number" min="1"name="id" placeholder="Id proovedor" required>
-                </div>
-                
+            <div class="formulario" id="formAlmacenes">                
+                           
                 <div class="form-element">
                   <label for="Id">Nombre:</label>
                   <input type="Text" min="5" name="nombre" placeholder="Nombre proovedor" required>
-                </div>
-                
+                </div>                
                 <div class="form-element">
                   <label for="rut">Rut:</label>
                   <input type="number" min="7" name="rut" placeholder="Rut" required>
                 </div>
-                
                 <div class="form-element">
                   <label for="fono">Fono:</label>
                   <input type="number"min="5" name="fono" placeholder="Numero contacto" required>
                 </div>
-
                 <div class="form-element">
                     <label for="email">Email:</label>
                     <input type="email" min="1" name="email" placeholder="Correo electronico" required>
                 </div>
-
                 <div class="form-element">
                     <label for="direccion">Direccion:</label>
                     <input type="text" min="1" name="direccion" placeholder="Direccion" required>
                 </div>
-
                 <button class="boton-pago" type="submit" name="agregar" value="Agregar">Agregar</button>
-              </form>
+            </div>
 
             <p></p>
 
