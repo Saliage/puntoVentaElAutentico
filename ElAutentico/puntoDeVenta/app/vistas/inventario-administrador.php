@@ -15,6 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">
+    <script src="../../public/js/inventario-administrador.js"></script>
 
     <title>Inventario administrador</title>
 
@@ -311,7 +312,7 @@
                     <label for="almacen_id">Almacen:</label>
                     <div aria-colspan="1" id="slectAlmacenes" style="display: inline;"></div> <!-- genera un select vía AJAX desde el servidor con el contenido de la BD -->                    
                 </div>
-                <button class="boton-pagar" type="submit" onclick="agregarZona();"><ion-icon name="add-circle-outline" ></ion-icon></button>
+                <button onclick="addZona();"><ion-icon name="add-circle-outline" ></ion-icon></button>
             </div>
             <hr>
                 <tbody>

@@ -3,9 +3,11 @@
 require_once("../modelo/zona.php");
 require_once("../modelo/almacen.php");
 
+
+
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    echo("<script>alert('llega al php');</script>");
     $opcion = $_POST['opcion']; //obtener valor de la opción para contalmacenar eventos
 
     //rellenar combobox con datos de almacenes
