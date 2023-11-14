@@ -160,105 +160,13 @@ switch ($action) {
 }        
 ?>
 
-<!doctype html>
-<html lang="es">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Webpay Plus Mall">
-        <meta name="author" content="VendoOnline.cl">
-    
-        <title>Pagos</title>
-        <style>
-            .container {
-              height: 200px;
-              position: relative;
-              text-align: center;
-              
-            }
-            
-            .vertical-center {
-                margin-top: 20%;
-              /*margin: 0;
-              position: absolute;
-              top: 50%;
-              -ms-transform: translateY(-50%);
-              transform: translateY(-50%);*/
-            }
-            .lds-hourglass {
-              display: inline-block;
-              position: relative;
-              width: 80px;
-              height: 80px;
-            }
-            .lds-hourglass:after {
-              content: " ";
-              display: block;
-              border-radius: 50%;
-              width: 0;
-              height: 0;
-              margin: 8px;
-              box-sizing: border-box;
-              border: 32px solid purple;
-              border-color: purple transparent purple transparent;
-              animation: lds-hourglass 1.2s infinite;
-            }
-            @keyframes lds-hourglass {
-              0% {
-                transform: rotate(0);
-                animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-              }
-              50% {
-                transform: rotate(900deg);
-                animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-              }
-              100% {
-                transform: rotate(1800deg);
-              }
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-          <div class="vertical-center">
-              <div class="lds-hourglass"></div>
-              <img src="WebpayPlus_FB_300px.png">
-              <p><?php echo $message; ?></p>
-                <?php if (strlen($url_tbk)) { ?>
-                <form name="brouterForm" id="brouterForm"  method="POST" action="<?=$url_tbk?>" style="display:block;">
-                  <input type="hidden" name="token_ws" value="<?=$token?>" />
-                  <input type="submit" value="<?=(($submit)? $submit : 'Cargando...')?>" style="border: 1px solid #6b196b;
-    border-radius: 4px;
-    background-color: #6b196b;
-    color: #fff;
-    font-family: Roboto,Arial,Helvetica,sans-serif;
-    font-size: 1.14rem;
-    font-weight: 500;
-    margin: auto 0 0;
-    padding: 12px;
-    position: relative;
-    text-align: center;
-    -webkit-transition: .2s ease-in-out;
-    transition: .2s ease-in-out;
-    max-width: 200px;" />
-                </form>
-                <script>
-            
-                var auto_refresh = setInterval(
-                function()
-                {
-                    //submitform();
-                }, 15000);
-            //}, 5000);
-                function submitform()
-                {
-                  //alert('test');
-                  document.brouterForm.submit();
-                }
-                </script>
-            <?php } ?>
-            </div>
-        </div>
-    </body>
-</html>
+<?php
+// transbank.php
+
+function realizarPagoTransbank($medioPago) {
+    // Tu lógica para procesar el pago con Transbank aquí
+    // Puedes hacer llamadas a la API de Transbank u otras operaciones necesarias
+    // Retorna una respuesta adecuada según el resultado del pago
+    return "Pago realizado con éxito mediante $medioPago";
+}
+?>
