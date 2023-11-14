@@ -7,7 +7,7 @@ function get_ws($data,$method,$type,$endpoint){
     if($type=='live'){
 		$TbkApiKeyId='597055555532';
 		$TbkApiKeySecret='579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C';
-        $url="https://webpay3g.transbank.cl".$endpoint;//Live
+       // $url="https://webpay3g.transbank.cl".$endpoint;//Live
     }else{
 		$TbkApiKeyId='597055555532';
 		$TbkApiKeySecret='579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C';
