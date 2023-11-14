@@ -14,6 +14,25 @@
     });
 
     // Función para mostrar el popup
+    function cerrarPopup6() {
+        const popup = document.getElementById('popup6');
+        popup.style.display = 'none';
+    }
+
+    function mostrarPopup6() {
+        const popup = document.getElementById('popup6');
+        popup.style.display = 'flex';
+    }
+
+    function mostrarPopup7() {
+        const popup = document.getElementById('popup7');
+        popup.style.display = 'flex';
+    }
+
+    function cerrarPopup7() {
+        const popup = document.getElementById('popup7');
+        popup.style.display = 'none';
+    }
 
     function cerrarPopup() {
         const popup = document.getElementById('popup');
