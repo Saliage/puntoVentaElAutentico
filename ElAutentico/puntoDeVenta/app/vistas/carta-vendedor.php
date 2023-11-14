@@ -24,7 +24,6 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../../public/js/logOut.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
@@ -538,30 +537,6 @@
         }
 
     </script>
-    <script>
-    // ... (código anterior)
-
-    // Función para realizar el pago con Transbank usando AJAX
-    function realizarPagoTransbankAjax(medioPago) {
-        $.ajax({
-            type: 'POST',
-            url: '/workspaces/puntoVentaElAutentico/ElAutentico/puntoDeVenta/app/Controlador/transbank.php'',  // Ruta al archivo PHP que contiene la función
-            data: { medioPago: medioPago },  // Datos que se enviarán al servidor (puedes ajustar esto según tus necesidades)
-            success: function (response) {
-                // La función se ejecutó con éxito, puedes manejar la respuesta aquí
-                alert(response);
-                // Puedes hacer más acciones, como actualizar la interfaz de usuario, redireccionar, etc.
-            },
-            error: function (error) {
-                // Manejo de errores
-                console.error('Error al realizar el pago:', error);
-                // Puedes mostrar un mensaje de error al usuario si es necesario
-            }
-        });
-    }
-
-    // ... (código posterior)
-</script>
 
 </body>
 </html>
