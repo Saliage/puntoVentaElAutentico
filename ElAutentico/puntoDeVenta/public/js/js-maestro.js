@@ -14,25 +14,6 @@
     });
 
     // Función para mostrar el popup
-    function cerrarPopup6() {
-        const popup = document.getElementById('popup6');
-        popup.style.display = 'none';
-    }
-
-    function mostrarPopup6() {
-        const popup = document.getElementById('popup6');
-        popup.style.display = 'flex';
-    }
-
-    function mostrarPopup7() {
-        const popup = document.getElementById('popup7');
-        popup.style.display = 'flex';
-    }
-
-    function cerrarPopup7() {
-        const popup = document.getElementById('popup7');
-        popup.style.display = 'none';
-    }
 
     function cerrarPopup() {
         const popup = document.getElementById('popup');
@@ -84,22 +65,22 @@
         popup.style.display = 'none';
     }
 
-    function mostrarPopup6() {
-        const popup = document.getElementById('popup6');
+    function mostrarPopup8() {
+        const popup = document.getElementById('popup8');
         popup.style.display = 'flex';
     }
 
-    function cerrarPopup6() {
-        const popup = document.getElementById('popup6');
+    function cerrarPopup8() {
+        const popup = document.getElementById('popup8');
         popup.style.display = 'none';
     }
 
-    function mostrarPopup7() {
-        const popup = document.getElementById('popup7');
+    function mostrarPopup9() {
+        const popup = document.getElementById('popup9');
         popup.style.display = 'flex';
     }
 
-    function cerrarPopup7() {
-        const popup = document.getElementById('popup7');
+    function cerrarPopup9() {
+        const popup = document.getElementById('popup9');
         popup.style.display = 'none';
     }
