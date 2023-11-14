@@ -358,7 +358,7 @@
             <form action="" method="POST" class="formulario">
 
                 <div class="form-element">
-                    <label for="user">Cantidad.</label>
+                    <label for="user">Cantidad</label>
                     <input type="number" min="1" name="stock" placeholder="Cantidad " required>
                   </div>
 
