@@ -113,8 +113,8 @@
                     <button class="boton-pagar2" onclick="mostrarPopup3()">Zonas</button>
                     <button class="boton-pagar2" onclick="mostrarPopup4()">Almacenes</button>
                     <button class="boton-pagar2" onclick="mostrarPopup5()">Proovedores</button>
-                    <button class="boton-pagar"  onclick="mostrarPopup6()">Entrada producto</button>
-                    <button class="boton-pagar3" onclick="mostrarPopup2()">Salida Producto</button>
+                    <button class="boton-pagar"  onclick="mostrarPopup6()">Entrada Insumom/button>
+                    <button class="boton-pagar3" onclick="mostrarPopup7()">Salida Insumo</button>
                     <p></p>   
                     <tr class="fila-titulos">
                         <th class="celda-titulo"></th>
