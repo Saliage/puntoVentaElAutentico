@@ -7,6 +7,7 @@ function inicializar(){
     mostrarZonas();
     mostrarAlmacenes();
     mostrarCategorias();
+    mostrarProveedores();
 }
 
 //------------------------------------------------------------------------------------------
@@ -498,6 +499,205 @@ function eliminarCategoria(id_categoria){
         });
 
         mostrarCategorias();
+
+    }
+}
+
+//------------------------------------------------------------------------------------------
+//------------------------     LOGICA POPUP PROVEEDORES    ---------------------------------
+//------------------------------------------------------------------------------------------
+
+function agregarProveedor(event)
+{ 
+    event.preventDefault(); // Evita que el formulario se envíe a la nada
+
+    // rescatar valores del form
+    var formulario = document.getElementById('formAgregarProveedor');    
+    var nombre = formulario.elements['nombre'].value;
+    var rut = formulario.elements['rut'].value;
+    var fono = formulario.elements['fono'].value;
+    var email = formulario.elements['email'].value;
+    var direccion = formulario.elements['direccion'].value;
+
+    var parametros = 
+    {
+        "nombre" : nombre,
+        "rut" : rut,
+        "fono" : fono,
+        "email" : email,
+        "direccion" : direccion,
+        "opcion" : 'guardar'
+    };
+
+$.ajax({
+    data: parametros,
+    url: '../Controlador/gestion_proveedor.php',
+    type: 'POST',
+    
+    beforeSend: function()
+    {
+    //$('#mostrar_mensaje').html("Error de comunicación");
+    mostrarProveedores();
+    },
+
+    success: function(mensaje)
+    {
+    mostrarProveedores();
+    document.getElementById("formAgregarProveedor").reset(); //limpia formulario
+    }
+});
+}
+
+function mostrarProveedores(){
+    var parametros =
+    {
+        "opcion":"mostar"
+    }
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_proveedor.php',
+        type: 'POST',
+        
+        beforesend: function()
+        {
+        $('#verProveedores').html("Error de comunicación");
+        },
+
+        success: function(mensaje)
+        {
+        $('#verProveedores').html(mensaje);
+        }
+    });
+}
+
+function editarProveedores(id) {
+
+    //rescatar elementos a tratar
+    var nombre_proveedorSpan = document.getElementById('nombre_proveedorSpan'+id);
+    var nombre_proveedorTxt = document.getElementById('nombre_proveedorTxt'+id);
+    var rut_proveedorSpan = document.getElementById('rut_proveedorSpan'+id);
+    var rut_proveedorTxt = document.getElementById('rut_proveedorTxt'+id);
+    var fono_proveedorSpan = document.getElementById('fono_proveedorSpan'+id);
+    var fono_proveedorTxt = document.getElementById('fono_proveedorTxt'+id);
+    var email_proveedorSpan = document.getElementById('email_proveedorSpan'+id);
+    var email_proveedorTxt = document.getElementById('email_proveedorTxt'+id);
+    var direccion_proveedorSpan = document.getElementById('direccion_proveedorSpan'+id);
+    var direccion_proveedorTxt = document.getElementById('direccion_proveedorTxt'+id);
+    var btnEdit = document.getElementById('btnEditproveedor'+id);
+    var btnOK = document.getElementById('guardarEditproveedor'+id);
+     
+
+    // Mostrar el campo de texto y ocultar el span
+    nombre_proveedorSpan .style.display ='none';   
+    nombre_proveedorTxt.style.display ='inline';
+     rut_proveedorSpan.style.display ='none';
+     rut_proveedorTxt.style.display ='inline';
+     fono_proveedorSpan.style.display ='none';
+     fono_proveedorTxt.style.display ='inline';
+     email_proveedorSpan.style.display ='none';
+     email_proveedorTxt.style.display ='inline';
+     direccion_proveedorSpan.style.display ='none';
+     direccion_proveedorTxt.style.display ='inline';
+    btnEdit.style.display = 'none';
+    btnOK.style.display = 'inline';
+}
+
+function guardarProveedorEdit(id){
+
+   //rescatar elementos a tratar
+   var nombre_proveedorSpan = document.getElementById('nombre_proveedorSpan'+id);
+   var nombre_proveedorTxt = document.getElementById('nombre_proveedorTxt'+id);
+   var rut_proveedorSpan = document.getElementById('rut_proveedorSpan'+id);
+   var rut_proveedorTxt = document.getElementById('rut_proveedorTxt'+id);
+   var fono_proveedorSpan = document.getElementById('fono_proveedorSpan'+id);
+   var fono_proveedorTxt = document.getElementById('fono_proveedorTxt'+id);
+   var email_proveedorSpan = document.getElementById('email_proveedorSpan'+id);
+   var email_proveedorTxt = document.getElementById('email_proveedorTxt'+id);
+   var direccion_proveedorSpan = document.getElementById('direccion_proveedorSpan'+id);
+   var direccion_proveedorTxt = document.getElementById('direccion_proveedorTxt'+id);
+   var btnEdit = document.getElementById('btnEditproveedor'+id);
+   var btnOK = document.getElementById('guardarEditproveedor'+id);
+   
+   var parametros = 
+   {
+        "id" : $id,
+       "nombre" : nombre_proveedorTxt.value,
+       "rut" : rut_proveedorTxt.value,
+       "fono" : fono_proveedorTxt.value,
+       "email" : email_proveedorTxt.value,
+       "direccion" : direccion_proveedorTxt.value,
+       "opcion" : 'editar'
+   };
+    // revertir estado
+   nombre_proveedorSpan .style.display ='inline';   
+   nombre_proveedorTxt.style.display ='none';
+    rut_proveedorSpan.style.display ='inline';
+    rut_proveedorTxt.style.display ='none';
+    fono_proveedorSpan.style.display ='inline';
+    fono_proveedorTxt.style.display ='none';
+    email_proveedorSpan.style.display ='inline';
+    email_proveedorTxt.style.display ='none';
+    direccion_proveedorSpan.style.display ='inline';
+    direccion_proveedorTxt.style.display ='none';
+   btnEdit.style.display = 'inline';
+   btnOK.style.display = 'none';
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_proveedor.php',
+        type: 'POST',
+        
+        beforeSend: function()
+        {
+            mostrarProveedores();
+        },
+
+        success: function(mensaje)
+        {
+            mostrarProveedores();
+        }
+        
+        
+
+    });
+    mostrarProveedores();
+    
+}
+
+function eliminarProveedor(id){
+
+    var confirmacion = confirm("¿Estás seguro de que deseas eliminar al proveedor: "+id+"?");
+
+    if (confirmacion) {
+        
+        var parametros = 
+        {
+            "id" : id,
+            "opcion" : 'eliminar'
+        };                
+
+        $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_proveedor.php',
+        type: 'POST',
+        
+        beforeSend: function()
+        {
+        $('#verProveedores').html("Error! No se puede realizar la operación.");
+        $('#verProveedores').css('color', 'red');
+        mostrarProveedores();
+        },
+
+        success: function(mensaje)
+        {
+        $('#verProveedores').html(mensaje);
+        mostrarProveedores();
+        }
+        
+        });
+
+        mostrarProveedores();
 
     }
 }

@@ -167,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($resultado > 0) {
                     echo "Se actualizó el usuario: " . $nombre;
                 } else {
-                    throw new Exception("Error al actualizar el usuario: " . $nombre);
+                    echo "Error, no se puede guardar al trabajador, revise los datos y asegurese que el rut: ".$rut." no se encuentre registrado";
                 }
             }
         }

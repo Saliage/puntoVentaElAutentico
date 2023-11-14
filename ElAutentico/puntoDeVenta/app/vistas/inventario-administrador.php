@@ -312,66 +312,34 @@
         <div class="popup-contenido">
             <h2>Proovedores</h2>
 
-            <div class="formulario" id="formAlmacenes">                
-                           
-                <div class="form-element">
-                  <label for="Id">Nombre:</label>
-                  <input type="Text" min="5" name="nombre" placeholder="Nombre proovedor" required>
-                </div>                
-                <div class="form-element">
-                  <label for="rut">Rut:</label>
-                  <input type="number" min="7" name="rut" placeholder="Rut" required>
-                </div>
-                <div class="form-element">
-                  <label for="fono">Fono:</label>
-                  <input type="number"min="5" name="fono" placeholder="Numero contacto" required>
-                </div>
-                <div class="form-element">
-                    <label for="email">Email:</label>
-                    <input type="email" min="1" name="email" placeholder="Correo electronico" required>
-                </div>
-                <div class="form-element">
-                    <label for="direccion">Direccion:</label>
-                    <input type="text" min="1" name="direccion" placeholder="Direccion" required>
-                </div>
-                <button class="boton-pago" type="submit" name="agregar" value="Agregar">Agregar</button>
-            </div>
+                <form id="formAgregarProveedor" onsubmit="return agregarProveedor(event)" method="post">
+                
+                    <div class="form-element">
+                        <label for="nombre">Nombre:</label>
+                        <h3>* </h3><input type="text" name="nombre" id="nombre" placeholder="Nombre"  pattern="[A-Za-z\d]{3,}$" title="Nombre de al menos 3 caracteres">
+                    </div>                      
+                    <div class="form-element">
+                        <label for="rut">Rut:</label>
+                        <h3>* </h3><input type="text" name="rut" id="rut" placeholder="rut" minlength="9" maxlength="11"  pattern="([0-9kK\-]{10,})"  title="Ingrese un rut valido sin puntos y con guion" required>
+                    </div>                                      
+                    <div class="form-element"><label for="fono">Fono:</label>
+                        <input type="text" name="fono" id="fono" pattern="[0-9\+]{8,12}" placeholder="Fono" title="Ingrese número telefónico válido" >
+                    </div>    
+                    <div class="form-element">
+                        <label for="emailProveedor">Email:</label>
+                        <input type="email" name="email" id="email" placeholder="Correo electrónico" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.\.[a-zA-Z]{2,}$" title="Ingresa un correo electrónico válido en formato user@dominio.xx">
+                    </div>
+                    <div class="form-element">
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" name="direccion" id="direccion" placeholder="Dirección" minlength="8">
+                    </div>                        
+                    <div id="mostrarRoles" class="form-element"> <!-- listar roles en combobox -->
+                       
+                    </div>
+                    <input class="boton-pago" type="submit" name="agregar" value="Agregar">
+                </form>
 
-            <p></p>
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Rut</th>
-                        <th>Fono</th>
-                        <th>Email</th>
-                        <th>Direccion</th>
-                        <th colspan="1"> </th> 
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                    <tr>
-                        <td>1</td>
-                        <td>Lider</td>
-                        <td>11.111.111-1</td>
-                        <td>111111111</td>
-                        <td>lider123@liderchile.cl</td>
-                        <td>Av La Florida #201</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Lider</td>
-                        <td>11.111.111-1</td>
-                        <td>111111111</td>
-                        <td>lider123@liderchile.cl</td>
-                        <td>Av La Florida #201</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                </tbody>
+                <div id="verProveedores"></div>
             </table>
             <div class="cerrar-popup" onclick="cerrarPopup5()"><ion-icon name="close-circle"></ion-icon></div>
         </div>

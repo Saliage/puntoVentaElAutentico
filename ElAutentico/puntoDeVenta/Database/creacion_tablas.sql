@@ -43,7 +43,7 @@ CREATE TABLE promocion (
 CREATE TABLE proveedor (
     id_proveedor INT NOT NULL AUTO_INCREMENT,
     nombre_proveedor VARCHAR(50) NOT NULL,
-    rut_proveedor INT NOT NULL,
+    rut_proveedor VARCHAR(12) NOT NULL,
     fono VARCHAR(50),
     mail VARCHAR(50),
     direccion VARCHAR(50),
