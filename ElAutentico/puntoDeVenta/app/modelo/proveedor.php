@@ -15,6 +15,7 @@ class Proveedor {
         $resultado = $conn->query($consulta);
 
         return $resultado;
+        $conn->close();
     }
 
     // Obtener todos los proveedores
@@ -27,6 +28,7 @@ class Proveedor {
         $resultado = $conn->query($consulta);
 
         return $resultado;
+        $conn->close();
     }
 
     // Buscar proveedor por id
@@ -39,6 +41,7 @@ class Proveedor {
         $resultado = $conn->query($consulta);
 
         return $resultado;
+        $conn->close();
     }
 
     // Actualizar datos de proveedor
@@ -57,6 +60,7 @@ class Proveedor {
         $resultado = $conn->query($consulta);
 
         return $resultado;
+        $conn->close();
     }
 
     // Eliminar proveedor por id
@@ -69,6 +73,8 @@ class Proveedor {
         $resultado = $conn->query($consulta);
 
         return $resultado;
+        $conn->close();
+
     }
 }
 ?>

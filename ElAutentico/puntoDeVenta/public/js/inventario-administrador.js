@@ -686,6 +686,7 @@ function eliminarProveedor(id){
         {
         $('#verProveedores').html("Error! No se puede realizar la operación.");
         $('#verProveedores').css('color', 'red');
+        mostrarProveedores();
         },
 
         success: function(mensaje)

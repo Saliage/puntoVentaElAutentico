@@ -123,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     {
         $id = $_POST['id'];
 
-        if($id_almacen != ""){
+        if($id != ""){
             
             $proveedor = new Proveedor();
             try{

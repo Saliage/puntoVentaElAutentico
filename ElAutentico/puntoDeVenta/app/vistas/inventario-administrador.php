@@ -108,29 +108,19 @@
 
             <table class="table">
                 <thead>
-                    <button class="boton-pagar" onclick="mostrarPopup()">Añadir insumo</button>
-                    <button class="boton-pagar2" onclick="mostrarPopup2()">Categorias</button>
-                    <button class="boton-pagar3" onclick="mostrarPopup3()">Zonas</button>
-                    <button class="boton-pagar4" onclick="mostrarPopup4()">Almacenes</button>
-                    <button class="boton-pagar5" onclick="mostrarPopup5()">Proovedores</button>
-                    <p></p>   
-                    <tr class="fila-titulos">
-                        <th class="celda-titulo"></th>
-                        <th class="celda-titulo">Nombre</th>
-                        <th class="celda-titulo">Id insumo</th>
-                        <th class="celda-titulo">Stock</th>
-                        <th class="celda-titulo">Fecha proximo vencimiento</th>
-                        <th class="celda-titulo">Costo</th>
-                        <th class="celda-titulo">Categoria</th>
-                        <th class="celda-titulo">Zona</th>
-                        <th class="celda-titulo">Almacen</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
-                    </tr>
+                    <div class="rounded-buttons-container">
+                        <button class="boton-pagar" onclick="mostrarPopup()">Añadir insumo</button>
+                        <button class="boton-pagar2" onclick="mostrarPopup2()">Categorias</button>
+                        <button class="boton-pagar3" onclick="mostrarPopup3()">Zonas</button>
+                        <button class="boton-pagar4" onclick="mostrarPopup4()">Almacenes</button>
+                        <button class="boton-pagar5" onclick="mostrarPopup5()">Proovedores</button>
+                        <p></p>   
+                    </div>
                 </thead>
-                <tbody>
+                <tbody>                
                     <div id="listarInsumos"></div>
                     <tr>
+                        <td>#</td>
                         <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
                         <td>Tomates</td>
                         <td>001</td>

@@ -145,6 +145,7 @@ CREATE TABLE insumos (
     fecha_vencimiento DATE,
     stock_total INT NOT NULL,
     costo DECIMAL(10, 2) NOT NULL,
+    imagen VARCHAR(50),
     categoria_insumo_id_categoria INT NOT NULL,
     formato_id_formato INT NOT NULL,
     PRIMARY KEY (id_insumo),

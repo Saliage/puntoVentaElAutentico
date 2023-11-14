@@ -5,14 +5,14 @@ require_once('conexion.php');
 class Insumos {
 
     // Agregar insumo
-    public function agregarInsumo($nombre_insumo, $perecible, $fecha_vencimiento, $stock_total, $costo, $categoria_id, $formato_id) {
+    public function agregarInsumo($nombre_insumo, $perecible, $fecha_vencimiento, $stock_total, $costo, $imagen, $categoria_id, $formato_id) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
         $nombre_insumo = mysqli_real_escape_string($conn, $nombre_insumo);
 
-        $consulta = "INSERT INTO insumos (nombre_insumo, perecible, fecha_vencimiento, stock_total, costo, categoria_insumo_id_categoria, formato_id_formato)
-                     VALUES ('$nombre_insumo', '$perecible', '$fecha_vencimiento', '$stock_total', '$costo', '$categoria_id', '$formato_id')";
+        $consulta = "INSERT INTO insumos (nombre_insumo, perecible, fecha_vencimiento, stock_total, costo, imagen, categoria_insumo_id_categoria, formato_id_formato)
+                     VALUES ('$nombre_insumo', '$perecible', '$fecha_vencimiento', '$stock_total', '$costo', '$imagen', '$categoria_id', '$formato_id')";
 
         $resultado = $conn->query($consulta);
 
@@ -44,7 +44,7 @@ class Insumos {
     }
 
     // Actualizar datos de insumo
-    public function actualizarInsumo($id, $nombre_insumo, $perecible, $fecha_vencimiento, $stock_total, $costo, $categoria_id, $formato_id) {
+    public function actualizarInsumo($id, $nombre_insumo, $perecible, $fecha_vencimiento, $stock_total, $costo, $imagen, $categoria_id, $formato_id) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
@@ -56,6 +56,7 @@ class Insumos {
                     fecha_vencimiento = '$fecha_vencimiento',
                     stock_total = '$stock_total',
                     costo = '$costo',
+                    imagen = '$imagen',
                     categoria_insumo_id_categoria = '$categoria_id',
                     formato_id_formato = '$formato_id'
                     WHERE id_insumo = '$id'";
