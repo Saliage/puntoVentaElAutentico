@@ -621,7 +621,7 @@ function guardarProveedorEdit(id){
    
    var parametros = 
    {
-        "id" : $id,
+        "id" : id,
        "nombre" : nombre_proveedorTxt.value,
        "rut" : rut_proveedorTxt.value,
        "fono" : fono_proveedorTxt.value,
@@ -686,7 +686,6 @@ function eliminarProveedor(id){
         {
         $('#verProveedores').html("Error! No se puede realizar la operación.");
         $('#verProveedores').css('color', 'red');
-        mostrarProveedores();
         },
 
         success: function(mensaje)
