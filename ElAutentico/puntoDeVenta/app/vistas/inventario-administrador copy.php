@@ -287,7 +287,7 @@
 ------------------------------------------                GESTION ALMACENES              -------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------->
 
-    <div class="popup" id="popup6">
+    <div class="popup" id="popup4">
         <div class="popup-contenido">
             <h2>Almacenes</h2>
             
@@ -351,20 +351,43 @@
 ------------------------------------------                 ENTRADA iNSUMO            -------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------->
 
-    <div class="popup" id="popup6">
+<div class="popup" id="popup6">
         <div class="popup-contenido">
-            <h2>Registrar entrada insumo</h2>
-            <P></P>
-            <form action="" method="POST" class="formulario">
-                <div class="form-element">
-                    <label for="user">Cantidad</label>
-                    <input type="number" min="1" name="stock" placeholder="Cantidad " required>
-                </div>
-                <button class="boton-pagar-mas" type="submit" name="agregar" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
-            </form>
+            <h2>Proovedores</h2>
+
+                <form id="formAgregarProveedor" onsubmit="return agregarProveedor(event)" method="post">
+                
+                    <div class="form-element">
+                        <label for="nombre">Nombre:</label>
+                        <h3>* </h3><input type="text" name="nombre" id="nombre" placeholder="Nombre"  pattern="[A-Za-z\d]{3,}$" title="Nombre de al menos 3 caracteres">
+                    </div>                      
+                    <div class="form-element">
+                        <label for="rut">Rut:</label>
+                        <h3>* </h3><input type="text" name="rut" id="rut" placeholder="rut" minlength="9" maxlength="11"  pattern="([0-9kK\-]{10,})"  title="Ingrese un rut valido sin puntos y con guion" required>
+                    </div>                                      
+                    <div class="form-element"><label for="fono">Fono:</label>
+                        <input type="text" name="fono" id="fono" pattern="[0-9\+]{8,12}" placeholder="Fono" title="Ingrese número telefónico válido" >
+                    </div>    
+                    <div class="form-element">
+                        <label for="emailProveedor">Email:</label>
+                        <input type="email" name="email" id="email" placeholder="Correo electrónico" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.\.[a-zA-Z]{2,}$" title="Ingresa un correo electrónico válido en formato user@dominio.xx">
+                    </div>
+                    <div class="form-element">
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" name="direccion" id="direccion" placeholder="Dirección" minlength="8">
+                    </div>                        
+                    <div id="mostrarRoles" class="form-element"> <!-- listar roles en combobox -->
+                       
+                    </div>
+                    <input class="boton-pago" type="submit" name="agregar" value="Agregar">
+                </form>
+
+                <div id="verProveedores"></div>
+            </table>
             <div class="cerrar-popup" onclick="cerrarPopup6()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
     </div>
+
 
 <!----------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------                  SALIDA INSUMO             -------------------------------------------------------------
