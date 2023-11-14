@@ -108,11 +108,13 @@
 
             <table class="table">
                 <thead>
-                    <button class="boton-pagar" onclick="mostrarPopup()">Añadir insumo</button>
+                    <button class="boton-pagar2" onclick="mostrarPopup()">Añadir insumo</button>
                     <button class="boton-pagar2" onclick="mostrarPopup2()">Categorias</button>
-                    <button class="boton-pagar3" onclick="mostrarPopup3()">Zonas</button>
-                    <button class="boton-pagar4" onclick="mostrarPopup4()">Almacenes</button>
-                    <button class="boton-pagar5" onclick="mostrarPopup5()">Proovedores</button>
+                    <button class="boton-pagar2" onclick="mostrarPopup3()">Zonas</button>
+                    <button class="boton-pagar2" onclick="mostrarPopup4()">Almacenes</button>
+                    <button class="boton-pagar2" onclick="mostrarPopup5()">Proovedores</button>
+                    <button class="boton-pagar"  onclick="mostrarPopup6()">Entrada producto</button>
+                    <button class="boton-pagar3" onclick="mostrarPopup7()">Salida Producto</button>
                     <p></p>   
                     <tr class="fila-titulos">
                         <th class="celda-titulo"></th>
@@ -342,6 +344,52 @@
                 <div id="verProveedores"></div>
             </table>
             <div class="cerrar-popup" onclick="cerrarPopup5()"><ion-icon name="close-circle"></ion-icon></div>
+        </div>
+    </div>
+
+<!----------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------                 ENTRADA iNSUMO            -------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------->
+
+    <div class="popup" id="popup6">
+        <div class="popup-contenido">
+            <h2>Registrar entrada insumo</h2>
+            <P></P>
+            <form action="" method="POST" class="formulario">
+
+                <div class="form-element">
+                    <label for="user">Cantidad.</label>
+                    <input type="number" min="1" name="stock" placeholder="Cantidad " required>
+                  </div>
+
+                <button class="boton-pagar-mas" type="submit" name="agregar" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
+
+              </form>
+                                
+            <div class="cerrar-popup" onclick="cerrarPopup6()"><ion-icon name="close-circle"></ion-icon></div>
+        </div>
+    </div>
+
+<!----------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------                  SALIDA INSUMO             -------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------->
+
+    <div class="popup" id="popup7">
+        <div class="popup-contenido">
+            <h2>Registrar salida insumo</h2>
+            <P></P>
+            <form action="" method="POST" class="formulario">
+                
+                <div class="form-element">
+                  <label for="user">Cantidad</label>
+                  <input type="number" min="1" name="stock" placeholder="Cantidad" required>
+                </div>
+
+                <button class="boton-pagar-mas" type="submit" name="agregar" value="Agregar"><ion-icon name="remove-circle-outline"></ion-icon></button>
+
+              </form>
+                                
+            <div class="cerrar-popup" onclick="cerrarPopup7()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
     </div>
 </body>
