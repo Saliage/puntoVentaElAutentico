@@ -22,6 +22,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         </thead>
     ';
 
+    //crear select-option con almacenes
+    if($opcion == 'listar'){
+
+        $almacen = new Almacen();
+        $almacenes = $almacen->listarAlmacenes();
+        echo'<select name="almacen_id" id="almacen_id" required>';
+        echo '<option selected >-seleccionar-</option>';
+    
+        if ($almacenes->num_rows > 0) {
+            // Recorrer almacenes presentes
+            while ($dato = $almacenes->fetch_assoc()) {
+                echo '<option value="' . $dato['id_almacen'] . '">' . $dato['nombre'] . '</option>';
+            }
+        } else {
+            echo '<option value="0">NULL</option>';
+        }
+    
+        echo'</select>';
+    
+    }
+
 	if($opcion == "guardar")
     {
         $nombreAlmacen = $_POST["nombre"];
