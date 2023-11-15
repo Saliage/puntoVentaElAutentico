@@ -5,20 +5,22 @@ require_once("../modelo/categoria_insumo.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     
     $opcion = $_POST['opcion']; //obtener valor de la opción para controlar eventos
-            
-    echo 
-    '
-        <table class="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Categoría</th>
-                <th>Editar</th>
-                <th>Eliminar</th> 
-            </tr>
-                
-        </thead>
-    ';
+    
+    if($opcion != 'listar'){
+        echo 
+        '
+            <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Categoría</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th> 
+                </tr>
+                    
+            </thead>
+        ';
+    }
 
 	if($opcion == "guardar")
     {
@@ -34,6 +36,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
         }
                 
+    }
+
+     //crear select con datos de Categoría
+     if($opcion == 'listar'){
+
+        $categoria = new CategoriaInsumo();
+        $categorias = $categoria->listarCategoriasInsumo();
+        echo'<select name="id_categoria" id="id_categoria" required>';
+        echo '<option selected >-- seleccionar --</option>';
+
+        if ($categorias->num_rows > 0) {
+            // Recorrer formatos presentes
+            while ($dato = $categorias->fetch_assoc()) {
+                echo '<option value="' . $dato['id_categoria'] . '">' . $dato['nombre_categoria'] . '</option>';
+            }
+        } else {
+            echo '<option value="0">NULL</option>';
+        }
+
+        echo'</select>';
+
     }
 
 	if($opcion == "mostar")

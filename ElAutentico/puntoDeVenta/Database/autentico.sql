@@ -130,7 +130,7 @@ DROP TABLE IF EXISTS `insumos`;
 CREATE TABLE IF NOT EXISTS `insumos` (
   `id_insumo` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_insumo` varchar(50) NOT NULL,
-  `perecible` char(1) NOT NULL,
+  `perecible` TINYINT NOT NULL DEFAULT 0,
   `fecha_vencimiento` date DEFAULT NULL,
   `costo` int(11) NOT NULL DEFAULT 0,
   `imagen` varchar(50) DEFAULT NULL,

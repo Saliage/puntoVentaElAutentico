@@ -9,6 +9,8 @@ function inicializar(){
     mostrarCategorias();
     mostrarProveedores();
     mostrarFormatos();
+    listarFormatos();
+    listarCtaegorias();
 }
 
 //------------------------------------------------------------------------------------------
@@ -888,46 +890,69 @@ function listarFormatos(){
     });
 }
 
-function agregarInsumo(event)
-{ 
-    event.preventDefault(); // Evita que el formulario se envíe a la nada
-
-    // rescatar valores del form
-    var formulario = document.getElementById('formAgregarProveedor');    
-    var nombre = formulario.elements['nombre'].value;
-    var rut = formulario.elements['rut'].value;
-    var fono = formulario.elements['fono'].value;
-    var email = formulario.elements['email'].value;
-    var direccion = formulario.elements['direccion'].value;
-
-    var parametros = 
+function listarCtaegorias(){
+    var parametros =
     {
-        "nombre" : nombre,
-        "rut" : rut,
-        "fono" : fono,
-        "email" : email,
-        "direccion" : direccion,
-        "opcion" : 'guardar'
-    };
-
-$.ajax({
-    data: parametros,
-    url: '../Controlador/gestion_proveedor.php',
-    type: 'POST',
-    
-    beforeSend: function()
-    {
-    //$('#mostrar_mensaje').html("Error de comunicación");
-    mostrarProveedores();
-    },
-
-    success: function(mensaje)
-    {
-    mostrarProveedores();
-    document.getElementById("formAgregarProveedor").reset(); //limpia formulario
+        "opcion":"listar"
     }
-});
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_categoriaInsumo.php',
+        type: 'POST',
+        
+        beforesend: function()
+        {
+        $('#listarCategoria').html("Error de comunicación");
+        },
+
+        success: function(mensaje)
+        {
+        $('#listarCategoria').html(mensaje);
+        }
+    });
 }
 
+function agregarInsumo(event) {
+    event.preventDefault(); // Evita que el formulario se envíe a la nada
+
+    // Rescatar valores del formulario
+    var formulario = document.getElementById('formInsumos');
+    var nombre = formulario.elements['nombre'].value;
+    var categoria = formulario.elements['id_categoria'].value;
+    var formato = formulario.elements['id_formato'].value;
+    var costo = formulario.elements['costo'].value;
+    var imagenInput = formulario.elements['imagen'];
+
+    var parametros = new FormData();
+    parametros.append('nombre', nombre);
+    parametros.append('categoria', categoria);
+    parametros.append('perecible', perecible);
+    parametros.append('formato', formato);
+    parametros.append('costo', costo);
+    parametros.append('imagen', imagenInput.files[0]);
+    parametros.append('opcion', 'guardar');
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_insumo.php',
+        type: 'POST',
+        contentType: false, //desactivar para que jQuery no lo configure incorrectamente
+        processData: false, //desactivar para que jQuery no convierta FormData en cadena
+
+        beforeSend: function () {
+            mostrarInsumos();
+        },
+
+        success: function (mensaje) {
+            mostrarInsumos();
+            document.getElementById("formInsumos").reset(); // Limpia el formulario
+        }
+    });
+}
+
+function mostrarInsumos(){
+    
+}
 
 

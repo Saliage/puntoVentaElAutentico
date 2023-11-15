@@ -5,20 +5,22 @@ require_once("../modelo/formato.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     
     $opcion = $_POST['opcion']; //obtener valor de la opción para controlar eventos
-            
-    echo 
-    '
-        <table class="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Nombre</th>
-                <th>Editar</th>
-                <th>Eliminar</th> 
-            </tr>
-                
-        </thead>
-    ';
+    
+    if($opcion != 'listar'){
+        echo 
+        '
+            <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th> 
+                </tr>
+                    
+            </thead>
+        ';
+    }
 
 	if($opcion == "guardar")
     {
@@ -42,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $formato = new Formato();
         $formatos = $formato->listarFormatos();
         echo'<select name="id_formato" id="id_formato" required>';
-        echo '<option selected >-seleccionar-</option>';
+        echo '<option selected >-- seleccionar --</option>';
 
         if ($formatos->num_rows > 0) {
             // Recorrer formatos presentes

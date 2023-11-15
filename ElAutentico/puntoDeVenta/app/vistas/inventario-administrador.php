@@ -165,36 +165,26 @@
         <div class="popup-contenido">
                 <h2>Añadir insumo</h2>
 
-                <form class="formulario" onsubmit="return agregarInsumo(event)" id="formFormatos" method="post">
+                <form class="formulario" onsubmit="return agregarInsumo(event)" id="formInsumos" method="post">
                     <div class="form-element">
                     <label for="name">Nombre:</label>
                     <input type="text" name="nombre" id="nombre" placeholder="Nombre insumo" pattern=".{2,}" required>
                     </div>                
-                    <div class="form-element">
-                    <div id="listarCategoria"></div>
-                    <label for="cat-insumo">Categoria:</label>
-                    <select id="cat-insumo" name="cat-insumo" required>
-                        <option value="verduras">verduras</option>
-                        <option value="congelados">congelados</option>
-                        <option value="frituras">frituras</option>
-                    </select>
+                    <div class="form-element">                    
+                        <label for="id_categoria">Categoria:</label>
+                        <div id="listarCategoria"></div>                    
                     </div>                
                     <div class="form-element">
                         <label for="perecible">Perecible</label>
                         <input type="checkbox" name="perecible" id="perecible">
                     </div>              
                     <div class="form-element">
-                        <div class="listarFormatos"></div>
-                        <label for="cat-insumo">Formato:</label>
-                        <select id="fotmato" name="formato" required>
-                            <option value="verduras">unidad</option>
-                            <option value="congelados">kilo</option>
-                            <option value="frituras">500cc</option>
-                        </select>
+                        <label for="id_formato">Formato:</label>
+                        <div id="listarFormatos"></div>
                     </div>
                     <div class="form-element">
                         <label for="costo">Costo:</label>
-                        <input type="number" min="0" name="costo" placeholder="Precio costo" required="">
+                        <input type="number" min="0" name="costo" id="costo" placeholder="$ precio costo" required="">
                     </div>
                     <div class="form-element">
                         <label for="imagen">Imagen:</label>
