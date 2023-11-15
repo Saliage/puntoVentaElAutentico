@@ -499,7 +499,7 @@
     <div class="popup" id="popup">
         <div class="popup-contenido">
             <h2>Medio de pago:</h2>
-            <button class="boton-pago" onclick="realizarPago('Efectivo')">Efectivo</button>
+            <button href="../../transbank-sdk-php-master/examples/webpay-plus/index.php?action=create" class="boton-pago" onclick="realizarPago('Efectivo')">Efectivo</button>
             <button class="boton-pago" onclick="realizarPago('Tarjeta')">Tarjeta</button>
         </div>
      </div>
