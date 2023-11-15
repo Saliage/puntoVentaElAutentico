@@ -22,7 +22,7 @@ if (!$action) {
 / Apenas entramos esta página, con fines demostrativos,
 */
 if ($_GET['action'] === 'create') {
-    $createResponse = $transaction->create('buyOrder123', uniqid(), 1500, 'http://elautentico.cl/puntoVentaElAutentico/ElAutentico/puntoDeVenta/transbank-sdk-php-master/examples/webpay-plus/index.php?action=result');
+    $createResponse = $transaction->create('buyOrder123', uniqid(), 3000, 'http://elautentico.cl/puntoVentaElAutentico/ElAutentico/puntoDeVenta/transbank-sdk-php-master/examples/webpay-plus/index.php?action=result');
 
     // Acá guardar el token recibido ($createResponse->getToken()) en tu base de datos asociado a la orden o
     // lo que se esté pagando en tu sistema
