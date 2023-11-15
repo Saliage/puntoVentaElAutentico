@@ -920,6 +920,7 @@ function agregarInsumo(event) {
     var formulario = document.getElementById('formInsumos');
     var nombre = formulario.elements['nombre'].value;
     var categoria = formulario.elements['id_categoria'].value;
+    var perecible = formulario.elements['perecible'].checked;
     var formato = formulario.elements['id_formato'].value;
     var costo = formulario.elements['costo'].value;
     var imagenInput = formulario.elements['imagen'];
@@ -927,7 +928,7 @@ function agregarInsumo(event) {
     var parametros = new FormData();
     parametros.append('nombre', nombre);
     parametros.append('categoria', categoria);
-    parametros.append('perecible', perecible);
+    parametros.append('perecible', Number(perecible));
     parametros.append('formato', formato);
     parametros.append('costo', costo);
     parametros.append('imagen', imagenInput.files[0]);
@@ -941,10 +942,12 @@ function agregarInsumo(event) {
         processData: false, //desactivar para que jQuery no convierta FormData en cadena
 
         beforeSend: function () {
+            alert('datos:' + nombre+categoria+perecible+formato+costo+imagenInput.value);
             mostrarInsumos();
         },
 
         success: function (mensaje) {
+            alert(mensaje);
             mostrarInsumos();
             document.getElementById("formInsumos").reset(); // Limpia el formulario
         }
@@ -952,7 +955,7 @@ function agregarInsumo(event) {
 }
 
 function mostrarInsumos(){
-    
+
 }
 
 

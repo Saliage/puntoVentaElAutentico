@@ -165,7 +165,7 @@
         <div class="popup-contenido">
                 <h2>Añadir insumo</h2>
 
-                <form class="formulario" onsubmit="return agregarInsumo(event)" id="formInsumos" method="post">
+                <form class="formulario" onsubmit="return agregarInsumo(event)" id="formInsumos" method="post" enctype="multipart/form-data">
                     <div class="form-element">
                     <label for="name">Nombre:</label>
                     <input type="text" name="nombre" id="nombre" placeholder="Nombre insumo" pattern=".{2,}" required>

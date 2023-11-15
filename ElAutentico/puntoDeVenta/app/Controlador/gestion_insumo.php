@@ -1,58 +1,67 @@
 <?php
-require_once("../modelo/trabajador.php");
-require_once("../modelo/rol.php");
+require_once("../modelo/insumos.php");
 
 
-// Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    $opcion = $_POST['opcion']; //obtener valor de la opción para controlar eventos
+    $opcion = $_POST['opcion']; // Obtener valor de la opción para controlar eventos
 
-    //guardar
-        if($opcion == "guardar")
-        {   
-            $rut = $_POST['rut'];
+        // Guardar
+        if ($opcion == "guardar") {   
             $nombre = $_POST['nombre'];
-            $apellido = $_POST['apellido'];
-            $usuario = $_POST['usuario'];
-            $clave = $_POST['clave'];
-            $estado = $_POST['estado'];
-            $rol = $_POST['rol']; 
-
-            if($rut != "" && $nombre != "" && $apellido != "" && $usuario != "" && $clave != "" && $estado!= "" && $rol != ""){
-
-                $trabajador = new Trabajador();
-                try{
-
-                    $resultado = $trabajador->agregarTrabajador($rut,$nombre,$apellido,$usuario,$clave,$estado,$rol);
-                    if($resultado > 0){
-                    echo "Se agregó al trabajador: ".$nombre." ".$apellido;
-                    }
-
-                }
-                catch(Exception $e)
-                {
-                    echo "Error, no se puede guardar al trabajador, asegurese que el rut: ".$rut." no se encuentre registrado";
-                }     
-            }   
-
+            $categoria = $_POST['categoria'];
+            $perecible = $_POST['perecible'];
+            $formato = $_POST['formato'];
+            $costo = $_POST['costo'];
             
+            //especificar variable nula, por si no suben imagen
+            $ruta_imagen = null;
+            
+            if (isset($_FILES["imagen"])) {
+                $imagen = $_FILES["imagen"];
+                $nombre_imagen = $imagen["name"];
+                $ruta_imagen = "../public/imagenes/".$nombre_imagen;
                 
+                // mover el archivo a la ruta especificada en carpeta imagenes
+                if (move_uploaded_file($imagen["tmp_name"], $ruta_imagen)) {
+                    echo "La imagen se ha subido correctamente a: $ruta_imagen";
+                } else {
+                    $ruta_imagen = null;
+                    echo "Error al subir la imagen.";
+                }
+            } else {
+                echo "Error: No se ha recibido la imagen.";
+            }
+            
+            if ($nombre != "" && $categoria != "" && $perecible != "" && $formato != "" && $costo != "") {
+                $insumo = new Insumos();
+                try {
+                    $resultado = $insumo->agregarInsumo($nombre, $perecible,$costo, $ruta_imagen, $categoria, $formato);
+                    if ($resultado > 0) {
+                        echo "<script>alert('Se agregó el insumo: ".$nombre."');</script>";
+                    } else {
+                        echo "<script>alert('No se pudo agregar el insumo: ".$nombre."');</script>";
+                    }
+                } catch (Exception $e) {
+                    echo "<script>alert('Error, no se pudo guardar el insumo: ".$e->getMessage()."');</script>";
+                }
+            }
         }
+
+
         
         else{
 
             echo
                 '
                 <tr>
-                    <th>Id usuario</th>
-                    <th>Rut</th>
+                    <th>#</th>
+                    <th>Imagen</th>
                     <th>Nombre</th>
-                    <th>apellido</th>
-                    <th>Usuario</th>
-                    <th>Clave</th>
-                    <th>Estado</th>
-                    <th>Tipo de usuario</th>
+                    <th>Categoria</th>
+                    <th>Perecible/th>
+                    <th>Formato</th>
+                    <th>Costo</th>
                     <th>Editar</th> 
                     <th>Elimnar</th> 
                 </tr>
