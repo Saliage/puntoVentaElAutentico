@@ -12,12 +12,12 @@ error_reporting(E_ALL);
 function get_ws($data,$method,$type,$endpoint){
     $curl = curl_init();
     if($type=='live'){
-		$TbkApiKeyId='597055555541';
-		$TbkApiKeySecret='579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C';
-       $url="https://webpay3g.transbank.cl".$endpoint;//Live
+      $TbkApiKeyId='597055555541';
+      $TbkApiKeySecret='579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C';
+      $url="https://webpay3g.transbank.cl".$endpoint;//Live
     }else{
-		$TbkApiKeyId='597055555541';
-		$TbkApiKeySecret='579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C';
+      $TbkApiKeyId='597055555541';
+      $TbkApiKeySecret='579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C';
         $url="https://webpay3gint.transbank.cl".$endpoint;//Testing
     }
     //echo $url;
@@ -245,11 +245,11 @@ switch ($action) {
         <div class="container">
           <div class="vertical-center">
               <div class="lds-hourglass"></div>
-              <img src="WebpayPlus_FB_300px.png">
+              <img src="././">
               <p><?php echo $message; ?></p>
                 <?php if (strlen($url_tbk)) { ?>
                 <form name="brouterForm" id="brouterForm"  method="POST" action="<?=$url_tbk?>" style="display:block;">
-                  <input type="hidden" name="token_ws" value="<?=$token?>" />
+                  <input type="hidden" name="TBK_TOKEN" value="<?=$token?>" />
                   <input type="submit" value="<?=(($submit)? $submit : 'Cargando...')?>" style="border: 1px solid #6b196b;
     border-radius: 4px;
     background-color: #6b196b;
