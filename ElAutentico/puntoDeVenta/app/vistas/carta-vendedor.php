@@ -7,6 +7,7 @@
       header('Location:login.php');
     }
     require('../../vendor/autoload.php');
+    require('../../transbank-sdk-php-master/examples/webpay-plus/index.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
