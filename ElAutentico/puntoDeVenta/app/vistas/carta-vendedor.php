@@ -502,7 +502,7 @@
         <div class="popup-contenido">
             <h2>Medio de pago:</h2>
             <button class="boton-pago" onclick="realizarPago('Efectivo')">Efectivo</button>
-            <button class="boton-pago" onclick="realizarPago('Tarjeta')">Tarjeta</button>
+            <button class="boton-pago" href="../../transbank-sdk-php-master/examples/webpay-plus/index.php?action=create" onclick="realizarPago('Tarjeta')">Tarjeta</button>
         </div>
      </div>
     <!-- JavaScript para manejar el evento de clic y agregar/eliminar la clase "seleccionado" al elemento seleccionado. -->
