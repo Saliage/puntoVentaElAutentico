@@ -1,0 +1,7 @@
+{
+    "name": "tu/nombre-de-proyecto",
+    "require": {
+        "ralouphie/getallheaders": "^3.0"
+        // Agrega otras dependencias si las tienes
+    }
+}
