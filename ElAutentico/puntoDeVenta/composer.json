@@ -1,5 +1,5 @@
 {
     "require": {
-        "transbank/transbank-sdk": "2.0"
+        "puntoVentaElAutentico/ElAutentico": "2.0"
     }
 }
