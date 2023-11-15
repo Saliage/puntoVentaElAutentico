@@ -126,7 +126,7 @@ switch ($action) {
                     "username": "'.$username.'",
                     "tbk_user": "'.$tbk_user.'",
                     "buy_order": "'.$buy_order.'",
-                    "details" : [
+                    "details": [
                       {
                         "commerce_code": "597055555542",
                         "buy_order": "'.$buy_order_tienda1.'",
