@@ -5,12 +5,12 @@ require_once('conexion.php');
 class VentaPromocion {
 
     // Agregar venta promoción
-    public function agregarVentaPromocion($id_venta, $id_promocion) {
+    public function agregarVentaPromocion($id_venta, $id_promocion, $cantidad) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "INSERT INTO venta_promocion (id_venta, id_promocion)
-                     VALUES ('$id_venta', '$id_promocion')";
+        $consulta = "INSERT INTO venta_promocion (cantidad,id_venta, id_promocion)
+                     VALUES ('$cantidad','$id_venta', '$id_promocion')";
 
         $resultado = $conn->query($consulta);
 
@@ -42,11 +42,12 @@ class VentaPromocion {
     }
 
     // Actualizar datos de venta promoción
-    public function actualizarVentaPromocion($id, $id_venta, $id_promocion) {
+    public function actualizarVentaPromocion($id, $cantidad, $id_venta, $id_promocion) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
         $consulta = "UPDATE venta_promocion SET
+                    cantidad = '$cantidad',
                     id_venta = '$id_venta',
                     id_promocion = '$id_promocion'
                     WHERE id_venta_promocion = '$id'";
