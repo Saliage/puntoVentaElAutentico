@@ -955,7 +955,27 @@ function agregarInsumo(event) {
 }
 
 function mostrarInsumos(){
+    var parametros =
+    {
+        "opcion":"mostar"
+    }
 
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_insumo.php',
+        type: 'POST',
+        
+        beforesend: function()
+        {
+        $('#mostrarInsumos').html("Error de comunicación");
+        },
+
+        success: function(mensaje)
+        {
+        $('#mostrarInsumos').html(mensaje);
+        }
+    });
 }
+
 
 
