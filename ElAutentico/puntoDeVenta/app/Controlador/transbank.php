@@ -1,6 +1,13 @@
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
+
+
+
+
+
+
+
 error_reporting(E_ALL);
 function get_ws($data,$method,$type,$endpoint){
     $curl = curl_init();
@@ -13,6 +20,7 @@ function get_ws($data,$method,$type,$endpoint){
 		$TbkApiKeySecret='579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C';
         $url="https://webpay3gint.transbank.cl".$endpoint;//Testing
     }
+    //echo $url;
     curl_setopt_array($curl, array(
       CURLOPT_URL => $url,
       CURLOPT_RETURNTRANSFER => true,
@@ -42,94 +50,108 @@ $baseurl = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
 $url="https://webpay3g.transbank.cl/";//Live
 $url="https://webpay3gint.transbank.cl/";//Testing
 
-$action = isset($_GET["action"]) ? $_GET["action"] : 'init';
+$action = isset($_GET["action"]) ? $_GET["action"] : 'inscription';
 $message=null;
 $post_array = false;
 
 switch ($action) {
     
-    case "init":
-        $message.= 'init';
-        $buy_order=rand();
-        $session_id=rand();
-        $amount=15000;
-        $return_url = $baseurl."?action=getResult";
-		$type="sandbox";
+    case "inscription":
+        $message.= 'inscription';
+        $username='juanperez';
+        $email='juan.perez@gmail.com';
+        $return_url = $baseurl."?action=getResultInscription";
+        $type="sandbox";
             $data='{
-                    "buy_order": "'.$buy_order.'",
-                    "session_id": "'.$session_id.'",
-                    "amount": '.$amount.',
-                    "return_url": "'.$return_url.'"
+                    "username": "'.$username.'",
+                    "email": "'.$email.'",
+                    "response_url": "'.$return_url.'"
                     }';
             $method='POST';
-            $endpoint='/rswebpaytransaction/api/webpay/v1.0/transactions';
+            $endpoint='/rswebpaytransaction/api/oneclick/v1.2/inscriptions';
             
             $response = get_ws($data,$method,$type,$endpoint);
             $message.= "<pre>";
             $message.= print_r($response,TRUE);
             $message.= "</pre>";
-            $url_tbk = $response->url;
+            $url_tbk = $response->url_webpay;
             $token = $response->token;
             $submit='Continuar!';
 
     break;
 
-    case "getResult":
+    case "getResultInscription":
         
-        $message.= "<pre>".print_r($_POST,TRUE)."</pre>";
-        if (!isset($_POST["token_ws"]))
+        $message.= "<pre>".print_r($_GET,TRUE)."</pre>";
+        if (!isset($_GET["TBK_TOKEN"]))
             break;
 
         /** Token de la transacción */
-        $token = filter_input(INPUT_POST, 'token_ws');
+        $token = filter_input(INPUT_GET, 'TBK_TOKEN');
         
         $request = array(
-            "token" => filter_input(INPUT_POST, 'token_ws')
+            "token" => filter_input(INPUT_GET, 'TBK_TOKEN')
         );
         
         $data='';
 		$method='PUT';
 		$type='sandbox';
-		$endpoint='/rswebpaytransaction/api/webpay/v1.0/transactions/'.$token;
+		$endpoint='/rswebpaytransaction/api/oneclick/v1.2/inscriptions/'.$token;
 		
         $response = get_ws($data,$method,$type,$endpoint);
        
         $message.= "<pre>";
         $message.= print_r($response,TRUE);
         $message.= "</pre>";
-        
-        $url_tbk = $baseurl."?action=getStatus";
-        $submit='Ver Status!';
-        
-        break;
-        
-    case "getStatus":
-        
-        if (!isset($_POST["token_ws"]))
-            break;
 
-        /** Token de la transacción */
-        $token = filter_input(INPUT_POST, 'token_ws');
+        $username='juanperez';
+        $url_tbk = $baseurl."?action=transactions&tbk_user=".$response->tbk_user.'username='.$username;
+        $submit='Pagar una orden!';
         
-        $request = array(
-            "token" => filter_input(INPUT_POST, 'token_ws')
-        );
-        
-        $data='';
-		$method='GET';
-		$type='sandbox';
-		$endpoint='/rswebpaytransaction/api/webpay/v1.0/transactions/'.$token;
-		
-        $response = get_ws($data,$method,$type,$endpoint);
-       
-        $message.= "<pre>";
-        $message.= print_r($response,TRUE);
-        $message.= "</pre>";
-        
-        $url_tbk = $baseurl."?action=refund";
-        $submit='Refund!';
         break;
         
+    case "transactions":
+      $message.='transaction';
+      $buy_order=rand();
+      $buy_order_tienda1=rand();
+      $buy_order_tienda2=rand();
+      $session_id=rand();
+      $tbk_user = $_GET['tbk_user'];
+      $username = $_GET['username'];
+
+      $amount=15000;
+      $return_url = $baseurl."?action=getTransactionsResult";
+      $type="sandbox";
+          $data='{
+                    "username": "'.$username.'",
+                    "tbk_user": "'.$tbk_user.'",
+                    "buy_order": "'.$buy_order.'",
+                    "details" : [
+                      {
+                        "commerce_code": "597055555542",
+                        "buy_order": "'.$buy_order_tienda1.'",
+                        "amount": 1000,
+                        "installments_number": 1
+                      },{
+                        "commerce_code": "597055555543",
+                        "buy_order": "'.$buy_order_tienda2.'",
+                        "amount": 500,
+                        "installments_number": 1
+                      }]
+                  }';
+          $method='POST';
+          $endpoint='/rswebpaytransaction/api/oneclick/v1.2/transactions';
+
+          $response = get_ws($data, $method,$type,$endpoint);
+          $message.= "<pre>";
+          $message.= print_r($response,TRUE);
+          $message.= "</pre>";
+          $url_tbk= null;
+          $token = $tbk_user;
+           //$submit='Continuar!';
+
+    break;
+    
     case "refund":
         
         if (!isset($_POST["token_ws"]))
@@ -145,9 +167,9 @@ switch ($action) {
         $data='{
                   "amount": '.$amount.'
                 }';
-		$method='POST';
-		$type='sandbox';
-		$endpoint='/rswebpaytransaction/api/webpay/v1.0/transactions/'.$token.'/refunds';
+		    $method='POST';
+		    $type='sandbox';
+		    $endpoint='/rswebpaytransaction/api/webpay/v1.0/transactions/'.$token.'/refunds';
 		
         $response = get_ws($data,$method,$type,$endpoint);
        
@@ -156,7 +178,7 @@ switch ($action) {
         $message.= "</pre>";
         $submit='Crear nueva!';
         $url_tbk = $baseurl;
-        break;        
+       break;        
 }        
 ?>
 
