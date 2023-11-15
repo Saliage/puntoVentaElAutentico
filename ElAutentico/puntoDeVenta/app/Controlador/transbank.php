@@ -12,11 +12,11 @@ error_reporting(E_ALL);
 function get_ws($data,$method,$type,$endpoint){
     $curl = curl_init();
     if($type=='live'){
-      $TbkApiKeyId='597055555532';
+      $TbkApiKeyId='597055555541';
       $TbkApiKeySecret='579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C';
       $url="https://webpay3g.transbank.cl".$endpoint;//Live
     }else{
-      $TbkApiKeyId='597055555532';
+      $TbkApiKeyId='597055555541';
       $TbkApiKeySecret='579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C';
         $url="https://webpay3gint.transbank.cl".$endpoint;//Testing
     }
@@ -128,7 +128,7 @@ switch ($action) {
                     "buy_order": "'.$buy_order.'",
                     "details": [
                       {
-                        "commerce_code": "597055555542",
+                        "commerce_code": "597055555543",
                         "buy_order": "'.$buy_order_tienda1.'",
                         "amount": 1000,
                         "installments_number": 1
