@@ -94,9 +94,9 @@ switch ($action) {
         );
         
         $data='';
-		$method='PUT';
-		$type='sandbox';
-		$endpoint='/rswebpaytransaction/api/oneclick/v1.2/inscriptions/'.$token;
+		    $method='PUT';
+		    $type='sandbox';
+		    $endpoint='/rswebpaytransaction/api/oneclick/v1.2/inscriptions/'.$token;
 		
         $response = get_ws($data,$method,$type,$endpoint);
        
@@ -105,7 +105,7 @@ switch ($action) {
         $message.= "</pre>";
 
         $username='juanperez';
-        $url_tbk = $baseurl."?action=transactions&tbk_user=".$response->tbk_user.'username='.$username;
+        $url_tbk = $baseurl."?action=transactions&tbk_user=".$response->tbk_user.'&username='.$username;
         $submit='Pagar una orden!';
         
         break;
