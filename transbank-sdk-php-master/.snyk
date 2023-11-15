@@ -1,0 +1,9 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+exclude:
+  global:
+    - docker-compose.yml
+    - examples/**
+    - Dockerfile
+version: v1.25.0
+ignore: {}
+patch: {}
