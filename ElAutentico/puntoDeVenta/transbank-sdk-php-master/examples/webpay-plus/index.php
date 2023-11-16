@@ -21,17 +21,13 @@ if (!$action) {
 |--------------------------------------------------------------------------
 / Apenas entramos esta página, con fines demostrativos,
 */
-if ($_GET['action'] === 'create' && isset($_GET['monto'])) {
-    // Obtener el monto desde el parámetro de la URL
-    $monto = $_GET['monto'];
-
-    // Usar el monto en la creación de la transacción
-    $createResponse = $transaction->create('buyOrder123', uniqid(), $monto, 'http://elautentico.cl/puntoVentaElAutentico/ElAutentico/puntoDeVenta/transbank-sdk-php-master/examples/webpay-plus/index.php?action=result');
+if ($_GET['action'] === 'create') {
+    $createResponse = $transaction->create('buyOrder123', uniqid(), 3000, 'http://elautentico.cl/puntoVentaElAutentico/ElAutentico/puntoDeVenta/transbank-sdk-php-master/examples/webpay-plus/index.php?action=result');
 
     // Acá guardar el token recibido ($createResponse->getToken()) en tu base de datos asociado a la orden o
     // lo que se esté pagando en tu sistema
 
-    // Redirigir al formulario de Webpay por GET, enviando a la URL recibida con el token recibido.
+    //Redirigimos al formulario de Webpay por GET, enviando a la URL recibida con el token recibido.
     $redirectUrl = $createResponse->getUrl().'?token_ws='.$createResponse->getToken();
     header('Location: '.$redirectUrl, true, 302);
     exit;
