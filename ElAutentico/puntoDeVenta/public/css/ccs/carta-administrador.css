@@ -80,15 +80,6 @@ body::-webkit-scrollbar-thumb {
   transition: 0.5s;
   z-index: 100;
 }
-.nav-linki {
-  display: flex;
-  align-items: center;
-  height: 5rem;
-  color: #ff0000d7;
-  text-decoration: none;
-  transition: 0.5s;
-  z-index: 100;
-}
 .nav-link-menu {
   display: flex;
   align-items: center;
@@ -97,19 +88,8 @@ body::-webkit-scrollbar-thumb {
   text-decoration: none;
   transition: 0.5s;
 }
-.nav-linki-menu {
-  display: flex;
-  align-items: center;
-  height: 5rem;
-  color: #ff0000d7;
-  text-decoration: none;
-  transition: 0.5s;
-}
 .nav-link:hover {
   color: #000dffd7;
-}
-.nav-linki.barra-busqueda {
-  color: #ff0000d7;
 }
 .link-text {
   display: none;
@@ -123,11 +103,6 @@ body::-webkit-scrollbar-thumb {
   font-size: 2.2rem;
   margin-left: 1.5rem;
   color: #000dffd7;
-}
-.linki-icon-io {
-  font-size: 2.2rem;
-  margin-left: 1.5rem;
-  color: #ff0000d7;
 }
 .logo {
   font-weight: bold;
