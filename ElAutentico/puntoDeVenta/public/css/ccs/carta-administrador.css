@@ -84,15 +84,12 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   align-items: center;
   height: 5rem;
-  color: #ff0000d7;
+  color: var(--text-secondary);
   text-decoration: none;
   transition: 0.5s;
 }
 .nav-link:hover {
   color: #000dffd7;
-}
-.nav-linki:hover {
-  color: #ff0000d7;
 }
 .link-text {
   display: none;
@@ -107,7 +104,7 @@ body::-webkit-scrollbar-thumb {
   margin-left: 1.5rem;
   color: #000dffd7;
 }
-.linki-icon-io {
+.link-icon-oe {
   font-size: 2.2rem;
   margin-left: 1.5rem;
   color: #ff0000d7;
