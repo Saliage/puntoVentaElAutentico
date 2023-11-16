@@ -484,7 +484,7 @@
                 <div class="subtotal">
                     <div class="subtotal-carrito" id="subtotalContainer">
                         <h3>SUBTOTAL</h3>
-                        <h3 id="subtotalAmount">$3.000</h3>
+                        <h3 id="subtotalAmount">$4.000</h3>
                     </div>
                 </div>
                 
