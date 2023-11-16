@@ -482,7 +482,7 @@
     
                 <!-- Sección "Subtotal" -->
                 <div class="subtotal">
-                    <div class="subtotal-carrito" id="subtotalContainer">
+                    <div class="subtotal-carrito">
                         <h3>SUBTOTAL</h3>
                         <h3 id="subtotalAmount">$4.000</h3>
                     </div>
@@ -501,8 +501,8 @@
     <div class="popup" id="popup">
         <div class="popup-contenido">
             <h2>Medio de pago:</h2>
-            <a href="" onclick="realizarPago('Efectivo')" class="boton-pago">Tarjeta</a>
-            <a href="../../transbank-sdk-php-master/examples/webpay-plus/index.php?action=create" class="boton-pago">Tarjeta</a>
+            <a href="" onclick="realizarPago('Efectivo')" class="boton-pago" >Efectivo</a>
+            <a href="../../transbank-sdk-php-master/examples/webpay-plus/index.php?action=create" class="boton-pago" onclick="actualizarMonto() id="enlacePago">Tarjeta</a>
         </div>
      </div>
     <!-- JavaScript para manejar el evento de clic y agregar/eliminar la clase "seleccionado" al elemento seleccionado. -->
@@ -532,7 +532,7 @@
         const montoSubtotal = document.getElementById('subtotalAmount').innerText;
 
         // Actualizar el enlace con el nuevo monto
-        const enlacePago = document.querySelector('.boton-pago-tarjeta'); // Asegúrate de tener una clase adecuada
+        const enlacePago = document.getElementById('enlacePago');
         enlacePago.href = `../../transbank-sdk-php-master/examples/webpay-plus/index.php?action=create&monto=${montoSubtotal}`;
         }
 
