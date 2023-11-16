@@ -503,7 +503,7 @@
             <h2>Medio de pago:</h2>
             <p></p>
             <a href="" onclick="realizarPago('Efectivo')" class="boton-pago" >Efectivo</a>
-            <a href="../../transbank-sdk-php-master/examples/webpay-plus/index.php?action=create" class="boton-pago" onclick="actualizarMonto() id="enlacePago">Tarjeta</a>
+            <a href="../../transbank-sdk-php-master/examples/webpay-plus/index.php?action=create" class="boton-pago" onclick="actualizarMonto()" id="enlacePago">Tarjeta</a>
         </div>
      </div>
     <!-- JavaScript para manejar el evento de clic y agregar/eliminar la clase "seleccionado" al elemento seleccionado. -->
