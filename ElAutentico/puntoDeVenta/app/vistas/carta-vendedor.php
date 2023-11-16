@@ -482,9 +482,9 @@
     
                 <!-- Sección "Subtotal" -->
                 <div class="subtotal">
-                    <div class="subtotal-carrito">
+                    <div class="subtotal-carrito" id="subtotalContainer">
                         <h3>SUBTOTAL</h3>
-                        <h3>$3.000</h3>
+                        <h3 id="subtotalAmount">$3.000</h3>
                     </div>
                 </div>
                 
@@ -501,8 +501,7 @@
     <div class="popup" id="popup">
         <div class="popup-contenido">
             <h2>Medio de pago:</h2>
-            <button class="boton-pago" onclick="realizarPago('Efectivo')">Efectivo</button>
-            <button class="boton-pago" href="../../transbank-sdk-php-master/examples/webpay-plus/index.php?action=create" onclick="realizarPago('Tarjeta')">Tarjeta</button>
+            <a href="" onclick="realizarPago('Efectivo')" class="boton-pago">Tarjeta</a>
             <a href="../../transbank-sdk-php-master/examples/webpay-plus/index.php?action=create" class="boton-pago">Tarjeta</a>
         </div>
      </div>
@@ -525,9 +524,16 @@
         const popup = document.getElementById('popup');
         popup.style.display = 'flex';
 
-            // Reproducir el sonido cuando se muestra el popup
-            const audio = new Audio('../../public/music/sonido_de_dinero.mp3');
-            audio.play();
+        // Reproducir el sonido cuando se muestra el popup
+        const audio = new Audio('../../public/music/sonido_de_dinero.mp3');
+        audio.play();
+
+        // Obtener el monto actual del subtotal
+        const montoSubtotal = document.getElementById('subtotalAmount').innerText;
+
+        // Actualizar el enlace con el nuevo monto
+        const enlacePago = document.querySelector('.boton-pago-tarjeta'); // Asegúrate de tener una clase adecuada
+        enlacePago.href = `../../transbank-sdk-php-master/examples/webpay-plus/index.php?action=create&monto=${montoSubtotal}`;
         }
 
         // Función para realizar el pago
