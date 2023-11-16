@@ -75,7 +75,7 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   align-items: center;
   height: 5rem;
-  color: var(--text-primary);
+  color: #ff0000d7;
   text-decoration: none;
   transition: 0.5s;
   z-index: 100;
