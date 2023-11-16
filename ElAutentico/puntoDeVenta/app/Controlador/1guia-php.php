@@ -1,64 +1,70 @@
+<?php 
+//crear variable de ejemplo
+$saludo = "Hola Mundo"
+
+?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validación de RUT</title>
-    <script>
-        function validarRut(rut) {
-            // Eliminar puntos y guiones del RUT
-            rut = rut.replace(/[.-]/g, '');
-
-            // Verificar si el RUT tiene el formato correcto
-            if (!/^[0-9]{1,9}[0-9Kk]$/.test(rut)) {
-                return false;
-            }
-
-            // Obtener el dígito verificador actual
-            var dv = rut.slice(-1);
-            rut = rut.slice(0, -1);
-
-            // Calcular el dígito verificador esperado
-            var suma = 0;
-            var multiplo = 2;
-
-            for (var i = rut.length - 1; i >= 0; i--) {
-                suma += rut[i] * multiplo;
-
-                if (multiplo < 7) {
-                    multiplo++;
-                } else {
-                    multiplo = 2;
-                }
-            }
-
-            var digitoVerificadorCalculado = 11 - (suma % 11);
-
-            // Convertir el dígito calculado a texto
-            digitoVerificadorCalculado = (digitoVerificadorCalculado === 10) ? 'K' : String(digitoVerificadorCalculado);
-
-            // Comparar el dígito verificador actual con el calculado
-            return dv.toUpperCase() === digitoVerificadorCalculado.toUpperCase();
-        }
-
-        function validarFormulario() {
-            var rutInput = document.getElementById('rut');
-            var rut = rutInput.value;
-
-            if (validarRut(rut)) {
-                alert('El RUT es válido. Puedes enviar el formulario al servidor.');
-                // Aquí puedes agregar lógica adicional para enviar el formulario al servidor
-            } else {
-                alert('El RUT no es válido. Por favor, corrige el RUT.');
-            }
-        }
-    </script>
+    <title>tu pagina</title>
 </head>
 <body>
-    <form>
-        <label for="rut">RUT:</label>
-        <input type="text" id="rut" name="rut" placeholder="12345678-9">
-        <button type="button" onclick="validarFormulario()">Enviar</button>
-    </form>
+    aquí se agrega el contenido de la pagina en html con las etiquetas de siempre
+
+    aqui puedo llamar una variable en php : <?php echo $saludo ?> 
+
 </body>
+
+<!-- crear cosigo js para ser llamado desde php -->
+<script>
+    function mostrarMensaje(){
+        alert("hola mundo");
+    }
+
+</script>
+
 </html>
+
+
+
+<!-- ahora si necesitas mostrar codigo JS o html desde php se hace así:
+
+<?php
+
+//usar JS en PHP
+echo '<script>mostrarMensaje();</script>'; //llama a ala función escrita más arriba
+
+echo'
+    <script>
+
+    function mostrarNuevoMensaje(){
+
+        // en esta zona puedo crear todo el codigo en js que necesite
+
+        alert("Este es otro mensaje creado en PHP, con estructura de JS");
+    }
+    
+    
+    </script>
+'; //  <--  recuerda siempre cerrar con el maldito ;
+
+//usar HTML desde PHP
+echo'
+
+<h1>Este es un mensaje en H1 desde PHP</h1><br>
+
+<!-- crear formulario HTML desde PHP -->
+
+<form>
+    <label for="name">Nombre:</label>
+    <input type="text" name="nombre">
+    <input type="submit" value="enviar>
+</form>
+
+
+'; // siempre cerrar esa cosa
+
+?>
+

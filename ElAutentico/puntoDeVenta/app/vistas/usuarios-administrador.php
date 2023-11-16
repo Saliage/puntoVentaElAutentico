@@ -134,7 +134,7 @@
                 <div id="validaRUT" style="color: red;"></div>    
                 <div class="form-element">
                     <label for="rut">Rut:</label>
-                    <input type="text" name="rut" id="rut" autocomplete="off" oninput="validarRutTxt()" placeholder="12345678-9" minlength="9" maxlength="10"  pattern="[0-9kK\-]+" title="Rut con sin puntos y con guion" required>                    
+                    <input type="text" name="rut" id="rut" autocomplete="off" oninput="validarRutTxt()" placeholder="12345678-9" minlength="9" maxlength="10"  pattern="^[0-9]+-[0-9kK]$|^[0-9]+[kK]-[0-9]$"  title="Rut con sin puntos y con guion" required>                    
                 </div>                
                 <div class="form-element">
                     <label for="nombre">Nombre:</label>

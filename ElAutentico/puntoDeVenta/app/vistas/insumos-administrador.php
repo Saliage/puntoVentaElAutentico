@@ -26,7 +26,7 @@
     <script src="../../public/js/scripts.js"></script>
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../../public/js/js-maestro.js"></script>
-    <script src="../../public/js/inventario-administrador.js"></script>
+    <script src="../../public/js/insumos-administrador.js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>
@@ -118,46 +118,12 @@
                     <button class="boton-pagar2" onclick="mostrarPopup()">Añadir insumo</button>
                     <button class="boton-pagar2" onclick="mostrarPopup2()">Categorias</button>
                     <button class="boton-pagar2" onclick="mostrarPopup8()">Formatos</button>
-                    <button class="boton-pagar2" onclick="mostrarPopup3()">Zonas</button>
-                    <button class="boton-pagar2" onclick="mostrarPopup4()">Almacenes</button>
-                    <button class="boton-pagar2" onclick="mostrarPopup5()">Proovedores</button>
-                    <button class="boton-pagar"  onclick="mostrarPopup6()">Entrada producto</button>
-                    <button class="boton-pagar3" onclick="mostrarPopup7()">Salida Producto</button>
-                        <p></p>   
+                    <p></p>   
                     </div>
                 </thead>
                 <tbody>                
-                    <div id="listarInsumos"></div>
-                    <tr>
-                        <td>#</td>
-                        <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
-                        <td>Tomates</td>
-                        <td>001</td>
-                        <td>20</td>
-                        <td>2023-12-31</td>
-                        <td>$300</td>
-                        <td>Verduras</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
-                        <td>Tomates</td>
-                        <td>001</td>
-                        <td>20</td>
-                        <td>2023-12-31</td>
-                        <td>$300</td>
-                        <td>Verduras</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                </tbody>
+                <div id="mostrarInsumos"></div>
+                    
             </table>
         </div>
     </main>
@@ -189,16 +155,12 @@
                         <div id="listarFormatos"></div>
                     </div>
                     <div class="form-element">
-                        <label for="costo">Costo:</label>
-                        <input type="number" min="0" name="costo" id="costo" placeholder="$ precio costo" required="">
-                    </div>
-                    <div class="form-element">
                         <label for="imagen">Imagen:</label>
                         <input type="file" name="imagen" id="imagen" accept=".jpg, .jpeg, .png">
                     </div>                
                     <input class="boton-pagar-mas" type="submit" name="agregar" value="Agregar">
                 </form>
-                <div id="mostrarInsumos"></div>
+                
 
             <div class="cerrar-popup" onclick="cerrarPopup()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
@@ -229,58 +191,6 @@
     </div>
 
 <!----------------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------                 GESTION ZONAS                 -------------------------------------------------------------
------------------------------------------------------------------------------------------------------------------------------------------------------>
-
-    <div class="popup" id="popup3">
-        <div class="popup-contenido">
-            <h2>Zonas</h2>
-            
-            <div class="formulario" id="formZonas">
-                <div>
-                    <label for="nombreZonaTxt">Nombre:</label>
-                    <input type="text" name="nombre" id="nombreZonaTxt" pattern=".{5,}"   required>
-                </div>
-                <div>
-                    <label for="almacen_id">Almacen:</label>
-                    <div id="slectAlmacenes" style="display: inline;"></div> <!-- genera un select vía AJAX desde el servidor con el contenido de la BD -->                    
-                </div>
-                <button onclick="agregarZona();"><ion-icon name="add-circle-outline" ></ion-icon></button>
-            </div>
-            <hr>
-                <tbody>
-                    <div id="mostrarZonas"></div>
-                </tbody>
-            </table>
-            <div class="cerrar-popup" onclick="cerrarPopup3()"><ion-icon name="close-circle"></ion-icon></div>
-        </div>
-    </div>
-
-<!----------------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------                GESTION ALMACENES              -------------------------------------------------------------
------------------------------------------------------------------------------------------------------------------------------------------------------>
-
-    <div class="popup" id="popup4">
-        <div class="popup-contenido">
-            <h2>Almacenes</h2>
-            
-            <div class="formulario" id="formAlmacenes">
-                <div>
-                    <label for="nombreAlmacenTxt">Nombre:</label>
-                    <input type="text" name="nombre" id="nombreAlmacenTxt" pattern=".{5,}"  required>
-                </div>
-                <button onclick="agregarAlmacen();"><ion-icon name="add-circle-outline" ></ion-icon></button>
-            </div>
-            <hr>
-                <tbody>
-                    <div id="verAlmacenes"></div>
-                </tbody>
-            </table>
-            <div class="cerrar-popup" onclick="cerrarPopup4()"><ion-icon name="close-circle"></ion-icon></div>
-        </div>
-    </div>
-
-<!----------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------                GESTION FORMATOS              -------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------->
 
@@ -302,93 +212,6 @@
                 </tbody>
             </table>
             <div class="cerrar-popup" onclick="cerrarPopup8()"><ion-icon name="close-circle"></ion-icon></div>
-        </div>
-    </div>
-
-<!----------------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------               GESTION PROVEEDORES             -------------------------------------------------------------
------------------------------------------------------------------------------------------------------------------------------------------------------>
-
-    <div class="popup" id="popup5">
-        <div class="popup-contenido">
-            <h2>Proovedores</h2>
-
-                <form id="formAgregarProveedor" onsubmit="return agregarProveedor(event)" method="post" class="formulario">
-                
-                    <div class="form-element">
-                        <label for="nombre">Nombre:</label>
-                        <h3>* </h3><input type="text" name="nombre" id="nombre" placeholder="Nombre"  pattern="[A-Za-z\d]{3,}$" title="Nombre de al menos 3 caracteres">
-                    </div>                      
-                    <div class="form-element">
-                        <label for="rut">Rut:</label>
-                        <h3>* </h3><input type="text" name="rut" id="rut" placeholder="rut" minlength="9" maxlength="11"  pattern="([0-9kK\-]{10,})"  title="Ingrese un rut valido sin puntos y con guion" required>
-                    </div>                                      
-                    <div class="form-element"><label for="fono">Fono:</label>
-                        <input type="text" name="fono" id="fono" pattern="[0-9\+]{8,12}" placeholder="Fono" title="Ingrese número telefónico válido" >
-                    </div>    
-                    <div class="form-element">
-                        <label for="emailProveedor">Email:</label>
-                        <input type="email" name="email" id="email" placeholder="Correo electrónico" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.\.[a-zA-Z]{2,}$" title="Ingresa un correo electrónico válido en formato user@dominio.xx">
-                    </div>
-                    <div class="form-element">
-                        <label for="direccion">Dirección:</label>
-                        <input type="text" name="direccion" id="direccion" placeholder="Dirección" minlength="8">
-                    </div>                        
-                    <div id="mostrarRoles" class="form-element"> <!-- listar roles en combobox -->
-                       
-                    </div>
-                    <input class="boton-pago" type="submit" name="agregar" value="Agregar">
-                </form>
-
-                <div id="verProveedores"></div>
-            </table>
-            <div class="cerrar-popup" onclick="cerrarPopup5()"><ion-icon name="close-circle"></ion-icon></div>
-        </div>
-    </div>
-
-<!----------------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------                 ENTRADA iNSUMO            -------------------------------------------------------------
------------------------------------------------------------------------------------------------------------------------------------------------------>$_COOKIE
-
-    <div class="popup" id="popup6">
-        <div class="popup-contenido">
-            <h2>Registrar entrada insumo</h2>
-            <P></P>
-            <form action="" method="POST" class="formulario">
-
-                <div class="form-element">
-                    <label for="user">Cantidad.</label>
-                    <input type="number" min="1" name="stock" placeholder="Cantidad " required>
-                  </div>
-
-                <button class="boton-pagar-mas" type="submit" name="agregar" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
-
-              </form>
-                                
-            <div class="cerrar-popup" onclick="cerrarPopup6()"><ion-icon name="close-circle"></ion-icon></div>
-        </div>
-    </div>
-
-<!----------------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------                  SALIDA INSUMO             -------------------------------------------------------------
------------------------------------------------------------------------------------------------------------------------------------------------------>
-
-    <div class="popup" id="popup7">
-        <div class="popup-contenido">
-            <h2>Registrar salida insumo</h2>
-            <P></P>
-            <form action="" method="POST" class="formulario">
-                
-                <div class="form-element">
-                  <label for="user">Cantidad</label>
-                  <input type="number" min="1" name="stock" placeholder="Cantidad" required>
-                </div>
-
-                <button class="boton-pagar-mas" type="submit" name="agregar" value="Agregar"><ion-icon name="remove-circle-outline"></ion-icon></button>
-
-              </form>
-                                
-            <div class="cerrar-popup" onclick="cerrarPopup7()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
     </div>
 
