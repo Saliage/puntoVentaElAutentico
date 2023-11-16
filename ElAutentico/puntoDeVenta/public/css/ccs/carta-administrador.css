@@ -91,6 +91,9 @@ body::-webkit-scrollbar-thumb {
 .nav-link:hover {
   color: #000dffd7;
 }
+.nav-linki.barra-busqueda {
+  color: #ff0000d7;
+}
 .link-text {
   display: none;
   margin-left: 1.5rem;
@@ -103,6 +106,11 @@ body::-webkit-scrollbar-thumb {
   font-size: 2.2rem;
   margin-left: 1.5rem;
   color: #000dffd7;
+}
+.linki-icon-io {
+  font-size: 2.2rem;
+  margin-left: 1.5rem;
+  color: #ff0000d7;
 }
 .logo {
   font-weight: bold;

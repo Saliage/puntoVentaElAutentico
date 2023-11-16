@@ -64,7 +64,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" onclick="confirmarCerrarSesion();">
+                <a class="nav-linki" onclick="confirmarCerrarSesion();">
                     <span class="link-icon"><ion-icon name="log-in-outline"></ion-icon></i></span>
                     <span class="link-text">Cerrar Sesión</span>
                 </a>
