@@ -119,7 +119,6 @@ function mostrarInsumos(){
 
         success: function(mensaje)
         {
-            alert(mensaje);
         $('#mostrarInsumos').html(mensaje);
         }
     });
@@ -142,6 +141,9 @@ function editarInsumo(id) {
    
 
     // Mostrar el campo de texto y ocultar el span
+    
+    btnEdit.style.display='none';
+    btnOK.style.display='inline';
     imagenIMG.style.display='none';
     imagenInput.style.display='inline';
     nombreSpan.style.display='none';
@@ -152,8 +154,7 @@ function editarInsumo(id) {
     categoriaSelect.style.display='inline';
     formatoSpan.style.display='none';
     formatoSelect.style.display='inline';
-    btnEdit.style.display='none';
-    btnOK.style.display='inline';
+    
     
 
 }
@@ -180,6 +181,7 @@ function guardarInsumoEdit(id){
     parametros.append('categoria', categoriaSelect.value);
     parametros.append('perecible', perecibleSelect.value);
     parametros.append('formato', formatoSelect.value);
+    parametros.append('ruta_imagen', imagenIMG.src);
     parametros.append('imagen', imagenInput.files[0]);
     parametros.append('opcion', 'editar');
 
@@ -206,17 +208,14 @@ function guardarInsumoEdit(id){
         processData: false, //desactivar para que jQuery no convierta FormData en cadena
 
         beforeSend: function () {
-            alert('datos:' + nombre+categoria+perecible+formato+costo+imagenInput.value);
-            mostrarInsumos();
+           mostrarInsumos();
         },
 
         success: function (mensaje) {
-            alert(mensaje);
             mostrarInsumos();
-            document.getElementById("formInsumos").reset(); // Limpia el formulario
         }
     });
-    
+    mostrarInsumos();
 }
 
 function eliminarInsumo(id){

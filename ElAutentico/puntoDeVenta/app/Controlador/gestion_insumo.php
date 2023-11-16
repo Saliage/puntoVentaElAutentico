@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </td>
                     <td>
                         <span  id="nombreSpanI'.$id.'">'.$nombre.'</span>
-                        <input type="text" id="nombreTxtI'.$id.'" style="display: none;">     
+                        <input type="text" id="nombreTxtI'.$id.'" value="'.$nombre.'" style="display: none;">     
                     </td>
                     <td>   
                         <span  id="perecibleSpan'.$id.'">'.$icono.'</span>                        
@@ -144,11 +144,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo '</select>
                     </td>
                     <td>
-                        <ion-icon id="btnInsumoEdit'.$id.'" name="pencil-outline" class="icono-editar" onclick="editarInsumo('.$id.')"></ion-icon>
-                        <button id="guardarInsumoEdit'.$id.'"  style="display:none" onclick="guardarInsumoEdit('.$id.')">OK</button> <!-- inicia oculto-->
+                        <ion-icon id="btnInsumoEdit'.$id.'" name="pencil-outline" class="icono-editar" onclick="editarInsumo('.$id.')"></ion-icon>                        
+                        <button style="display:none" id="guardarInsumoEdit'.$id.'" onclick="guardarInsumoEdit('.$id.')">OK</button> <!-- inicia oculto-->
                     </td>
                     <td>
-                        <ion-icon name="trash-outline" class="icono-eliminar" onclick="eliminarUsuario('.$id.')"></ion-icon>
+                        <ion-icon name="trash-outline" class="icono-eliminar" onclick="eliminarInsumo('.$id.')"></ion-icon>
                     </td> 
                 </tr>
             ';
@@ -165,21 +165,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $perecible = $_POST['perecible'];
         $formato = $_POST['formato'];
 
-        $ruta_imagen = null;
+        //rescatar la ruta de la actual imagen si no fue editada
+        $ruta_imagen = recortarRutaImagen( $_POST['ruta_imagen'] ); // formatea ruta de imagen para coincidir con "../../public/imagenes/nombre_imagen"
 
         if (isset($_FILES["imagen"])) {
             $imagen = $_FILES["imagen"];
             $nombre_imagen = $imagen["name"];
-            $ruta_imagen = "../../public/imagenes/".$nombre_imagen;
+            $ruta_imagen = "../../public/imagenes/".$nombre_imagen; //si se recibe imagen, se actualiza la ruta
     
             if (move_uploaded_file($imagen["tmp_name"], $ruta_imagen)) {
                 echo "La imagen se ha subido correctamente a: ". $ruta_imagen;
             } else {
-                $ruta_imagen = null;
-                echo "Error al subir la imagen. ". $ruta_imagen;
+                echo "Error al subir la imagen. ";
             }
         } else {
-            echo "Error: No se ha recibido la imagen. ".$ruta_imagen;
+            echo "Error: No se ha recibido la imagen. ";
         }
 
         if ($id != "" && $nombre != "" && $categoria != "" && $perecible != "" && $formato != "") {
@@ -244,5 +244,22 @@ else
 
 }
 
+
+function recortarRutaImagen($ruta_completa_imagen) {
+    // Buscar la posición de "public/imagenes/" en la ruta completa
+    $posicion_inicio = strpos($ruta_completa_imagen, "public/imagenes/");
+
+    // Verificar si se encontró la subcadena
+    if ($posicion_inicio !== false) {
+        // Recortar la parte de la ruta después de "public/imagenes/"
+        $ruta_relacionada = substr($ruta_completa_imagen, $posicion_inicio);
+
+        $ruta_final = "../../" . $ruta_relacionada;
+
+        return $ruta_final;
+    }
+
+    return null;
+}
 
 ?>
