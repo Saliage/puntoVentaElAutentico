@@ -53,6 +53,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="../../app/vistas/insumos-administrador.php" class="nav-link">
+                    <span class="link-icon"><ion-icon name="file-tray-stacked-outline"></ion-icon></i></span>
+                    <span class="link-text">Insumos</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="../../app/vistas/hist_ventas-administrador.php" class="nav-link">
                     <span class="link-icon"><ion-icon name="book-outline"></ion-icon></i></span>
                     <span class="link-text">Historial Ventas</span>
