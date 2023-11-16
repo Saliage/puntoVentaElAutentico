@@ -86,10 +86,10 @@
                     <span class="link-text">Vista vendedor</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" onclick="confirmarCerrarSesion();">
-                    <span class="link-icon"><ion-icon name="log-in-outline"></ion-icon></i></span>
-                    <span class="link-text">Cerrar Sesión</span>
+            <li class="nav-itemi">
+                <a class="nav-linki" onclick="confirmarCerrarSesion();">
+                    <span class="linki-icon"><ion-icon name="log-in-outline"></ion-icon></i></span>
+                    <span class="linki-text">Cerrar Sesión</span>
                 </a>
             </li>
         </ul>
