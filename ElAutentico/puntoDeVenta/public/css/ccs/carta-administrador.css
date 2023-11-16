@@ -102,12 +102,7 @@ body::-webkit-scrollbar-thumb {
 .link-icon-io {
   font-size: 2.2rem;
   margin-left: 1.5rem;
-  color: #000dffd7;
-}
-.link-icon-oe {
-  font-size: 2.2rem;
-  margin-left: 1.5rem;
-  color: #ff0000d7;
+  color: #ffffffd7;
 }
 .logo {
   font-weight: bold;
