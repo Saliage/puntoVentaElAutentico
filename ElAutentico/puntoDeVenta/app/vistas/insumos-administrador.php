@@ -52,8 +52,14 @@
             </li>
             <li class="nav-item">
                 <a href="../../app/vistas/inventario-administrador.php" class="nav-link">
-                    <span class="link-icon-io"><ion-icon name="clipboard-outline"></ion-icon></i></span>
+                    <span class="link-icon"><ion-icon name="clipboard-outline"></ion-icon></i></span>
                     <span class="link-text">Inventario</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../../app/vistas/insumos-administrador.php" class="nav-link">
+                    <span class="link-icon-io"><ion-icon name="file-tray-stacked-outline"></ion-icon></i></span>
+                    <span class="link-text">Insumos</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -108,32 +114,22 @@
 
             <table class="table">
                 <thead>
+                    <div class="rounded-buttons-container">
                     <button class="boton-pagar2" onclick="mostrarPopup()">Añadir insumo</button>
                     <button class="boton-pagar2" onclick="mostrarPopup2()">Categorias</button>
+                    <button class="boton-pagar2" onclick="mostrarPopup8()">Formatos</button>
                     <button class="boton-pagar2" onclick="mostrarPopup3()">Zonas</button>
                     <button class="boton-pagar2" onclick="mostrarPopup4()">Almacenes</button>
                     <button class="boton-pagar2" onclick="mostrarPopup5()">Proovedores</button>
-                    <button class="boton-pagar" onclick="mostrarPopup8()">Entrada insumo</button>
-                    <button class="boton-pagar3" onclick="mostrarPopup9()">Salida insumo</button>
-
-                    <p></p>   
-                    <tr class="fila-titulos">
-                        <th class="celda-titulo"></th>
-                        <th class="celda-titulo">Nombre</th>
-                        <th class="celda-titulo">Id insumo</th>
-                        <th class="celda-titulo">Stock</th>
-                        <th class="celda-titulo">Fecha proximo vencimiento</th>
-                        <th class="celda-titulo">Costo</th>
-                        <th class="celda-titulo">Categoria</th>
-                        <th class="celda-titulo">Zona</th>
-                        <th class="celda-titulo">Almacen</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
-                    </tr>
+                    <button class="boton-pagar"  onclick="mostrarPopup6()">Entrada producto</button>
+                    <button class="boton-pagar3" onclick="mostrarPopup7()">Salida Producto</button>
+                        <p></p>   
+                    </div>
                 </thead>
-                <tbody>
+                <tbody>                
                     <div id="listarInsumos"></div>
                     <tr>
+                        <td>#</td>
                         <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
                         <td>Tomates</td>
                         <td>001</td>
@@ -173,61 +169,37 @@
 
     <div class="popup" id="popup">
         <div class="popup-contenido">
-            <h2>Añadir insumo</h2>
-            <form action="" method="POST" class="formulario">
-                <div class="form-element">
-                  <label for="name">Nombre:</label>
-                  <input type="text" name="nombre" placeholder="Nombre insumo" required>
-                </div>
-                
-                <div class="form-element">
-                  <label for="Id">Id:</label>
-                  <input type="number" min="1" name="id" placeholder="Id insumo" required>
-                </div>
-                
-                <div class="form-element">
-                  <label for="user">Stock:</label>
-                  <input type="number" min="1" name="stock" placeholder="Cantidad" required>
-                </div>
-                
-                <div class="form-element">
-                  <label for="vencimiento">Fecha proximo vencimiento:</label>
-                  <input type="date" name="vencimiento" placeholder="vencimiento" required>
-                </div>
+                <h2>Añadir insumo</h2>
 
-                <div class="form-element">
-                    <label for="costo">Costo:</label>
-                    <input type="number" min="1" name="costo" placeholder="Precio costo" required>
-                </div>
-                
-                <div class="form-element">
-                  <label for="cat-insumo">Categoria:</label>
-                  <select id="cat-insumo" name="cat-insumo" required>
-                    <option value="verduras">verduras</option>
-                    <option value="congelados">congelados</option>
-                    <option value="frituras">frituras</option>
-                  </select>
-                </div>
+                <form class="formulario" onsubmit="return agregarInsumo(event)" id="formInsumos" method="post" enctype="multipart/form-data">
+                    <div class="form-element">
+                    <label for="name">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre" placeholder="Nombre insumo" pattern=".{2,}" required>
+                    </div>                
+                    <div class="form-element">                    
+                        <label for="id_categoria">Categoria:</label>
+                        <div id="listarCategoria"></div>                    
+                    </div>                
+                    <div class="form-element">
+                        <label for="perecible">Perecible</label>
+                        <input type="checkbox" name="perecible" id="perecible">
+                    </div>              
+                    <div class="form-element">
+                        <label for="id_formato">Formato:</label>
+                        <div id="listarFormatos"></div>
+                    </div>
+                    <div class="form-element">
+                        <label for="costo">Costo:</label>
+                        <input type="number" min="0" name="costo" id="costo" placeholder="$ precio costo" required="">
+                    </div>
+                    <div class="form-element">
+                        <label for="imagen">Imagen:</label>
+                        <input type="file" name="imagen" id="imagen" accept=".jpg, .jpeg, .png">
+                    </div>                
+                    <input class="boton-pagar-mas" type="submit" name="agregar" value="Agregar">
+                </form>
+                <div id="mostrarInsumos"></div>
 
-                <div class="form-element">
-                    <label for="perecible">Perecible</label>
-                    <input type="checkbox" name="perecible" required>
-                </div>
-
-                <div class="form-element">
-                    <label for="zona">Zona:</label>
-                    <input type="number" min="1" name="zona" placeholder="Zona donde se ubica insumo" required>
-                </div>
-
-                <div class="form-element">
-                    <label for="almacen">Almacen:</label>
-                    <input type="number" min="1" name="almacen" placeholder="Almacen donde se ubica insumo" required>
-                </div>
-
-                <button class="boton-pagar-mas" type="submit" name="agregar" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
-
-              </form>
-                                
             <div class="cerrar-popup" onclick="cerrarPopup()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
     </div>
@@ -307,6 +279,32 @@
             <div class="cerrar-popup" onclick="cerrarPopup4()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
     </div>
+
+<!----------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------                GESTION FORMATOS              -------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------->
+
+    <div class="popup" id="popup8">
+        <div class="popup-contenido">
+            <h2>Formatos</h2>
+            
+            <form class="formulario" onsubmit="return agregarFormato(event)" id="formFormatos" method="post">
+                <div>
+                    <label for="nombreFormatoTxt">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre" placeholder="Nombre" pattern=".{2,}" title="Al menos 2 caracteres"  required>
+                
+                    <input type="submit" value="Guardar">
+                </div>
+            </form>
+            <hr>
+                <tbody>
+                    <div id="verFormatos"></div>
+                </tbody>
+            </table>
+            <div class="cerrar-popup" onclick="cerrarPopup8()"><ion-icon name="close-circle"></ion-icon></div>
+        </div>
+    </div>
+
 <!----------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------               GESTION PROVEEDORES             -------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -315,7 +313,7 @@
         <div class="popup-contenido">
             <h2>Proovedores</h2>
 
-                <form id="formAgregarProveedor" onsubmit="return agregarProveedor(event)" method="post">
+                <form id="formAgregarProveedor" onsubmit="return agregarProveedor(event)" method="post" class="formulario">
                 
                     <div class="form-element">
                         <label for="nombre">Nombre:</label>
@@ -350,20 +348,24 @@
 
 <!----------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------                 ENTRADA iNSUMO            -------------------------------------------------------------
------------------------------------------------------------------------------------------------------------------------------------------------------>
+----------------------------------------------------------------------------------------------------------------------------------------------------->$_COOKIE
 
-    <div class="popup" id="popup8">
+    <div class="popup" id="popup6">
         <div class="popup-contenido">
             <h2>Registrar entrada insumo</h2>
             <P></P>
             <form action="" method="POST" class="formulario">
+
                 <div class="form-element">
-                    <label for="user">Cantidad</label>
+                    <label for="user">Cantidad.</label>
                     <input type="number" min="1" name="stock" placeholder="Cantidad " required>
-                </div>
+                  </div>
+
                 <button class="boton-pagar-mas" type="submit" name="agregar" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
-            </form>
-            <div class="cerrar-popup" onclick="cerrarPopup8()"><ion-icon name="close-circle"></ion-icon></div>
+
+              </form>
+                                
+            <div class="cerrar-popup" onclick="cerrarPopup6()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
     </div>
 
@@ -371,19 +373,24 @@
 ------------------------------------------                  SALIDA INSUMO             -------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------->
 
-    <div class="popup" id="popup9">
+    <div class="popup" id="popup7">
         <div class="popup-contenido">
             <h2>Registrar salida insumo</h2>
             <P></P>
             <form action="" method="POST" class="formulario">
+                
                 <div class="form-element">
-                    <label for="user">Cantidad</label>
-                    <input type="number" min="1" name="stock" placeholder="Cantidad" required>
+                  <label for="user">Cantidad</label>
+                  <input type="number" min="1" name="stock" placeholder="Cantidad" required>
                 </div>
+
                 <button class="boton-pagar-mas" type="submit" name="agregar" value="Agregar"><ion-icon name="remove-circle-outline"></ion-icon></button>
-            </form>
-            <div class="cerrar-popup" onclick="cerrarPopup9()"><ion-icon name="close-circle"></ion-icon></div>
+
+              </form>
+                                
+            <div class="cerrar-popup" onclick="cerrarPopup7()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
     </div>
+
 </body>
 </html>
