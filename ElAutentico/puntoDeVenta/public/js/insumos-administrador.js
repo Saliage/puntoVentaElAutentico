@@ -94,6 +94,7 @@ function agregarInsumo(event) {
         },
 
         success: function (mensaje) {
+            alert(mensaje);
             mostrarInsumos();
             document.getElementById("formInsumos").reset(); // Limpia el formulario
         }
@@ -103,7 +104,7 @@ function agregarInsumo(event) {
 function mostrarInsumos(){
     var parametros =
     {
-        "opcion":"mostar"
+        "opcion":"mostrar"
     }
 
     $.ajax({
@@ -118,12 +119,11 @@ function mostrarInsumos(){
 
         success: function(mensaje)
         {
+            alert(mensaje);
         $('#mostrarInsumos').html(mensaje);
         }
     });
 }
-
-
 
 function editarInsumo(id) {
 

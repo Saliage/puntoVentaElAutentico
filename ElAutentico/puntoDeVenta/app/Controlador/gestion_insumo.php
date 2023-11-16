@@ -1,6 +1,7 @@
 <?php
 require_once("../modelo/insumo.php");
-
+require_once("../modelo/categoria_insumo.php");
+require_once("../modelo/formato.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -52,8 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <th>#</th>
                 <th>Imagen</th>
                 <th>Nombre</th>
-                <th>Categoria</th>
                 <th>Perecible</th>
+                <th>Categoria</th>                
                 <th>Formato</th>
                 <th>Editar</th> 
                 <th>Elimnar</th> 
@@ -91,12 +92,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         while($consulta = mysqli_fetch_array($resultado))
         {
+            $icono = '<ion-icon name="close-outline"></ion-icon>'; //inicializa en no erecible ( X )
+
             $id = $consulta['id_insumo'];
             $imagen = $consulta['imagen'];
             $nombre = $consulta['nombre_insumo'];
             $perecible = $consulta['perecible'];
-            $id_formato = $consulta['$formato'];
-            $id_categoria = $consulta['categoria']; 
+            $id_formato = $consulta['formato_id_formato'];
+            $id_categoria = $consulta['categoria_insumo_id_categoria']; 
             $nombre_formato = mysqli_fetch_assoc($formato->listarFormatos($id_formato));
             $nombre_categoria = mysqli_fetch_assoc($categoria->listarCategoriasInsumo($id_categoria));
                 
@@ -110,14 +113,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <tr>
                     <td>'.$id.'</td>
                     <td>    
-                    <img src="'.$imagen.'" id="imagenIMG'.$id.'" width="500" height="600">                       
+                    <img src="'.$imagen.'" id="imagenIMG'.$id.'" width="30" height="30">                       
                         <input type="file" id="imagenINP'.$id.'" style="display:none" accept=".jpg, .jpeg, .png"><!-- inicia oculto-->
                     </td>
+                    <td>
+                        <span  id="nombreSpanI'.$id.'">'.$nombre.'</span>
+                        <input type="text" id="nombreTxtI'.$id.'" style="display: none;">     
+                    </td>
                     <td>   
-                        <span  id="nombreSpanI'.$id.'">'.$nombre.'</span>                        
+                        <span  id="perecibleSpan'.$id.'">'.$icono.'</span>                        
                         <select id="perecibleSelect'.$id.'" style="display: none;">
-                            <option value="0" '.($estado == 0 ? 'selected' : '').' >No</option>
-                            <option value="1" '.($estado == 1 ? 'selected' : '').' >Si</option>                        
+                            <option value="0" '.($perecible == 0 ? 'selected' : '').' >No</option>
+                            <option value="1" '.($perecible == 1 ? 'selected' : '').' >Si</option>                        
                         </select>
                     </td>
                     <td>
