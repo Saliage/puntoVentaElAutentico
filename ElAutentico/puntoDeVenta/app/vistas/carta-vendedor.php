@@ -503,7 +503,7 @@
             <h2>Medio de pago:</h2>
             <p> </p>
             <a href="" onclick="realizarPago('Efectivo')" class="boton-pago" >Efectivo</a>
-            <a href="../../transbank-sdk-php-master/examples/webpay-plus/index.php?action=create" class="boton-pago" id="enlacePago">Tarjeta</a>
+            <a href="../../transbank-sdk-php-master/examples/webpay-plus/index.php?action=create" class="boton-pago">Tarjeta</a>
         </div>
      </div>
     <!-- JavaScript para manejar el evento de clic y agregar/eliminar la clase "seleccionado" al elemento seleccionado. -->
@@ -528,14 +528,6 @@
         // Reproducir el sonido cuando se muestra el popup
         const audio = new Audio('../../public/music/sonido_de_dinero.mp3');
         audio.play();
-
-        // Obtener el monto actual del subtotal
-        const montoSubtotal = document.getElementById('subtotalAmount').innerText;
-
-        // Actualizar el enlace con el nuevo monto
-        const enlacePago = document.getElementById('enlacePago');
-        enlacePago.href = `../../transbank-sdk-php-master/examples/webpay-plus/index.php?action=create&monto=${montoSubtotal}`;
-        }
 
         // Función para realizar el pago
         function realizarPago(medioPago) {
