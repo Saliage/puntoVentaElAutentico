@@ -7,20 +7,23 @@ require_once("../modelo/almacen.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     
     $opcion = $_POST['opcion']; //obtener valor de la opción para contalmacenar eventos
-            
-    echo 
-    '
-        <table class="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Nombre</th>
-                <th>Editar</th>
-                <th>Eliminar</th> 
-            </tr>
-                
-        </thead>
-    ';
+    
+    if($opcion != "listar"){
+        echo 
+        '
+            <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Sala de venta</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th> 
+                </tr>
+                    
+            </thead>
+        ';
+    }
 
     //crear select-option con almacenes
     if($opcion == 'listar'){
@@ -59,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 
     }
 
-	if($opcion == "mostar")
+	if($opcion == "mostrar")
     {
 	    $almacen = new Almacen();
         $resultado = $almacen->listarAlmacenes();

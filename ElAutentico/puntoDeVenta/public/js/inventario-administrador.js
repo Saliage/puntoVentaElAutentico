@@ -204,7 +204,7 @@ function eliminarZona(id_zona){
 function mostrarAlmacenes(){
     var parametros =
     {
-        "opcion":"mostar"
+        "opcion":"mostrar"
     }
 
     $.ajax({
