@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         }              
     }
 
-	if($opcion == "mostar")
+	if($opcion == "mostrar")
     {
 	    $proveedor = new Proveedor();
         $resultado = $proveedor->listarProveedores();

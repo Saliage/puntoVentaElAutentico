@@ -25,8 +25,9 @@ DROP TABLE IF EXISTS `almacen`;
 CREATE TABLE IF NOT EXISTS `almacen` (
   `id_almacen` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
+  `sala_venta` tinyint(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_almacen`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -89,22 +90,6 @@ CREATE TABLE IF NOT EXISTS `detalle_venta` (
 
 -- La exportación de datos fue deseleccionada.
 
--- Volcando estructura para tabla autentico.detalle_zona_insumo
-DROP TABLE IF EXISTS `detalle_zona_insumo`;
-CREATE TABLE IF NOT EXISTS `detalle_zona_insumo` (
-  `id_zona_insumo` int(11) NOT NULL AUTO_INCREMENT,
-  `cantidad` int(11) NOT NULL,
-  `insumos_id_insumo` int(11) NOT NULL,
-  `zona_id_zona` int(11) NOT NULL,
-  PRIMARY KEY (`id_zona_insumo`),
-  KEY `insumos_id_insumo` (`insumos_id_insumo`),
-  KEY `zona_id_zona` (`zona_id_zona`),
-  CONSTRAINT `detalle_zona_insumo_ibfk_1` FOREIGN KEY (`insumos_id_insumo`) REFERENCES `insumos` (`id_insumo`),
-  CONSTRAINT `detalle_zona_insumo_ibfk_2` FOREIGN KEY (`zona_id_zona`) REFERENCES `zona` (`id_zona`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
--- La exportación de datos fue deseleccionada.
-
 -- Volcando estructura para tabla autentico.formato
 DROP TABLE IF EXISTS `formato`;
 CREATE TABLE IF NOT EXISTS `formato` (
@@ -130,9 +115,7 @@ DROP TABLE IF EXISTS `insumos`;
 CREATE TABLE IF NOT EXISTS `insumos` (
   `id_insumo` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_insumo` varchar(50) NOT NULL,
-  `perecible` TINYINT NOT NULL DEFAULT 0,
-  `fecha_vencimiento` date DEFAULT NULL,
-  `costo` int(11) NOT NULL DEFAULT 0,
+  `perecible` tinyint(4) NOT NULL DEFAULT 0,
   `imagen` varchar(50) DEFAULT NULL,
   `categoria_insumo_id_categoria` int(11) NOT NULL,
   `formato_id_formato` int(11) NOT NULL,
@@ -141,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `insumos` (
   KEY `formato_id_formato` (`formato_id_formato`),
   CONSTRAINT `insumos_ibfk_1` FOREIGN KEY (`categoria_insumo_id_categoria`) REFERENCES `categoria_insumo` (`id_categoria`),
   CONSTRAINT `insumos_ibfk_2` FOREIGN KEY (`formato_id_formato`) REFERENCES `formato` (`id_formato`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -152,9 +135,14 @@ CREATE TABLE IF NOT EXISTS `inventario` (
   `id_insumo` int(11) NOT NULL DEFAULT 0,
   `id_movimiento` int(11) NOT NULL DEFAULT 0,
   `cantidad` int(11) NOT NULL DEFAULT 0,
+  `costo_unitario` int(11) NOT NULL DEFAULT 0,
+  `fecha_vencimiento` int(11) NOT NULL DEFAULT 0,
+  `id_zona` int(11) NOT NULL,
   PRIMARY KEY (`numero_registro`),
   KEY `insumo_inventario_FK` (`id_insumo`),
   KEY `movmiento_inventario_FK` (`id_movimiento`),
+  KEY `FK_inventario_zona` (`id_zona`),
+  CONSTRAINT `FK_inventario_zona` FOREIGN KEY (`id_zona`) REFERENCES `zona` (`id_zona`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `insumo_inventario_FK` FOREIGN KEY (`id_insumo`) REFERENCES `insumos` (`id_insumo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `movmiento_inventario_FK` FOREIGN KEY (`id_movimiento`) REFERENCES `movimiento_insumo` (`id_movimiento`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
@@ -277,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `rol` (
   PRIMARY KEY (`id_rol`)
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-
+-- La exportación de datos fue deseleccionada.
 REPLACE INTO `rol` (`id_rol`, `nombre_rol`) VALUES
 	(1, 'administrador'),
 	(2, 'vendedor');
@@ -327,10 +315,12 @@ CREATE TABLE IF NOT EXISTS `trabajador` (
   UNIQUE KEY `rut` (`rut`),
   KEY `rol_id_rol` (`rol_id_rol`),
   CONSTRAINT `trabajador_ibfk_1` FOREIGN KEY (`rol_id_rol`) REFERENCES `rol` (`id_rol`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+-- La exportación de datos fue deseleccionada.
 REPLACE INTO `trabajador` (`id_trabajador`, `rut`, `nombre`, `apellido`, `usuario`, `clave`, `activo`, `rol_id_rol`) VALUES
-	(1, '12345678-9', 'Usuario', 'Administrador', 'admin', 'admin', '1', 1);
+(1, '12345678-9', 'Usuario', 'Administrador', 'admin', 'admin', '1', 1);
+
 
 -- Volcando estructura para tabla autentico.ventas
 DROP TABLE IF EXISTS `ventas`;
@@ -376,7 +366,7 @@ CREATE TABLE IF NOT EXISTS `zona` (
   PRIMARY KEY (`id_zona`),
   KEY `almacen_id_almacen` (`almacen_id_almacen`),
   CONSTRAINT `zona_ibfk_1` FOREIGN KEY (`almacen_id_almacen`) REFERENCES `almacen` (`id_almacen`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- La exportación de datos fue deseleccionada.
 

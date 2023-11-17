@@ -8,7 +8,7 @@
     }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -171,96 +171,6 @@
     </main>
 
 <!----------------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------                 GESTION INSUMOS                ------------------------------------------------------------
------------------------------------------------------------------------------------------------------------------------------------------------------>  
-
-
-    <div class="popup" id="popup">
-        <div class="popup-contenido">
-            <h2>Añadir insumo</h2>
-            <form action="" method="POST" class="formulario">
-                <div class="form-element">
-                  <label for="name">Nombre:</label>
-                  <input type="text" name="nombre" placeholder="Nombre insumo" required>
-                </div>
-                
-                <div class="form-element">
-                  <label for="Id">Id:</label>
-                  <input type="number" min="1" name="id" placeholder="Id insumo" required>
-                </div>
-                
-                <div class="form-element">
-                  <label for="user">Stock:</label>
-                  <input type="number" min="1" name="stock" placeholder="Cantidad" required>
-                </div>
-                
-                <div class="form-element">
-                  <label for="vencimiento">Fecha proximo vencimiento:</label>
-                  <input type="date" name="vencimiento" placeholder="vencimiento" required>
-                </div>
-
-                <div class="form-element">
-                    <label for="costo">Costo:</label>
-                    <input type="number" min="1" name="costo" placeholder="Precio costo" required>
-                </div>
-                
-                <div class="form-element">
-                  <label for="cat-insumo">Categoria:</label>
-                  <select id="cat-insumo" name="cat-insumo" required>
-                    <option value="verduras">verduras</option>
-                    <option value="congelados">congelados</option>
-                    <option value="frituras">frituras</option>
-                  </select>
-                </div>
-
-                <div class="form-element">
-                    <label for="perecible">Perecible</label>
-                    <input type="checkbox" name="perecible" required>
-                </div>
-
-                <div class="form-element">
-                    <label for="zona">Zona:</label>
-                    <input type="number" min="1" name="zona" placeholder="Zona donde se ubica insumo" required>
-                </div>
-
-                <div class="form-element">
-                    <label for="almacen">Almacen:</label>
-                    <input type="number" min="1" name="almacen" placeholder="Almacen donde se ubica insumo" required>
-                </div>
-
-                <button class="boton-pagar-mas" type="submit" name="agregar" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
-
-              </form>
-                                
-            <div class="cerrar-popup" onclick="cerrarPopup()"><ion-icon name="close-circle"></ion-icon></div>
-        </div>
-    </div>
-
-<!----------------------------------------------------------------------------------------------------------------------------------------------------
------------------------------------------                 GESTION CATEGORIAS             -------------------------------------------------------------
------------------------------------------------------------------------------------------------------------------------------------------------------>    
-
-    <div class="popup" id="popup2">
-        <div class="popup-contenido">
-            <h2>Categorias</h2>
-
-            <div class="formulario" id="formAlmacenes">
-                <div>
-                    <label for="nombreCategoriaTxt">Nombre:</label>
-                    <input type="text" name="nombre" id="nombreCategoriaTxt" pattern=".{5,}"  required>
-                </div>
-                <button type="submit" onclick="agregarCategoria();"><ion-icon name="add-circle-outline" ></ion-icon></button>
-            </div>
-            <hr>
-                <tbody>
-                    <div id="verCategorias"></div>
-                </tbody>
-            </table>
-            <div class="cerrar-popup" onclick="cerrarPopup2()"><ion-icon name="close-circle"></ion-icon></div>
-        </div>
-    </div>
-
-<!----------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------                 GESTION ZONAS                 -------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------->
 
@@ -300,6 +210,10 @@
                 <div>
                     <label for="nombreAlmacenTxt">Nombre:</label>
                     <input type="text" name="nombre" id="nombreAlmacenTxt" pattern=".{5,}"  required>
+                </div>
+                <div>
+                    <label for="sala_chk">Pertenece a sala de ventas:</label>
+                    <input type="checkbox" id="sala_chk">
                 </div>
                 <button onclick="agregarAlmacen();"><ion-icon name="add-circle-outline" ></ion-icon></button>
             </div>
