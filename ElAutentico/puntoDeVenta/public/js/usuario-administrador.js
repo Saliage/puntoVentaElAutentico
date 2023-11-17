@@ -273,96 +273,41 @@ function agregarTrabajador(event)
     var estado = 1; //siempre se agregarán los usuarios en estado "activos"
     var rol = formulario.elements['rol'].value;
 
-    if(validarRut(rut)){
+    var parametros = 
+    {
+        "rut" : rut,
+        "nombre" : nombre,
+        "apellido" : apellido,
+        "usuario" : usuario,
+        "clave" : clave,
+        "estado" : estado,
+        "rol" : rol,
+        "opcion" : 'guardar'
+    };
 
-        var parametros = 
-        {
-            "rut" : rut,
-            "nombre" : nombre,
-            "apellido" : apellido,
-            "usuario" : usuario,
-            "clave" : clave,
-            "estado" : estado,
-            "rol" : rol,
-            "opcion" : 'guardar'
-        };
+$.ajax({
+    data: parametros,
+    url: '../Controlador/gestion_trabajador.php',
+    type: 'POST',
+    
+    beforeSend: function()
+    {
+    //$('#mostrar_mensaje').html("Error de comunicación");
+    listarTrabajadores();
+    },
 
-        $.ajax({
-            data: parametros,
-            url: '../Controlador/gestion_trabajador.php',
-            type: 'POST',
-            
-            beforeSend: function()
-            {
-            //$('#mostrar_mensaje').html("Error de comunicación");
-            listarTrabajadores();
-            },
-
-            success: function(mensaje)
-            {
-            //$('#mostrar_mensaje').html(mensaje);
-            alert(mensaje);
-            listarTrabajadores();
-            cerrarPopup();
-            document.getElementById("formAgregarTrabajador").reset();
-            }
-        });
+    success: function(mensaje)
+    {
+    //$('#mostrar_mensaje').html(mensaje);
+    alert(mensaje);
+    listarTrabajadores();
+    cerrarPopup();
+    document.getElementById("formAgregarTrabajador").reset();
     }
-    else{
-        
-        $('#validaRUT').html('El RUT no es válido. Por favor, corrige el RUT.');
-        document.getElementById("rut").value ="";
-    }
-}
-
-function validarRutTxt() {
-    var rut = document.getElementById("rut").value;
-    var mensaje = document.getElementById("validaRUT");
-
-    if (validarRut(rut)) {
-        mensaje.style.display = 'none';
-    } else {
-        mensaje.style.display = 'block';
-        mensaje.innerHTML = 'El RUT no es válido. Por favor, corrige el RUT.';
-    }
+});
 }
 
 
-function validarRut(rut) {
-    // Eliminar puntos y guiones del RUT
-    rut = rut.replace(/[.-]/g, '');
-
-    // Verificar si el RUT tiene el formato correcto
-    if (!/^[0-9]{1,9}[0-9Kk]$/.test(rut)) {
-        return false;
-    }
-
-    // Obtener el dígito verificador actual
-    var dv = rut.slice(-1);
-    rut = rut.slice(0, -1);
-
-    // Calcular el dígito verificador esperado
-    var suma = 0;
-    var multiplo = 2;
-
-    for (var i = rut.length - 1; i >= 0; i--) {
-        suma += rut[i] * multiplo;
-
-        if (multiplo < 7) {
-            multiplo++;
-        } else {
-            multiplo = 2;
-        }
-    }
-
-    var digitoVerificadorCalculado = 11 - (suma % 11);
-
-    // Convertir el dígito calculado a texto
-    digitoVerificadorCalculado = (digitoVerificadorCalculado === 10) ? 'K' : String(digitoVerificadorCalculado);
-
-    // Comparar el dígito verificador actual con el calculado
-    return dv.toUpperCase() === digitoVerificadorCalculado.toUpperCase();
-}
 //--------------------------------------------------------------------------------------------------------------------------------------->
 //----------------------------------------------               GESTION ROLES              ----------------------------------------------->
 //--------------------------------------------------------------------------------------------------------------------------------------->

@@ -130,30 +130,29 @@
                 <h2>Añadir usuario:</h2>
                 <p></p>
                 <form id="formAgregarTrabajador" onsubmit="return agregarTrabajador(event)" method="post">
-                
-                <div id="validaRUT" style="color: red;"></div>    
+                    
                 <div class="form-element">
                     <label for="rut">Rut:</label>
-                    <input type="text" name="rut" id="rut" autocomplete="off" oninput="validarRutTxt()" placeholder="12345678-9" minlength="9" maxlength="10"  pattern="^[0-9]+-[0-9kK]$|^[0-9]+[kK]-[0-9]$"  title="Rut con sin puntos y con guion" required>                    
-                </div>                
+                    <input type="text" name="rut" id="rut" placeholder="rut" minlength="9" maxlength="11"  pattern="[0-9kK\-]+"  title="Rut con sin puntos y con guion" required>
+                </div>
                 <div class="form-element">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" name="nombre" id="nombre" autocomplete="off" placeholder="Nombre" required>
+                    <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
                 </div>                
                     
                 <div class="form-element"><label for="apellido">Apellido:</label>
-                    <input type="text" name="apellido" id="apellido" autocomplete="off" placeholder="Apellido" required>
+                    <input type="text" name="apellido" id="apellido" placeholder="Apellido" required>
                 </div>
 
                 <div class="form-element">
                     <label for="usuario">Usuario:</label>
-                    <input type="text" name="usuario" id="usuario" autocomplete="off" placeholder="Nombre de usuario" required>
+                    <input type="text" name="usuario" id="usuario" placeholder="Nombre de usuario" required>
                 </div>
 
                 <div class="form-element">
                     <label for="clave">Contraseña:</label>
-                    <input type="password" name="clave" id="clave" minlength="8"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"  title="Debe contener al menos 8 caracteres con al menos una letra mayúscula y una letra minúscula y al menos un número"  
-                    name="clave" placeholder="Contraseña" required>
+                    <input type="password" name="clave" id="clave" minlength="8" maxlength="16"
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#/!%*?&-+.,;:])[A-Za-z\@$#/!%*?&-+.,;:]{8,}$" placeholder="Contraseña" required>
                 </div>
                     
                 <div id="mostrarRoles" class="form-element"> <!-- listar roles en combobox -->

@@ -2,14 +2,14 @@
 
 require_once('conexion.php');
 
-class Insumo {
+class Insumos {
 
     // Agregar insumo
-    public function agregarInsumo($nombre_insumo, $perecible, $imagen, $categoria_id, $formato_id) {
+    public function agregarInsumo($nombre_insumo, $perecible, $costo, $imagen, $categoria_id, $formato_id) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
-        $consulta = "INSERT INTO insumos (nombre_insumo, perecible,imagen, categoria_insumo_id_categoria, formato_id_formato)
-                     VALUES ('$nombre_insumo', '$perecible','$imagen', '$categoria_id', '$formato_id')";
+        $consulta = "INSERT INTO insumos (nombre_insumo, perecible, costo, imagen, categoria_insumo_id_categoria, formato_id_formato)
+                     VALUES ('$nombre_insumo', '$perecible', '$costo', '$imagen', '$categoria_id', '$formato_id')";
 
         $resultado = $conn->query($consulta);
         
@@ -42,7 +42,7 @@ class Insumo {
     }
 
     // Actualizar datos de insumo
-    public function actualizarInsumo($id, $nombre_insumo, $perecible, $imagen, $categoria_id, $formato_id) {
+    public function actualizarInsumo($id, $nombre_insumo, $perecible, $fecha_vencimiento, $costo, $imagen, $categoria_id, $formato_id) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
@@ -51,6 +51,8 @@ class Insumo {
         $consulta = "UPDATE insumos SET
                     nombre_insumo = '$nombre_insumo',
                     perecible = '$perecible',
+                    fecha_vencimiento = '$fecha_vencimiento',
+                    costo = '$costo',
                     imagen = '$imagen',
                     categoria_insumo_id_categoria = '$categoria_id',
                     formato_id_formato = '$formato_id'

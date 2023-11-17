@@ -324,20 +324,17 @@
                     <div class="form-element">
                         <label for="nombre">Nombre:</label>
                         <h3>* </h3><input type="text" name="nombre" id="nombre" placeholder="Nombre"  pattern="[A-Za-z\d]{3,}$" title="Nombre de al menos 3 caracteres">
-                    </div>
-                    <div id="validaRUT"></div>                     
+                    </div>                      
                     <div class="form-element">
                         <label for="rut">Rut:</label>
-                        <h3>* </h3><input type="text" name="rut" id="rut" oninput="validarRutTxt()" placeholder="rut" minlength="9" maxlength="11"  pattern="^[0-9]+-[0-9kK]$|^[0-9]+[kK]-[0-9]$"  
-                        title="Ingrese un rut valido sin puntos y con guion en el formato: 12345678-9 ó 12345678-K" required>
+                        <h3>* </h3><input type="text" name="rut" id="rut" placeholder="rut" minlength="9" maxlength="11"  pattern="([0-9kK\-]{10,})"  title="Ingrese un rut valido sin puntos y con guion" required>
                     </div>                                      
                     <div class="form-element"><label for="fono">Fono:</label>
                         <input type="text" name="fono" id="fono" pattern="[0-9\+]{8,12}" placeholder="Fono" title="Ingrese número telefónico válido" >
                     </div>    
                     <div class="form-element">
                         <label for="emailProveedor">Email:</label>
-                        <input type="email" name="email" id="email" placeholder="Correo electrónico" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.\.[a-zA-Z]{2,}$" 
-                        title="Ingresa un correo electrónico válido en formato user@dominio.xx">
+                        <input type="email" name="email" id="email" placeholder="Correo electrónico" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.\.[a-zA-Z]{2,}$" title="Ingresa un correo electrónico válido en formato user@dominio.xx">
                     </div>
                     <div class="form-element">
                         <label for="direccion">Dirección:</label>
