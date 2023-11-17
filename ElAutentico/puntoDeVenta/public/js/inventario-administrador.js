@@ -5,12 +5,8 @@ function inicializar(){
 
     listarAlmacenes();
     mostrarZonas();
-    mostrarAlmacenes();
-    mostrarCategorias();
+    mostrarAlmacenes();    
     mostrarProveedores();
-    mostrarFormatos();
-    listarFormatos();
-    listarCtaegorias();
 }
 
 //------------------------------------------------------------------------------------------
@@ -353,158 +349,7 @@ function eliminarAlmacen(id_almacen){
     }
 }
 
-//------------------------------------------------------------------------------------------
-//------------------------     LOGICA POPUP CATEGORIAS     ---------------------------------
-//------------------------------------------------------------------------------------------
 
-function mostrarCategorias(){
-    var parametros =
-    {
-        "opcion":"mostar"
-    }
-
-    $.ajax({
-        data: parametros,
-        url: '../Controlador/gestion_categoriaInsumo.php',
-        type: 'POST',
-        
-        beforesend: function()
-        {
-        $('#verCategorias').html("Error de comunicación");
-        },
-
-        success: function(mensaje)
-        {
-        $('#verCategorias').html(mensaje);
-        }
-    });
-}
-
-function agregarCategoria(){ 
-    // rescatar valores del form
-    var nombre = document.getElementById('nombreCategoriaTxt').value;
-
-    var parametros = 
-    {
-        "nombre" : nombre,
-        "opcion" : 'guardar'
-    };
-    $.ajax({
-        data: parametros,
-        url: '../Controlador/gestion_categoriaInsumo.php',
-        type: 'POST',
-        
-        beforeSend: function()
-        {
-
-        },
-
-        success: function(mensaje)
-        {            
-            
-        }
-        
-    });
-    
-    $('#nombreCategoriaTxt').val("");  // restablecer valor del campo
-    mostrarCategorias();
-}
-
-function editarCategoria(id_categoria) {
-
-    var CategoriaSpan = document.getElementById('nombre_CategoriaSpan'+id_categoria);
-    var CategoriaTxt = document.getElementById('nombre_CategoriaTxt'+id_categoria);
-    var btnOK = document.getElementById('guardarEditCategoria'+id_categoria);
-    var btnEdit = document.getElementById('btnEditCategoria'+id_categoria);
-
-    // Mostrar el campo de texto y ocultar el span
-    CategoriaSpan.style.display = 'none';
-    CategoriaTxt.style.display = 'inline';
-    btnEdit.style.display = 'none';
-    btnOK.style.display = 'inline';
-
-    // Agregar el valor del texto al valor original del span
-    CategoriaTxt.value = CategoriaSpan.innerText;
-
-}
-
-function guardarCategoriaEdit(id_categoria){
-
-    var CategoriaSpan = document.getElementById('nombre_CategoriaSpan'+id_categoria);
-    var CategoriaTxt = document.getElementById('nombre_CategoriaTxt'+id_categoria);
-    var btnOK = document.getElementById('guardarEditCategoria'+id_categoria);
-    var btnEdit = document.getElementById('btnEditCategoria'+id_categoria);
-
-
-    var parametros = 
-    {
-        "id" : id_categoria,
-        "nombre" : CategoriaTxt.value,
-        "opcion" : 'editar'
-    };
-    CategoriaSpan.style.display = 'inline';
-    CategoriaTxt.style.display = 'none';
-    btnEdit.style.display = 'inline';
-    btnOK.style.display = 'none';
-
-    $.ajax({
-        data: parametros,
-        url: '../Controlador/gestion_categoriaInsumo.php',
-        type: 'POST',
-        
-        beforeSend: function()
-        {
-            mostrarCategorias();
-        },
-
-        success: function(mensaje)
-        {
-            mostrarCategorias();
-        }
-        
-        
-
-    });
-    mostrarCategorias();
-    
-}
-
-function eliminarCategoria(id_categoria){
-
-    var confirmacion = confirm("¿Estás seguro de que deseas eliminar el Categoria: "+id_categoria+"?");
-
-    if (confirmacion) {
-        
-        var parametros = 
-        {
-            "id" : id_categoria,
-            "opcion" : 'eliminar'
-        };                
-
-        $.ajax({
-        data: parametros,
-        url: '../Controlador/gestion_categoriaInsumo.php',
-        type: 'POST',
-        
-        beforeSend: function()
-        {
-        $('#verCategorias').html("Error! No se puede realizar la operación.");
-        $('#verCategorias').css('color', 'red');
-        mostrarCategorias();
-        },
-
-        success: function(mensaje)
-        {
-        $('#verCategorias').html(mensaje);
-        mostrarCategorias();
-        }
-        
-        });
-
-        mostrarCategorias();
-
-    }
-}
 
 //------------------------------------------------------------------------------------------
 //------------------------     LOGICA POPUP PROVEEDORES    ---------------------------------
@@ -522,34 +367,92 @@ function agregarProveedor(event)
     var email = formulario.elements['email'].value;
     var direccion = formulario.elements['direccion'].value;
 
-    var parametros = 
-    {
-        "nombre" : nombre,
-        "rut" : rut,
-        "fono" : fono,
-        "email" : email,
-        "direccion" : direccion,
-        "opcion" : 'guardar'
-    };
+    if(validarRut(rut)){
 
-$.ajax({
-    data: parametros,
-    url: '../Controlador/gestion_proveedor.php',
-    type: 'POST',
-    
-    beforeSend: function()
-    {
-    //$('#mostrar_mensaje').html("Error de comunicación");
-    mostrarProveedores();
-    },
+        var parametros = 
+        {
+            "nombre" : nombre,
+            "rut" : rut,
+            "fono" : fono,
+            "email" : email,
+            "direccion" : direccion,
+            "opcion" : 'guardar'
+        };
 
-    success: function(mensaje)
-    {
-    mostrarProveedores();
-    document.getElementById("formAgregarProveedor").reset(); //limpia formulario
+        $.ajax({
+            data: parametros,
+            url: '../Controlador/gestion_proveedor.php',
+            type: 'POST',
+            
+            beforeSend: function()
+            {
+            //$('#mostrar_mensaje').html("Error de comunicación");
+            mostrarProveedores();
+            },
+
+            success: function(mensaje)
+            {
+            mostrarProveedores();
+            document.getElementById("formAgregarProveedor").reset(); //limpia formulario
+            }
+        });
     }
-});
+    else{
+
+        $('#validaRUT').html('El RUT no es válido. Por favor, corrige el RUT.');
+        document.getElementById("rut").value ="";
+    }
 }
+
+function validarRutTxt() {
+    var rut = document.getElementById("rut").value;
+    var mensaje = document.getElementById("validaRUT");
+
+    if (validarRut(rut)) {
+        mensaje.style.display = 'none';
+    } else {
+        mensaje.style.display = 'block';
+        mensaje.innerHTML = 'El RUT no es válido. Por favor, corrige el RUT.';
+    }
+}
+
+
+function validarRut(rut) {
+    // Eliminar puntos y guiones del RUT
+    rut = rut.replace(/[.-]/g, '');
+
+    // Verificar si el RUT tiene el formato correcto
+    if (!/^[0-9]{1,9}[0-9Kk]$/.test(rut)) {
+        return false;
+    }
+
+    // Obtener el dígito verificador actual
+    var dv = rut.slice(-1);
+    rut = rut.slice(0, -1);
+
+    // Calcular el dígito verificador esperado
+    var suma = 0;
+    var multiplo = 2;
+
+    for (var i = rut.length - 1; i >= 0; i--) {
+        suma += rut[i] * multiplo;
+
+        if (multiplo < 7) {
+            multiplo++;
+        } else {
+            multiplo = 2;
+        }
+    }
+
+    var digitoVerificadorCalculado = 11 - (suma % 11);
+
+    // Convertir el dígito calculado a texto
+    digitoVerificadorCalculado = (digitoVerificadorCalculado === 10) ? 'K' : String(digitoVerificadorCalculado);
+
+    // Comparar el dígito verificador actual con el calculado
+    return dv.toUpperCase() === digitoVerificadorCalculado.toUpperCase();
+}
+
 
 function mostrarProveedores(){
     var parametros =
@@ -704,278 +607,4 @@ function eliminarProveedor(id){
 
     }
 }
-
-//------------------------------------------------------------------------------------------
-//-------------------------    LOGICA POPUP FORMATOS     -----------------------------------
-//------------------------------------------------------------------------------------------
-
-function mostrarFormatos(){
-    var parametros =
-    {
-        "opcion":"mostar"
-    }
-
-    $.ajax({
-        data: parametros,
-        url: '../Controlador/gestion_formato.php',
-        type: 'POST',
-        
-        beforesend: function()
-        {
-        $('#verFormatos').html("Error de comunicación");
-        },
-
-        success: function(mensaje)
-        {
-        $('#verFormatos').html(mensaje);
-        }
-    });
-}
-
-function agregarFormato(event){ 
-    
-    event.preventDefault(); // Evita que el formulario se envíe a la nada
-    // rescatar valores del form
-    var formulario = document.getElementById('formFormatos');    
-    var nombre = formulario.elements['nombre'].value;
-
-    var parametros = 
-    {
-        "nombre" : nombre,
-        "opcion" : 'guardar'
-    };
-    $.ajax({
-        data: parametros,
-        url: '../Controlador/gestion_formato.php',
-        type: 'POST',
-        
-        beforeSend: function()
-        {
-        },
-
-        success: function(mensaje)
-        {            
-            
-        }
-        
-    });
-    
-    document.getElementById("formFormatos").reset(); //limpia formulario
-    mostrarFormatos();
-
-}
-
-function editarFotmato(id) {
-
-    var formatoSpan = document.getElementById('nombre_formatoSpan'+id);
-    var formatoTxt = document.getElementById('nombre_formatoTxt'+id);
-    var btnOK = document.getElementById('guardarEditFotmato'+id);
-    var btnEdit = document.getElementById('btnEditFotmato'+id);
-
-    // Mostrar el campo de texto y ocultar el span
-    formatoSpan.style.display = 'none';
-    formatoTxt.style.display = 'inline';
-    btnEdit.style.display = 'none';
-    btnOK.style.display = 'inline';
-
-    // Agregar el valor del texto al valor original del span
-    formatoTxt.value = formatoSpan.innerText;
-
-}
-
-function guardarFotmatoEdit(id){
-
-    var formatoSpan = document.getElementById('nombre_formatoSpan'+id);
-    var formatoTxt = document.getElementById('nombre_formatoTxt'+id);
-    var btnOK = document.getElementById('guardarEditFotmato'+id);
-    var btnEdit = document.getElementById('btnEditFotmato'+id);
-
-
-
-    var parametros = 
-    {
-        "id" : id,
-        "nombre" : formatoTxt.value,
-        "opcion" : 'editar'
-    };
-    formatoSpan.style.display = 'inline';
-    formatoTxt.style.display = 'none';
-    btnEdit.style.display = 'inline';
-    btnOK.style.display = 'none';
-
-    $.ajax({
-        data: parametros,
-        url: '../Controlador/gestion_formato.php',
-        type: 'POST',
-        
-        beforeSend: function()
-        {
-            mostrarFormatos();
-        },
-
-        success: function(mensaje)
-        {
-            mostrarFormatos();
-        }
-        
-        
-
-    });
-    mostrarFormatos();
-    
-}
-
-function eliminarAlmacen(id){
-
-    var confirmacion = confirm("¿Estás seguro de que deseas eliminar el formato: "+id+"?");
-
-    if (confirmacion) {
-        
-        var parametros = 
-        {
-            "id" : id,
-            "opcion" : 'eliminar'
-        };                
-
-        $.ajax({
-        data: parametros,
-        url: '../Controlador/gestion_formato.php',
-        type: 'POST',
-        
-        beforeSend: function()
-        {
-        $('#verFormatos').html("Error! No se puede realizar la operación.");
-        $('#verFormatos').css('color', 'red');
-        mostrarFormatos();
-        },
-
-        success: function(mensaje)
-        {
-        $('#verFormatos').html(mensaje);
-        mostrarFormatos();
-        }
-        
-        });
-
-        mostrarFormatos();
-
-    }
-}
-
-
-//------------------------------------------------------------------------------------------
-//-------------------------    LOGICA POPUP INSUMOS      -----------------------------------
-//------------------------------------------------------------------------------------------
-
-function listarFormatos(){
-    var parametros =
-    {
-        "opcion":"listar"
-    }
-
-    $.ajax({
-        data: parametros,
-        url: '../Controlador/gestion_formato.php',
-        type: 'POST',
-        
-        beforesend: function()
-        {
-        $('#listarFormatos').html("Error de comunicación");
-        },
-
-        success: function(mensaje)
-        {
-        $('#listarFormatos').html(mensaje);
-        }
-    });
-}
-
-function listarCtaegorias(){
-    var parametros =
-    {
-        "opcion":"listar"
-    }
-
-    $.ajax({
-        data: parametros,
-        url: '../Controlador/gestion_categoriaInsumo.php',
-        type: 'POST',
-        
-        beforesend: function()
-        {
-        $('#listarCategoria').html("Error de comunicación");
-        },
-
-        success: function(mensaje)
-        {
-        $('#listarCategoria').html(mensaje);
-        }
-    });
-}
-
-function agregarInsumo(event) {
-    event.preventDefault(); // Evita que el formulario se envíe a la nada
-
-    // Rescatar valores del formulario
-    var formulario = document.getElementById('formInsumos');
-    var nombre = formulario.elements['nombre'].value;
-    var categoria = formulario.elements['id_categoria'].value;
-    var perecible = formulario.elements['perecible'].checked;
-    var formato = formulario.elements['id_formato'].value;
-    var costo = formulario.elements['costo'].value;
-    var imagenInput = formulario.elements['imagen'];
-
-    var parametros = new FormData();
-    parametros.append('nombre', nombre);
-    parametros.append('categoria', categoria);
-    parametros.append('perecible', Number(perecible));
-    parametros.append('formato', formato);
-    parametros.append('costo', costo);
-    parametros.append('imagen', imagenInput.files[0]);
-    parametros.append('opcion', 'guardar');
-
-    $.ajax({
-        data: parametros,
-        url: '../Controlador/gestion_insumo.php',
-        type: 'POST',
-        contentType: false, //desactivar para que jQuery no lo configure incorrectamente
-        processData: false, //desactivar para que jQuery no convierta FormData en cadena
-
-        beforeSend: function () {
-            alert('datos:' + nombre+categoria+perecible+formato+costo+imagenInput.value);
-            mostrarInsumos();
-        },
-
-        success: function (mensaje) {
-            alert(mensaje);
-            mostrarInsumos();
-            document.getElementById("formInsumos").reset(); // Limpia el formulario
-        }
-    });
-}
-
-function mostrarInsumos(){
-    var parametros =
-    {
-        "opcion":"mostar"
-    }
-
-    $.ajax({
-        data: parametros,
-        url: '../Controlador/gestion_insumo.php',
-        type: 'POST',
-        
-        beforesend: function()
-        {
-        $('#mostrarInsumos').html("Error de comunicación");
-        },
-
-        success: function(mensaje)
-        {
-        $('#mostrarInsumos').html(mensaje);
-        }
-    });
-}
-
-
 
