@@ -227,10 +227,12 @@ function mostrarAlmacenes(){
 function agregarAlmacen(){ 
     // rescatar valores del form
     var nombre = document.getElementById('nombreAlmacenTxt').value;
+    var sala_venta = document.getElementById('sala_chk').checked;
 
     var parametros = 
     {
         "nombre" : nombre,
+        "sala_venta" : sala_venta,
         "opcion" : 'guardar'
     };
     $.ajax({
@@ -259,12 +261,16 @@ function editarAlmacen(id_almacen) {
 
     var almacenSpan = document.getElementById('nombre_almacenSpan'+id_almacen);
     var almacenTxt = document.getElementById('nombre_almacenTxt'+id_almacen);
+    var sala_ventaSpan = document.getElementById('sala_ventaSpan'+id_almacen);
+    var sala_ventachk = document.getElementById('sala_ventachk'+id_almacen);
     var btnOK = document.getElementById('guardarEditAlmacen'+id_almacen);
     var btnEdit = document.getElementById('btnEditAlmacen'+id_almacen);
 
     // Mostrar el campo de texto y ocultar el span
     almacenSpan.style.display = 'none';
     almacenTxt.style.display = 'inline';
+    sala_ventaSpan.style.display = 'none';
+    sala_ventachk.style.display = 'inline';    
     btnEdit.style.display = 'none';
     btnOK.style.display = 'inline';
 
@@ -277,6 +283,8 @@ function guardarAlmacenEdit(id_almacen){
 
     var almacenSpan = document.getElementById('nombre_almacenSpan'+id_almacen);
     var almacenTxt = document.getElementById('nombre_almacenTxt'+id_almacen);
+    var sala_ventaSpan = document.getElementById('sala_ventaSpan'+id_almacen);
+    var sala_ventachk = document.getElementById('sala_ventachk'+id_almacen);
     var btnOK = document.getElementById('guardarEditAlmacen'+id_almacen);
     var btnEdit = document.getElementById('btnEditAlmacen'+id_almacen);
 
@@ -285,10 +293,13 @@ function guardarAlmacenEdit(id_almacen){
     {
         "id" : id_almacen,
         "nombre" : almacenTxt.value,
+        "sala_venta" : Number(sala_ventachk.checked),
         "opcion" : 'editar'
     };
     almacenSpan.style.display = 'inline';
-    almacenTxt.style.display = 'none';
+    almacenTxt.style.display = 'none';    
+    sala_ventaSpan.style.display = 'inline';
+    sala_ventachk.style.display = 'none';    
     btnEdit.style.display = 'inline';
     btnOK.style.display = 'none';
 
