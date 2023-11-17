@@ -1,6 +1,7 @@
 <?php
-require_once("../modelo/insumos.php");
-
+require_once("../modelo/insumo.php");
+require_once("../modelo/categoria_insumo.php");
+require_once("../modelo/formato.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -12,7 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $categoria = $_POST['categoria'];
         $perecible = $_POST['perecible'];
         $formato = $_POST['formato'];
-        $costo = $_POST['costo'];
     
         $ruta_imagen = null;
     
@@ -31,10 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Error: No se ha recibido la imagen. ".$ruta_imagen;
         }
     
-        if ($nombre != "" && $categoria != "" && $perecible != "" && $formato != "" && $costo != "") {
-            $insumo = new Insumos();
+        if ($nombre != "" && $categoria != "" && $perecible != "" && $formato != "") {
+            $insumo = new Insumo();
             try {
-                $resultado = $insumo->agregarInsumo($nombre, $perecible, $costo, $ruta_imagen, $categoria, $formato);
+                $resultado = $insumo->agregarInsumo($nombre, $perecible, $ruta_imagen, $categoria, $formato);
                 if ($resultado > 0) {
                     echo "Se agregó el insumo: ".$nombre;
                 } else {
@@ -53,10 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <th>#</th>
                 <th>Imagen</th>
                 <th>Nombre</th>
-                <th>Categoria</th>
-                <th>Perecible/th>
+                <th>Perecible</th>
+                <th>Categoria</th>                
                 <th>Formato</th>
-                <th>Costo</th>
                 <th>Editar</th> 
                 <th>Elimnar</th> 
             </tr>
@@ -69,42 +68,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if($opcion == "mostrar")
 	{
-        $insumo = new Insumos();
-        $resultado = $insumo->listarInsumos();
-
         //CONSULTAR CATEGORIAS
-	    $almacen = new Almacen();
-        $almacenes = $almacen->listarAlmacenes();
-
-        $arrayAlmacenes = array();
-        //rellenar arrayAlmacenes
-        while ($cadaAlmacen= $almacenes->fetch_assoc()) {
-                $arrayAlmacenes[] = $cadaAlmacen;
+        $categoria = new CategoriaInsumo();
+        $categorias = $categoria->listarCategoriasInsumo();
+        $arrayCategoria[] =array();
+	    
+        while ($cadaCategoria= $categorias->fetch_assoc()) {
+                $arrayCategoria[] = $cadaCategoria;
         }
 
         //CONSULTAR FORMATO
-	    $almacen = new Almacen();
-        $almacenes = $almacen->listarAlmacenes();
+        $formato = new Formato();
+        $formatos = $formato->listarFormatos();
 
-        $arrayAlmacenes = array();
+        $arrayFormatos = array();
         //rellenar arrayAlmacenes
-        while ($cadaAlmacen= $almacenes->fetch_assoc()) {
-                $arrayAlmacenes[] = $cadaAlmacen;
+        while ($cadaFormato= $formatos->fetch_assoc()) {
+                $arrayFormatos[] = $cadaFormato;
         }
 
+        $insumo = new Insumo();
+        $resultado = $insumo->listarInsumos();
 
         while($consulta = mysqli_fetch_array($resultado))
         {
+            $icono = '<ion-icon name="close-outline"></ion-icon>'; //inicializa en no erecible ( X )
+
             $id = $consulta['id_insumo'];
             $imagen = $consulta['imagen'];
             $nombre = $consulta['nombre_insumo'];
             $perecible = $consulta['perecible'];
-            $formato = $consulta['$formato'];
-            $costo = $consulta['costo'];
-            $categoria = $consulta['categoria']; 
-            $nombreRol = mysqli_fetch_assoc($rol->buscarRolId($consulta['rol_id_rol']));
+            $id_formato = $consulta['formato_id_formato'];
+            $id_categoria = $consulta['categoria_insumo_id_categoria']; 
+            $nombre_formato = mysqli_fetch_assoc($formato->listarFormatos($id_formato));
+            $nombre_categoria = mysqli_fetch_assoc($categoria->listarCategoriasInsumo($id_categoria));
                 
-            if($estado == 1)
+            if($perecible == 1)
             {
                 $icono = '<ion-icon name="checkmark-outline"></ion-icon>';
             }
@@ -114,49 +113,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <tr>
                     <td>'.$id.'</td>
                     <td>    
-                        <span  id="rutSpan'.$id.'">'.$rut.'</span>                        
-                        <input style="display:none" type="text" id="rutTxt'.$id.'" value="'.$rut.'"> <!-- inicia oculto-->
+                    <img src="'.$imagen.'" id="imagenIMG'.$id.'" width="30" height="30">                       
+                        <input type="file" id="imagenINP'.$id.'" style="display:none" accept=".jpg, .jpeg, .png"><!-- inicia oculto-->
+                    </td>
+                    <td>
+                        <span  id="nombreSpanI'.$id.'">'.$nombre.'</span>
+                        <input type="text" id="nombreTxtI'.$id.'" value="'.$nombre.'" style="display: none;">     
                     </td>
                     <td>   
-                        <span  id="nombreSpan'.$id.'">'.$nombre.'</span>                        
-                        <input style="display:none" type="text" id="nombreTxt'.$id.'" value="'.$nombre.'"> <!-- inicia oculto-->
-                    </td>
-                    <td>   
-                        <span  id="apellidoSpan'.$id.'">'.$apellido.'</span>                        
-                        <input style="display:none" type="text" id="apellidoTxt'.$id.'" value="'.$apellido.'"> <!-- inicia oculto-->
-                    </td>
-                    <td>
-                        <span  id="usuarioSpan'.$id.'">'.$usuario.'</span>
-                        <input style="display:none" type="text" id="usuarioTxt'.$id.'" value="'.$usuario.'"> <!-- inicia oculto-->
-                    </td>
-                    <td>
-                        <span id="claveSpan'.$id.'" style="display: none;">'.$clave.'</span>
-                        <input style="display:none" type="text" id="claveTxt'.$id.'" value="'.$clave.'"> <!-- inicia oculto-->
-                        <button id="verClave'.$id.'"  onclick="mostrarClave('.$id.')"><ion-icon id="ver'.$id.'" name="eye-outline"></ion-icon></button>
-                    </td>
-                    <td>
-                        <span id="estadoSpan'.$id.'">'.$icono.'</span>
-                        <select id="estadoSelect'.$id.'" style="display: none;">
-                            <option value="0" '.($estado == 0 ? 'selected' : '').' >Deshabilitado</option>
-                            <option value="1" '.($estado == 1 ? 'selected' : '').' >Habilitado</option>                        
+                        <span  id="perecibleSpan'.$id.'">'.$icono.'</span>                        
+                        <select id="perecibleSelect'.$id.'" style="display: none;">
+                            <option value="0" '.($perecible == 0 ? 'selected' : '').' >No</option>
+                            <option value="1" '.($perecible == 1 ? 'selected' : '').' >Si</option>                        
                         </select>
                     </td>
                     <td>
-                        <span  id="rolSpan'.$id.'">'.$nombreRol['nombre_rol'].'</span>
-                        <select id="rolSelect'.$id.'" style="display: none;">';
-
-                        foreach ($arrayRoles as $dato) {
-                            echo '<option value="' . $dato['id_rol'] . '" ' . ($dato['id_rol'] == $consulta['rol_id_rol'] ? 'selected' : '') . ' >' . $dato['nombre_rol'] . '</option>';
-                        }
-                        
+                        <span  id="categoriaSpanI'.$id.'">'.$nombre_categoria['nombre_categoria'].'</span>
+                        <select id="categoriaSelectI'.$id.'" style="display: none;">';
+                        foreach ($arrayCategoria as $dato) {
+                            echo '<option value="' . $dato['id_categoria'] . '" ' . ($dato['id_categoria'] == $id_categoria ? 'selected' : '') . ' >' . $dato['nombre_categoria'] . '</option>';
+                        }                        
                         echo '</select>
                     </td>
                     <td>
-                        <ion-icon id="btnUserEdit'.$id.'" name="pencil-outline" class="icono-editar" onclick="editarUsuario('.$id.')"></ion-icon>
-                        <button style="display:none" id="guardarUsuarioEdit'.$id.'" onclick="guardarUsuarioEdit('.$id.')">OK</button> <!-- inicia oculto-->
+                        <span  id="formatoSpanI'.$id.'">'.$nombre_formato['nombre_formato'].'</span>
+                        <select id="formatoSelectI'.$id.'" style="display: none;">';
+                        foreach ($arrayFormatos as $dato) {
+                            echo '<option value="' . $dato['id_formato'] . '" ' . ($dato['id_formato'] == $id_formato ? 'selected' : '') . ' >' . $dato['nombre_formato'] . '</option>';
+                        }                        
+                        echo '</select>
                     </td>
                     <td>
-                        <ion-icon name="trash-outline" class="icono-eliminar" onclick="eliminarUsuario('.$id.')"></ion-icon>
+                        <ion-icon id="btnInsumoEdit'.$id.'" name="pencil-outline" class="icono-editar" onclick="editarInsumo('.$id.')"></ion-icon>                        
+                        <button style="display:none" id="guardarInsumoEdit'.$id.'" onclick="guardarInsumoEdit('.$id.')">OK</button> <!-- inicia oculto-->
+                    </td>
+                    <td>
+                        <ion-icon name="trash-outline" class="icono-eliminar" onclick="eliminarInsumo('.$id.')"></ion-icon>
                     </td> 
                 </tr>
             ';
@@ -165,47 +157,66 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 
     //editar
-    try {
-        if ($opcion == "U") {
-            $id = $_POST['id'];
-            $rut = $_POST['rut'];
-            $nombre = $_POST['nombre'];
-            $apellido = $_POST['apellido'];
-            $usuario = $_POST['usuario'];
-            $clave = $_POST['clave'];
-            $estado = $_POST['estado'];
-            $rol = $_POST['rol'];
+    if ($opcion == "editar") {
+
+        $id = $_POST['id'];
+        $nombre = $_POST['nombre'];
+        $categoria = $_POST['categoria'];
+        $perecible = $_POST['perecible'];
+        $formato = $_POST['formato'];
+
+        //rescatar la ruta de la actual imagen si no fue editada
+        $ruta_imagen = recortarRutaImagen( $_POST['ruta_imagen'] ); // formatea ruta de imagen para coincidir con "../../public/imagenes/nombre_imagen"
+
+        if (isset($_FILES["imagen"])) {
+            $imagen = $_FILES["imagen"];
+            $nombre_imagen = $imagen["name"];
+            $ruta_imagen = "../../public/imagenes/".$nombre_imagen; //si se recibe imagen, se actualiza la ruta
     
-            if ($id != "") {
-                $trabajador = new Trabajador();
-                $resultado = $trabajador->actualizarTrabajador($id, $rut, $nombre, $apellido, $usuario, $clave, $estado, $rol);
-    
+            if (move_uploaded_file($imagen["tmp_name"], $ruta_imagen)) {
+                echo "La imagen se ha subido correctamente a: ". $ruta_imagen;
+            } else {
+                echo "Error al subir la imagen. ";
+            }
+        } else {
+            echo "Error: No se ha recibido la imagen. ";
+        }
+
+        if ($id != "" && $nombre != "" && $categoria != "" && $perecible != "" && $formato != "") {
+
+            $insumo = new Insumo();
+            try {
+                $resultado = $insumo->actualizarInsumo($id,$nombre, $perecible, $ruta_imagen, $categoria, $formato);
                 if ($resultado > 0) {
-                    echo "Se actualizó el usuario: " . $nombre;
+                    echo "Se actualizó el insumo: ".$nombre;
                 } else {
-                    echo "Error, no se puede guardar al trabajador, revise los datos y asegurese que el rut: ".$rut." no se encuentre registrado";
+                    echo "No se pudo actualizar el insumo: ".$nombre;
                 }
+            } catch (Exception $e) {
+                echo "Error, no se pudo actualizar el insumo! ".$e->getMessage();
             }
         }
-    } catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
-    }
+    }    
+
+        
+
+   
 
 
     // eliminar
 
     try {
 
-        if($opcion == "D")
+        if($opcion == "eliminar")
         {
             $id = $_POST["id"];
 
             if($id != ""){
                 
-                $trabajador = new Trabajador();
+                $insumo = new Insumo();
                 try{
 
-                    $resultado = $trabajador->eliminarTrabajador($id);
+                    $resultado = $insumo->eliminarInsumo($id);
                     if($resultado > 0){
                     echo "se eliminó el trabajador: ".$id;
                     }
@@ -213,7 +224,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 catch(Exception $e)
                 {
-                    echo "<script>alert('No sepuede eliminar al trabajador: ".$id.".');</script>";
+                    echo "<script>alert('No sepuede eliminar el insumo: ".$id.".');</script>";
                 }        
 
             }
@@ -233,5 +244,22 @@ else
 
 }
 
+
+function recortarRutaImagen($ruta_completa_imagen) {
+    // Buscar la posición de "public/imagenes/" en la ruta completa
+    $posicion_inicio = strpos($ruta_completa_imagen, "public/imagenes/");
+
+    // Verificar si se encontró la subcadena
+    if ($posicion_inicio !== false) {
+        // Recortar la parte de la ruta después de "public/imagenes/"
+        $ruta_relacionada = substr($ruta_completa_imagen, $posicion_inicio);
+
+        $ruta_final = "../../" . $ruta_relacionada;
+
+        return $ruta_final;
+    }
+
+    return null;
+}
 
 ?>
