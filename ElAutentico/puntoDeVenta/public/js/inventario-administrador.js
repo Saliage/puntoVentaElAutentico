@@ -457,7 +457,7 @@ function validarRut(rut) {
 function mostrarProveedores(){
     var parametros =
     {
-        "opcion":"mostar"
+        "opcion":"mostrar"
     }
 
     $.ajax({

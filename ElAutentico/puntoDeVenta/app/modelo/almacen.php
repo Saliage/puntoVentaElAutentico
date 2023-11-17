@@ -5,13 +5,11 @@ require_once('conexion.php');
 class Almacen {
 
     // Agregar almacen
-    public function agregarAlmacen($nombre) {
+    public function agregarAlmacen($nombre, $sala_venta) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $nombre = mysqli_real_escape_string($conn, $nombre);
-
-        $consulta = "INSERT INTO almacen (nombre) VALUES ('$nombre')";
+        $consulta = "INSERT INTO almacen (nombre, sala_venta) VALUES ('$nombre','$sala_venta')";
 
         $resultado = $conn->query($consulta);
 
@@ -43,26 +41,26 @@ class Almacen {
         return $resultado;
     }
 
-        // Buscar almacen por parte del nombre
-        public function buscarAlmacenNombre($busqueda){
+        // Buscar almacen por sala
+        public function listarAlmacenesEnSala(){
         
             $conectar = new Conexion();
             $conn = $conectar->abrirConexion();
     
-            $consulta = "SELECT * FROM almacen WHERE nombre LIKE '%$busqueda%' LIMIT 5";
+            $consulta = "SELECT * FROM almacen WHERE sala_venta = 1" ;
     
             $resultado = $conn->query($consulta);
             return $resultado;
         }
 
     // Actualizar datos de almacen
-    public function actualizarAlmacen($id, $nombre) {
+    public function actualizarAlmacen($id, $nombre, $sala_venta) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
         $nombre = mysqli_real_escape_string($conn, $nombre);
 
-        $consulta = "UPDATE almacen SET nombre = '$nombre' WHERE id_almacen = '$id'";
+        $consulta = "UPDATE almacen SET nombre = '$nombre', sala_venta = '$sala_venta' WHERE id_almacen = '$id'";
 
         $resultado = $conn->query($consulta);
 
