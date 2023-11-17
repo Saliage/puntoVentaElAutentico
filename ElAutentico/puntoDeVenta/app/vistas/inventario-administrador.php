@@ -212,7 +212,7 @@
                     <input type="text" name="nombre" id="nombreAlmacenTxt" pattern=".{5,}"  required>
                 </div>
                 <div>
-                    <label for="sala_chk">pertenece a sala de venats:</label>
+                    <label for="sala_chk">Pertenece a sala de ventas:</label>
                     <input type="checkbox" id="sala_chk">
                 </div>
                 <button onclick="agregarAlmacen();"><ion-icon name="add-circle-outline" ></ion-icon></button>

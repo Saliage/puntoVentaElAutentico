@@ -232,7 +232,7 @@ function agregarAlmacen(){
     var parametros = 
     {
         "nombre" : nombre,
-        "sala_venta" : sala_venta,
+        "sala_venta" : Number(sala_venta),
         "opcion" : 'guardar'
     };
     $.ajax({
@@ -242,12 +242,12 @@ function agregarAlmacen(){
         
         beforeSend: function()
         {
-
+            alert(nombre+' '+ sala_venta);
         },
 
         success: function(mensaje)
         {            
-            
+            alert(mensaje);
         }
         
     });
