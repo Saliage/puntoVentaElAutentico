@@ -453,7 +453,6 @@ function validarRut(rut) {
     return dv.toUpperCase() === digitoVerificadorCalculado.toUpperCase();
 }
 
-
 function mostrarProveedores(){
     var parametros =
     {

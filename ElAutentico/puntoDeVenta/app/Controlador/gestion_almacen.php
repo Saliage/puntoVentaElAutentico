@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         if($nombreAlmacen != ""){
                 
             $almacen = new Almacen();
-            $resultado = $almacen->agregarAlmacen($nombreAlmacen);
+            $resultado = $almacen->agregarAlmacen($nombreAlmacen , $sala_venta);
             if($resultado > 0){
             echo "se agregó el almacen: ".$nombreAlmacen;
             }        
@@ -71,6 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         {
             $id_almacen = $consulta['id_almacen'];
             $nombreAlmacen = $consulta['nombre'];
+            $sala_venta = $consulta['sala_venta'];
 
             echo'
                 <tr>
@@ -78,6 +79,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                     <td>
                         <span  id="nombre_almacenSpan'.$id_almacen.'">'.$nombreAlmacen.'</span>                        
                         <input style="display:none" type="text" id="nombre_almacenTxt'.$id_almacen.'" value="'.$nombreAlmacen.'"> <!-- inicia oculto-->
+                    </td>
+                    <td>
+                        <ion-icon id="btnEditAlmacen'.$id_almacen.'" name="pencil-outline" class="icono-editar" onclick="editarAlmacen('.$id_almacen.')"></ion-icon>                        
+                        <button style="display:none" id="guardarEditAlmacen'.$id_almacen.'" onclick="guardarAlmacenEdit('.$id_almacen.')">OK</button> <!-- inicia oculto-->
                     </td>
                     <td>
                         <ion-icon id="btnEditAlmacen'.$id_almacen.'" name="pencil-outline" class="icono-editar" onclick="editarAlmacen('.$id_almacen.')"></ion-icon>                        
@@ -98,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         if($id_almacen != "" && $nombreAlmacen !=""){
                 
             $almacen = new Almacen();
-            $resultado = $almacen->actualizarAlmacen($id_almacen,$nombreAlmacen);
+            $resultado = $almacen->actualizarAlmacen($id_almacen,$nombreAlmacen,$sala_venta);
             if($resultado > 0){
             echo "se actualizó el almacen: ".$nombreAlmacen;
             }        
