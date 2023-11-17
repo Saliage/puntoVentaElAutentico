@@ -529,6 +529,14 @@
         const audio = new Audio('../../public/music/sonido_de_dinero.mp3');
         audio.play();
 
+        // Obtener el monto actual del subtotal
+        const montoSubtotal = document.getElementById('subtotalAmount').innerText;
+
+        // Actualizar el enlace con el nuevo monto
+        const enlacePago = document.getElementById('enlacePago');
+        enlacePago.href = `../../transbank-sdk-php-master/examples/webpay-plus/index.php?action=create&monto=${montoSubtotal}`;
+        }
+
         // Función para realizar el pago
         function realizarPago(medioPago) {
         alert(`Has elegido pagar con ${medioPago}`);
