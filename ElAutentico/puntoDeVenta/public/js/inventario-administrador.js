@@ -224,38 +224,31 @@ function mostrarAlmacenes(){
     });
 }
 
-function agregarAlmacen(){ 
-    // rescatar valores del form
+function agregarAlmacen() {
+    // Rescatar valores del formulario
     var nombre = document.getElementById('nombreAlmacenTxt').value;
-    var sala_venta = document.getElementById('sala_chk').checked;
+    var sala_venta = document.getElementById('sala_chk').checked ? 1 : 0;
 
-    var parametros = 
-    {
-        "nombre" : nombre,
-        "sala_venta" : Number(sala_venta),
-        "opcion" : 'guardar'
+    var parametros = {
+        "nombre": nombre,
+        "sala_venta": sala_venta,
+        "opcion": 'guardar'
     };
+
     $.ajax({
         data: parametros,
         url: '../Controlador/gestion_almacen.php',
         type: 'POST',
-        
-        beforeSend: function()
-        {
-            alert(nombre+' '+ sala_venta);
+        beforeSend: function () {
         },
-
-        success: function(mensaje)
-        {            
-            alert(mensaje);
+        success: function (mensaje) {
         }
-        
     });
-    
-    $('#nombreAlmacenTxt').val("");  // restablecer valor del campo
-    mostrarAlmacenes();
 
+    $('#nombreAlmacenTxt').val("");  // Restablecer valor del campo
+    mostrarAlmacenes();
 }
+
 
 function editarAlmacen(id_almacen) {
 

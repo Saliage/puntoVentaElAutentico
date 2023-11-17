@@ -306,5 +306,34 @@
             <div class="cerrar-popup" onclick="cerrarPopup9()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
     </div>
+
+<!----------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------              GESTION TIPO MOVIMIENTO          -------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------->
+
+<div class="popup" id="popup4">
+        <div class="popup-contenido">
+            <h2>Almacenes</h2>
+            
+            <div class="formulario" id="formAlmacenes">
+                <div>
+                    <label for="nombreAlmacenTxt">Nombre:</label>
+                    <input type="text" name="nombre" id="nombreAlmacenTxt" pattern=".{5,}"  required>
+                </div>
+                <div>
+                    <label for="sala_chk">Pertenece a sala de ventas:</label>
+                    <input type="checkbox" id="sala_chk">
+                </div>
+                <button onclick="agregarAlmacen();"><ion-icon name="add-circle-outline" ></ion-icon></button>
+            </div>
+            <hr>
+                <tbody>
+                    <div id="verAlmacenes"></div>
+                </tbody>
+            </table>
+            <div class="cerrar-popup" onclick="cerrarPopup4()"><ion-icon name="close-circle"></ion-icon></div>
+        </div>
+    </div>
+
 </body>
 </html>
