@@ -3,8 +3,8 @@
 // los formularios que requieren datos desde la BD
 function inicializar(){
 
-    inicializarInventario()
-    listarAlmacenes();
+    inicializarInventario();
+    listarAlmacenesZona();
     mostrarZonas();
     mostrarAlmacenes();    
     mostrarProveedores();
@@ -16,11 +16,14 @@ function inicializar(){
 //------------------------------------------------------------------------------------------
 
 
-function listarAlmacenes(){
-    var parametros =
+function listarAlmacenesZona(){
+
+       var parametros =
     {
-        "opcion":"listar"
+        "opcion":"ver"
     }
+
+    alert("inicia secuencia");
 
     $.ajax({
         data: parametros,
@@ -29,13 +32,12 @@ function listarAlmacenes(){
         
         beforesend: function()
         {
-        $('#slectAlmacenes').html("Error de comunicación");
+            $('#slectAlmacenes').html("Error de comunicación");
         },
 
         success: function(mensaje)
         {
-        $('#slectAlmacenes').html(mensaje);
-        $('#listarAlmacenes').html(mensaje);
+            $('#slectAlmacenes').html(mensaje);
         }
     });
 }
@@ -249,13 +251,13 @@ function agregarAlmacen() {
         },
         success: function (mensaje) {
             mostrarAlmacenes();
-            listarAlmacenes();
+            listarAlmacenesZona();
         }
     });
 
     $('#nombreAlmacenTxt').val("");  // Restablecer valor del campo
     mostrarAlmacenes();
-    listarAlmacenes();
+    listarAlmacenesZona();
 }
 
 
@@ -318,14 +320,14 @@ function guardarAlmacenEdit(id_almacen){
         success: function(mensaje)
         {
             mostrarAlmacenes();
-            listarAlmacenes();
+            listarAlmacenesZona();
         }
         
         
 
     });
     mostrarAlmacenes();
-    listarAlmacenes();
+    listarAlmacenesZona();
     
 }
 

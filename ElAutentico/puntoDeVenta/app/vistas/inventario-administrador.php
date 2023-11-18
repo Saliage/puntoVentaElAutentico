@@ -140,7 +140,7 @@
             <div class="formulario" id="formZonas">
                 <div>
                     <label for="nombreZonaTxt">Nombre:</label>
-                    <input type="text" name="nombre" id="nombreZonaTxt" pattern=".{5,}"   required>
+                    <input type="text" name="nombre" id="nombreZonaTxt" autocomplete="off"  pattern=".{5,}"   required>
                 </div>
                 <div>
                     <label for="almacen_id">Almacen:</label>
@@ -168,7 +168,7 @@
             <div class="formulario" id="formAlmacenes">
                 <div>
                     <label for="nombreAlmacenTxt">Nombre:</label>
-                    <input type="text" name="nombre" id="nombreAlmacenTxt" pattern=".{5,}"  required>
+                    <input type="text" name="nombre" id="nombreAlmacenTxt" autocomplete="off" pattern=".{5,}"  required>
                 </div>
                 <div>
                     <label for="sala_chk">Pertenece a sala de ventas:</label>
@@ -266,20 +266,6 @@
             <div class="cerrar-popup" onclick="cerrarPopup8(); listarInsumosFormat()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
     </div>
-
-    <script>
-    // JavaScript para deseleccionar la opción de marcador de posición si se selecciona otra opción
-    document.getElementById("insumo").addEventListener("change", function() {
-        var placeholderOption = this.querySelector('option[value=""]');
-        if (this.value !== "") {
-            placeholderOption.removeAttribute("selected");
-            placeholderOption.setAttribute("disabled", "disabled");
-        } else {
-            placeholderOption.setAttribute("selected", "selected");
-            placeholderOption.removeAttribute("disabled");
-        }
-    });
-</script>
 
 <!----------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------                  SALIDA INSUMO             -------------------------------------------------------------

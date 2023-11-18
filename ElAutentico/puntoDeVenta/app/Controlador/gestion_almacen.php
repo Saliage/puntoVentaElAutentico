@@ -7,8 +7,7 @@ require_once("../modelo/almacen.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     
     $opcion = $_POST['opcion']; //obtener valor de la opción para contalmacenar eventos
-    
-    if($opcion != "listar" && $opcion != "listar2" ){
+    if($opcion != "ver" && $opcion != "listar2" ){
         echo 
         '
             <table class="table">
@@ -25,7 +24,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         ';
     }
 
-    
+        //crear select-option con almacenes    
+        if($opcion == 'ver'){
+
+        
+            $almacen = new Almacen();
+            $almacenes = $almacen->listarAlmacenes();
+            echo'<select name="almacen_id" id="almacen_id" required>';
+            echo '<option selected >--seleccionar--</option>';
+        
+            if ($almacenes->num_rows > 0) {
+                // Recorrer almacenes presentes
+                while ($dato = $almacenes->fetch_assoc()) {
+                    echo '<option value="' . $dato['id_almacen'] . '">' . $dato['nombre'] . '</option>';
+                }
+            } else {
+                echo '<option value="0">NULL</option>';
+            }
+        
+            echo'</select>';
+        
+        }
+
     // incrustar evento JS para trabajar en la vista
     if($opcion == 'listar2'){
 
@@ -33,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $almacenes = $almacen->listarAlmacenes();
         
         echo'<select name="almacen_id2" id="almacen_id2" onchange="mostrarZonasAlmacen()" required>';
-        echo '<option selected >-seleccionar-</option>';
+        echo '<option selected >--seleccionar--</option>';
     
         if ($almacenes->num_rows > 0) {
             // Recorrer almacenes presentes
@@ -48,26 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     
     }
 
-    //crear select-option con almacenes    
-    if($opcion == 'listar'){
 
-        $almacen = new Almacen();
-        $almacenes = $almacen->listarAlmacenes();
-        echo'<select name="almacen_id" id="almacen_id" required>';
-        echo '<option selected >-seleccionar-</option>';
-    
-        if ($almacenes->num_rows > 0) {
-            // Recorrer almacenes presentes
-            while ($dato = $almacenes->fetch_assoc()) {
-                echo '<option value="' . $dato['id_almacen'] . '">' . $dato['nombre'] . '</option>';
-            }
-        } else {
-            echo '<option value="0">NULL</option>';
-        }
-    
-        echo'</select>';
-    
-    }
 
 	if($opcion == "guardar")
     {
