@@ -1,10 +1,10 @@
-
-// Función para mostrar el popup
+//--------------------------------------------------------------------------------------------------------------------------------------->
+//----------------------------------------------                 POPUPS                   ----------------------------------------------->
+//--------------------------------------------------------------------------------------------------------------------------------------->
 function mostrarPopup() {
     const popup = document.getElementById('popup');
     popup.style.display = 'flex';
 }
-
 
 function cerrarPopup() {
     const popup = document.getElementById('popup');
@@ -13,14 +13,14 @@ function cerrarPopup() {
 }
 
     function inicializar(){
-        gestionarCategoria(2);
+        gestionarCat(2);
         listarProductos();
         mostrarCat();
     }
 
-     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////// MOSTRAR ROLES ////////////////////////////////////////////////////////////////////////////
-   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------------------------------------------------------------------------------------------------------------->
+//----------------------------------------------           MOSTRAR CATEGORIAS           ------------------------------------------------->
+//--------------------------------------------------------------------------------------------------------------------------------------->
     
    function  mostrarCat(){
         var parametros = 
@@ -30,7 +30,7 @@ function cerrarPopup() {
     
         $.ajax({
             data : parametros,
-            url: '../Controlador/gestion_carta.php',
+            url: '../Controlador/gestion_Cat.php',
             type: 'POST',
             beforeSend: function() {
                 $('#mostrarCat').html("No hay categorias para mostrar");
@@ -45,7 +45,7 @@ function cerrarPopup() {
     }
 
 //--------------------------------------------------------------------------------------------------------------------------------------->
-//----------------------------------------------           GESTION TRABAJADORES           ----------------------------------------------->
+//----------------------------------------------           LISTAR PRODUCTOS           --------------------------------------------------->
 //--------------------------------------------------------------------------------------------------------------------------------------->
 
 function listarProductos() {
@@ -57,7 +57,7 @@ function listarProductos() {
     
     $.ajax({
         data : parametros,
-        url: '../Controlador/gestion_carta.php',
+        url: '../Controlador/gestion_Productos.php',
         type: 'POST',
         beforeSend: function() {
             //$('#mostrarProductos').html("No hay Productos en la carta para mostrar");
@@ -71,6 +71,10 @@ function listarProductos() {
     });
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------------->
+//----------------------------------------------           EDITAR PRODUCTOS           --------------------------------------------------->
+//--------------------------------------------------------------------------------------------------------------------------------------->
+
 function editarProductos(id){
 
     var nombre_productoSpan = document.getElementById('nombre_productoSpan'+id);
@@ -80,7 +84,7 @@ function editarProductos(id){
     var precio_ventaSpan = document.getElementById('precio_ventaSpan'+id);
     var descripcionSpan = document.getElementById('descripcionSpan'+id);
     var categoriasSpan = document.getElementById('categoriasSpan'+id);
-    var btnUserEdit = document.getElementById('btnUserEdit'+id);
+    var btnProductosEdit = document.getElementById('btnProductosEdit'+id);
 
     var nombre_productoTxt = document.getElementById('nombre_productoTxt'+id);
     var codigo_productoTxt = document.getElementById('codigo_productoTxt'+id);
@@ -89,7 +93,7 @@ function editarProductos(id){
     var precio_ventaTxt = document.getElementById('precio_ventaTxt'+id);
     var descripcionTxt = document.getElementById('descripcionTxt'+id);
     var categoriasSelect = document.getElementById('categoriasSelect'+id);
-    var guardarUsuarioEdit = document.getElementById('guardarUsuarioEdit'+id);
+    var guardarProductosEdit = document.getElementById('guardarProductosEdit'+id);
 
     // Mostrar el campo de texto y ocultar el span
 
@@ -100,7 +104,7 @@ function editarProductos(id){
     precio_ventaSpan.style.display = 'none';
     descripcionSpan.style.display = 'none';
     categoriasSpan.style.display = 'none';
-    btnUserEdit.style.display = 'none';
+    btnProductosEdit.style.display = 'none';
 
     nombre_productoTxt.style.display = 'inline';
     codigo_productoTxt.style.display = 'inline';
@@ -109,7 +113,7 @@ function editarProductos(id){
     precio_ventaTxt.style.display = 'inline';
     descripcionTxt.style.display = 'inline';
     categoriasSelect.style.display = 'inline';
-    guardarUsuarioEdit.style.display = 'inline';
+    guardarProductosEdit.style.display = 'inline';
 
     // Agregar el valor del texto al valor original del span
     
@@ -122,7 +126,11 @@ function editarProductos(id){
 
 }
 
-function guardarUsuarioEdit(id){
+//--------------------------------------------------------------------------------------------------------------------------------------->
+//----------------------------------------------           GUARDAR PRODUCTOS           --------------------------------------------------->
+//--------------------------------------------------------------------------------------------------------------------------------------->
+
+function guardarProductosEdit(id){
 
     var nombre_productoSpan = document.getElementById('nombre_productoSpan'+id);
     var codigo_productoSpan = document.getElementById('codigo_productoSpan'+id);
@@ -131,7 +139,7 @@ function guardarUsuarioEdit(id){
     var precio_ventaSpan = document.getElementById('precio_ventaSpan'+id);
     var descripcionSpan = document.getElementById('descripcionSpan'+id);
     var categoriasSpan = document.getElementById('categoriasSpan'+id);
-    var btnUserEdit = document.getElementById('btnUserEdit'+id);
+    var btnProductosEdit = document.getElementById('btnProductosEdit'+id);
 
     var nombre_productoTxt = document.getElementById('nombre_productoTxt'+id);
     var codigo_productoTxt = document.getElementById('codigo_productoTxt'+id);
@@ -140,7 +148,7 @@ function guardarUsuarioEdit(id){
     var precio_ventaTxt = document.getElementById('precio_ventaTxt'+id);
     var descripcionTxt = document.getElementById('descripcionTxt'+id);
     var categoriasSelect = document.getElementById('categoriasSelect'+id);
-    var guardarUsuarioEdit = document.getElementById('guardarUsuarioEdit'+id);
+    var guardarProductosEdit = document.getElementById('guardarProductosEdit'+id);
 
 
     var parametros = 
@@ -165,7 +173,7 @@ function guardarUsuarioEdit(id){
     precio_ventaSpan.style.display = 'inline';
     descripcionSpan.style.display = 'inline';
     categoriasSpan.style.display = 'inline';
-    btnUserEdit.style.display = 'inline';
+    btnProductosEdit.style.display = 'inline';
     
     nombre_productoTxt.style.display = 'none';
     codigo_productoTxt.style.display = 'none';
@@ -174,12 +182,12 @@ function guardarUsuarioEdit(id){
     precio_ventaTxt.style.display = 'none';
     descripcionTxt.style.display = 'none';
     categoriasSelect.style.display = 'none';
-    guardarUsuarioEdit.style.display = 'none';
+    guardarProductosEdit.style.display = 'none';
     
 
 $.ajax({
         data : parametros,
-        url: '../Controlador/gestion_carta.php',
+        url: '../Controlador/gestion_Productos.php',
         type: 'POST',
     beforeSend: function()
     {
@@ -196,6 +204,10 @@ $.ajax({
 
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------------->
+//----------------------------------------------           ELIMINAR PRODUCTOS           --------------------------------------------------->
+//--------------------------------------------------------------------------------------------------------------------------------------->
+
 function eliminarProductos(id){
 
     var confirmacion = confirm("¿Estás seguro de que deseas eliminar el producto: "+id+"?");
@@ -210,7 +222,7 @@ function eliminarProductos(id){
  
         $.ajax({
         data: parametros,
-        url: '../Controlador/gestion_carta.php',
+        url: '../Controlador/gestion_Productos.php',
         type: 'POST',
         
         beforeSend: function()
@@ -232,6 +244,10 @@ function eliminarProductos(id){
     }
     
 }
+
+//--------------------------------------------------------------------------------------------------------------------------------------->
+//----------------------------------------------           AGREGAR PRODUCTOS           --------------------------------------------------->
+//--------------------------------------------------------------------------------------------------------------------------------------->
 
 function agregarProductos(event)
 { 
@@ -261,7 +277,7 @@ function agregarProductos(event)
     
     $.ajax({
         data: parametros,
-        url: '../Controlador/gestion_carta.php',
+        url: '../Controlador/gestion_Productos.php',
         type: 'POST',
             
         beforeSend: function()
@@ -282,7 +298,7 @@ function agregarProductos(event)
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------->
-//----------------------------------------------               GESTION ROLES              ----------------------------------------------->
+//----------------------------------------------               GESTION CATEGORIAS            ----------------------------------------------->
 //--------------------------------------------------------------------------------------------------------------------------------------->
 
 
@@ -297,7 +313,7 @@ var parametros =
 
 $.ajax({
     data: parametros,
-    url: '../Controlador/carta.php',
+    url: '../Controlador/gestion_Cat.php',
     type: 'POST',
     
     beforesend: function()
@@ -331,15 +347,15 @@ function editarCat(id_tipo) {
 
 }
 
-function guardarCatEdit(id_rol){
+function guardarCatEdit(id_tipo){
 
-    var categoriasSpan = document.getElementById('nombre_tipoSpan'+id_rol);
-    var categoriasTxt = document.getElementById('nombre_tipoTxt'+id_rol);
-    var btnOK = document.getElementById('guardarEdit'+id_rol);
-    var btnEdit = document.getElementById('btnEdit'+id_rol);
+    var categoriasSpan = document.getElementById('nombre_tipoSpan'+id_tipo);
+    var categoriasTxt = document.getElementById('nombre_tipoTxt'+id_tipo);
+    var btnOK = document.getElementById('guardarEdit'+id_tipo);
+    var btnEdit = document.getElementById('btnEdit'+id_tipo);
     var parametros = 
     {
-        "id" : nombre_tipo,
+        "id" : id_tipo,
         "nombre" : categoriasTxt.value,
         "opcion" : 'U'
     };
@@ -352,7 +368,7 @@ function guardarCatEdit(id_rol){
 
 $.ajax({
     data: parametros,
-    url: '../Controlador/gestion_carta.php',
+    url: '../Controlador/gestion_Cat.php',
     type: 'POST',
     
     beforeSend: function()
@@ -367,10 +383,8 @@ $.ajax({
     gestionarCat(2);
     }
     
-
 });
-
-    
+   
 }
 
 function eliminarCat(id_tipo){
@@ -387,7 +401,7 @@ function eliminarCat(id_tipo){
 
         $.ajax({
         data: parametros,
-        url: '../Controlador/gestion_carta.php',
+        url: '../Controlador/gestion_Cat.php',
         type: 'POST',
         
         beforeSend: function()
@@ -405,12 +419,5 @@ function eliminarCat(id_tipo){
         
         });
 
-    }
-        
-
-
+    }    
 }
-
-
-
-
