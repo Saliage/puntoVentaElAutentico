@@ -447,10 +447,12 @@ function agregarFormato(event){
     // rescatar valores del form
     var formulario = document.getElementById('formFormatos');    
     var nombre = formulario.elements['nombre'].value;
+    var sala_venta = formulario.elements['sala_chk'].checked;
 
     var parametros = 
     {
         "nombre" : nombre,
+        "sala_venta" : Number(sala_venta),
         "opcion" : 'guardar'
     };
     $.ajax({

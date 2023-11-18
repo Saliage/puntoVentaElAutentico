@@ -49,7 +49,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 	if($opcion == "guardar")
     {
         $nombreAlmacen = $_POST["nombre"];
-        $sala_venta = $POST["sala_venta"];
+        $sala_venta = $_POST["sala_venta"];
+
+        echo'sala venta tiene:['.$sala_venta.']';
 
         if($nombreAlmacen != ""){
                 
@@ -67,12 +69,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     {
 	    $almacen = new Almacen();
         $resultado = $almacen->listarAlmacenes();
-
         while($consulta = mysqli_fetch_array($resultado)) 
         {
             $id_almacen = $consulta['id_almacen'];
             $nombreAlmacen = $consulta['nombre'];
             $sala_venta = $consulta['sala_venta'];
+
             $icono = '<ion-icon name="close-outline"></ion-icon>';
 
             if($sala_venta == 1)
@@ -84,12 +86,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 <tr>
                     <td>'.$id_almacen.'</td>
                     <td>
-                        <span  id="nombre_almacenSpan'.$id_almacen.'">'.$nombreAlmacen.'</span>                        
+                        <span  id="nombre_almacenSpan'.$id_almacen.'">'.$nombreAlmacen.'</span>                      
                         <input style="display:none" type="text" id="nombre_almacenTxt'.$id_almacen.'" value="'.$nombreAlmacen.'"> <!-- inicia oculto-->
                     </td>
                     <td>
                         <span id="sala_ventaSpan'.$id_almacen.'">'.$icono.'</span>
-                        <input type="checkbox" id="sala_ventachk'.$id_almacen.'" '. $sala_venta == 1 ? 'checked' : ''.' >
+                        <input type="checkbox" id="sala_ventachk'.$id_almacen.'" '. ($sala_venta == 1 ? 'checked' : '').' style="display:none" >
                     </td>
                     <td>
                         <ion-icon id="btnEditAlmacen'.$id_almacen.'" name="pencil-outline" class="icono-editar" onclick="editarAlmacen('.$id_almacen.')"></ion-icon>                        

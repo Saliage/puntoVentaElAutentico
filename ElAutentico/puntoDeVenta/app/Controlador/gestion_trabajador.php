@@ -142,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <td>
                     <ion-icon name="trash-outline" class="icono-eliminar" onclick="eliminarUsuario('.$id.')"></ion-icon>
                 </td> 
-            </tr>
+            </tr><br>
 	    ';
 	  }	
 

@@ -9,7 +9,7 @@ class TipoMovimiento {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "INSERT INTO tipo_movimiento (nombre_tipo_movimiento)
+        $consulta = "INSERT INTO tipo_movimiento (nombre_tipo_mov)
                      VALUES ('$nombre')";
 
         $resultado = $conn->query($consulta);
@@ -35,7 +35,7 @@ class TipoMovimiento {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "SELECT * FROM tipo_movimiento WHERE id_tipo_movimiento = '$id'";
+        $consulta = "SELECT * FROM tipo_movimiento WHERE id_tipo_mov = '$id'";
 
         $resultado = $conn->query($consulta);
 
@@ -50,8 +50,8 @@ class TipoMovimiento {
         $conn = $conectar->abrirConexion();
 
         $consulta = "UPDATE tipo_movimiento SET
-                    nombre_tipo_movimiento = '$nombre'
-                    WHERE id_tipo_movimiento = '$id'";
+                    nombre_tipo_mov = '$nombre'
+                    WHERE id_tipo_mov = '$id'";
 
         $resultado = $conn->query($consulta);
 
@@ -63,7 +63,7 @@ class TipoMovimiento {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "DELETE FROM tipo_movimiento WHERE id_tipo_movimiento = '$id'";
+        $consulta = "DELETE FROM tipo_movimiento WHERE id_tipo_mov = '$id'";
 
         $resultado = $conn->query($consulta);
 

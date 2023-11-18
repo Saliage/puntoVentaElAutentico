@@ -2,11 +2,13 @@
 //funcion "onload" la principal que llama a las demás funciones necesarias para completar
 // los formularios que requieren datos desde la BD
 function inicializar(){
-
+    
+    inicializarInventario()
     listarAlmacenes();
     mostrarZonas();
     mostrarAlmacenes();    
     mostrarProveedores();
+    mostrarTipoMovimientos();
 }
 
 //------------------------------------------------------------------------------------------
@@ -77,12 +79,12 @@ function agregarZona(){
         
         beforeSend: function()
         {
-
+            mostrarZonas();
         },
 
         success: function(mensaje)
         {            
-            
+            mostrarZonas();
         }
         
     });
@@ -146,10 +148,12 @@ function guardarZonaEdit(id_zona){
         
         beforeSend: function()
         {
+            mostrarZonas();
         },
 
         success: function(mensaje)
         {
+            mostrarZonas();
         }
         
         
@@ -224,38 +228,35 @@ function mostrarAlmacenes(){
     });
 }
 
-function agregarAlmacen(){ 
-    // rescatar valores del form
+function agregarAlmacen() {
+    // Rescatar valores del formulario
     var nombre = document.getElementById('nombreAlmacenTxt').value;
-    var sala_venta = document.getElementById('sala_chk').checked;
+    var sala_venta = document.getElementById('sala_chk').checked ? 1 : 0;
 
-    var parametros = 
-    {
-        "nombre" : nombre,
-        "sala_venta" : Number(sala_venta),
-        "opcion" : 'guardar'
+    var parametros = {
+        "nombre": nombre,
+        "sala_venta": sala_venta,
+        "opcion": 'guardar'
     };
+
     $.ajax({
         data: parametros,
         url: '../Controlador/gestion_almacen.php',
         type: 'POST',
-        
-        beforeSend: function()
-        {
-            alert(nombre+' '+ sala_venta);
+        beforeSend: function () {
+            mostrarAlmacenes();
         },
-
-        success: function(mensaje)
-        {            
-            alert(mensaje);
+        success: function (mensaje) {
+            mostrarAlmacenes();
+            listarAlmacenes();
         }
-        
     });
-    
-    $('#nombreAlmacenTxt').val("");  // restablecer valor del campo
-    mostrarAlmacenes();
 
+    $('#nombreAlmacenTxt').val("");  // Restablecer valor del campo
+    mostrarAlmacenes();
+    listarAlmacenes();
 }
+
 
 function editarAlmacen(id_almacen) {
 
@@ -310,16 +311,20 @@ function guardarAlmacenEdit(id_almacen){
         
         beforeSend: function()
         {
+            mostrarAlmacenes();
         },
 
         success: function(mensaje)
         {
+            mostrarAlmacenes();
+            listarAlmacenes();
         }
         
         
 
     });
     mostrarAlmacenes();
+    listarAlmacenes();
     
 }
 
@@ -618,3 +623,148 @@ function eliminarProveedor(id){
     }
 }
 
+//------------------------------------------------------------------------------------------
+//------------------------     LOGICA POPUP PROVEEDORES    ---------------------------------
+//------------------------------------------------------------------------------------------
+
+    function agregarMovimiento() {
+
+        // Rescatar valores del formulario
+        var nombre = document.getElementById('tipo_movimientoTXT').value;
+
+        var parametros = {
+            "nombre": nombre,
+            "opcion": 'guardar'
+        };
+
+        $.ajax({
+            data: parametros,
+            url: '../Controlador/gestion_movimiento.php',
+            type: 'POST',
+            beforeSend: function () {
+            },
+            success: function (mensaje) {
+            }
+        });
+
+        $('#tipo_movimientoTXT').val("");  // Restablecer valor del campo
+        mostrarTipoMovimientos();
+    }
+
+    function mostrarTipoMovimientos(){
+        var parametros =
+        {
+            "opcion":"mostrar"
+        }
+
+        $.ajax({
+            data: parametros,
+            url: '../Controlador/gestion_movimiento.php',
+            type: 'POST',
+            
+            beforesend: function()
+            {
+            $('#verTipoMovimiento').html("Error de comunicación");
+            },
+
+            success: function(mensaje)
+            {
+            $('#verTipoMovimiento').html(mensaje);
+            }
+        });
+    }
+
+    function editarmovimeinto(id) {
+
+        var movimeintoSpan = document.getElementById('nombre_movimeintoSpan'+id);
+        var movimeintoTxt = document.getElementById('nombre_movimeintoTxt'+id);
+        var btnEdit = document.getElementById('btnEditMovimiento'+id);
+        var btnOK = document.getElementById('guardarEditMovimiento'+id);
+        
+
+        // Mostrar el campo de texto y ocultar el span
+        movimeintoSpan.style.display = 'none';
+        movimeintoTxt.style.display = 'inline';   
+        btnEdit.style.display = 'none';
+        btnOK.style.display = 'inline';
+
+    }
+
+    function guardarmovimeintoEdit(id){
+
+        var movimeintoSpan = document.getElementById('nombre_movimeintoSpan'+id);
+        var movimeintoTxt = document.getElementById('nombre_movimeintoTxt'+id);
+        var btnEdit = document.getElementById('btnEditMovimiento'+id);
+        var btnOK = document.getElementById('guardarEditMovimiento'+id);
+        
+        var parametros = 
+        {
+            "id" : id,
+            "nombre" : movimeintoTxt.value,
+            "opcion" : 'editar'
+        };
+        
+        // revertir elementos
+        movimeintoSpan.style.display = 'inline';
+        movimeintoTxt.style.display = 'none';   
+        btnEdit.style.display = 'inline';
+        btnOK.style.display = 'none';
+
+        $.ajax({
+            data: parametros,
+            url: '../Controlador/gestion_movimiento.php',
+            type: 'POST',
+            
+            beforeSend: function()
+            {
+                mostrarTipoMovimientos();
+            },
+
+            success: function(mensaje)
+            {
+                mostrarTipoMovimientos();
+            }
+            
+            
+
+        });
+        mostrarTipoMovimientos();
+        
+    }
+
+    function eliminarmovimeinto(id){
+
+        var confirmacion = confirm("¿Estás seguro de que deseas eliminar el tipo de movimiento: "+id+"?");
+
+        if (confirmacion) {
+            
+            var parametros = 
+            {
+                "id" : id,
+                "opcion" : 'eliminar'
+            };                
+
+            $.ajax({
+            data: parametros,
+            url: '../Controlador/gestion_movimiento.php',
+            type: 'POST',
+            
+            beforeSend: function()
+            {
+            $('#verTipoMovimiento').html("Error! No se puede realizar la operación.");
+            $('#verTipoMovimiento').css('color', 'red');
+            mostrarTipoMovimientos();
+            },
+
+            success: function(mensaje)
+            {
+            $('#verTipoMovimiento').html(mensaje);
+            mostrarTipoMovimientos();
+            }
+            
+            });
+
+            mostrarTipoMovimientos();
+
+        }
+    }

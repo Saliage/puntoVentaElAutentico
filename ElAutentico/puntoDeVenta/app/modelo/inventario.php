@@ -73,7 +73,7 @@ class Inventario{
     }
 
     // Obtener la cantidad de insumos disponibles por cada insumo
-    public function obtenerCantidadTotalPorInsumo(){
+    public function CantidadTotalPorInsumo(){
 
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
@@ -88,7 +88,7 @@ class Inventario{
         return $resultado;
     }
 
-    public function obtenerCantidadTotalPorInsumoEspecifico($id_insumo){
+    public function TotalPorInsumoEspecifico($id_insumo){
 
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
@@ -103,6 +103,37 @@ class Inventario{
         return $resultado;
     }
 
-} 
 
-?>
+
+    // Función para obtener información de productos en inventario con stock total
+    function inventarioInnerJoin()
+    {
+        $conectar = new Conexion();
+        $conn = $conectar->abrirConexion();
+        
+        $consulta = "SELECT
+                        i.id_insumo as id,
+                        i.imagen as imagen,
+                        i.nombre_insumo as nombre,
+                        SUM(i.cantidad) AS stock_total,
+                        c.nombre_categoria as categoria,
+                        f.nombre_formato as formato,
+                        i.perecible as perecible
+                    FROM inventario i INNER JOIN categoria_insumo c ON i.categoria_insumo_id_categoria = c.id_categoria
+                    INNER JOIN formato f ON i.formato_id_formato = f.id_formato
+                    WHERE i.cantidad > 0
+                    GROUP BY i.id_insumo";
+
+        $resultado = $conn->query($consulta);
+
+        return $resultado;
+    }
+
+
+
+
+
+
+
+
+}

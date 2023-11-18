@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     
     echo 
     '
-     <table class="table">
+     <table class="table" style="width : 500px">
         <thead>
             <tr>
                 <th>#</th>
