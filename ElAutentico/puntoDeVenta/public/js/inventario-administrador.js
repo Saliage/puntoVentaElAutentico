@@ -2,7 +2,7 @@
 //funcion "onload" la principal que llama a las demás funciones necesarias para completar
 // los formularios que requieren datos desde la BD
 function inicializar(){
-    
+
     inicializarInventario()
     listarAlmacenes();
     mostrarZonas();
@@ -35,6 +35,7 @@ function listarAlmacenes(){
         success: function(mensaje)
         {
         $('#slectAlmacenes').html(mensaje);
+        $('#listarAlmacenes').html(mensaje);
         }
     });
 }
@@ -626,6 +627,7 @@ function eliminarProveedor(id){
 //------------------------------------------------------------------------------------------
 //------------------------     LOGICA POPUP PROVEEDORES    ---------------------------------
 //------------------------------------------------------------------------------------------
+
 
     function agregarMovimiento() {
 

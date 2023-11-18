@@ -4,6 +4,33 @@ function inicializarInventario(){
     listarInventario();
 }
 
+function listarAlmacenes(){
+    var parametros =
+    {
+        "opcion":"listar2"
+    }
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_almacen.php',
+        type: 'POST',
+        
+        beforesend: function()
+        {
+        $('#listarAlmacenes').html("Error de comunicación");
+        },
+
+        success: function(mensaje)
+        {
+        $('#listarAlmacenes').html(mensaje);
+        }
+    });
+}
+
+function mostrarZonasAlmacen(){
+    var opcion = document.getElementById('almacen_id2').value;
+}
+
 function listarInventario() {
 
     var parametros = 
@@ -210,12 +237,12 @@ function mostrarClave(id) {
 
 
 
-function agregarTrabajador(event)
+function entradaInsumo(event)
 { 
     event.preventDefault(); // Evita que el formulario se envíe a la nada
 
     // rescatar valores del form
-    var formulario = document.getElementById('formAgregarTrabajador');
+    var formulario = document.getElementById('formEntradaInsumo');
     var rut = formulario.elements['rut'].value;
     var nombre = formulario.elements['nombre'].value;
     var apellido = formulario.elements['apellido'].value;
@@ -255,7 +282,7 @@ function agregarTrabajador(event)
             alert(mensaje);
             listarTrabajadores();
             cerrarPopup();
-            document.getElementById("formAgregarTrabajador").reset();
+            document.getElementById("formEntradaInsumo").reset();
             }
         });
     }
@@ -266,51 +293,3 @@ function agregarTrabajador(event)
     }
 }
 
-function validarRutTxt() {
-    var rut = document.getElementById("rut").value;
-    var mensaje = document.getElementById("validaRUT");
-
-    if (validarRut(rut)) {
-        mensaje.style.display = 'none';
-    } else {
-        mensaje.style.display = 'block';
-        mensaje.innerHTML = 'El RUT no es válido. Por favor, corrige el RUT.';
-    }
-}
-
-
-function validarRut(rut) {
-    // Eliminar puntos y guiones del RUT
-    rut = rut.replace(/[.-]/g, '');
-
-    // Verificar si el RUT tiene el formato correcto
-    if (!/^[0-9]{1,9}[0-9Kk]$/.test(rut)) {
-        return false;
-    }
-
-    // Obtener el dígito verificador actual
-    var dv = rut.slice(-1);
-    rut = rut.slice(0, -1);
-
-    // Calcular el dígito verificador esperado
-    var suma = 0;
-    var multiplo = 2;
-
-    for (var i = rut.length - 1; i >= 0; i--) {
-        suma += rut[i] * multiplo;
-
-        if (multiplo < 7) {
-            multiplo++;
-        } else {
-            multiplo = 2;
-        }
-    }
-
-    var digitoVerificadorCalculado = 11 - (suma % 11);
-
-    // Convertir el dígito calculado a texto
-    digitoVerificadorCalculado = (digitoVerificadorCalculado === 10) ? 'K' : String(digitoVerificadorCalculado);
-
-    // Comparar el dígito verificador actual con el calculado
-    return dv.toUpperCase() === digitoVerificadorCalculado.toUpperCase();
-}

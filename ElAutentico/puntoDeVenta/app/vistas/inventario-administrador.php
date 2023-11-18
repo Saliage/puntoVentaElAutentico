@@ -229,20 +229,39 @@
     </div>
 
 <!----------------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------                 ENTRADA iNSUMO            -------------------------------------------------------------
+------------------------------------------                 ENTRADA INSUMO            -------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------->
 
     <div class="popup" id="popup8">
         <div class="popup-contenido">
             <h2>Registrar entrada insumo</h2>
             <P></P>
-            <form action="" method="POST" class="formulario">
-                <div class="form-element">
-                    <label for="user">Cantidad</label>
-                    <input type="number" min="1" name="stock" placeholder="Cantidad " required>
-                </div>
-                <button class="boton-pagar-mas" type="submit" name="agregar" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
-            </form>
+            <form id="formEntradaInsumo" onsubmit="return entradaInsumo(event)" method="post">
+                
+                    <div class="form-element">
+                        <label for="nombre">Insumo:</label>
+                        <div id="listarInsumos"></div>
+                    </div>                  
+                    <div class="form-element">
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="number" name="cantidad" id="cantidad" min="1" title="Ingrese la cantidad de producto" required>
+                    </div>                                      
+                    <div class="form-element"><label for="costo">Costo:</label>
+                        <input type="number" name="costo" id="costo" placeholder="costo" title="Ingrese el costo unitario" >
+                    </div>    
+                    <div class="form-element">
+                        <div id="pedirFec_ven"></div>
+                    </div>
+                    <div class="form-element">
+                        <label for="listarAlmacenes"></label>
+                        <div id="listarAlmacenes"></div>
+                    </div>                        
+                    <div class="form-element">
+                        <label for="listarZonas"></label>
+                        <div id="listarZonas"></div>
+                    </div>
+                    <input class="boton-pago" type="submit" name="agregar" value="Registrar">
+                </form>
             <div class="cerrar-popup" onclick="cerrarPopup8()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
     </div>
@@ -270,7 +289,7 @@
 ------------------------------------------              GESTION TIPO MOVIMIENTO          -------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------->
 
-<div class="popup" id="popup7">
+    <div class="popup" id="popup7">
         <div class="popup-contenido">
             <h2>Tipo de Movimientos</h2>
             
