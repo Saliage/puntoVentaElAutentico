@@ -4,8 +4,8 @@ require_once('conexion.php');
 
 class Tipo_producto {
 
-    // Agregar 
-    public function agregarTipo_producto($nombre) {
+    // Agregar Productos
+    public function agregarProductos($nombre) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
@@ -21,7 +21,7 @@ class Tipo_producto {
     }
 
     // Obtener todos los roles
-    public function listarRoles() {
+    public function listarCat() {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
@@ -34,7 +34,7 @@ class Tipo_producto {
     }
 
     // Buscar categoria por id
-    public function buscarTipo_productoId($id) {
+    public function buscarProductosId($id) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
@@ -47,7 +47,7 @@ class Tipo_producto {
     }
 
     // Buscar Categoria por parte del nombre
-    public function buscarTipo_productoNombre($busqueda){
+    public function buscarProductosNombre($busqueda){
         
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
@@ -59,8 +59,8 @@ class Tipo_producto {
         $conn->close();
     }
 
-    // Actualizar datos de rol
-    public function actualizarTipo_producto($id, $nombre) {
+    // Actualizar datos de productos
+    public function actualizarProductos($id, $nombre) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
@@ -75,7 +75,7 @@ class Tipo_producto {
     }
 
     // Eliminar rol por id
-    public function eliminarTipo_producto($id) {
+    public function eliminarProductos($id) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
