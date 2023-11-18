@@ -51,6 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } 
     }
 
+    //muestra todo el contenido
     if($opcion == "mostrar")
 	{
         $inventario = new Inventario();
@@ -77,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <tr>
                 <td>'.$id.'</td>
                 <td>    
-                    <img src="'.$imagen.'" id="imagen"></img>
+                    <img src="'.$imagen.'" id="imagen" width="40" height="40"></img>
                 </td>
                 <td>   
                     <span  id="nombreSpan'.$id.'">'.$nombre.'</span>
@@ -95,10 +96,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <span id="estadoSpan'.$id.'">'.$icono.'</span>                   
                     </select>
                 </td>
-                <td>
-                    <button class="boton-pagar2"  id="guardarUsuarioEdit'.$id.'" onclick="deplegar"('.$id.')"><ion-icon name="chevron-down-circle-outline"></ion-icon></button> <!-- inicia oculto-->
-                </td>
-            </tr><br>
+                    <td>
+                    <button class="boton-pagar2"  id="desplegarDetalle'.$id.'" onclick="deplegar"('.$id.')" title="Desplegar">
+                    <ion-icon name="chevron-down-circle-outline"></ion-icon></button>
+                    <button class="boton-pagar2"  id="ocultarDetalle'.$id.'" onclick="ocultar"('.$id.')" title="Ocultar">
+                    <ion-icon name="chevron-up-circle-outline"></ion-icon></button> <!-- inicia oculto-->
+                    </td>
+            </tr> <div id="detalleStock'.$id.'"></div> <-- muestra el detalle de cada insumo -->
+            <br>
 	    ';
 	  }	
 

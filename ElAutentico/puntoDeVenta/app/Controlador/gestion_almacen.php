@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     
     $opcion = $_POST['opcion']; //obtener valor de la opción para contalmacenar eventos
     
-    if($opcion != "listar"){
+    if($opcion != "listar" && $opcion != "listar2" ){
         echo 
         '
             <table class="table">
@@ -25,7 +25,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         ';
     }
 
-    //crear select-option con almacenes
+    
+    // incrustar evento JS para trabajar en la vista
+    if($opcion == 'listar2'){
+
+        $almacen = new Almacen();
+        $almacenes = $almacen->listarAlmacenes();
+        echo'<select name="almacen_id2" id="almacen_id2" onchange="mostrarZonasAlmacen()" required>';
+        echo '<option selected >-seleccionar-</option>';
+    
+        if ($almacenes->num_rows > 0) {
+            // Recorrer almacenes presentes
+            while ($dato = $almacenes->fetch_assoc()) {
+                echo '<option value="' . $dato['id_almacen'] . '">' . $dato['nombre'] . '</option>';
+            }
+        } else {
+            echo '<option value="0">NULL</option>';
+        }
+    
+        echo'</select>';
+    
+    }
+
+    //crear select-option con almacenes    
     if($opcion == 'listar'){
 
         $almacen = new Almacen();

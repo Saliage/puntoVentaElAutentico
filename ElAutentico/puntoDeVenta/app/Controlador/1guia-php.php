@@ -15,6 +15,84 @@ $saludo = "Hola Mundo"
 
     aqui puedo llamar una variable en php : <?php echo $saludo ?> 
 
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla con Despliegue</title>
+    <style>
+        /* Estilos para la tabla y el contenido adicional */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        #additionalInfo {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tabla -->
+    <table id="miTabla">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-info="Información adicional 1">
+                <td>1</td>
+                <td>Producto A</td>
+                <td>Descripción del Producto A</td>
+            </tr>
+            <tr data-info="Información adicional 2">
+                <td>2</td>
+                <td>Producto B</td>
+                <td>Descripción del Producto B</td>
+            </tr>
+            <!-- Agrega más filas según sea necesario -->
+        </tbody>
+    </table>
+
+    <!-- Contenido adicional (inicialmente oculto) -->
+    <div id="additionalInfo"></div>
+
+    <script>
+        // Agrega un evento clic a las filas de la tabla
+        var filas = document.querySelectorAll('#miTabla tbody tr');
+
+        filas.forEach(function(fila) {
+            fila.addEventListener('click', function() {
+                // Muestra la información adicional
+                var infoAdicional = this.getAttribute('data-info');
+                document.getElementById('additionalInfo').innerHTML = infoAdicional;
+                document.getElementById('additionalInfo').style.display = 'block';
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
 </body>
 
 <!-- crear cosigo js para ser llamado desde php -->
