@@ -250,6 +250,7 @@
                         <input type="number" name="costo" id="costo" placeholder="costo" min="1" title="Ingrese el costo unitario" >
                     </div>    
                     <div class="form-element">
+                        
                         <div id="pedirFec_ven"></div>
                     </div>
                     <div class="form-element">

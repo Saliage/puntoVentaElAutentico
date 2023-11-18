@@ -32,7 +32,6 @@ function listarAlmacenes(){
 
 function mostrarZonasAlmacen(){
     var almacen = document.getElementById('almacen_id2').value;
-    alert(almacen);
 
     var parametros =
     {
@@ -160,8 +159,11 @@ function listarInsumosFormat(){
 
 }
 
-function reqFecVen(perecible){
+function reqFecVen(){
     
+    var insumoSelect = document.getElementById("insumo");
+    var selectedOption = insumoSelect.options[insumoSelect.selectedIndex];
+    var perecible = selectedOption.getAttribute("data-perecible");
     alert(perecible);
     var parametros =
     {
@@ -176,12 +178,14 @@ function reqFecVen(perecible){
         
         beforesend: function()
         {
-        $('#pedirFec_ven').html("Error de comunicación");
+            alert("se va: "+perecible)
+            $('#pedirFec_ven').html("Error de comunicación");
         },
 
         success: function(mensaje)
         {
-        $('#pedirFec_ven').html(mensaje);
+            alert(mensaje);
+            $('#pedirFec_ven').html(mensaje);
         }
     });
 
