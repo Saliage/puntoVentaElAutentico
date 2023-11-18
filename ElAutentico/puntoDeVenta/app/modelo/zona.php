@@ -44,13 +44,13 @@ class Zona {
         $conn ->close();
     }
 
-        // Buscar rol por parte del nombre
-    public function buscarZonaNombre($busqueda){
+    // listar zonas según almacen
+    public function buscarZonaPorAlmacen($id_almacen){
         
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "SELECT * FROM zona WHERE nombre_zona LIKE '%$busqueda%' LIMIT 5";
+        $consulta = "SELECT * FROM zona WHERE almacen_id_almacen = '$id_almacen'";
 
         $resultado = $conn->query($consulta);
         return $resultado;

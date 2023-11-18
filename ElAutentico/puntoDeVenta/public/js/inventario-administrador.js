@@ -2,7 +2,8 @@
 //funcion "onload" la principal que llama a las demás funciones necesarias para completar
 // los formularios que requieren datos desde la BD
 function inicializar(){
-
+    
+    inicializarInventario()
     listarAlmacenes();
     mostrarZonas();
     mostrarAlmacenes();    

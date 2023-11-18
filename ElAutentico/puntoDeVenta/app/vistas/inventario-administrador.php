@@ -27,6 +27,7 @@
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../../public/js/js-maestro.js"></script>
     <script src="../../public/js/inventario-administrador.js"></script>
+    <script src="../../public/js/inventario.js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>
@@ -120,52 +121,9 @@
                     <button class="boton-pagar2" onclick="mostrarPopup7()">Tipos Movimientos</button>
                     <button class="boton-pagar" onclick="mostrarPopup8()">Entrada insumo</button>
                     <button class="boton-pagar3" onclick="mostrarPopup9()">Salida insumo</button>
-
-                    <p></p>   
-                    <tr class="fila-titulos">
-                        <th class="celda-titulo"></th>
-                        <th class="celda-titulo">Nombre</th>
-                        <th class="celda-titulo">Id insumo</th>
-                        <th class="celda-titulo">Stock</th>
-                        <th class="celda-titulo">Fecha proximo vencimiento</th>
-                        <th class="celda-titulo">Costo</th>
-                        <th class="celda-titulo">Categoria</th>
-                        <th class="celda-titulo">Zona</th>
-                        <th class="celda-titulo">Almacen</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
+                </thead> <br><br>   
                 <tbody>
-                    <div id="listarInsumos"></div>
-                    <tr>
-                        <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
-                        <td>Tomates</td>
-                        <td>001</td>
-                        <td>20</td>
-                        <td>2023-12-31</td>
-                        <td>$300</td>
-                        <td>Verduras</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td><img src="../../public/imagenes/tomates.png" alt="Insumo 1"></td>
-                        <td>Tomates</td>
-                        <td>001</td>
-                        <td>20</td>
-                        <td>2023-12-31</td>
-                        <td>$300</td>
-                        <td>Verduras</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
+                    <div id="mostrarInventario"></div>
                 </tbody>
             </table>
         </div>
