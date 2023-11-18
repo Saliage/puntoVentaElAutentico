@@ -78,12 +78,12 @@ function agregarZona(){
         
         beforeSend: function()
         {
-
+            mostrarZonas();
         },
 
         success: function(mensaje)
         {            
-            
+            mostrarZonas();
         }
         
     });
@@ -147,10 +147,12 @@ function guardarZonaEdit(id_zona){
         
         beforeSend: function()
         {
+            mostrarZonas();
         },
 
         success: function(mensaje)
         {
+            mostrarZonas();
         }
         
         
@@ -241,13 +243,17 @@ function agregarAlmacen() {
         url: '../Controlador/gestion_almacen.php',
         type: 'POST',
         beforeSend: function () {
+            mostrarAlmacenes();
         },
         success: function (mensaje) {
+            mostrarAlmacenes();
+            listarAlmacenes();
         }
     });
 
     $('#nombreAlmacenTxt').val("");  // Restablecer valor del campo
     mostrarAlmacenes();
+    listarAlmacenes();
 }
 
 
@@ -304,16 +310,20 @@ function guardarAlmacenEdit(id_almacen){
         
         beforeSend: function()
         {
+            mostrarAlmacenes();
         },
 
         success: function(mensaje)
         {
+            mostrarAlmacenes();
+            listarAlmacenes();
         }
         
         
 
     });
     mostrarAlmacenes();
+    listarAlmacenes();
     
 }
 
@@ -616,50 +626,144 @@ function eliminarProveedor(id){
 //------------------------     LOGICA POPUP PROVEEDORES    ---------------------------------
 //------------------------------------------------------------------------------------------
 
+    function agregarMovimiento() {
 
-function agregarMovimiento() {
+        // Rescatar valores del formulario
+        var nombre = document.getElementById('tipo_movimientoTXT').value;
 
-    // Rescatar valores del formulario
-    var nombre = document.getElementById('tipo_movimientoTXT').value;
+        var parametros = {
+            "nombre": nombre,
+            "opcion": 'guardar'
+        };
 
-    var parametros = {
-        "nombre": nombre,
-        "opcion": 'guardar'
-    };
+        $.ajax({
+            data: parametros,
+            url: '../Controlador/gestion_movimiento.php',
+            type: 'POST',
+            beforeSend: function () {
+            },
+            success: function (mensaje) {
+            }
+        });
 
-    $.ajax({
-        data: parametros,
-        url: '../Controlador/gestion_movimiento.php',
-        type: 'POST',
-        beforeSend: function () {
-        },
-        success: function (mensaje) {
-        }
-    });
-
-    $('#tipo_movimientoTXT').val("");  // Restablecer valor del campo
-    mostrarTipoMovimientos();
-}
-
-function mostrarTipoMovimientos(){
-    var parametros =
-    {
-        "opcion":"mostrar"
+        $('#tipo_movimientoTXT').val("");  // Restablecer valor del campo
+        mostrarTipoMovimientos();
     }
 
-    $.ajax({
-        data: parametros,
-        url: '../Controlador/gestion_movimiento.php',
-        type: 'POST',
-        
-        beforesend: function()
+    function mostrarTipoMovimientos(){
+        var parametros =
         {
-        $('#verTipoMovimiento').html("Error de comunicación");
-        },
-
-        success: function(mensaje)
-        {
-        $('#verTipoMovimiento').html(mensaje);
+            "opcion":"mostrar"
         }
-    });
-}
+
+        $.ajax({
+            data: parametros,
+            url: '../Controlador/gestion_movimiento.php',
+            type: 'POST',
+            
+            beforesend: function()
+            {
+            $('#verTipoMovimiento').html("Error de comunicación");
+            },
+
+            success: function(mensaje)
+            {
+            $('#verTipoMovimiento').html(mensaje);
+            }
+        });
+    }
+
+    function editarmovimeinto(id) {
+
+        var movimeintoSpan = document.getElementById('nombre_movimeintoSpan'+id);
+        var movimeintoTxt = document.getElementById('nombre_movimeintoTxt'+id);
+        var btnEdit = document.getElementById('btnEditMovimiento'+id);
+        var btnOK = document.getElementById('guardarEditMovimiento'+id);
+        
+
+        // Mostrar el campo de texto y ocultar el span
+        movimeintoSpan.style.display = 'none';
+        movimeintoTxt.style.display = 'inline';   
+        btnEdit.style.display = 'none';
+        btnOK.style.display = 'inline';
+
+    }
+
+    function guardarmovimeintoEdit(id){
+
+        var movimeintoSpan = document.getElementById('nombre_movimeintoSpan'+id);
+        var movimeintoTxt = document.getElementById('nombre_movimeintoTxt'+id);
+        var btnEdit = document.getElementById('btnEditMovimiento'+id);
+        var btnOK = document.getElementById('guardarEditMovimiento'+id);
+        
+        var parametros = 
+        {
+            "id" : id,
+            "nombre" : movimeintoTxt.value,
+            "opcion" : 'editar'
+        };
+        
+        // revertir elementos
+        movimeintoSpan.style.display = 'inline';
+        movimeintoTxt.style.display = 'none';   
+        btnEdit.style.display = 'inline';
+        btnOK.style.display = 'none';
+
+        $.ajax({
+            data: parametros,
+            url: '../Controlador/gestion_movimiento.php',
+            type: 'POST',
+            
+            beforeSend: function()
+            {
+                mostrarTipoMovimientos();
+            },
+
+            success: function(mensaje)
+            {
+                mostrarTipoMovimientos();
+            }
+            
+            
+
+        });
+        mostrarTipoMovimientos();
+        
+    }
+
+    function eliminarmovimeinto(id){
+
+        var confirmacion = confirm("¿Estás seguro de que deseas eliminar el tipo de movimiento: "+id+"?");
+
+        if (confirmacion) {
+            
+            var parametros = 
+            {
+                "id" : id,
+                "opcion" : 'eliminar'
+            };                
+
+            $.ajax({
+            data: parametros,
+            url: '../Controlador/gestion_movimiento.php',
+            type: 'POST',
+            
+            beforeSend: function()
+            {
+            $('#verTipoMovimiento').html("Error! No se puede realizar la operación.");
+            $('#verTipoMovimiento').css('color', 'red');
+            mostrarTipoMovimientos();
+            },
+
+            success: function(mensaje)
+            {
+            $('#verTipoMovimiento').html(mensaje);
+            mostrarTipoMovimientos();
+            }
+            
+            });
+
+            mostrarTipoMovimientos();
+
+        }
+    }

@@ -70,8 +70,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input style="display:none" type="text" id="nombre_movimeintoTxt'.$consulta['id_tipo_mov'].'" value="'.$consulta['nombre_tipo_mov'].'"> <!-- inicia oculto-->
                     </td>
                     <td>
-                        <ion-icon id="btnEdit'.$consulta['id_tipo_mov'].'" name="pencil-outline" class="icono-editar" onclick="editarmovimeinto('.$consulta['id_tipo_mov'].')"></ion-icon>                        
-                        <button style="display:none" id="guardarEdit'.$consulta['id_tipo_mov'].'" onclick="guardarmovimeintoEdit('.$consulta['id_tipo_mov'].')">OK</button> <!-- inicia oculto-->
+                        <ion-icon id="btnEditMovimiento'.$consulta['id_tipo_mov'].'" name="pencil-outline" class="icono-editar" onclick="editarmovimeinto('.$consulta['id_tipo_mov'].')"></ion-icon>                        
+                        <button style="display:none" id="guardarEditMovimiento'.$consulta['id_tipo_mov'].'" onclick="guardarmovimeintoEdit('.$consulta['id_tipo_mov'].')">OK</button> <!-- inicia oculto-->
                     </td>
                     <td><ion-icon name="trash-outline" class="icono-eliminar" onclick="eliminarmovimeinto('.$consulta['id_tipo_mov'].')"></ion-icon></td> 
                     </tr>
@@ -81,62 +81,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             
         }
 
-        //editar
+       
+    //EDITAR movimeinto
+    if($opcion == "editar")
+    {
+        $id_movimiento= $_POST["id"];
+        $nombremovimeinto = $_POST["nombre"];
 
-        if($opcion == "U")
-        {
-            $id_movimeinto = $_POST["id"];
-            $nombremovimeinto = $_POST["nombre"];
-
-            if($id_movimeinto != ""){
+        if($id_movimiento != "" && $nombremovimeinto !=""){
                 
-                $movimeinto = new TipoMovimiento();
-                $resultado = $movimeinto->actualizarmovimeinto($id_movimeinto, $nombremovimeinto);
+            $movimeinto = new TipoMovimiento();
+            $resultado = $movimeinto->actualizarTipoMovimiento($id_movimiento,$nombremovimeinto);
+            if($resultado > 0){
+            echo "se actualizó el tipo de movimiento: ".$nombremovimeinto;
+            }        
+        }                
+    }
+
+    //ELIMINAR movimeinto
+    if($opcion == "eliminar")
+    {
+        $id_movimiento= $_POST["id"];
+
+        if($id_movimiento != ""){
+            
+            $movimeinto = new TipoMovimiento();
+            try{
+
+                $resultado = $movimeinto->eliminarTipoMovimiento($id_movimiento);
                 if($resultado > 0){
-                echo "se actualizó el movimeinto: ".$nombremovimeinto;
-                }        
-
-            }
-                
-        }
-
-        
-        
-
-        // eliminar
-        if($opcion == "D")
-        {
-            $id_movimeinto = $_POST["id"];
-
-            if($id_movimeinto != ""){
-                
-                $movimeinto = new TipoMovimiento();
-                try{
-
-                    $resultado = $movimeinto->eliminarmovimeinto($id_movimeinto);
-                    if($resultado > 0){
-                    echo "se eliminó el movimeinto: ".$id_movimeinto;
-                    }
-
+                echo "se eliminó el movimeinto: ".$id_movimiento;
                 }
-                catch(Exception $e)
-                {
-                    echo "<script>alert('No sepuede eliminar el movimeinto: ".$id_movimeinto."; Asegurese de que no esté asignado a un trabajador.');</script>";
-                }        
 
             }
-                
+            catch(Exception $e)
+            {
+                echo "<script>alert('No sepuede eliminar el tipo de moviemiento: ".$id_movimiento."; Asegurese de que no esté en uso.');</script>";
+            }        
+
         }
+            
+    }
 
 
-	  
-	
-
-} 
-else
+  
+}else
 {
     //redireccionar en caso de no llegar a la pagina como corresponde
-    header("location: ../formularios/agregar_trabajador.php"); 
+    header("location: ../vistas/login.php"); 
     die();
 
 }
