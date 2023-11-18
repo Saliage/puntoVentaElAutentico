@@ -201,7 +201,7 @@
             <form class="formulario" onsubmit="return agregarFormato(event)" id="formFormatos" method="post">
                 <div>
                     <label for="nombreFormatoTxt">Nombre:</label>
-                    <input type="text" name="nombre" id="nombre" placeholder="Nombre" pattern=".{2,}" title="Al menos 2 caracteres"  required>
+                    <input type="text" name="nombre" id="nombre" autocomplete="off" placeholder="Nombre" pattern=".{2,}" title="Al menos 2 caracteres"  required>
                 
                     <input type="submit" value="Guardar">
                 </div>

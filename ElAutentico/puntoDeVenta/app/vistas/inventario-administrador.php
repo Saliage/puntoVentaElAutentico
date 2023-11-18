@@ -247,17 +247,17 @@
                         <input type="number" name="cantidad" id="cantidad" min="1" title="Ingrese la cantidad de producto" required>
                     </div>                                      
                     <div class="form-element"><label for="costo">Costo:</label>
-                        <input type="number" name="costo" id="costo" placeholder="costo" title="Ingrese el costo unitario" >
+                        <input type="number" name="costo" id="costo" placeholder="costo" min="1" title="Ingrese el costo unitario" >
                     </div>    
                     <div class="form-element">
                         <div id="pedirFec_ven"></div>
                     </div>
                     <div class="form-element">
-                        <label for="listarAlmacenes"></label>
+                        <label for="listarAlmacenes">Almacen:</label>
                         <div id="listarAlmacenes"></div>
                     </div>                        
                     <div class="form-element">
-                        <label for="listarZonas"></label>
+                        <label for="listarZonas">Zona: </label>
                         <div id="listarZonas"></div>
                     </div>
                     <input class="boton-pago" type="submit" name="agregar" value="Registrar">

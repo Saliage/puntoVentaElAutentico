@@ -109,6 +109,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	}
 
+    if($opcion == "validar"){
+        $perecible = $_POST["perecible"];
+
+        if($perecible == 1){
+            echo '
+            <label for="fecha">Seleccione una fecha:</label>
+            <input type="date" id="fecha" name="fecha" min="'.date('Y-m-d').'" required>
+            ';
+        }
+    }
+
     //editar
     try {
         if ($opcion == "U") {

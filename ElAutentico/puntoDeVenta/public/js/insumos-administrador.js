@@ -99,6 +99,7 @@ function agregarInsumo(event) {
             document.getElementById("formInsumos").reset(); // Limpia el formulario
         }
     });
+    cerrarPopup();
 }
 
 function mostrarInsumos(){
@@ -315,6 +316,7 @@ function agregarCategoria(){
     
     $('#nombreCategoriaTxt').val("");  // restablecer valor del campo
     mostrarCategorias();
+    inicializar();
 }
 
 function editarCategoria(id_categoria) {
@@ -373,6 +375,7 @@ function guardarCategoriaEdit(id_categoria){
 
     });
     mostrarCategorias();
+    inicializar();
     
 }
 
@@ -411,6 +414,7 @@ function eliminarCategoria(id_categoria){
         mostrarCategorias();
 
     }
+    inicializar();
 }
 
 
@@ -447,12 +451,10 @@ function agregarFormato(event){
     // rescatar valores del form
     var formulario = document.getElementById('formFormatos');    
     var nombre = formulario.elements['nombre'].value;
-    var sala_venta = formulario.elements['sala_chk'].checked;
 
     var parametros = 
     {
         "nombre" : nombre,
-        "sala_venta" : Number(sala_venta),
         "opcion" : 'guardar'
     };
     $.ajax({
@@ -473,6 +475,7 @@ function agregarFormato(event){
     
     document.getElementById("formFormatos").reset(); //limpia formulario
     mostrarFormatos();
+    inicializar();
 
 }
 
@@ -533,10 +536,11 @@ function guardarFotmatoEdit(id){
 
     });
     mostrarFormatos();
+    inicializar();
     
 }
 
-function eliminarAlmacen(id){
+function eliminarFormato(id){
 
     var confirmacion = confirm("¿Estás seguro de que deseas eliminar el formato: "+id+"?");
 

@@ -9,22 +9,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $opcion = $_POST['opcion']; //obtener valor de la opción para contalmacenar eventos
 
 
+    if($opcion != "listar"){
+        echo 
+        '
+        <table class="table" style="width : 500px">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Almacen</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th> 
+                </tr>
+                    
+            </thead>
+        ';  
+    } 
     
-    echo 
-    '
-     <table class="table" style="width : 500px">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Nombre</th>
-                <th>Almacen</th>
-                <th>Editar</th>
-                <th>Eliminar</th> 
-            </tr>
-                
-        </thead>
-    ';  
-   
+    
+    if($opcion == "listar"){
+
+        $almacen = $_POST['almacen'];
+        $zona = new zona();
+        $zonas = $zona->buscarZonaPorAlmacen($almacen);
+        echo'<select name="zona_id" id="zona_id" required>';
+        echo '<option selected >-seleccionar-</option>';
+    
+        if ($zonas->num_rows > 0) {
+            // Recorrer zonas presentes
+            while ($dato = $zonas->fetch_assoc()) {
+                echo '<option value="' . $dato['id_zona'] . '">' . $dato['nombre_zona'] . '</option>';
+            }
+        } else {
+            echo '<option value="0">NULL</option>';
+        }
+    
+        echo'</select>';
+
+    }
 
 	if($opcion == "guardar")
     {
