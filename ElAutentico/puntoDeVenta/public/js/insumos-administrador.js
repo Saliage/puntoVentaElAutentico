@@ -94,7 +94,6 @@ function agregarInsumo(event) {
         },
 
         success: function (mensaje) {
-            alert(mensaje);
             mostrarInsumos();
             document.getElementById("formInsumos").reset(); // Limpia el formulario
         }

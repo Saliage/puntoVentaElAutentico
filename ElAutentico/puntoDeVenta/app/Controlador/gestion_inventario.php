@@ -41,15 +41,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //guardar
     if($opcion == "guardar")
     {   
-        $rut = $_POST['rut'];
-        $nombre = $_POST['nombre'];
-        $apellido = $_POST['apellido'];
-        $usuario = $_POST['usuario'];
-        $clave = $_POST['clave'];
-        $estado = $_POST['estado'];
-        $rol = $_POST['rol']; 
+        $insumo = $_POST["insumo"];
+        $cantidad = $_POST["cantidad"];
+        $costo = $_POST["costo"];
+        $fecha = $_POST["fecha"];
+        $zona_id = $_POST["zona_id"];
 
-        if($rut != "" && $nombre != "" && $apellido != "" && $usuario != "" && $clave != "" && $estado!= "" && $rol != ""){
+        if($fecha == null){echo 'fecha es null' ;}
+
+        /*
+
+        if($insumo != "" && $cantidad != "" && $costo != "" && $zona_id){
 
             $trabajador = new Trabajador();
             try{
@@ -62,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             {
                 echo "Error, no se puede guardar al trabajador, asegurese que el rut: ".$rut." no se encuentre registrado";
             }     
-        } 
+        } */
     }
 
     //muestra todo el contenido

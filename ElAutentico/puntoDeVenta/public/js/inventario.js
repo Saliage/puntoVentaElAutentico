@@ -157,54 +157,50 @@ function entradaInsumo(event)
 
     // rescatar valores del form
     var formulario = document.getElementById('formEntradaInsumo');
-    var rut = formulario.elements['rut'].value;
-    var nombre = formulario.elements['nombre'].value;
-    var apellido = formulario.elements['apellido'].value;
-    var usuario = formulario.elements['usuario'].value;
-    var clave = formulario.elements['clave'].value;
-    var estado = 1; //siempre se agregarán los usuarios en estado "activos"
-    var rol = formulario.elements['rol'].value;
 
-    if(validarRut(rut)){
+    var insumo = formulario.elements['insumo'].value;
+    var cantidad = formulario.elements['cantidad'].value;
+    var costo = formulario.elements['costo'].value;
+    var zona_id = formulario.elements['zona_id'].value;
+    var fechaInput = formulario.elements['fecha'];
 
-        var parametros = 
-        {
-            "rut" : rut,
-            "nombre" : nombre,
-            "apellido" : apellido,
-            "usuario" : usuario,
-            "clave" : clave,
-            "estado" : estado,
-            "rol" : rol,
-            "opcion" : 'guardar'
-        };
-
-        $.ajax({
-            data: parametros,
-            url: '../Controlador/gestion_trabajador.php',
-            type: 'POST',
-            
-            beforeSend: function()
-            {
-            //$('#mostrar_mensaje').html("Error de comunicación");
-            listarTrabajadores();
-            },
-
-            success: function(mensaje)
-            {
-            //$('#mostrar_mensaje').html(mensaje);
-            alert(mensaje);
-            listarTrabajadores();
-            cerrarPopup();
-            document.getElementById("formEntradaInsumo").reset();
-            }
-        });
+    var fecha = null;
+    //verificar si viene la fecha para enviar, sino envía null
+    if (fechaInput && fechaInput.hasOwnProperty('value')) {
+        var fecha = fechaInput.value; //guarda valor de fecha
     }
-    else{
+    
+    var parametros = 
+    {
+        "insumo" : insumo,
+        "cantidad" : cantidad,
+        "costo" : costo,
+        "fecha" : fecha,
+        "zona_id" : zona_id,
+        "opcion" : 'guardar'
+    };
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_inventario.php',
+        type: 'POST',
         
-        $('#validaRUT').html('El RUT no es válido. Por favor, corrige el RUT.');
-        document.getElementById("rut").value ="";
-    }
+        beforeSend: function()
+        {
+        },
+
+        success: function(mensaje)
+        {
+        //$('#mostrar_mensaje').html(mensaje);
+        alert(mensaje);
+        listarInsumosFormat();
+        cerrarPopup8();
+        document.getElementById("formEntradaInsumo").reset();
+        }
+    });
+  
+
+        
 }
 
 

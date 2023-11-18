@@ -236,7 +236,7 @@
         <div class="popup-contenido">
             <h2>Registrar entrada insumo</h2>
             <P></P>
-            <form id="formEntradaInsumo" onsubmit="return entradaInsumo(event)" method="post">
+            <form id="formEntradaInsumo" onsubmit="return entradaInsumo(event)" method="GET">
                 
                     <div class="form-element">
                         <label for="nombre">Insumo:</label>
