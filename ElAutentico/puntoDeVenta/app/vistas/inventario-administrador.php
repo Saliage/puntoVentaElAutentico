@@ -117,6 +117,7 @@
                     <button class="boton-pagar2" onclick="mostrarPopup3()">Zonas</button>
                     <button class="boton-pagar2" onclick="mostrarPopup4()">Almacenes</button>
                     <button class="boton-pagar2" onclick="mostrarPopup5()">Proovedores</button>
+                    <button class="boton-pagar2" onclick="mostrarPopup7()">Tipos Movimientos</button>
                     <button class="boton-pagar" onclick="mostrarPopup8()">Entrada insumo</button>
                     <button class="boton-pagar3" onclick="mostrarPopup9()">Salida insumo</button>
 
@@ -311,27 +312,23 @@
 ------------------------------------------              GESTION TIPO MOVIMIENTO          -------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------->
 
-<div class="popup" id="popup4">
+<div class="popup" id="popup7">
         <div class="popup-contenido">
-            <h2>Almacenes</h2>
+            <h2>Tipo de Movimientos</h2>
             
-            <div class="formulario" id="formAlmacenes">
+            <div class="formulario" id="formMov">
                 <div>
-                    <label for="nombreAlmacenTxt">Nombre:</label>
-                    <input type="text" name="nombre" id="nombreAlmacenTxt" pattern=".{5,}"  required>
+                    <label for="tipo_movimiento">Nuevo tipo de movimiento:</label>
+                    <input type="text" name="nombre" id="tipo_movimientoTXT" pattern=".{5,}"  required>
                 </div>
-                <div>
-                    <label for="sala_chk">Pertenece a sala de ventas:</label>
-                    <input type="checkbox" id="sala_chk">
-                </div>
-                <button onclick="agregarAlmacen();"><ion-icon name="add-circle-outline" ></ion-icon></button>
+                <button class="boton-pago" type="submit" name="agregar" onclick="agregarMovimiento()" value="Agregar">Agregar</button>
             </div>
             <hr>
                 <tbody>
-                    <div id="verAlmacenes"></div>
+                    <div id="verTipoMovimiento"></div>
                 </tbody>
             </table>
-            <div class="cerrar-popup" onclick="cerrarPopup4()"><ion-icon name="close-circle"></ion-icon></div>
+            <div class="cerrar-popup" onclick="cerrarPopup7()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
     </div>
 

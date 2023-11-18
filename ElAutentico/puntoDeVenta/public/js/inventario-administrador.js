@@ -7,6 +7,7 @@ function inicializar(){
     mostrarZonas();
     mostrarAlmacenes();    
     mostrarProveedores();
+    mostrarTipoMovimientos();
 }
 
 //------------------------------------------------------------------------------------------
@@ -611,3 +612,54 @@ function eliminarProveedor(id){
     }
 }
 
+//------------------------------------------------------------------------------------------
+//------------------------     LOGICA POPUP PROVEEDORES    ---------------------------------
+//------------------------------------------------------------------------------------------
+
+
+function agregarMovimiento() {
+
+    // Rescatar valores del formulario
+    var nombre = document.getElementById('tipo_movimientoTXT').value;
+
+    var parametros = {
+        "nombre": nombre,
+        "opcion": 'guardar'
+    };
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_movimiento.php',
+        type: 'POST',
+        beforeSend: function () {
+        },
+        success: function (mensaje) {
+        }
+    });
+
+    $('#tipo_movimientoTXT').val("");  // Restablecer valor del campo
+    mostrarTipoMovimientos();
+}
+
+function mostrarTipoMovimientos(){
+    var parametros =
+    {
+        "opcion":"mostrar"
+    }
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_movimiento.php',
+        type: 'POST',
+        
+        beforesend: function()
+        {
+        $('#verTipoMovimiento').html("Error de comunicación");
+        },
+
+        success: function(mensaje)
+        {
+        $('#verTipoMovimiento').html(mensaje);
+        }
+    });
+}

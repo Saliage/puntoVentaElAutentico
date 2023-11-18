@@ -65,6 +65,16 @@
         popup.style.display = 'none';
     }
 
+    function mostrarPopup7() {
+        const popup = document.getElementById('popup7');
+        popup.style.display = 'flex';
+    }
+
+    function cerrarPopup7() {
+        const popup = document.getElementById('popup7');
+        popup.style.display = 'none';
+    }
+
     function mostrarPopup8() {
         const popup = document.getElementById('popup8');
         popup.style.display = 'flex';

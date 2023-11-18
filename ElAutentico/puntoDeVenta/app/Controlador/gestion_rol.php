@@ -31,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <tr>
             <th scope="col">#ID</th>
             <th scope="col">NOMBRE ROL</th>
-            <th>EDITAR</ion-icon></th>
-            <th>ELIMINAR</ion-icon></th> 
+            <th>EDITAR</th>
+            <th>ELIMINAR</th> 
             </tr>
         ';
     
