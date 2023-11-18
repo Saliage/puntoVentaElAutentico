@@ -2,6 +2,8 @@
 
 function inicializarInventario(){
     listarInventario();
+    listarInsumosFormat();
+    listarAlmacenes();
 }
 
 function listarAlmacenes(){
@@ -22,13 +24,36 @@ function listarAlmacenes(){
 
         success: function(mensaje)
         {
+            
         $('#listarAlmacenes').html(mensaje);
         }
     });
 }
 
 function mostrarZonasAlmacen(){
-    var opcion = document.getElementById('almacen_id2').value;
+    var almacen = document.getElementById('almacen_id2').value;
+
+    var parametros =
+    {
+        "almacen":almacen,
+        "opcion":"listar"
+    }
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_zona.php',
+        type: 'POST',
+        
+        beforesend: function()
+        {
+        $('#listarZonas').html("Error de comunicación");
+        },
+
+        success: function(mensaje)
+        {
+        $('#listarZonas').html(mensaje);
+        }
+    });
 }
 
 function listarInventario() {
@@ -53,6 +78,120 @@ function listarInventario() {
         }
     });
 }
+
+function entradaInsumo(event)
+{ 
+    event.preventDefault(); // Evita que el formulario se envíe a la nada
+
+    // rescatar valores del form
+    var formulario = document.getElementById('formEntradaInsumo');
+    var rut = formulario.elements['rut'].value;
+    var nombre = formulario.elements['nombre'].value;
+    var apellido = formulario.elements['apellido'].value;
+    var usuario = formulario.elements['usuario'].value;
+    var clave = formulario.elements['clave'].value;
+    var estado = 1; //siempre se agregarán los usuarios en estado "activos"
+    var rol = formulario.elements['rol'].value;
+
+    if(validarRut(rut)){
+
+        var parametros = 
+        {
+            "rut" : rut,
+            "nombre" : nombre,
+            "apellido" : apellido,
+            "usuario" : usuario,
+            "clave" : clave,
+            "estado" : estado,
+            "rol" : rol,
+            "opcion" : 'guardar'
+        };
+
+        $.ajax({
+            data: parametros,
+            url: '../Controlador/gestion_trabajador.php',
+            type: 'POST',
+            
+            beforeSend: function()
+            {
+            //$('#mostrar_mensaje').html("Error de comunicación");
+            listarTrabajadores();
+            },
+
+            success: function(mensaje)
+            {
+            //$('#mostrar_mensaje').html(mensaje);
+            alert(mensaje);
+            listarTrabajadores();
+            cerrarPopup();
+            document.getElementById("formEntradaInsumo").reset();
+            }
+        });
+    }
+    else{
+        
+        $('#validaRUT').html('El RUT no es válido. Por favor, corrige el RUT.');
+        document.getElementById("rut").value ="";
+    }
+}
+
+function listarInsumosFormat(){
+    var parametros =
+    {
+        "opcion":"listar"
+    }
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_insumo.php',
+        type: 'POST',
+        
+        beforesend: function()
+        {
+        $('#listarInsumos').html("Error de comunicación");
+        },
+
+        success: function(mensaje)
+        {
+        $('#listarInsumos').html(mensaje);
+        }
+    });
+
+}
+
+function reqFecVen(){
+    
+    var insumoSelect = document.getElementById("insumo");
+    var selectedOption = insumoSelect.options[insumoSelect.selectedIndex];
+    var perecible = selectedOption.getAttribute("data-perecible");
+    alert(perecible);
+    var parametros =
+    {
+        "perecible":perecible,
+        "opcion":"validar"
+    }
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_inventario.php',
+        type: 'POST',
+        
+        beforesend: function()
+        {
+            alert("se va: "+perecible)
+            $('#pedirFec_ven').html("Error de comunicación");
+        },
+
+        success: function(mensaje)
+        {
+            alert(mensaje);
+            $('#pedirFec_ven').html(mensaje);
+        }
+    });
+
+}
+
+
 
 function editarUsuario(id){
 
@@ -237,59 +376,4 @@ function mostrarClave(id) {
 
 
 
-function entradaInsumo(event)
-{ 
-    event.preventDefault(); // Evita que el formulario se envíe a la nada
-
-    // rescatar valores del form
-    var formulario = document.getElementById('formEntradaInsumo');
-    var rut = formulario.elements['rut'].value;
-    var nombre = formulario.elements['nombre'].value;
-    var apellido = formulario.elements['apellido'].value;
-    var usuario = formulario.elements['usuario'].value;
-    var clave = formulario.elements['clave'].value;
-    var estado = 1; //siempre se agregarán los usuarios en estado "activos"
-    var rol = formulario.elements['rol'].value;
-
-    if(validarRut(rut)){
-
-        var parametros = 
-        {
-            "rut" : rut,
-            "nombre" : nombre,
-            "apellido" : apellido,
-            "usuario" : usuario,
-            "clave" : clave,
-            "estado" : estado,
-            "rol" : rol,
-            "opcion" : 'guardar'
-        };
-
-        $.ajax({
-            data: parametros,
-            url: '../Controlador/gestion_trabajador.php',
-            type: 'POST',
-            
-            beforeSend: function()
-            {
-            //$('#mostrar_mensaje').html("Error de comunicación");
-            listarTrabajadores();
-            },
-
-            success: function(mensaje)
-            {
-            //$('#mostrar_mensaje').html(mensaje);
-            alert(mensaje);
-            listarTrabajadores();
-            cerrarPopup();
-            document.getElementById("formEntradaInsumo").reset();
-            }
-        });
-    }
-    else{
-        
-        $('#validaRUT').html('El RUT no es válido. Por favor, corrige el RUT.');
-        document.getElementById("rut").value ="";
-    }
-}
 

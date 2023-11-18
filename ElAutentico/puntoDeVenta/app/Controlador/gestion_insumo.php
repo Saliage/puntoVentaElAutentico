@@ -44,8 +44,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "Error, no se pudo guardar el insumo: ".$e->getMessage();
             }
         }
-    }   
-    else{
+    }  
+    
+    
+    if($opcion != "listar" && $opcion!="guardar"){
 
         echo
             '
@@ -63,8 +65,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ';
     }
             
-        
-
+    if ($opcion == "listar") {
+        $insumo = new Insumo();
+        $resultado = $insumo->listarInsumoFormato();
+    
+        echo '<select name="insumo" id="insumo" onchange="reqFecVen()" required>';
+        echo '<option selected>-seleccionar-</option>';
+    
+        if ($resultado->num_rows > 0) {
+            // Recorrer insumos presentes
+            while ($dato = $resultado->fetch_assoc()) {
+                echo '<option value="' . $dato['id_insumo'] . '" data-perecible="' . $dato['perecible'] . '">' . $dato['nombre_completo'] . '</option>';
+            }
+        } else {
+            echo '<option value="0">NULL</option>';
+        }
+    
+        echo '</select>';
+    }
+    
 
     if($opcion == "mostrar")
 	{

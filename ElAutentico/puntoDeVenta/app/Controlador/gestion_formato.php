@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                         <ion-icon id="btnEditFotmato'.$id_formato.'" name="pencil-outline" class="icono-editar" onclick="editarFotmato('.$id_formato.')"></ion-icon>                        
                         <button style="display:none" id="guardarEditFotmato'.$id_formato.'" onclick="guardarFotmatoEdit('.$id_formato.')">OK</button> <!-- inicia oculto-->
                     </td>
-                    <td><ion-icon name="trash-outline" class="icono-eliminar" onclick="eliminarFotmato('.$id_formato.')"></ion-icon></td> 
+                    <td><ion-icon name="trash-outline" class="icono-eliminar" onclick="eliminarFormato('.$id_formato.')"></ion-icon></td> 
                 </tr>
             ';
         }                            

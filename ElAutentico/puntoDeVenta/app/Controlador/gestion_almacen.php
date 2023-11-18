@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
         $almacen = new Almacen();
         $almacenes = $almacen->listarAlmacenes();
+        
         echo'<select name="almacen_id2" id="almacen_id2" onchange="mostrarZonasAlmacen()" required>';
         echo '<option selected >-seleccionar-</option>';
     

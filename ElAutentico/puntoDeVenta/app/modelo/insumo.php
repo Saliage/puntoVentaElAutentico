@@ -29,6 +29,20 @@ class Insumo {
         return $resultado;
     }
 
+        // Obtener todos los insumos y su formato
+        public function listarInsumoFormato() {
+            $conectar = new Conexion();
+            $conn = $conectar->abrirConexion();
+    
+            $consulta =  $consulta ="SELECT i.id_insumo as id_insumo, CONCAT(i.nombre_insumo, ' ', f.nombre_formato) 
+                                    AS nombre_completo, i.perecible as perecible
+                                    FROM insumos i INNER JOIN formato f ON i.formato_id_formato = f.id_formato";
+    
+            $resultado = $conn->query($consulta);
+    
+            return $resultado;
+        }
+
     // Buscar insumo por id
     public function buscarInsumoId($id) {
         $conectar = new Conexion();
