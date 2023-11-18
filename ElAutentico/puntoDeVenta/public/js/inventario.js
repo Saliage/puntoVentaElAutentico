@@ -79,6 +79,78 @@ function listarInventario() {
     });
 }
 
+
+
+function listarInsumosFormat(){
+    var parametros =
+    {
+        "opcion":"listar"
+    }
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_insumo.php',
+        type: 'POST',
+        
+        beforesend: function()
+        {
+        $('#listarInsumos').html("Error de comunicación");
+        },
+
+        success: function(mensaje)
+        {
+        $('#listarInsumos').html(mensaje);
+        }
+    });
+
+}
+
+function reqFecVen(){
+    
+    var insumoSelect = document.getElementById("insumo");
+    var selectedOption = insumoSelect.options[insumoSelect.selectedIndex];
+    var perecible = selectedOption.getAttribute("data-perecible");
+    var verCampos = document.getElementById("fec_ven");
+    
+
+    if(perecible == 1){
+
+        verCampos.style.display ='inline';
+        var parametros =
+        {
+            "perecible":perecible,
+            "opcion":"validar"
+        }
+
+        $.ajax({
+            data: parametros,
+            url: '../Controlador/gestion_inventario.php',
+            type: 'POST',
+            
+            beforesend: function()
+            {
+                $('#pedirFec_ven').html("Error de comunicación");
+            },
+
+            success: function(mensaje)
+            {
+                $('#pedirFec_ven').html(mensaje);
+            }
+        });
+    }else{
+        verCampos.style.display ='none';
+        $('#pedirFec_ven').html("");
+    }
+    
+
+}
+
+
+
+
+
+
+
 function entradaInsumo(event)
 { 
     event.preventDefault(); // Evita que el formulario se envíe a la nada
@@ -135,61 +207,6 @@ function entradaInsumo(event)
     }
 }
 
-function listarInsumosFormat(){
-    var parametros =
-    {
-        "opcion":"listar"
-    }
-
-    $.ajax({
-        data: parametros,
-        url: '../Controlador/gestion_insumo.php',
-        type: 'POST',
-        
-        beforesend: function()
-        {
-        $('#listarInsumos').html("Error de comunicación");
-        },
-
-        success: function(mensaje)
-        {
-        $('#listarInsumos').html(mensaje);
-        }
-    });
-
-}
-
-function reqFecVen(){
-    
-    var insumoSelect = document.getElementById("insumo");
-    var selectedOption = insumoSelect.options[insumoSelect.selectedIndex];
-    var perecible = selectedOption.getAttribute("data-perecible");
-    alert(perecible);
-    var parametros =
-    {
-        "perecible":perecible,
-        "opcion":"validar"
-    }
-
-    $.ajax({
-        data: parametros,
-        url: '../Controlador/gestion_inventario.php',
-        type: 'POST',
-        
-        beforesend: function()
-        {
-            alert("se va: "+perecible)
-            $('#pedirFec_ven').html("Error de comunicación");
-        },
-
-        success: function(mensaje)
-        {
-            alert(mensaje);
-            $('#pedirFec_ven').html(mensaje);
-        }
-    });
-
-}
 
 
 

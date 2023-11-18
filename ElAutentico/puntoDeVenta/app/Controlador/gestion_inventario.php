@@ -7,8 +7,18 @@ ob_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $opcion = $_POST['opcion']; //obtener valor de la opción para controlar eventos
+    
+    if($opcion == "validar"){
 
-    if($opcion =!"validar"){
+        $perecible = $_POST["perecible"];
+
+        if($perecible == 1){
+            echo '
+            <input type="date" id="fecha" name="fecha" min="'.date('Y-m-d').'" required>
+            ';
+        }
+    }
+    else{
         //preparar enunciado tablas        
         echo
         '
@@ -26,19 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ';
     }
 
-    if($opcion == "validar"){
 
-        $perecible = $_POST["perecible"];
-
-        echo'<script>alert("perecible contiene: "'.$perecible.')</script> ';
-
-        if($perecible == 1){
-            echo '
-            <label for="fecha">Seleccione una fecha:</label>
-            <input type="date" id="fecha" name="fecha" min="'.date('Y-m-d').'" required>
-            ';
-        }
-    }
    
     //guardar
     if($opcion == "guardar")

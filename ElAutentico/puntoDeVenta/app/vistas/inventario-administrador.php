@@ -249,8 +249,8 @@
                     <div class="form-element"><label for="costo">Costo:</label>
                         <input type="number" name="costo" id="costo" placeholder="costo" min="1" title="Ingrese el costo unitario" >
                     </div>    
-                    <div class="form-element">
-                        
+                    <div class="form-element">                        
+                        <label for="fecha" id="fec_ven" style="display: none;">Fecha de vencimiento:</label>
                         <div id="pedirFec_ven"></div>
                     </div>
                     <div class="form-element">
@@ -263,9 +263,23 @@
                     </div>
                     <input class="boton-pago" type="submit" name="agregar" value="Registrar">
                 </form>
-            <div class="cerrar-popup" onclick="cerrarPopup8()"><ion-icon name="close-circle"></ion-icon></div>
+            <div class="cerrar-popup" onclick="cerrarPopup8(); listarInsumosFormat()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
     </div>
+
+    <script>
+    // JavaScript para deseleccionar la opción de marcador de posición si se selecciona otra opción
+    document.getElementById("insumo").addEventListener("change", function() {
+        var placeholderOption = this.querySelector('option[value=""]');
+        if (this.value !== "") {
+            placeholderOption.removeAttribute("selected");
+            placeholderOption.setAttribute("disabled", "disabled");
+        } else {
+            placeholderOption.setAttribute("selected", "selected");
+            placeholderOption.removeAttribute("disabled");
+        }
+    });
+</script>
 
 <!----------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------                  SALIDA INSUMO             -------------------------------------------------------------

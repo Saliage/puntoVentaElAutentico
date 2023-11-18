@@ -111,18 +111,13 @@ class Inventario{
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
         
-        $consulta = "SELECT
-                        i.id_insumo as id,
-                        i.imagen as imagen,
-                        i.nombre_insumo as nombre,
-                        SUM(i.cantidad) AS stock_total,
-                        c.nombre_categoria as categoria,
-                        f.nombre_formato as formato,
-                        i.perecible as perecible
-                    FROM inventario i INNER JOIN categoria_insumo c ON i.categoria_insumo_id_categoria = c.id_categoria
-                    INNER JOIN formato f ON i.formato_id_formato = f.id_formato
-                    WHERE i.cantidad > 0
-                    GROUP BY i.id_insumo";
+        $consulta = "SELECT inv.id_insumo as id, ins.imagen as imagen, ins.nombre_insumo as nombre, SUM(inv.cantidad) AS stock_total, 
+        cat.nombre_categoria as categoria,f.nombre_formato as formato, ins.perecible as perecible
+        FROM inventario inv INNER JOIN insumos ins ON inv.id_insumo = ins.id_insumo
+        INNER JOIN categoria_insumo cat ON cat.id_categoria = ins.categoria_insumo_id_categoria
+        INNER JOIN formato f ON ins.formato_id_formato = f.id_formato
+        WHERE inv.cantidad > 0
+        GROUP BY inv.id_insumo";
 
         $resultado = $conn->query($consulta);
 

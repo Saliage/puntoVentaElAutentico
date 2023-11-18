@@ -61,7 +61,7 @@
             <li class="nav-item">
                 <a href="../../app/vistas/carta-administrador.php" class="nav-link">
                     <span class="link-icon"><ion-icon name="person-outline"></ion-icon></i></span>
-                    <span class="link-text">Vista vendedor</span>
+                    <span class="link-text">Vista Administrador</span>
                 </a>
             </li>
             <li class="nav-item">

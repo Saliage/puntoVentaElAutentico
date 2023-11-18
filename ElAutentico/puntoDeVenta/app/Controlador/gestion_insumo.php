@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $resultado = $insumo->listarInsumoFormato();
     
         echo '<select name="insumo" id="insumo" onchange="reqFecVen()" required>';
-        echo '<option selected>-seleccionar-</option>';
+        echo '<option disabled selected hidden>--seleccionar--</option>';
     
         if ($resultado->num_rows > 0) {
             // Recorrer insumos presentes
