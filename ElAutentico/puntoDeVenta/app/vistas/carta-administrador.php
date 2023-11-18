@@ -136,7 +136,7 @@
         <div class="popup-contenido">
             <h2>Agregar producto:</h2>
             <p></p>
-            <form id="formAgregarProducto" onsubmit="return agregarProducto(event)" method="post" class="formulario">
+            <form id="formAgregarProductos" onsubmit="return agregarProductos(event)" method="post" class="formulario">
 
             <div class="form-element">
                 <label for="nombre_producto">Nombre:</label>
@@ -196,7 +196,7 @@
                         <label for="buscador">Añadir nueva categoria: </label>
                         <input type="text" name="buscador" id="buscador" class="form-control">
                         <div class="row"> 
-                            <button class="boton-pagar" type="submit" name="agregar" value="AgregarCategoria" onclick="gestionarCategoria(1);"  onmouseout="gestionarCategoria(2);"><ion-icon name="add-circle-outline"></ion-icon></button>              
+                            <button class="boton-pagar" type="submit" name="agregar" value="AgregarCat" onclick="gestionarCat(1);"  onmouseout="gestionarCat(2);"><ion-icon name="add-circle-outline"></ion-icon></button>              
                         </div>
                     </div>
                 </div>

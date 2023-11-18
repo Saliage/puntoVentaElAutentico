@@ -239,113 +239,54 @@ function agregarProductos(event)
 
     // rescatar valores del form
     var formulario = document.getElementById('formAgregarProductos');
-    var rut = formulario.elements['rut'].value;
-    var nombre = formulario.elements['nombre'].value;
-    var apellido = formulario.elements['apellido'].value;
-    var usuario = formulario.elements['usuario'].value;
-    var clave = formulario.elements['clave'].value;
-    var estado = 1; //siempre se agregarán los usuarios en estado "activos"
-    var rol = formulario.elements['rol'].value;
+    var nombre_producto = formulario.elements['nombre_producto'].value;
+    var codigo_producto = formulario.elements['codigo_producto'].value;
+    var imagen = formulario.elements['imagen'].value;
+    var costo_unitario = formulario.elements['costo_unitario'].value;
+    var precio_venta = formulario.elements['precio_venta'].value;
+    var descripcion = formulario.elements['descripcion'].value;
+    var categorias = formulario.elements['categorias'].value;
 
-    if(validarRut(rut)){
-
-        var parametros = 
-        {
-            "rut" : rut,
-            "nombre" : nombre,
-            "apellido" : apellido,
-            "usuario" : usuario,
-            "clave" : clave,
-            "estado" : estado,
-            "rol" : rol,
-            "opcion" : 'guardar'
-        };
-
-        $.ajax({
-            data: parametros,
-            url: '../Controlador/gestion_trabajador.php',
-            type: 'POST',
+    var parametros = 
+    {
+        "nombre_producto" : nombre_producto,
+        "codigo_producto" : codigo_producto,
+        "imagen" : imagen,
+        "costo_unitario" : costo_unitario,
+        "precio_venta" : precio_venta,
+        "descripcion" : descripcion,
+        "categorias" : categorias,
+        "opcion" : 'guardar'
+    };
+    
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_carta.php',
+        type: 'POST',
             
-            beforeSend: function()
-            {
-            //$('#mostrar_mensaje').html("Error de comunicación");
-            listarTrabajadores();
-            },
+        beforeSend: function()
+        {
+        //$('#mostrar_mensaje').html("Error de comunicación");
+        listarProductos();
+        },
 
-            success: function(mensaje)
-            {
-            //$('#mostrar_mensaje').html(mensaje);
-            alert(mensaje);
-            listarTrabajadores();
-            cerrarPopup();
-            document.getElementById("formAgregarTrabajador").reset();
-            }
-        });
-    }
-    else{
-        
-        $('#validaRUT').html('El RUT no es válido. Por favor, corrige el RUT.');
-        document.getElementById("rut").value ="";
-    }
-}
-
-function validarRutTxt() {
-    var rut = document.getElementById("rut").value;
-    var mensaje = document.getElementById("validaRUT");
-
-    if (validarRut(rut)) {
-        mensaje.style.display = 'none';
-    } else {
-        mensaje.style.display = 'block';
-        mensaje.innerHTML = 'El RUT no es válido. Por favor, corrige el RUT.';
-    }
-}
-
-
-function validarRut(rut) {
-    // Eliminar puntos y guiones del RUT
-    rut = rut.replace(/[.-]/g, '');
-
-    // Verificar si el RUT tiene el formato correcto
-    if (!/^[0-9]{1,9}[0-9Kk]$/.test(rut)) {
-        return false;
-    }
-
-    // Obtener el dígito verificador actual
-    var dv = rut.slice(-1);
-    rut = rut.slice(0, -1);
-
-    // Calcular el dígito verificador esperado
-    var suma = 0;
-    var multiplo = 2;
-
-    for (var i = rut.length - 1; i >= 0; i--) {
-        suma += rut[i] * multiplo;
-
-        if (multiplo < 7) {
-            multiplo++;
-        } else {
-            multiplo = 2;
+        success: function(mensaje)
+        {
+        //$('#mostrar_mensaje').html(mensaje);
+        alert(mensaje);
+        listarProductos();
+        cerrarPopup();
+        document.getElementById("formAgregarProductos").reset();
         }
-    }
-
-    var digitoVerificadorCalculado = 11 - (suma % 11);
-
-    // Convertir el dígito calculado a texto
-    digitoVerificadorCalculado = (digitoVerificadorCalculado === 10) ? 'K' : String(digitoVerificadorCalculado);
-
-    // Comparar el dígito verificador actual con el calculado
-    return dv.toUpperCase() === digitoVerificadorCalculado.toUpperCase();
+    });
 }
+
 //--------------------------------------------------------------------------------------------------------------------------------------->
 //----------------------------------------------               GESTION ROLES              ----------------------------------------------->
 //--------------------------------------------------------------------------------------------------------------------------------------->
 
 
-
-
-
-function gestionarRol(opcion)
+function gestionarCat(opcion)
 { 
     buscar = document.getElementById('buscador').value;
 var parametros = 
@@ -356,7 +297,7 @@ var parametros =
 
 $.ajax({
     data: parametros,
-    url: '../Controlador/gestion_rol.php',
+    url: '../Controlador/carta.php',
     type: 'POST',
     
     beforesend: function()
@@ -372,58 +313,58 @@ $.ajax({
 }
 
 
-function editarRol(id_rol) {
+function editarCat(id_tipo) {
 
-    var rolSpan = document.getElementById('nombre_rolSpan'+id_rol);
-    var rolTxt = document.getElementById('nombre_rolTxt'+id_rol);
-    var btnOK = document.getElementById('guardarEdit'+id_rol);
-    var btnEdit = document.getElementById('btnEdit'+id_rol);
+    var categoriasSpan = document.getElementById('nombre_tipoSpan'+id_tipo);
+    var categoriasTxt = document.getElementById('nombre_tipoTxt'+id_tipo);
+    var btnOK = document.getElementById('guardarEdit'+id_tipo);
+    var btnEdit = document.getElementById('btnEdit'+id_tipo);
 
     // Mostrar el campo de texto y ocultar el span
-    rolSpan.style.display = 'none';
-    rolTxt.style.display = 'inline';
+    categoriasSpan.style.display = 'none';
+    categoriasTxt.style.display = 'inline';
     btnEdit.style.display = 'none';
     btnOK.style.display = 'inline';
 
     // Agregar el valor del texto al valor original del span
-    rolTxt.value = rolSpan.innerText;
+    categoriasTxt.value = categoriasSpan.innerText;
 
 }
 
-function guardarRolEdit(id_rol){
+function guardarCatEdit(id_rol){
 
-    var rolSpan = document.getElementById('nombre_rolSpan'+id_rol);
-    var rolTxt = document.getElementById('nombre_rolTxt'+id_rol);
+    var categoriasSpan = document.getElementById('nombre_tipoSpan'+id_rol);
+    var categoriasTxt = document.getElementById('nombre_tipoTxt'+id_rol);
     var btnOK = document.getElementById('guardarEdit'+id_rol);
     var btnEdit = document.getElementById('btnEdit'+id_rol);
     var parametros = 
     {
-        "id" : id_rol,
-        "nombre" : rolTxt.value,
+        "id" : nombre_tipo,
+        "nombre" : categoriasTxt.value,
         "opcion" : 'U'
     };
 
-    rolSpan.style.display = 'inline';
-    rolTxt.style.display = 'none';
+    categoriasSpan.style.display = 'inline';
+    categoriasTxt.style.display = 'none';
     btnEdit.style.display = 'inline';
     btnOK.style.display = 'none';
-    gestionarRol(2);
+    gestionarCat(2);
 
 $.ajax({
     data: parametros,
-    url: '../Controlador/gestion_rol.php',
+    url: '../Controlador/gestion_carta.php',
     type: 'POST',
     
     beforeSend: function()
     {
     $('#mostrar_mensaje').html("Error de comunicación");
-    gestionarRol(2);
+    gestionarCat(2);
     },
 
     success: function(mensaje)
     {
     $('#mostrar_mensaje').html(mensaje);
-    gestionarRol(2);
+    gestionarCat(2);
     }
     
 
@@ -432,34 +373,34 @@ $.ajax({
     
 }
 
-function eliminarRol(id_rol){
+function eliminarCat(id_tipo){
 
-    var confirmacion = confirm("¿Estás seguro de que deseas eliminar el rol: "+id_rol+"?");
+    var confirmacion = confirm("¿Estás seguro de que deseas eliminar la categoria: "+id_tipo+"?");
 
     if (confirmacion) {
         
         var parametros = 
         {
-            "id" : id_rol,
+            "id" : id_tipo,
             "opcion" : 'D'
         };                
 
         $.ajax({
         data: parametros,
-        url: '../Controlador/gestion_rol.php',
+        url: '../Controlador/gestion_carta.php',
         type: 'POST',
         
         beforeSend: function()
         {
         $('#mostrar_mensaje').html("Error! No se puede realizar la operación.");
         $('#mostrar_mensaje').css('color', 'red');
-        gestionarRol(2);
+        gestionarCat(2);
         },
 
         success: function(mensaje)
         {
         $('#mostrar_mensaje').html(mensaje);
-        gestionarRol(2);
+        gestionarCat(2);
         }
         
         });
