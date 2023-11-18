@@ -7,7 +7,6 @@
       header('Location:login.php');
     }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,20 +17,20 @@
     <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">
 
     <title>Carta administrador</title>
-
     <!-- ====================== ESTILOS CSS ==================== -->
-    <link rel="stylesheet" href="../../public/css/ccs/carta-administrador.css">
+    <link rel="stylesheet" href="../../public/css/ccs/carta-administrador-carta.css">
     <!-- ====================== JS ==================== -->
     <script src="../../public/js"></script>
     <script src="../../public/js/scripts.js"></script>
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../../public/js/js-maestro.js"></script>
     <script src="../../public/js/logOut.js"></script>
+    <script src="../../public/js/carta.js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>
 
-<body>
+<body  onload="inicializar()">
  
     <!-- -------- BARRA DE NAVEGACION ------- -->
     <nav class="navbar">
@@ -111,202 +110,102 @@
         </div>
 
         <div class="tabla-inventario">
-            
             <table class="table">
                 <div class="fixed">
-                    <thead>
-                        <button class="boton-pagar" onclick="mostrarPopup()">Añadir producto</button>
-                        <button class="boton-pagar2" onclick="mostrarPopup2()">Categorias</button>
-                        <p></p>   
-                        <tr class="fila-titulos">
-                            <th></th>
-                            <th>Nombre</th>
-                            <th>Id producto</th>
-                            <th>Codigo</th>
-                            <th>Categoria</th>
-                            <th>Precio costo</th>
-                            <th>Precio venta</th>
-                            <th colspan="3"> </th> 
-                        </tr>
+                    <thead class="contenedor-datos">
+                        <div class="rounded-buttons-container">
+                            <button class="boton-pagar" onclick="mostrarPopup()">Añadir producto</button>
+                            <button class="boton-pagar2" onclick="mostrarPopup2()">Categorias</button>
+                            <p></p>   
+                        </div>
                     </thead>
+                    <tbody>
+                        <div id="mostrarProductos"></div> <!-- div que mostrará el contenido del ajax -->
+                    </tbody>
                 </div>
-                <tbody>
-                    <tr>
-                        <td> <img src="../../public/imagenes/completo-italiano.jpg"></td>
-                        <td>Completo</td>
-                        <td>001</td>
-                        <td>757483383930</td>
-                        <td>Hot Dogs</td>
-                        <td>$950</td>
-                        <td>1.300</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td> <img src="../../public/imagenes/completo-italiano.jpg"></td>
-                        <td>Completo</td>
-                        <td>001</td>
-                        <td>757483383930</td>
-                        <td>Hot Dogs</td>
-                        <td>$950</td>
-                        <td>$1.300</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td> <img src="../../public/imagenes/completo-italiano.jpg"></td>
-                        <td>Completo</td>
-                        <td>001</td>
-                        <td>757483383930</td>
-                        <td>Hot Dogs</td>
-                        <td>$950</td>
-                        <td>$1.300</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td> <img src="../../public/imagenes/completo-italiano.jpg"></td>
-                        <td>Completo</td>
-                        <td>001</td>
-                        <td>757483383930</td>
-                        <td>Hot Dogs</td>
-                        <td>$950</td>
-                        <td>$1.300</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td>  
-                    </tr>
-                    <tr>
-                        <td> <img src="../../public/imagenes/completo-italiano.jpg"></td>
-                        <td>Completo</td>
-                        <td>001</td>
-                        <td>757483383930</td>
-                        <td>Hot Dogs</td>
-                        <td>$950</td>
-                        <td>$1.300</td>
-                        <td></td>
-                        <td><ion-icon name="pencil-outline" class="icono-editar"></ion-icon></td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                </tbody>
             </table>
         </div>
     </main>
-    <!-- El contenedor del popup añadir producto (inicialmente oculto) -->
+
+    <!------------------------------------------------------------------->
+    <!-- Contenedor del popup AÑADIR PRODUCTOS (inicialmente oculto) ----->
+    <!------------------------------------------------------------------->
+
     <div class="popup" id="popup">
         <div class="popup-contenido">
             <h2>Agregar producto:</h2>
             <p></p>
-            <form action="" method="POST" class="formulario">
-                <div class="form-element">
-                  <label for="name">Nombre:</label>
-                  <input type="text" name="nombre" placeholder="Nombre producto" required>
-                </div>
-                
-                <div class="form-element">
-                  <label for="Id">Id:</label>
-                  <input type="number" min="1" name="id" placeholder="Id producto" required>
-                </div>
+            <form id="formAgregarProducto" onsubmit="return agregarProducto(event)" method="post" class="formulario">
 
-                <div class="form-element">
-                    <label for="Id">Imagen</label>
-                    <input type="file" max="1" accept="image/*" name="imagen" placeholder="imagen" required>
-                  </div>
+            <div class="form-element">
+                <label for="nombre_producto">Nombre:</label>
+                <input type="text" name="nombre_producto" id="nombre_producto" autocomplete="off"  placeholder="Ej: Coca-Cola, Italiano Gigante, etc" required>
+            </div>
 
-                <div class="form-element">
-                    <label for="Id">Codigo:</label>
-                    <input type="number" min="1" name="codigo" placeholder="Codigo producto" required>
-                </div>
+            <div class="form-element">
+                <label for="codigo_producto">Codigo:</label>
+                <input type="number" name="codigo_producto" id="codigo_producto" autocomplete="off" minlength="7" maxlength="25" placeholder="Codigo de barras, Ej: 123456789234" required>
+            </div>
 
-                <div class="form-element">
-                    <label for="cat-producto">Categoria:</label>
-                    <select id="cat-producto" name="cat-producto" required>
-                      <option value="Hot Dogs">Hot Dogs</option>
-                      <option value="Bebidas">Bebidas</option>
-                      <option value="Frituras">Frituras</option>
-                    </select>
-                </div>
+            <div class="form-element">
+                <label for="imagen">Imagen:</label>
+                <input type="file" name="imagen" id="imagen" accept=".jpg, .jpeg, .png">
+            </div>  
 
-                <div class="form-element">
-                    <label for="costo">Precio costo:</label>
-                    <input type="number" min="100" name="p-costo" placeholder="Precio costo" required>
-                </div>
+            <div class="form-element">
+                <label for="costo_unitario">Costo unitario:</label>
+                <input type="number" name="costo_unitario" id="costo_unitario" autocomplete="off" minlength="3" maxlength="5" placeholder="Ej: 1500" required>
+            </div>
 
-                <div class="form-element">
-                    <label for="costo">Precio venta:</label>
-                    <input type="number" min="100" name="p-venta" placeholder="Precio Venta" required>
-                </div>
+            <div class="form-element">
+                <label for="precio_venta">Precio venta:</label>
+                <input type="number" name="precio_venta" id="precio_venta" autocomplete="off" minlength="3" maxlength="5" placeholder="Ej: 2000" required>
+            </div>
 
-                <p></p>
+            <div class="form-element">
+                <label for="descripcion">Descripción:</label>
+                <input type="text" name="descripcion" id="descripcion" autocomplete="off"  placeholder="(Opcional) Breve descripción del producto)">
+            </div>
 
-                <button class="boton-pagar-mas" type="submit" name="agregar" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
-              </form>
+            <div class="form-element">
+                <div id="mostrarCategorias" class="form-element"></div> <!-- listar Categorias de los productos en combobox -->
+            </div>
+            
+            <p></p>
+
+            <input class="boton-pagar-mas" type="submit" name="agregar">
+
+            </form>
                                 
             <div class="cerrar-popup" onclick="cerrarPopup()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
     </div>
 
+    <!------------------------------------------------------------------->
+    <!-- Contenedor del popup MOSTRAR CATEGORIAS (inicialmente oculto) -->
+    <!------------------------------------------------------------------->
+
     <div class="popup" id="popup2">
         <div class="popup-contenido">
-            <h2>Categorias:</h2>
-
-            <p></p>
-            
-            <form action="" method="POST" class="formulario">
-                <div class="form-element">
-                    <label for="name">Agregar: </label>
-                    <input type="text" name="nombre" required>
-                    <button class="boton-pagar" type="submit" name="agregar" value="Agregar"><ion-icon name="add-circle-outline"></ion-icon></button>
+            <h2>Categorias</h2>
+            <div class="formulario">
+                <hr>
+                <div class="row text-center">
+                    <div class="col">
+                        <label for="buscador">Añadir nueva categoria: </label>
+                        <input type="text" name="buscador" id="buscador" class="form-control">
+                        <div class="row"> 
+                            <button class="boton-pagar" type="submit" name="agregar" value="Agregar Rol" onclick="gestionarRol(1);"  onmouseout="gestionarRol(2);"><ion-icon name="add-circle-outline"></ion-icon></button>              
+                        </div>
+                    </div>
                 </div>
-            </form>
-
-            <p></p>
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Categorias productos</th>
-                        <th colspan="1"> </th> 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Bebidas</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>Hot dogs</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>Frituras</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>Promociones</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>Bebidas</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>Hot dogs</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>Frituras</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                    <tr>
-                        <td>Promociones</td>
-                        <td><ion-icon name="trash-outline" class="icono-eliminar"></ion-icon></td> 
-                    </tr>
-                </tbody>
-            </table>
+                <hr>
+                <div class="row justify-content-md-center">
+                    <div class="col-md-8">
+                        <div id="mostrar_mensaje"></div> <!-- div que mostrará el contenido del ajax -->
+                    </div>
+                </div>
+            </div>
             <div class="cerrar-popup" onclick="cerrarPopup2()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
     </div>
