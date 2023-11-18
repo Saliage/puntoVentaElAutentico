@@ -12,15 +12,17 @@ function cerrarPopup() {
 
 }
 
-
     function inicializar(){
-        gestionarTipo_producto(2);
-        listarCat();
-        mostrarTipo_producto();
+        gestionarCategoria(2);
+        listarProductos();
+        mostrarCat();
     }
 
-
-    function  mostrarTipo_producto(){
+     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////// MOSTRAR ROLES ////////////////////////////////////////////////////////////////////////////
+   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+   function  mostrarCat(){
         var parametros = 
         {
             "opcion" : "mostrar"
@@ -31,10 +33,10 @@ function cerrarPopup() {
             url: '../Controlador/gestion_carta.php',
             type: 'POST',
             beforeSend: function() {
-                $('#mostrarTipo_producto').html("No tipo_categorias para mostrar");
+                $('#mostrarCat').html("No hay categorias para mostrar");
             },
             success: function(mensaje) {
-                $('#mostrarTipo_producto').html(mensaje);
+                $('#mostrarCat').html(mensaje);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.error('Error en la solicitud AJAX:', textStatus, errorThrown); //ver errores
@@ -42,15 +44,11 @@ function cerrarPopup() {
         });
     }
 
-
-
 //--------------------------------------------------------------------------------------------------------------------------------------->
 //----------------------------------------------           GESTION TRABAJADORES           ----------------------------------------------->
 //--------------------------------------------------------------------------------------------------------------------------------------->
 
-
-
-function listarCat() {
+function listarProductos() {
 
     var parametros = 
     {
@@ -62,7 +60,7 @@ function listarCat() {
         url: '../Controlador/gestion_carta.php',
         type: 'POST',
         beforeSend: function() {
-            //$('#mostrarProductos').html("No hay trabajadores para mostrar");
+            //$('#mostrarProductos').html("No hay Productos en la carta para mostrar");
         },
         success: function(mensaje) {
             $('#mostrarProductos').html(mensaje);
@@ -73,7 +71,7 @@ function listarCat() {
     });
 }
 
-function editarCategoria(id){
+function editarProductos(id){
 
     var nombre_productoSpan = document.getElementById('nombre_productoSpan'+id);
     var codigo_productoSpan = document.getElementById('codigo_productoSpan'+id);
@@ -81,15 +79,17 @@ function editarCategoria(id){
     var costo_unitarioSpan = document.getElementById('costo_unitarioSpan'+id);
     var precio_ventaSpan = document.getElementById('precio_ventaSpan'+id);
     var descripcionSpan = document.getElementById('descripcionSpan'+id);
-    var btnCategoriaEdit = document.getElementById('btnCategoriaEdit'+id);
+    var categoriasSpan = document.getElementById('categoriasSpan'+id);
+    var btnUserEdit = document.getElementById('btnUserEdit'+id);
 
     var nombre_productoTxt = document.getElementById('nombre_productoTxt'+id);
     var codigo_productoTxt = document.getElementById('codigo_productoTxt'+id);
     var imagenTxt = document.getElementById('imagenTxt'+id);
     var costo_unitarioTxt = document.getElementById('costo_unitarioTxt'+id);
     var precio_ventaTxt = document.getElementById('precio_ventaTxt'+id);
-    var descripcionSelect = document.getElementById('descripcionSelect'+id);
-    var guardarCategoriaEdit = document.getElementById('guardarCategoriaEdit'+id);
+    var descripcionTxt = document.getElementById('descripcionTxt'+id);
+    var categoriasSelect = document.getElementById('categoriasSelect'+id);
+    var guardarUsuarioEdit = document.getElementById('guardarUsuarioEdit'+id);
 
     // Mostrar el campo de texto y ocultar el span
 
@@ -99,7 +99,8 @@ function editarCategoria(id){
     costo_unitarioSpan.style.display = 'none';
     precio_ventaSpan.style.display = 'none';
     descripcionSpan.style.display = 'none';
-    btnCategoriaEdit.style.display = 'none';
+    categoriasSpan.style.display = 'none';
+    btnUserEdit.style.display = 'none';
 
     nombre_productoTxt.style.display = 'inline';
     codigo_productoTxt.style.display = 'inline';
@@ -107,7 +108,8 @@ function editarCategoria(id){
     costo_unitarioTxt.style.display = 'inline';
     precio_ventaTxt.style.display = 'inline';
     descripcionTxt.style.display = 'inline';
-    guardarCategoriaEdit.style.display = 'inline';
+    categoriasSelect.style.display = 'inline';
+    guardarUsuarioEdit.style.display = 'inline';
 
     // Agregar el valor del texto al valor original del span
     
@@ -122,85 +124,81 @@ function editarCategoria(id){
 
 function guardarUsuarioEdit(id){
 
-    var rutSpan = document.getElementById('rutSpan'+id);
-    var nombreSpan = document.getElementById('nombreSpan'+id);
-    var apellidoSpan = document.getElementById('apellidoSpan'+id);
-    var usuarioSpan = document.getElementById('usuarioSpan'+id);
-    var claveSpan = document.getElementById('claveSpan'+id);
-    var estadoSpan = document.getElementById('estadoSpan'+id);
-    var rolSpan = document.getElementById('rolSpan'+id);
+    var nombre_productoSpan = document.getElementById('nombre_productoSpan'+id);
+    var codigo_productoSpan = document.getElementById('codigo_productoSpan'+id);
+    var imagenSpan = document.getElementById('imagenSpan'+id);
+    var costo_unitarioSpan = document.getElementById('costo_unitarioSpan'+id);
+    var precio_ventaSpan = document.getElementById('precio_ventaSpan'+id);
+    var descripcionSpan = document.getElementById('descripcionSpan'+id);
+    var categoriasSpan = document.getElementById('categoriasSpan'+id);
     var btnUserEdit = document.getElementById('btnUserEdit'+id);
-    var verClave = document.getElementById('verClave'+id);
 
-    var rutTxt = document.getElementById('rutTxt'+id);
-    var nombreTxt = document.getElementById('nombreTxt'+id);
-    var apellidoTxt = document.getElementById('apellidoTxt'+id);
-    var usuarioTxt = document.getElementById('usuarioTxt'+id);
-    var claveTxt = document.getElementById('claveTxt'+id);
-    var estadoSelect = document.getElementById('estadoSelect'+id);
-    var rolSelect = document.getElementById('rolSelect'+id);
+    var nombre_productoTxt = document.getElementById('nombre_productoTxt'+id);
+    var codigo_productoTxt = document.getElementById('codigo_productoTxt'+id);
+    var imagenTxt = document.getElementById('imagenTxt'+id);
+    var costo_unitarioTxt = document.getElementById('costo_unitarioTxt'+id);
+    var precio_ventaTxt = document.getElementById('precio_ventaTxt'+id);
+    var descripcionTxt = document.getElementById('descripcionTxt'+id);
+    var categoriasSelect = document.getElementById('categoriasSelect'+id);
     var guardarUsuarioEdit = document.getElementById('guardarUsuarioEdit'+id);
 
 
     var parametros = 
     {
         "id" : id,
-        "rut" : rutTxt.value,
-        "nombre" : nombreTxt.value,
-        "apellido" : apellidoTxt.value,
-        "usuario" : usuarioTxt.value,
-        "clave" : claveTxt.value,
-        "estado" : estadoSelect.value,
-        "rol" : rolSelect.value,
+        "nombre_producto" : nombre_productoTxt.value,
+        "codigo_producto" : codigo_productoTxt.value,
+        "imagen" : imagenTxt.value,
+        "costo_unitario" : costo_unitarioTxt.value,
+        "precio_venta" : precio_ventaTxt.value,
+        "descripcion" : descripcionTxt.value,
+        "categorias" : categoriasSelect.value,
         "opcion" : 'U'
     };
 
     //volver inputs a su estado anterior
 
-    rutSpan.style.display = 'inline';
-    nombreSpan.style.display = 'inline';
-    apellidoSpan.style.display = 'inline';
-    usuarioSpan.style.display = 'inline';
-    claveSpan.style.display = 'inline';
-    estadoSpan.style.display = 'inline';
-    rolSpan.style.display = 'inline';
+    nombre_productoSpan.style.display = 'inline';
+    codigo_productoSpan.style.display = 'inline';
+    imagenSpan.style.display = 'inline';
+    costo_unitarioSpan.style.display = 'inline';
+    precio_ventaSpan.style.display = 'inline';
+    descripcionSpan.style.display = 'inline';
+    categoriasSpan.style.display = 'inline';
     btnUserEdit.style.display = 'inline';
-    verClave.style.display = 'inline';
     
-    rutTxt.style.display = 'none';
-    nombreTxt.style.display = 'none';
-    apellidoTxt.style.display = 'none';
-    usuarioTxt.style.display = 'none';
-    claveTxt.style.display = 'none';
-    estadoSelect.style.display = 'none';
-    rolSelect.style.display = 'none';
+    nombre_productoTxt.style.display = 'none';
+    codigo_productoTxt.style.display = 'none';
+    imagenTxt.style.display = 'none';
+    costo_unitarioTxt.style.display = 'none';
+    precio_ventaTxt.style.display = 'none';
+    descripcionTxt.style.display = 'none';
+    categoriasSelect.style.display = 'none';
     guardarUsuarioEdit.style.display = 'none';
     
 
 $.ajax({
         data : parametros,
-        url: '../Controlador/gestion_trabajador.php',
+        url: '../Controlador/gestion_carta.php',
         type: 'POST',
     beforeSend: function()
     {
-    $('#mostrarTrabajadores').html("Error de comunicación");
-    listarTrabajadores();
+    $('#mostrarProductos').html("Error de comunicación");
+    listarProductos();
     },
 
     success: function(mensaje)
     {
-    $('#mostrarTrabajadores').html(mensaje);
-    listarTrabajadores();
+    $('#mostrarProductos').html(mensaje);
+    listarProductos();
     }
-    
-
 });
 
 }
 
-function eliminarUsuario(id){
+function eliminarProductos(id){
 
-    var confirmacion = confirm("¿Estás seguro de que deseas eliminar al trabajador: "+id+"?");
+    var confirmacion = confirm("¿Estás seguro de que deseas eliminar el producto: "+id+"?");
 
     if (confirmacion) {
         
@@ -209,85 +207,145 @@ function eliminarUsuario(id){
             "id" : id,
             "opcion" : 'D'
         };                
-
+ 
         $.ajax({
         data: parametros,
-        url: '../Controlador/gestion_trabajador.php',
+        url: '../Controlador/gestion_carta.php',
         type: 'POST',
         
         beforeSend: function()
         {
         $('#mostrar_mensaje').html("Error! No se puede realizar la operación.");
         $('#mostrar_mensaje').css('color', 'red');
-        listarTrabajadores();
+        listarProductos();
         },
 
         success: function(mensaje)
         {
         $('#mostrar_mensaje').html(mensaje);
-        listarTrabajadores();
+        listarProductos();
         }
         
         });
-        listarTrabajadores();
+        listarProductos();
 
     }
     
 }
 
-
-function agregarProducto(event)
+function agregarProductos(event)
 { 
     event.preventDefault(); // Evita que el formulario se envíe a la nada
 
     // rescatar valores del form
-    var formulario = document.getElementById('formAgregarProducto');
-    var nombre_producto = formulario.elements['nombre_producto'].value;
-    var codigo_producto = formulario.elements['codigo_producto'].value;
-    var imagen = formulario.elements['imagen'].value;
-    var costo_unitario = formulario.elements['costo_unitario'].value;
-    var precio_venta = formulario.elements['precio_venta'].value;
-    var descripcion = formulario.elements['descripcion'].value;
-    
-    var parametros = 
+    var formulario = document.getElementById('formAgregarProductos');
+    var rut = formulario.elements['rut'].value;
+    var nombre = formulario.elements['nombre'].value;
+    var apellido = formulario.elements['apellido'].value;
+    var usuario = formulario.elements['usuario'].value;
+    var clave = formulario.elements['clave'].value;
+    var estado = 1; //siempre se agregarán los usuarios en estado "activos"
+    var rol = formulario.elements['rol'].value;
+
+    if(validarRut(rut)){
+
+        var parametros = 
         {
-            "nombre_producto" : nombre_producto,
-            "codigo_producto" : codigo_producto,
-            "imagen" : imagen,
-            "costo_unitario" : costo_unitario,
-            "precio_venta" : precio_venta,
-            "descripcion" : descripcion,
+            "rut" : rut,
+            "nombre" : nombre,
+            "apellido" : apellido,
+            "usuario" : usuario,
+            "clave" : clave,
+            "estado" : estado,
+            "rol" : rol,
             "opcion" : 'guardar'
         };
 
         $.ajax({
             data: parametros,
-            url: '../Controlador/gestion_carta.php',
+            url: '../Controlador/gestion_trabajador.php',
             type: 'POST',
             
             beforeSend: function()
             {
             //$('#mostrar_mensaje').html("Error de comunicación");
-            listarCat();
+            listarTrabajadores();
             },
 
             success: function(mensaje)
             {
             //$('#mostrar_mensaje').html(mensaje);
             alert(mensaje);
-            listarCat();
+            listarTrabajadores();
             cerrarPopup();
-            document.getElementById("formAgregarProducto").reset();
+            document.getElementById("formAgregarTrabajador").reset();
             }
         });
+    }
+    else{
+        
+        $('#validaRUT').html('El RUT no es válido. Por favor, corrige el RUT.');
+        document.getElementById("rut").value ="";
+    }
 }
 
+function validarRutTxt() {
+    var rut = document.getElementById("rut").value;
+    var mensaje = document.getElementById("validaRUT");
+
+    if (validarRut(rut)) {
+        mensaje.style.display = 'none';
+    } else {
+        mensaje.style.display = 'block';
+        mensaje.innerHTML = 'El RUT no es válido. Por favor, corrige el RUT.';
+    }
+}
+
+
+function validarRut(rut) {
+    // Eliminar puntos y guiones del RUT
+    rut = rut.replace(/[.-]/g, '');
+
+    // Verificar si el RUT tiene el formato correcto
+    if (!/^[0-9]{1,9}[0-9Kk]$/.test(rut)) {
+        return false;
+    }
+
+    // Obtener el dígito verificador actual
+    var dv = rut.slice(-1);
+    rut = rut.slice(0, -1);
+
+    // Calcular el dígito verificador esperado
+    var suma = 0;
+    var multiplo = 2;
+
+    for (var i = rut.length - 1; i >= 0; i--) {
+        suma += rut[i] * multiplo;
+
+        if (multiplo < 7) {
+            multiplo++;
+        } else {
+            multiplo = 2;
+        }
+    }
+
+    var digitoVerificadorCalculado = 11 - (suma % 11);
+
+    // Convertir el dígito calculado a texto
+    digitoVerificadorCalculado = (digitoVerificadorCalculado === 10) ? 'K' : String(digitoVerificadorCalculado);
+
+    // Comparar el dígito verificador actual con el calculado
+    return dv.toUpperCase() === digitoVerificadorCalculado.toUpperCase();
+}
 //--------------------------------------------------------------------------------------------------------------------------------------->
 //----------------------------------------------               GESTION ROLES              ----------------------------------------------->
 //--------------------------------------------------------------------------------------------------------------------------------------->
 
 
-function gestionarTipo_producto(opcion)
+
+
+
+function gestionarRol(opcion)
 { 
     buscar = document.getElementById('buscador').value;
 var parametros = 
@@ -298,7 +356,7 @@ var parametros =
 
 $.ajax({
     data: parametros,
-    url: '../Controlador/gestion_carta.php',
+    url: '../Controlador/gestion_rol.php',
     type: 'POST',
     
     beforesend: function()

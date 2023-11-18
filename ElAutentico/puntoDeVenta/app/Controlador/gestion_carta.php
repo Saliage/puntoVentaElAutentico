@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	{
         $mi_busqueda = $_POST['mi_busqueda'];
 		$tipo_producto = new Tipo_producto();
-        $resultado = $tipo_producto->buscarTipo_productoNombre($mi_busqueda);
+        $resultado = $tipo_producto->buscarProductosNombre($mi_busqueda);
 	  while($consulta = mysqli_fetch_array($resultado))
 	  {
 	    echo 
@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if($nombreTipo_producto != ""){
                 
                 $tipo_producto = new Tipo_producto();
-                $resultado = $tipo_producto->agregarTipo_producto($nombreTipo_producto);
+                $resultado = $tipo_producto->agregarProductos($nombreTipo_producto);
                 if($resultado > 0){
                 echo "Se agregó la categoria: ".$nombreTipo_producto;
                 }        
@@ -92,10 +92,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input style="display:none" type="text" id="nombre_tipoTxt'.$consulta['id_tipo'].'" value="'.$consulta['nombre_tipo'].'"> <!-- inicia oculto-->
                     </td>
                     <td>
-                        <ion-icon id="btnEdit'.$consulta['id_tipo'].'" name="pencil-outline" class="icono-editar" onclick="editarTipo_producto('.$consulta['id_tipo'].')"></ion-icon>                        
-                        <button style="display:none" id="guardarEdit'.$consulta['id_tipo'].'" onclick="guardarTipo_productoEdit('.$consulta['id_tipo'].')">OK</button> <!-- inicia oculto-->
+                        <ion-icon id="btnEdit'.$consulta['id_tipo'].'" name="pencil-outline" class="icono-editar" onclick="btnUserEdit('.$consulta['id_tipo'].')"></ion-icon>                        
+                        <button style="display:none" id="guardarEdit'.$consulta['id_tipo'].'" onclick="guardarUsuarioEdit('.$consulta['id_tipo'].')">OK</button> <!-- inicia oculto-->
                     </td>
-                    <td><ion-icon name="trash-outline" class="icono-eliminar" onclick="eliminarTipo_producto('.$consulta['id_tipo'].')"></ion-icon></td> 
+                    <td><ion-icon name="trash-outline" class="icono-eliminar" onclick="eliminarProductos('.$consulta['id_tipo'].')"></ion-icon></td> 
                     </tr>
                 ';
             }	     
