@@ -1,7 +1,7 @@
 <?php
 
 
-require_once ("../modelo/Cat.php");
+require_once ("../modelo/cat.php");
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if($nombreCategorias != ""){
                 
                 $categorias = new Categorias();
-                $resultado = $categorias->agregarCategorias($nombreCategorias);
+                $resultado = $categorias->agregarCat($nombreCategorias);
                 if($resultado > 0){
                 echo "Se agregó la categoria: ".$nombreCategorias;
                 }        
@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         {
                 
             $categorias = new Categorias();
-            $resultado = $rol->listarCat();
+            $resultado = $categorias->listarCat();
             //CONSULTAR
 	        while($consulta = mysqli_fetch_array($resultado))
             {
@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if($id_tipo != ""){
                 
                 $categorias = new Categorias();
-                $resultado = $categorias->actualizarCategorias($id_tipo, $nombreCategorias);
+                $resultado = $categorias->actualizarCat($id_tipo, $nombreCategorias);
                 if($resultado > 0){
                 echo "se actualizó la categoria: ".$nombreCategorias;
                 }        
@@ -142,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 catch(Exception $e)
                 {
-                    echo "<script>alert('No se puede eliminar la categoria: ".$id_tipo."; Asegurese de que no esté asignado a un producto.');</script>";
+                    echo "<script>alert('No se puede eliminar la categoria: ".$id_tipo."; Asegurese de que no esté asignada a un producto.');</script>";
                 }        
 
             }

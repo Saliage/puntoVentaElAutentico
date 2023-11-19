@@ -1,6 +1,6 @@
 <?php
-require_once("../modelo/trabajador.php");
-require_once("../modelo/rol.php");
+require_once("../modelo/productos.php");
+require_once("../modelo/cat.php");
 
 
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
@@ -11,28 +11,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //guardar
         if($opcion == "guardar")
         {   
-            $rut = $_POST['rut'];
-            $nombre = $_POST['nombre'];
-            $apellido = $_POST['apellido'];
-            $usuario = $_POST['usuario'];
-            $clave = $_POST['clave'];
-            $estado = $_POST['estado'];
-            $rol = $_POST['rol']; 
+            $nombre_producto = $_POST['nombre_producto'];
+            $codigo_producto = $_POST['codigo_producto'];
+            $imagen = $_POST['imagen'];
+            $costo_unitario = $_POST['costo_unitario'];
+            $precio_venta = $_POST['precio_venta'];
+            $descripcion = $_POST['descripcion'];
+            $categorias = $_POST['categorias']; 
 
-            if($rut != "" && $nombre != "" && $apellido != "" && $usuario != "" && $clave != "" && $estado!= "" && $rol != ""){
+            if($nombre_producto != "" && $codigo_producto != "" && $imagen != "" && $costo_unitario != "" && $precio_venta != "" && $descripcion!= "" && $categorias != ""){
 
-                $trabajador = new Trabajador();
+                $productos = new productos();
                 try{
 
-                    $resultado = $trabajador->agregarTrabajador($rut,$nombre,$apellido,$usuario,$clave,$estado,$rol);
+                    $resultado = $productos->agregarProductos($nombre_producto,$codigo_producto,$imagen,$costo_unitario,$precio_venta,$descripciono,$categorias);
                     if($resultado > 0){
-                    echo "Se agregó al trabajador: ".$nombre." ".$apellido;
+                    echo "Se agregó se agrego el producto: ".$nombre_producto;
                     }
 
                 }
                 catch(Exception $e)
                 {
-                    echo "Error, no se puede guardar al trabajador, asegurese que el rut: ".$rut." no se encuentre registrado";
+                    echo "Error, no se puede guardar el producto, asegurese ".$nombre_producto." no se encuentre registrado";
                 }     
             }   
 
@@ -45,14 +45,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo
                 '
                 <tr>
-                    <th>Id usuario</th>
-                    <th>Rut</th>
+                    <th>Id producto</th>
                     <th>Nombre</th>
-                    <th>apellido</th>
-                    <th>Usuario</th>
-                    <th>Clave</th>
-                    <th>Estado</th>
-                    <th>Tipo de usuario</th>
+                    <th>Codigo</th>
+                    <th>Imagen</th>
+                    <th>Costo unitario</th>
+                    <th>Precio venta</th>
+                    <th>Descripcion</th>
+                    <th>Categoria</th>
                     <th>Editar</th> 
                     <th>Elimnar</th> 
                 </tr>
@@ -65,28 +65,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if($opcion == "mostrar")
 	{
-        $trabajador = new Trabajador();
-        $resultado = $trabajador->listarTrabajadores();
+        $productos = new productos();
+        $resultado = $productos->listarProductos();
 
-        $rol = new Rol();
-        $roles = $rol->listarRoles();
+        $categorias = new Categorias();
+        $categoriass = $categorias->listarCat();
         $arrayRoles = array();
         //rellenar arrayRoles
-        while ($cadaRol = $roles->fetch_assoc()) {
-            $arrayRoles[] = $cadaRol;
+        while ($cadaCategorias = $Categoriass->fetch_assoc()) {
+            $arrayCategoriass[] = $cadaCategorias;
         }
 
 	  while($consulta = mysqli_fetch_array($resultado))
 	  {
         $icono ='<ion-icon name="ban-outline"></ion-icon>';
-        $id = $consulta['id_trabajador'];
-        $rut = $consulta['rut'];
-        $nombre = $consulta['nombre'];
-        $apellido = $consulta['apellido'];
-        $usuario = $consulta['usuario'];
-        $clave = $consulta['clave'];
-        $estado = $consulta['activo']; 
-        $nombreRol = mysqli_fetch_assoc($rol->buscarRolId($consulta['rol_id_rol']));
+        $id = $consulta['id_producto'];
+        $nombre_producto = $consulta['nombre_producto'];
+        $codigo_producto = $consulta['codigo_producto'];
+        $imagen = $consulta['imagen'];
+        $costo_unitario = $consulta['costo_unitario'];
+        $precio_venta = $consulta['precio_venta'];
+        $descripcion = $consulta['descripcion']; 
+        $nombreCategorias = mysqli_fetch_assoc($categorias->buscarCatId($consulta['tipo_producto_id_tipo']));
         
         if($estado == 1)
         {
@@ -98,49 +98,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <tr>
                 <td>'.$id.'</td>
                 <td>    
-                    <span  id="rutSpan'.$id.'">'.$rut.'</span>                        
-                    <input style="display:none" type="text" id="rutTxt'.$id.'" value="'.$rut.'"> <!-- inicia oculto-->
+                    <span  id="nombre_productoSpan'.$id.'">'.$nombre_producto.'</span>                        
+                    <input style="display:none" type="text" id="nombre_productoTxt'.$id.'" value="'.$nombre_producto.'"> <!-- inicia oculto-->
                 </td>
                 <td>   
-                    <span  id="nombreSpan'.$id.'">'.$nombre.'</span>                        
-                    <input style="display:none" type="text" id="nombreTxt'.$id.'" value="'.$nombre.'"> <!-- inicia oculto-->
+                    <span  id="codigo_productoSpan'.$id.'">'.$codigo_producto.'</span>                        
+                    <input style="display:none" type="text" id="codigo_productoTxt'.$id.'" value="'.$codigo_producto.'"> <!-- inicia oculto-->
                 </td>
                 <td>   
-                    <span  id="apellidoSpan'.$id.'">'.$apellido.'</span>                        
-                    <input style="display:none" type="text" id="apellidoTxt'.$id.'" value="'.$apellido.'"> <!-- inicia oculto-->
+                    <span  id="imagenSpan'.$id.'">'.$imagen.'</span>                        
+                    <input style="display:none" type="text" id="imagenTxt'.$id.'" value="'.$imagen.'"> <!-- inicia oculto-->
                 </td>
                 <td>
-                    <span  id="usuarioSpan'.$id.'">'.$usuario.'</span>
-                    <input style="display:none" type="text" id="usuarioTxt'.$id.'" value="'.$usuario.'"> <!-- inicia oculto-->
+                    <span  id="costo_unitarioSpan'.$id.'">'.$costo_unitario.'</span>
+                    <input style="display:none" type="text" id="costo_unitarioTxt'.$id.'" value="'.$costo_unitario.'"> <!-- inicia oculto-->
                 </td>
                 <td>
-                    <span id="claveSpan'.$id.'" style="display: none;">'.$clave.'</span>
-                    <input style="display:none" type="text" id="claveTxt'.$id.'" value="'.$clave.'"> <!-- inicia oculto-->
-                    <button id="verClave'.$id.'"  onclick="mostrarClave('.$id.')"><ion-icon id="ver'.$id.'" name="eye-outline"></ion-icon></button>
+                    <span id="precio_ventaSpan'.$id.'" style="display: none;">'.$precio_venta.'</span>
+                    <input style="display:none" type="text" id="precio_ventaTxt'.$id.'" value="'.$precio_venta.'"> <!-- inicia oculto-->
                 </td>
                 <td>
-                    <span id="estadoSpan'.$id.'">'.$icono.'</span>
-                    <select id="estadoSelect'.$id.'" style="display: none;">
-                        <option value="0" '.($estado == 0 ? 'selected' : '').' >Deshabilitado</option>
-                        <option value="1" '.($estado == 1 ? 'selected' : '').' >Habilitado</option>                        
-                    </select>
+                    <span id="descripcionSpan'.$id.'" style="display: none;">'.$descripcion.'</span>
+                    <input style="display:none" type="text" id="descripcionTxt'.$id.'" value="'.$descripcion.'"> <!-- inicia oculto-->
                 </td>
-                <td>
-                    <span  id="rolSpan'.$id.'">'.$nombreRol['nombre_rol'].'</span>
-                    <select id="rolSelect'.$id.'" style="display: none;">';
 
-                    foreach ($arrayRoles as $dato) {
-                        echo '<option value="' . $dato['id_rol'] . '" ' . ($dato['id_rol'] == $consulta['rol_id_rol'] ? 'selected' : '') . ' >' . $dato['nombre_rol'] . '</option>';
+                <td>
+                    <span  id="categoriasSpan'.$id.'">'.$nombreCategorias['nombre_tipo'].'</span>
+                    <select id="categoriasSelect'.$id.'" style="display: none;">';
+
+                    foreach ($arrayCategoriass as $dato) {
+                        echo '<option value="' . $dato['id_tipo'] . '" ' . ($dato['id_tipo'] == $consulta['tipo_producto_id_tipo'] ? 'selected' : '') . ' >' . $dato['nombre_tipo'] . '</option>';
                     }
                     
                     echo '</select>
                 </td>
                 <td>
-                    <ion-icon id="btnUserEdit'.$id.'" name="pencil-outline" class="icono-editar" onclick="editarUsuario('.$id.')"></ion-icon>
-                    <button style="display:none" id="guardarUsuarioEdit'.$id.'" onclick="guardarUsuarioEdit('.$id.')">OK</button> <!-- inicia oculto-->
+                    <ion-icon id="btnproductoEdit'.$id.'" name="pencil-outline" class="icono-editar" onclick="editarProductos('.$id.')"></ion-icon>
+                    <button style="display:none" id="guardarProductoEdit'.$id.'" onclick="guardarProductoEdit('.$id.')">OK</button> <!-- inicia oculto-->
                 </td>
                 <td>
-                    <ion-icon name="trash-outline" class="icono-eliminar" onclick="eliminarUsuario('.$id.')"></ion-icon>
+                    <ion-icon name="trash-outline" class="icono-eliminar" onclick="eliminarProducto('.$id.')"></ion-icon>
                 </td> 
             </tr><br>
 	    ';
@@ -151,23 +148,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //editar
     try {
         if ($opcion == "U") {
-            $id = $_POST['id'];
-            $rut = $_POST['rut'];
-            $nombre = $_POST['nombre'];
-            $apellido = $_POST['apellido'];
-            $usuario = $_POST['usuario'];
-            $clave = $_POST['clave'];
-            $estado = $_POST['estado'];
-            $rol = $_POST['rol'];
+            $id = $_POST['id_producto'];
+            $nombre_producto = $_POST['nombre_producto'];
+            $codigo_producto = $_POST['codigo_producto'];
+            $imagen = $_POST['imagen'];
+            $costo_unitario = $_POST['costo_unitario'];
+            $precio_venta = $_POST['precio_venta'];
+            $descripcion = $_POST['descripcion'];
+            $categorias = $_POST['tipo_producto'];
     
             if ($id != "") {
-                $trabajador = new Trabajador();
-                $resultado = $trabajador->actualizarTrabajador($id, $rut, $nombre, $apellido, $usuario, $clave, $estado, $rol);
+                $productos = new productos();
+                $resultado = $productos->actualizaProductos($id, $nombre_producto, $codigo_producto, $imagen, $costo_unitario, $precio_venta, $descripcion, $categorias);
     
                 if ($resultado > 0) {
-                    echo "Se actualizó el usuario: " . $nombre;
+                    echo "Se actualizó el producto: " . $nombre_producto;
                 } else {
-                    echo "Error, no se puede guardar al trabajador, revise los datos y asegurese que el rut: ".$rut." no se encuentre registrado";
+                    echo "Error, no se puede guardar el producto, revise los datos y asegurese que el producto: ".$nombre_producto." no se encuentre registrado";
                 }
             }
         }
@@ -186,18 +183,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if($id != ""){
                 
-                $trabajador = new Trabajador();
+                $productos = new productos();
                 try{
 
-                    $resultado = $trabajador->eliminarTrabajador($id);
+                    $resultado = $productos->eliminarProductos($id);
                     if($resultado > 0){
-                    echo "se eliminó el trabajador: ".$id;
+                    echo "se eliminó el producto: ".$id;
                     }
 
                 }
                 catch(Exception $e)
                 {
-                    echo "<script>alert('No sepuede eliminar al trabajador: ".$id.".');</script>";
+                    echo "<script>alert('No sepuede eliminar el producto: ".$id.".');</script>";
                 }        
 
             }
@@ -212,7 +209,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 else
 {
     //redireccionar en caso de no llegar a la pagina como corresponde
-    header("location: ../usuarios-administrador.php"); 
+    header("location: ../carta-administrador.php"); 
     die();
 
 }
