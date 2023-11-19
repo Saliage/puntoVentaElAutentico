@@ -145,12 +145,6 @@ function reqFecVen(){
 
 }
 
-
-
-
-
-
-
 function entradaInsumo(event)
 { 
     event.preventDefault(); // Evita que el formulario se envíe a la nada
@@ -163,10 +157,10 @@ function entradaInsumo(event)
     var costo = formulario.elements['costo'].value;
     var zona_id = formulario.elements['zona_id'].value;
     var fechaInput = formulario.elements['fecha'];
-
+   
     var fecha = null;
     //verificar si viene la fecha para enviar, sino envía null
-    if (fechaInput && fechaInput.hasOwnProperty('value')) {
+    if(fechaInput && fechaInput.type === "date") {
         var fecha = fechaInput.value; //guarda valor de fecha
     }
     
@@ -187,24 +181,44 @@ function entradaInsumo(event)
         
         beforeSend: function()
         {
+            listarInventario();
         },
 
         success: function(mensaje)
         {
         //$('#mostrar_mensaje').html(mensaje);
-        alert(mensaje);
-        listarInsumosFormat();
+        listarInventario();
         cerrarPopup8();
         document.getElementById("formEntradaInsumo").reset();
         }
+        
     });
-  
-
         
 }
 
+function deplegar(id) {
 
-
+    alert("se vino");
+    var parametros = 
+    {
+        "opcion" : "mostrar"
+    };
+    
+    $.ajax({
+        data : parametros,
+        url: '../Controlador/gestion_inventario.php',
+        type: 'POST',
+        beforeSend: function() {
+            //$('#mostrarTrabajadores').html("No hay trabajadores para mostrar");
+        },
+        success: function(mensaje) {
+            $('#detalleStock'+id).html("perroNegro");
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error en la solicitud AJAX:', textStatus, errorThrown); //ver errores
+        }
+    });
+}
 
 function editarUsuario(id){
 

@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $perecible = $_POST['perecible'];
         $formato = $_POST['formato'];
     
-        $ruta_imagen = null;
+        $ruta_imagen = "../../public/imagenes/NoImage.png"; //asiga una imagen fija
     
         if (isset($_FILES["imagen"])) {
             $imagen = $_FILES["imagen"];

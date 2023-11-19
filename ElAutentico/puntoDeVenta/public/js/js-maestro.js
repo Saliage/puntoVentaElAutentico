@@ -83,6 +83,8 @@
     function cerrarPopup8() {
         const popup = document.getElementById('popup8');
         popup.style.display = 'none';
+        listarInsumosFormat();
+        
     }
 
     function mostrarPopup9() {

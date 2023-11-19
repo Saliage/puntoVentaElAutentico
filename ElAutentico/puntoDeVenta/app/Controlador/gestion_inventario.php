@@ -46,25 +46,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $costo = $_POST["costo"];
         $fecha = $_POST["fecha"];
         $zona_id = $_POST["zona_id"];
-
-        if($fecha == null){echo 'fecha es null' ;}
-
-        /*
+        $id_trabajador = $_SESSION['id']; //rescata id (variable global) del trabajador que tiene abierta la session
+       
 
         if($insumo != "" && $cantidad != "" && $costo != "" && $zona_id){
 
-            $trabajador = new Trabajador();
+            $inventario = new Inventario();
             try{
-                $resultado = $trabajador->agregarTrabajador($rut,$nombre,$apellido,$usuario,$clave,$estado,$rol);
+                $resultado = $inventario->agregarRegistro($insumo,$cantidad,$costo,$fecha,$zona_id,$id_trabajador);
                 if($resultado > 0){
-                echo "Se agregó al trabajador: ".$nombre." ".$apellido;
+                echo "Se agregó al inventario un nuevo registro de entrada para el insumo: '$insumo'";
                 }
             }
             catch(Exception $e)
             {
-                echo "Error, no se puede guardar al trabajador, asegurese que el rut: ".$rut." no se encuentre registrado";
+                echo "Error, no se puede guardar la entrada el inventario ".$e;
             }     
-        } */
+        } 
     }
 
     //muestra todo el contenido
@@ -100,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <span  id="nombreSpan'.$id.'">'.$nombre.'</span>
                 </td>
                 <td>   
-                    <span  id="apellidoSpan'.$id.'">'.$$stock.'</span>
+                    <span  id="apellidoSpan'.$id.'">'.$stock.'</span>
                 </td>
                 <td>
                     <span  id="usuarioSpan'.$id.'">'.$categoria.'</span>
@@ -112,80 +110,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <span id="estadoSpan'.$id.'">'.$icono.'</span>                   
                     </select>
                 </td>
-                    <td>
-                    <button class="boton-pagar2"  id="desplegarDetalle'.$id.'" onclick="deplegar"('.$id.')" title="Desplegar">
+                <td>
+                    <button  id="desplegarDetalle'.$id.'" onclick="deplegar('.$id.')" title="Desplegar">
                     <ion-icon name="chevron-down-circle-outline"></ion-icon></button>
-                    <button class="boton-pagar2"  id="ocultarDetalle'.$id.'" onclick="ocultar"('.$id.')" title="Ocultar">
+                    <button  id="ocultarDetalle'.$id.'" onclick="ocultar('.$id.')" title="Ocultar" style="display : none">
                     <ion-icon name="chevron-up-circle-outline"></ion-icon></button> <!-- inicia oculto-->
-                    </td>
-            </tr> <div id="detalleStock'.$id.'"></div> <-- muestra el detalle de cada insumo -->
+                </td>
+
+            </tr>
+            <tr>
+                <div id="detalleStock'.$id.'"></div> <-- muestra el detalle de cada insumo -->
+            </tr> 
             <br>
 	    ';
 	  }	
 
 	}
 
-
-
-    //editar
-    try {
-        if ($opcion == "U") {
-            $id = $_POST['id'];
-            $rut = $_POST['rut'];
-            $nombre = $_POST['nombre'];
-            $apellido = $_POST['apellido'];
-            $usuario = $_POST['usuario'];
-            $clave = $_POST['clave'];
-            $estado = $_POST['estado'];
-            $rol = $_POST['rol'];
-    
-            if ($id != "") {
-                $trabajador = new Trabajador();
-                $resultado = $trabajador->actualizarTrabajador($id, $rut, $nombre, $apellido, $usuario, $clave, $estado, $rol);
-    
-                if ($resultado > 0) {
-                    echo "Se actualizó el usuario: " . $nombre;
-                } else {
-                    echo "Error, no se puede guardar al trabajador, revise los datos y asegurese que el rut: ".$rut." no se encuentre registrado";
-                }
-            }
-        }
-    } catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
-    }
-
-
-    // eliminar
-
-    try {
-
-        if($opcion == "D")
-        {
-            $id = $_POST["id"];
-
-            if($id != ""){
-                
-                $trabajador = new Trabajador();
-                try{
-
-                    $resultado = $trabajador->eliminarTrabajador($id);
-                    if($resultado > 0){
-                    echo "se eliminó el trabajador: ".$id;
-                    }
-
-                }
-                catch(Exception $e)
-                {
-                    echo "<script>alert('No sepuede eliminar al trabajador: ".$id.".');</script>";
-                }        
-
-            }
-                
-        }
-    } catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
-    }
-    
 
 } 
 else
