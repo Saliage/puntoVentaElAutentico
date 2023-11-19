@@ -23,8 +23,6 @@ function listarAlmacenesZona(){
         "opcion":"ver"
     }
 
-    alert("inicia secuencia");
-
     $.ajax({
         data: parametros,
         url: '../Controlador/gestion_almacen.php',

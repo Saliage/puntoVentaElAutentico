@@ -143,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 catch(Exception $e)
                 {
-                    echo "<script>alert('No sepuede eliminar el rol: ".$id_rol."; Asegurese de que no esté asignado a un trabajador.');</script>";
+                    echo "<script>alert('No sepuede eliminar el rol: ".$id_rol."; Asegurese de que no esté asignado a un trabajador, o que no sea un rol de sistema.');</script>";
                 }        
 
             }

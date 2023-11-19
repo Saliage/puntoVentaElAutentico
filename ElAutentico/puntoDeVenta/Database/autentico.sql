@@ -270,6 +270,20 @@ REPLACE INTO `rol` (`id_rol`, `nombre_rol`) VALUES
 	(1, 'administrador'),
 	(2, 'vendedor');
 
+-- TRIGGER PARA EVITAR ELIMINAR LOS ROLES ADMINISTRADOR Y VENDEDOR
+DELIMITER //
+CREATE TRIGGER before_delete_rol
+BEFORE DELETE ON rol FOR EACH ROW
+BEGIN
+   
+    IF OLD.id_rol IN (1, 2) THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'No se puede eliminar el rol de administrador o vendedor';
+    END IF;
+END;
+//
+DELIMITER ;
+
 -- Volcando estructura para tabla autentico.tipo_documento
 DROP TABLE IF EXISTS `tipo_documento`;
 CREATE TABLE IF NOT EXISTS `tipo_documento` (
@@ -287,6 +301,25 @@ CREATE TABLE IF NOT EXISTS `tipo_movimiento` (
   `nombre_tipo_mov` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_tipo_mov`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- poblar tabla con movimeintos necesarios
+REPLACE INTO `tipo_movimiento` (`id_tipo_mov`, `nombre_tipo_mov`)VALUES
+  (1, 'Entrada')
+  (2, 'Salida';
+
+-- EVITAR BORRA LOS TIPOS DE MOVIMIENTOS ENTRADA Y SALIDA
+DELIMITER //
+CREATE TRIGGER before_delete_tipo_movimiento
+BEFORE DELETE ON tipo_movimiento FOR EACH ROW
+BEGIN
+    -- Evitar la eliminación de registros con id_tipo_mov 1 o 2
+    IF OLD.id_tipo_mov IN (1, 2) THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'No se puede eliminar el tipo de movimiento 1 o 2';
+    END IF;
+END;
+//
+DELIMITER ;
 
 -- La exportación de datos fue deseleccionada.
 

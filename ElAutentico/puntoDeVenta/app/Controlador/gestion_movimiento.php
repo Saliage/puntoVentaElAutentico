@@ -116,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             catch(Exception $e)
             {
-                echo "<script>alert('No sepuede eliminar el tipo de moviemiento: ".$id_movimiento."; Asegurese de que no esté en uso.');</script>";
+                echo "<script>alert('No sepuede eliminar el tipo de moviemiento: ".$id_movimiento."; Asegurese de que no esté en uso, o que no sea necesario para el sistema.');</script>";
             }        
 
         }
