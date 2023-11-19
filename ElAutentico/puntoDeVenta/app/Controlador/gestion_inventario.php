@@ -22,16 +22,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //preparar enunciado tablas        
         echo
         '
-            <tr>
-                <th>#ID</th>
-                <th>Imagen</th>
-                <th>Nombre</th>
-                <th>Stock</th>
-                <th>Categotía</th>
-                <th>Formato</th>
-                <th>Perecible</th>
-                <th>Detalles</th>
-            </tr>
+        <div class="container">
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th>#ID</th>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Stock</th>
+                        <th>Categoría</th>
+                        <th>Formato</th>
+                        <th>Perecible</th>
+                        <th>Detalles</th>
+                    </tr>
+                </thead>
+                <tbody>
             
         ';
     }
@@ -73,60 +78,97 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    while($consulta = mysqli_fetch_array($resultado))
 	    {
 
-        $icono ='<ion-icon name="close-outline"></ion-icon>'; //perecible (X)
-        $id = $consulta['id'];
-        $imagen = $consulta['imagen'];
-        $nombre = $consulta['nombre'];
-        $stock = $consulta['stock_total'];
-        $categoria = $consulta['categoria'];
-        $formato = $consulta['formato'];
-        $perecible = $consulta['perecible']; 
-        
-        if($perecible == 1)
-        {
-            $icono = '<ion-icon name="checkmark-outline"></ion-icon>';
-        }
+            $icono ='<ion-icon name="close-outline"></ion-icon>'; //perecible (X)
+            $id = $consulta['id'];
+            $imagen = $consulta['imagen'];
+            $nombre = $consulta['nombre'];
+            $stock = $consulta['stock_total'];
+            $categoria = $consulta['categoria'];
+            $formato = $consulta['formato'];
+            $perecible = $consulta['perecible']; 
+            
+            if($perecible == 1)
+            {
+                $icono = '<ion-icon name="checkmark-outline"></ion-icon>';
+            }
 
-	    echo 
-	    '
-            <tr>
-                <td>'.$id.'</td>
-                <td>    
-                    <img src="'.$imagen.'" id="imagen" width="40" height="40"></img>
-                </td>
-                <td>   
-                    <span  id="nombreSpan'.$id.'">'.$nombre.'</span>
-                </td>
-                <td>   
-                    <span  id="apellidoSpan'.$id.'">'.$stock.'</span>
-                </td>
-                <td>
-                    <span  id="usuarioSpan'.$id.'">'.$categoria.'</span>
-                </td>
-                <td>
-                    <span id="claveSpan'.$id.'">'.$formato.'</span>
-                </td>
-                <td>
-                    <span id="estadoSpan'.$id.'">'.$icono.'</span>                   
-                    </select>
-                </td>
-                <td>
-                    <button  id="desplegarDetalle'.$id.'" onclick="deplegar('.$id.')" title="Desplegar">
-                    <ion-icon name="chevron-down-circle-outline"></ion-icon></button>
-                    <button  id="ocultarDetalle'.$id.'" onclick="ocultar('.$id.')" title="Ocultar" style="display : none">
-                    <ion-icon name="chevron-up-circle-outline"></ion-icon></button> <!-- inicia oculto-->
-                </td>
+            echo 
+            '
+                <tr data-toggle="collapse" data-target="#detalles'.$id.'" class="accordion-toggle table-primary">
+                    <td>'.$id.'</td>
+                    <td>    
+                        <img src="'.$imagen.'" id="imagen" width="40" height="40"></img>
+                    </td>
+                    <td>   
+                        <span  id="nombreSpan'.$id.'">'.$nombre.'</span>
+                    </td>
+                    <td>   
+                        <span  id="apellidoSpan'.$id.'">'.$stock.'</span>
+                    </td>
+                    <td>
+                        <span  id="usuarioSpan'.$id.'">'.$categoria.'</span>
+                    </td>
+                    <td>
+                        <span id="claveSpan'.$id.'">'.$formato.'</span>
+                    </td>
+                    <td>
+                        <span id="estadoSpan'.$id.'">'.$icono.'</span>                   
+                        </select>
+                    </td>
+                    <td>
+                        <button class="btn btn-link" title="Desplegar">
+                            <ion-icon name="chevron-down-circle-outline" role="img" class="md hydrated" aria-label="chevron down circle outline"></ion-icon>
+                        </button>
+                    </td>
 
-            </tr>
-            <tr>
-                <div id="detalleStock'.$id.'"></div> <-- muestra el detalle de cada insumo -->
-            </tr> 
-            <br>
-	    ';
-	  }	
+                </tr>
+            ';
+
+                echo'
+                <tr id="detalles'.$id.'" class="collapse in table-secondary">
+                    <td>#ID</td>
+                    <td colspan="2">Nombre</td>
+                    <td>Cantidad</td>
+                    <td>Costo Unitario</td>
+                    <td>Fecha Vencimiento</td>
+                    <td>Almacen</td>
+                    <td >Zona</td>
+                </tr>
+                ';
+            $detalles = $inventario->obtenerInsumosPorFecha($id);
+            while($insumo = mysqli_fetch_array($detalles)){
+
+                $id_insumo = $insumo['id_insumo'];
+                $nombre_insumo = $insumo['nombre_insumo'];
+                $cantidad = $insumo['cantidad'];
+                $costo_unitario = $insumo['costo_unitario'];
+                $fecha_vencimiento = $insumo['fecha_vencimiento'];
+                $nombre = $insumo['nombre'];
+                $nombre_zona = $insumo['nombre_zona']; 
+                echo'
+                
+                <tr id="detalles'.$id.'" class="collapse in table-light">
+                    <td>'.$id_insumo.'</td>
+                    <td colspan="2">'.$nombre_insumo.'</td>
+                    <td>'.$cantidad.'</td>
+                    <td>'.$costo_unitario.'</td>
+                    <td>'.$fecha_vencimiento.'</td>
+                    <td>'.$nombre.'</td>
+                    <td>'.$nombre_zona.'</td>
+                </tr>
+                
+                ';
+            }
+
+	    }	
 
 	}
 
+    echo'
+            </tbody>
+        </table>
+      </div>  
+    ';
 
 } 
 else

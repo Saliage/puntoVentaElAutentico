@@ -196,29 +196,9 @@ function entradaInsumo(event)
         
 }
 
-function deplegar(id) {
 
-    alert("se vino");
-    var parametros = 
-    {
-        "opcion" : "mostrar"
-    };
-    
-    $.ajax({
-        data : parametros,
-        url: '../Controlador/gestion_inventario.php',
-        type: 'POST',
-        beforeSend: function() {
-            //$('#mostrarTrabajadores').html("No hay trabajadores para mostrar");
-        },
-        success: function(mensaje) {
-            $('#detalleStock'+id).html("perroNegro");
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.error('Error en la solicitud AJAX:', textStatus, errorThrown); //ver errores
-        }
-    });
-}
+
+
 
 function editarUsuario(id){
 

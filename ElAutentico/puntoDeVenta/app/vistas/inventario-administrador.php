@@ -18,11 +18,15 @@
     <script src="../../public/js/inventario-administrador.js"></script>
 
     <title>Inventario administrador</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- ====================== ESTILOS CSS ==================== -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../../public/css/ccs/carta-administrador.css">
     <!-- ====================== JS ==================== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="../../public/js/logOut.js"></script>
     <script src="../../public/js/scripts.js"></script>
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
@@ -112,21 +116,20 @@
             </div>
         </div>
 
-        <div class="tabla-inventario">
+        <div class="tabla-inventario" style="width: 100%;">
 
-            <table class="table">
-                <thead>
+            
                     <button class="boton-pagar2" onclick="mostrarPopup3()">Zonas</button>
                     <button class="boton-pagar2" onclick="mostrarPopup4()">Almacenes</button>
                     <button class="boton-pagar2" onclick="mostrarPopup5()">Proovedores</button>
                     <button class="boton-pagar2" onclick="mostrarPopup7()">Tipos Movimientos</button>
                     <button class="boton-pagar" onclick="mostrarPopup8()">Entrada insumo</button>
                     <button class="boton-pagar3" onclick="mostrarPopup9()">Salida insumo</button>
-                </thead> <br><br>   
-                <tbody>
+               <br><br>   
+               
                     <div id="mostrarInventario"></div>
-                </tbody>
-            </table>
+                
+           
         </div>
     </main>
 
@@ -247,8 +250,8 @@
                         <label for="cantidad">Cantidad:</label>
                         <input type="number" name="cantidad" id="cantidad" min="1" title="Ingrese la cantidad de producto" required>
                     </div>                                      
-                    <div class="form-element"><label for="costo">Costo:</label>
-                        <input type="number" name="costo" id="costo" placeholder="costo" min="1" title="Ingrese el costo unitario" >
+                    <div class="form-element"><label for="costo">Costo Unitario:</label>
+                        <input type="number" name="costo" id="costo" placeholder="Costo Unitario" min="1" title="Ingrese el costo unitario" >
                     </div>    
                     <div class="form-element">                        
                         <label for="fecha" id="fec_ven" style="display: none;">Fecha de vencimiento:</label>
