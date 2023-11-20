@@ -170,12 +170,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    }	
 
 	}
-
+    // cerrar tabla generada.
     echo'
             </tbody>
         </table>
       </div>  
     ';
+
+    if ($opcion == "salida") {
+
+        $registro = $_POST["registro"];
+        $insumo = $_POST["insumo"];
+        $descontar = $_POST["descontar"];
+    
+        try {
+            $inventario = new Inventario();
+            $resultado = $inventario->salidaInventario($registro, $descontar, $insumo);
+    
+            if ($resultado) {
+                echo 'Se rebajó el inventario';
+            } else {
+                echo 'Error al rebajar el inventario';
+            }
+        } catch (Exception $e) {
+            echo 'Error: ' . $e->getMessage();
+        }
+    }
+    
+
+
 
 } 
 else

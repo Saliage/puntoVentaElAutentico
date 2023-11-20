@@ -197,24 +197,75 @@ function entradaInsumo(event)
 }
 
 
-function nuevaSalidaInsumo(registro, insumo, nombre, formato, cantidad) {
-    // Cambiar el contenido de los spans
 
-    //alert(registro+' '+insumo+' '+ nombre+' '+ formato+' '+ cantidad);
+function nuevaSalidaInsumo(registro, insumo, nombre, formato, total) {
+    // Cambiar el contenido de los spans
     document.getElementById('insumoSpan').textContent = insumo;
     document.getElementById('nombreSpan').textContent = nombre;
     document.getElementById('formatoSapn').textContent = formato;
-    document.getElementById('cantidadSpan').textContent = cantidad;
+    document.getElementById('cantidadSpan').textContent = total;
 
     var inputCantidad = document.querySelector('input[name="stock"]');
-    inputCantidad.max = cantidad;
+    inputCantidad.max = total;
 
+    // Almacena los valores necesarios como atributos de datos en el formulario
+    var formSalida = document.querySelector('.formularioSalida');
+    formSalida.setAttribute('data-registro', registro);
+    formSalida.setAttribute('data-insumo', insumo);
+    
 
     // Mostrar el popup
     mostrarPopup9();
     document.querySelector('.formularioSalida').reset();
-    
 }
 
+function registrarSalida(registro, insumo, descontar){
+
+    document.getElementById('mensajeSpan').textContent = "Se descontaron "+descontar+" insumos con éxito";
+    document.getElementById('alertaDiv').style.display = 'inline';
+    document.getElementById('cerrarP').style.display = 'inline';
+
+
+    var parametros = 
+    {
+        "registro":registro,
+        "insumo":insumo,
+        "descontar": descontar,
+        "opcion" : "salida"
+    };
+    
+    $.ajax({
+        data : parametros,
+        url: '../Controlador/gestion_inventario.php',
+        type: 'POST',
+        beforeSend: function() {
+        },
+        success: function(mensaje) {
+            listarInventario();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error en la solicitud AJAX:', textStatus, errorThrown); //ver errores
+        }
+    });
+    listarInventario();
+
+}
+
+// Definir el manejador de eventos una sola vez
+document.addEventListener('DOMContentLoaded', function () {
+    const formSalida = document.getElementById('formSalida');
+
+    formSalida.addEventListener('submit', function (event) {
+        event.preventDefault(); // Previene el comportamiento predeterminado del formulario
+
+        // Obtén los valores almacenados como atributos de datos en el formulario
+        const registro = formSalida.getAttribute('data-registro');
+        const insumo = formSalida.getAttribute('data-insumo');
+        const cantidadIngresada = document.getElementById('stock').value;
+
+        // Llama a la función pasando los valores necesarios
+        registrarSalida(registro, insumo, cantidadIngresada);
+    });
+});
 
 
