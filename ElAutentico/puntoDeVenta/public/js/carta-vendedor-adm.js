@@ -28,6 +28,6 @@ function agregarAlCarrito(nombre,precio) {
     const itemDiv = document.createElement('div');
     itemDiv.classList.add('item');
     itemDiv.innerHTML = `<span>${nombre}</span><span>$${precio}</span>`;
-    carritoContainer.appendChild(itemDiv);    
+    carritoContainer.appendChild(itemDiv); 
 
 }
