@@ -1,110 +1,106 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Tabla con Filas Colapsables</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito de Compras</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>#ID</th>
-                    <th>Imagen</th>
-                    <th>Nombre</th>
-                    <th>Stock</th>
-                    <th>Categoría</th>
-                    <th>Formato</th>
-                    <th>Perecible</th>
-                    <th>Detalles</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr data-toggle="collapse" data-target="#detalles1" class="accordion-toggle">
-                    <td>8</td>
-                    <td>
-                        <img src="" id="imagen8" width="40" height="40">
-                    </td>
-                    <td>
-                        <span id="nombreSpan8">coca-cola</span>
-                    </td>
-                    <td>
-                        <span id="stockSpan8">220</span>
-                    </td>
-                    <td>
-                        <span id="categoriaSpan8">bebidas</span>
-                    </td>
-                    <td>
-                        <span id="formatoSpan8">1 litro</span>
-                    </td>
-                    <td>
-                        <span id="perecibleSpan8"><ion-icon name="checkmark-outline" role="img" class="md hydrated" aria-label="checkmark outline"></ion-icon></span>
-                    </td>
-                    <td>
-                        <button class="btn btn-link" title="Desplegar">
-                            abrir<ion-icon name="chevron-down-circle-outline" role="img" class="md hydrated" aria-label="chevron down circle outline"></ion-icon>
-                        </button>
-                    </td>
-                </tr>
-
-                <tr id="detalles1" class="collapse in">
-                    <td colspan="7">
-                        columna1
-                    </td>
-                </tr>
-                <tr id="detalles1" class="collapse in">
-                    <td colspan="7">
-                        columna2
-                    </td>
-                </tr>
-
-                <tr data-toggle="collapse" data-target="#detalles2" class="accordion-toggle">
-                    <td>8</td>
-                    <td>
-                        <img src="" id="imagen8" width="40" height="40">
-                    </td>
-                    <td>
-                        <span id="nombreSpan8">fanta</span>
-                    </td>
-                    <td>
-                        <span id="stockSpan8">220</span>
-                    </td>
-                    <td>
-                        <span id="categoriaSpan8">bebidas</span>
-                    </td>
-                    <td>
-                        <span id="formatoSpan8">1 litro</span>
-                    </td>
-                    <td>
-                        <span id="perecibleSpan8"><ion-icon name="checkmark-outline" role="img" class="md hydrated" aria-label="checkmark outline"></ion-icon></span>
-                    </td>
-                    <td>
-                        <button class="btn btn-link" title="Desplegar">
-                            <ion-icon name="chevron-down-circle-outline" role="img" class="md hydrated" aria-label="chevron down circle outline"></ion-icon>
-                        </button>
-                    </td>
-                </tr>
-
-                <tr id="detalles2" class="collapse in">
-                    <td colspan="7">
-                        columna1
-                    </td>
-                </tr>
-                <tr id="detalles2" class="collapse in">
-                    <td colspan="7">
-                        columna2
-                    </td>
-                </tr>
-
-                <!-- Agrega más filas según sea necesario -->
-            </tbody>
-        </table>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <div class="container">
+    <h1>Carrito de Compras</h1>
+    <div id="items" class="items"></div>
+    <div id="total" class="total">Total: $0.00</div>
+    <button onclick="checkout()">Realizar compra</button>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
+
+<style>
+    body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.container {
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.items {
+  margin-bottom: 20px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.total {
+  font-weight: bold;
+}
+
+button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+</style>
+
+<script>
+    const itemsContainer = document.getElementById('items');
+const totalContainer = document.getElementById('total');
+let cart = [];
+
+function addToCart(item) {
+  cart.push(item);
+  displayCart();
+}
+
+function displayCart() {
+  itemsContainer.innerHTML = '';
+  let total = 0;
+
+  cart.forEach(item => {
+    const itemDiv = document.createElement('div');
+    itemDiv.classList.add('item');
+    itemDiv.innerHTML = `<span>${item.name}</span><span>$${item.price.toFixed(2)}</span>`;
+    itemsContainer.appendChild(itemDiv);
+    total += item.price;
+  });
+
+  totalContainer.textContent = `Total: $${total.toFixed(2)}`;
+}
+
+function checkout() {
+  // Aquí puedes implementar la lógica para procesar la compra
+  alert('Compra realizada con éxito. Gracias por su compra!');
+  cart = [];
+  displayCart();
+}
+
+// Ejemplo de uso:
+const item1 = { name: 'Producto 1', price: 19.99 };
+const item2 = { name: 'Producto 2', price: 29.99 };
+
+addToCart(item1);
+addToCart(item2);
+
+</script>

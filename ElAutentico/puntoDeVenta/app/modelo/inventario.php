@@ -157,7 +157,22 @@ class Inventario{
         return $resultado;
     }
 
-
+    function salidaInventario($registro, $cantidad, $id_producto) {
+        $sql = $this->conn->prepare("UPDATE inventario SET cantidad = cantidad - ?
+                                    WHERE numero_registro = ? AND id_insumo = ?");
+        
+        $sql->bind_param("iii", $cantidad, $registro, $id_producto);
+        $sql->execute();
+        
+        // Verificar el número de filas afectadas
+        $filasAfectadas = $sql->affected_rows;
+        
+        $sql->close();
+    
+        // Devolver true si al menos una fila fue afectada, de lo contrario, devolver false
+        return $filasAfectadas > 0;
+    }
+    
 
 
 

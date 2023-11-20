@@ -272,12 +272,8 @@ body::-webkit-scrollbar-thumb {
 
 /* Estilos para la sección de productos */
 .todos-los-productos {
-  width: 103% ; /*ancho*/
   display: grid;
-  position: static;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 4%; /* Espacio vertical entre los productos */
-  grid-column-gap: 0.7%; /* Espacio horizontal entre los productos */
+  gap: 5px; /* Espacio vertical y horizontal entre los productos */
   margin: auto;
   top: 4px;
   overflow-y: auto; /* Activa la barra de desplazamiento vertical cuando sea necesario */
@@ -286,6 +282,7 @@ body::-webkit-scrollbar-thumb {
   margin-left: 100px;
   user-select: none;
 }
+
 
 .todos-los-productos::-webkit-scrollbar {
   width: 14px; /* Ancho de la barra de desplazamiento */
@@ -309,7 +306,7 @@ body::-webkit-scrollbar-thumb {
   border-radius: 15px;
   padding: 5px; /* Aumenta el padding para hacer los productos más grandes */
   text-align: center;
-  width: calc(90% - 10px); /* El 90px representa el espacio entre los productos */
+  width: 80px; /* El 90px representa el espacio entre los productos */
   border: 2px solid transparent; /* Borde transparente por defecto */
   transition: border-color 0.3s ease; /* Transición suave para el cambio de color del borde */
 
@@ -323,7 +320,7 @@ body::-webkit-scrollbar-thumb {
 .imagen-producto img {
   max-width: 100%;
   border-radius: 5px;
-  max-height: 100px; /* Ajusta la altura máxima según tus preferencias */
+  max-height: 80px; /* Ajusta la altura máxima según tus preferencias */
   height: auto;
 }
 
@@ -338,7 +335,7 @@ body::-webkit-scrollbar-thumb {
 /* Estilos para el precio del producto */
 .precio-container {
   background-color: black;
-  width: 1;
+  width: auto;
   border-radius: 15px;
   padding: 1px 0;
 }
@@ -358,7 +355,7 @@ body::-webkit-scrollbar-thumb {
   margin-right: 3%;
   background-color: white;
   border-radius: 15px;
-  margin-top: 95px; /* Ajusta el margen superior según tus necesidades */
+  margin-top: 95px; /* Ajusta el margen superior */
   margin-bottom: 10px; /* Espacio entre secciones */
   max-height: 100%;
   overflow-y: auto;

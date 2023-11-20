@@ -280,14 +280,18 @@
             <h2>Registrar salida insumo</h2>
             <h6>Va a registrar la salida del insumo: #<span id="insumoSpan">$</span>.- <span id="nombreSpan">$</span>  en formato: <span id="formatoSapn">$</span>.</h6>
             <h6>Por favor ingrese la cantidad que retirará.</h6> <h6>De este registro puede retirar un maximo de <span id="cantidadSpan"></span> articulos.</h6>
-            <form action="" method="POST" class="formularioSalida">
+            <form action="" method="POST" class="formularioSalida" id="formSalida">
 
                 <div class="form-element">
-                    <label for="user">Cantidad</label>
+                    <label for="stock">Cantidad</label>
                     <input type="number" min="1" name="stock" id="stock" placeholder="Cantidad" required>
                 </div>
-                <button class="boton-pagar-mas" type="submit" name="agregar" value="Agregar"><ion-icon name="remove-circle-outline"></ion-icon></button>
+                <input class="btn btn-success" type="submit" name="agregar" value="Descontar"></input>
+                <button type="button" class="btn btn-danger" id="cerrarP" style="display: none;" onclick="cerrarPopup9()">Cerrar</button>
             </form>
+            <div class="alert alert-success" id="alertaDiv" role="alert" style="display: none;">
+                <span id="mensajeSpan" ></span>
+            </div>
             <div class="cerrar-popup" onclick="cerrarPopup9()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
     </div>
