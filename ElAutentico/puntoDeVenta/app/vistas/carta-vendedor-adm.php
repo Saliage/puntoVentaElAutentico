@@ -103,7 +103,6 @@
                     </a>
                 
                     <div class="container-categorias">
-                        <div class="item-categoria">Favoritos</div>
                         <div class="item-categoria">Hot Dogs</div>
                         <div class="item-categoria">Sándwiches</div>
                         <div class="item-categoria">Bebidas</div>
