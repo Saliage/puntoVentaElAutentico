@@ -90,9 +90,11 @@ class Inventario{
     // Obtener los datos de insumos disponibles, ordenados por fecha de vencimiento según el insumo especifico
     public function obtenerInsumosPorFecha($id_insumo) {
 
-        $sql = $this->conn->prepare("SELECT id_insumo, cantidad, costo_unitario, fecha_vencimiento 
-                                    FROM inventario 
-                                    WHERE cantidad > 0 AND id_insumo = ? 
+        $sql = $this->conn->prepare("SELECT inv.numero_registro, ins.id_insumo, ins.nombre_insumo, inv.cantidad, inv.costo_unitario, inv.fecha_vencimiento, a.nombre, z.nombre_zona
+                                    FROM inventario inv INNER JOIN insumos ins ON ins.id_insumo = inv.id_insumo
+                                    INNER JOIN zona z ON z.id_zona = inv.id_zona
+                                    INNER JOIN almacen a ON a.id_almacen = z.almacen_id_almacen
+                                    WHERE inv.cantidad > 0 AND ins.id_insumo = ?
                                     ORDER BY fecha_vencimiento ASC");
 
         $sql->bind_param("i", $id_insumo);
