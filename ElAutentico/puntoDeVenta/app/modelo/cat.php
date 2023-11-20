@@ -11,7 +11,7 @@ class Categorias {
 
         $nombre = mysqli_real_escape_string($conn, $nombre);
 
-        $consulta = "INSERT INTO rol (nombre_rol) VALUES ('$nombre')";
+        $consulta = "INSERT INTO tipo_producto (nombre_tipo) VALUES ('$nombre')";
 
         $resultado = $conn->query($consulta);
 
@@ -20,12 +20,12 @@ class Categorias {
         $conn->close();
     }
 
-    // Obtener todos los roles
-    public function listarRoles() {
+    // Obtener todos las categorias
+    public function listarCat() {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "SELECT * FROM rol";
+        $consulta = "SELECT * FROM tipo_producto";
 
         $resultado = $conn->query($consulta);
 
@@ -33,12 +33,12 @@ class Categorias {
         $conn->close();
     }
 
-    // Buscar rol por id
-    public function buscarRolId($id) {
+    // Buscar cataegoria por id
+    public function buscarCatId($id) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "SELECT * FROM rol WHERE id_rol = '$id'";
+        $consulta = "SELECT * FROM tipo_producto WHERE id_tipo = '$id'";
 
         $resultado = $conn->query($consulta);
 
@@ -46,13 +46,13 @@ class Categorias {
         $conn->close();
     }
 
-    // Buscar rol por parte del nombre
-    public function buscarRolNombre($busqueda){
+    // Buscar categoria por parte del nombre
+    public function buscarCatNombre($busqueda){
         
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "SELECT * FROM rol WHERE nombre_rol LIKE '%$busqueda%' LIMIT 5";
+        $consulta = "SELECT * FROM tipo_producto WHERE nombre_tipo LIKE '%$busqueda%' LIMIT 5";
 
         $resultado = $conn->query($consulta);
         return $resultado;
@@ -60,13 +60,13 @@ class Categorias {
     }
 
     // Actualizar datos de rol
-    public function actualizarRol($id, $nombre) {
+    public function actualizarCat($id, $nombre) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
         $nombre = mysqli_real_escape_string($conn, $nombre);
 
-        $consulta = "UPDATE rol SET nombre_rol = '$nombre' WHERE id_rol = '$id'";
+        $consulta = "UPDATE tipo_producto SET nombre_tipo = '$nombre' WHERE id_tipo = '$id'";
 
         $resultado = $conn->query($consulta);
 
@@ -75,11 +75,11 @@ class Categorias {
     }
 
     // Eliminar rol por id
-    public function eliminarRol($id) {
+    public function eliminarCat($id) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "DELETE FROM rol WHERE id_rol = '$id'";
+        $consulta = "DELETE FROM tipo_producto WHERE id_tipo = '$id'";
 
         $resultado = $conn->query($consulta);
 
