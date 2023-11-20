@@ -21,3 +21,9 @@ function verProductos(){
         }
     });
 }
+
+function agregarAlCarrito(nombre,precio) {
+
+    alert(nombre + precio);
+
+}
