@@ -13,35 +13,8 @@ function cerrarPopup() {
 }
 
     function inicializar(){
-        gestionarCat(2);
         listarProductos();
         mostrarCat();
-    }
-
-//--------------------------------------------------------------------------------------------------------------------------------------->
-//----------------------------------------------           MOSTRAR CATEGORIAS           ------------------------------------------------->
-//--------------------------------------------------------------------------------------------------------------------------------------->
-    
-   function  mostrarCat(){
-        var parametros = 
-        {
-            "opcion" : "mostrar"
-        };
-    
-        $.ajax({
-            data : parametros,
-            url: '../Controlador/gestion_Cat.php',
-            type: 'POST',
-            beforeSend: function() {
-                $('#mostrarCat').html("No hay categorias para mostrar");
-            },
-            success: function(mensaje) {
-                $('#mostrarCat').html(mensaje);
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.error('Error en la solicitud AJAX:', textStatus, errorThrown); //ver errores
-            }
-        });
     }
 
 //--------------------------------------------------------------------------------------------------------------------------------------->
@@ -301,40 +274,69 @@ function agregarProductos(event)
 //----------------------------------------------               GESTION CATEGORIAS            ----------------------------------------------->
 //--------------------------------------------------------------------------------------------------------------------------------------->
 
-
-function gestionarCat(opcion)
-{ 
-    buscar = document.getElementById('buscador').value;
-var parametros = 
-{
-    "nombre" : buscar,
-    "opcion" : opcion
-};
-
-$.ajax({
-    data: parametros,
-    url: '../Controlador/gestion_Cat.php',
-    type: 'POST',
-    
-    beforesend: function()
+function mostrarCat(){
+    var parametros =
     {
-    $('#mostrar_mensaje').html("Error de comunicación");
-    },
-
-    success: function(mensaje)
-    {
-    $('#mostrar_mensaje').html(mensaje);
+        "opcion":"mostrar"
     }
-});
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_Cat.php',
+        type: 'POST',
+        
+        beforesend: function()
+        {
+        $('#verCat').html("Error de comunicación");
+        },
+
+        success: function(mensaje)
+        {
+        $('#verCat').html(mensaje);
+        }
+    });
 }
 
+function agregarCat(event){ 
+    
+    event.preventDefault(); // Evita que el formulario se envíe a la nada
+    // rescatar valores del form
+    var formulario = document.getElementById('formCat');    
+    var nombre = formulario.elements['nombre'].value;
 
-function editarCat(id_tipo) {
+    var parametros = 
+    {
+        "nombre" : nombre,
+        "opcion" : 'guardar'
+    };
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_Cat.php',
+        type: 'POST',
+        
+        beforeSend: function()
+        {
+        },
 
-    var categoriasSpan = document.getElementById('nombre_tipoSpan'+id_tipo);
-    var categoriasTxt = document.getElementById('nombre_tipoTxt'+id_tipo);
-    var btnOK = document.getElementById('guardarEdit'+id_tipo);
-    var btnEdit = document.getElementById('btnEdit'+id_tipo);
+        success: function(mensaje)
+        {            
+            
+        }
+        
+    });
+    
+    document.getElementById("formCat").reset(); //limpia formulario
+    mostrarCat();
+    inicializar();
+
+}
+
+function editarCat(id) {
+
+    var categoriasSpan = document.getElementById('nombreCategoriasSpan'+id);
+    var categoriasTxt = document.getElementById('nombreCategoriasTxt'+id);
+    var btnOK = document.getElementById('guardarEditCat'+id);
+    var btnEdit = document.getElementById('btnEditCat'+id);
 
     // Mostrar el campo de texto y ocultar el span
     categoriasSpan.style.display = 'none';
@@ -347,56 +349,59 @@ function editarCat(id_tipo) {
 
 }
 
-function guardarCatEdit(id_tipo){
+function guardarCatEdit(id){
 
-    var categoriasSpan = document.getElementById('nombre_tipoSpan'+id_tipo);
-    var categoriasTxt = document.getElementById('nombre_tipoTxt'+id_tipo);
-    var btnOK = document.getElementById('guardarEdit'+id_tipo);
-    var btnEdit = document.getElementById('btnEdit'+id_tipo);
+    var categoriasSpan = document.getElementById('categoriasSpan'+id);
+    var categoriasTxt = document.getElementById('categoriasTxt'+id);
+    var btnOK = document.getElementById('guardarEditCat'+id);
+    var btnEdit = document.getElementById('btnEditCat'+id);
+
+
+
     var parametros = 
     {
-        "id" : id_tipo,
+        "id" : id,
         "nombre" : categoriasTxt.value,
-        "opcion" : 'U'
+        "opcion" : 'editar'
     };
-
     categoriasSpan.style.display = 'inline';
     categoriasTxt.style.display = 'none';
     btnEdit.style.display = 'inline';
     btnOK.style.display = 'none';
-    gestionarCat(2);
 
-$.ajax({
-    data: parametros,
-    url: '../Controlador/gestion_Cat.php',
-    type: 'POST',
-    
-    beforeSend: function()
-    {
-    $('#mostrar_mensaje').html("Error de comunicación");
-    gestionarCat(2);
-    },
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_Cat.php',
+        type: 'POST',
+        
+        beforeSend: function()
+        {
+            mostrarCat();
+        },
 
-    success: function(mensaje)
-    {
-    $('#mostrar_mensaje').html(mensaje);
-    gestionarCat(2);
-    }
+        success: function(mensaje)
+        {
+            mostrarCat();
+        }
+        
+        
+
+    });
+    mostrarCat();
+    inicializar();
     
-});
-   
 }
 
-function eliminarCat(id_tipo){
+function eliminarCat(id){
 
-    var confirmacion = confirm("¿Estás seguro de que deseas eliminar la categoria: "+id_tipo+"?");
+    var confirmacion = confirm("¿Estás seguro de que deseas eliminar la categoria: "+id+"?");
 
     if (confirmacion) {
         
         var parametros = 
         {
-            "id" : id_tipo,
-            "opcion" : 'D'
+            "id" : id,
+            "opcion" : 'eliminar'
         };                
 
         $.ajax({
@@ -406,18 +411,20 @@ function eliminarCat(id_tipo){
         
         beforeSend: function()
         {
-        $('#mostrar_mensaje').html("Error! No se puede realizar la operación.");
-        $('#mostrar_mensaje').css('color', 'red');
-        gestionarCat(2);
+        $('#verCat').html("Error! No se puede realizar la operación.");
+        $('#verCat').css('color', 'red');
+        mostrarCat();
         },
 
         success: function(mensaje)
         {
-        $('#mostrar_mensaje').html(mensaje);
-        gestionarCat(2);
+        $('#verCat').html(mensaje);
+        mostrarCat();
         }
         
         });
 
-    }    
+        mostrarCat();
+
+    }
 }
