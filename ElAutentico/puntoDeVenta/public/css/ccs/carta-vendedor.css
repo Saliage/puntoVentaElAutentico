@@ -231,7 +231,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .barra-categorias::-webkit-scrollbar-thumb {
-  background: #000dffd7; /* Color de la barra de desplazamiento */
+  background: black; /* Color de la barra de desplazamiento */
   border-radius: 3px; /* Borde redondeado de la barra de desplazamiento */
   width: 12px;
 }
@@ -239,19 +239,6 @@ body::-webkit-scrollbar-thumb {
 .container-categorias {
   display: flex;
   align-items: center;
-}
-
-.category-arrow {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  text-decoration: none;
-  color: black;
-  position:sticky /* Fijar las flechas */
-
-  &:hover {
-    background-color: #2e3133;
-  }
 }
 
 .category-arrow ion-icon {
@@ -303,7 +290,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .todos-los-productos::-webkit-scrollbar-thumb {
-  background: #000dffd7; /* Color de la barra de desplazamiento */
+  background: #2e3133; /* Color de la barra de desplazamiento */
   border-radius: 3px; /* Borde redondeado de la barra de desplazamiento */
   width: 14px;
 }
@@ -342,15 +329,17 @@ body::-webkit-scrollbar-thumb {
   font-weight: bold;
   color: black;
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /* Estilos para el precio del producto */
 .precio-container {
   background-color: black;
-  width: auto;
-  border-radius: 15px;
-  padding: 1px 0;
+  width: 70%;
+  height: 50%;
+  border-radius: 10px;
+  padding: 0.2px 0;
+  margin: auto;
 }
 
 .precio {
@@ -485,7 +474,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .boton-pagar:hover {
-  background-color: #007bff; /* Cambia el color de fondo al pasar por encima */
+  background-color: red; /* Cambia el color de fondo al pasar por encima */
 }
 
 /* Estilos para el popup */

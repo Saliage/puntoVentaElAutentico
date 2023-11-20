@@ -98,7 +98,6 @@
                 <!-- Barra de categorias de la carta -->
                 
                 <div class="barra-categorias">
-                    <a href="#" class="category-arrow left-arrow">
                         <ion-icon name="arrow-back-outline"></ion-icon>
                     </a>
                 
@@ -112,9 +111,7 @@
                         <div class="item-categoria">Otros</div>
                     </div>
                 
-                    <a href="#" class="category-arrow right-arrow">
-                        <ion-icon name="arrow-forward-outline"></ion-icon>
-                    </a>
+                   
                 </div>
                 
                 <!-- Contenedor para los productos -->
