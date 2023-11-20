@@ -246,8 +246,12 @@ body::-webkit-scrollbar-thumb {
   align-items: center;
   cursor: pointer;
   text-decoration: none;
-  color: #000dffd7;
+  color: black;
   position:sticky /* Fijar las flechas */
+
+  &:hover {
+    background-color: #2e3133;
+  }
 }
 
 .category-arrow ion-icon {
@@ -258,14 +262,18 @@ body::-webkit-scrollbar-thumb {
 
 .item-categoria {
   padding: 7px 50px;
-  background-color: white;
-  color: #000dffd7;
+  background-color: black;
+  color: #ffffff;
   font-weight: bold;
   cursor: pointer;
   border-radius: 5px;
   margin: 0 5px; /* Espacio uniforme entre categorías */
   white-space: nowrap; /* Evitar que el texto se divida en múltiples líneas */
   flex: 0 0 auto; /* Los recuadros tienen un ancho fijo */
+
+  &:hover {
+    background-color: #2e3133;
+  }
 }
 
 /*======================================= Seccion productos Carta ======================================*/
@@ -273,13 +281,14 @@ body::-webkit-scrollbar-thumb {
 /* Estilos para la sección de productos */
 .todos-los-productos {
   display: grid;
-  gap: 5px; /* Espacio vertical y horizontal entre los productos */
-  margin: auto;
+   /* Espacio vertical y horizontal entre los productos */
+
   top: 4px;
   overflow-y: auto; /* Activa la barra de desplazamiento vertical cuando sea necesario */
   max-height: 600px;
   margin-top: 100px;
   margin-left: 100px;
+  width: 100%;
   user-select: none;
 }
 
@@ -304,15 +313,19 @@ body::-webkit-scrollbar-thumb {
 .producto {
   background-color: white;
   border-radius: 15px;
-  padding: 5px; /* Aumenta el padding para hacer los productos más grandes */
+  padding: 3px; /* Aumenta el padding para hacer los productos más grandes */
   text-align: center;
-  width: 80px; /* El 90px representa el espacio entre los productos */
+  width: 140px; /* El 90px representa el espacio entre los productos */
   border: 2px solid transparent; /* Borde transparente por defecto */
   transition: border-color 0.3s ease; /* Transición suave para el cambio de color del borde */
+  float: left;
+  margin-right: 10px;
+  margin-top: 10px;
+  height: 186px;
 
     /* Estilos al pasar el mouse por encima */
     &:hover {
-      border: 3px solid #000dffd7;
+      border: 2px solid #000dffd7;
     }
   }
 
@@ -320,7 +333,7 @@ body::-webkit-scrollbar-thumb {
 .imagen-producto img {
   max-width: 100%;
   border-radius: 5px;
-  max-height: 80px; /* Ajusta la altura máxima según tus preferencias */
+  height: 80px; /* Ajusta la altura máxima según tus preferencias */
   height: auto;
 }
 

@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
         
-        <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
+        
         <link rel="stylesheet" href="../../public/css/ccs/login-v2.css">
         <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">
         
@@ -89,7 +89,7 @@
                         var mensaje = data.mensaje
                         if(mensaje == 'ok')
                         {
-                            window.location.href = "carta-vendedor.php";
+                            window.location.href = "carta-vendedor-adm.php";
                         }
                         else
                         {
@@ -100,6 +100,7 @@
                         // Maneja el error de análisis JSON
                         console.error("Error al analizar el JSON: " + error);
                         $('#mostrarError').html("Error al procesar la respuesta del servidor");
+                        alert(error);
                     }
                 }
             });

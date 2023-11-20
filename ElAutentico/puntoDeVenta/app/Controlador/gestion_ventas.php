@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo'
         <div class="producto">
             <div class="imagen-producto">
-                <img src="'.$imagen.'">
+                <img src="'.$imagen.'" style="height: 80px">
             </div>
             <div class="informacion-producto">
                 <h3><strong>'.$nombre.'</strong></h3>
