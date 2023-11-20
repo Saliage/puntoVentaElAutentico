@@ -8,54 +8,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $opcion = $_POST['opcion']; //obtener valor de la opción para controlar eventos
 
-    if ($opcion == "mostrar") {
-        $categorias = new Categorias();
-        $resultado = $categorias->listarCat();
-    
-            echo '
-                    <label for="categorias">Tipo de producto:</label>
-                    <select id="categorias" name="categorias">
-                '; 
-            while ($consulta = mysqli_fetch_array($resultado)) {
-                echo '<option value=' . $consulta['id_tipo'] . '>' . $consulta['nombre_tipo'] . '</option>';
-            }
-            echo '</select>';
-    
-    }
-    else{
+    echo 
+    '
+        <table class="table table-hover">
+        <tr>
+        <th scope="col">#ID</th>
+        <th scope="col">NOMBRE CATEGORIA</th>
+        <th>EDITAR</th>
+        <th>ELIMINAR</th> 
+        </tr>
+    ';
 
-        echo 
-        '
-            <table class="table table-hover">
-            <tr>
-            <th scope="col">#ID</th>
-            <th scope="col">NOMBRE CATEGORIA</th>
-            <th>EDITAR</th>
-            <th>ELIMINAR</th> 
-            </tr>
-        ';
-    
-    }
-
-    if($opcion == 3)
-	{
-        $mi_busqueda = $_POST['mi_busqueda'];
-		$categorias = new Categorias();
-        $resultado = $categorias->buscarCatNombre($mi_busqueda);
-	  while($consulta = mysqli_fetch_array($resultado))
-	  {
-	    echo 
-	    '
-			<tr>
-		      <td>'.$consulta['id_tipo'].'</td>
-		      <td>'.$consulta['nombre_tipo'].'</td>
-		    </tr>
-	    ';
-	  }	
-
-	}
-	else
-	{
 		if($opcion == 1)
         {
             $nombreCategorias = $_POST["nombre"];
@@ -72,35 +35,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
         }
 
-
-
-		if($opcion == 2)
-        {
-                
+        if($opcion == "mostrar"){
             $categorias = new Categorias();
             $resultado = $categorias->listarCat();
-            //CONSULTAR
-	        while($consulta = mysqli_fetch_array($resultado))
+            while($consulta = mysqli_fetch_array($resultado))         
             {
-                echo 
-                '
+                $id_tipo = $consulta['id_tipo'];
+                $nombre_tipo = $consulta['nombre_tipo'];
+    
+                echo'
                     <tr>
-                    <td>'.$consulta['id_tipo'].'</td>
-                    <td>
-                        <span  id="nombre_categoriasSpan'.$consulta['id_tipo'].'">'.$consulta['nombre_tipo'].'</span>                        
-                        <input style="display:none" type="text" id="nombre_tipoTxt'.$consulta['id_tipo'].'" value="'.$consulta['nombre_tipo'].'"> <!-- inicia oculto-->
-                    </td>
-                    <td>
-                        <ion-icon id="btnEdit'.$consulta['id_tipo'].'" name="pencil-outline" class="icono-editar" onclick="editarCat('.$consulta['id_tipo'].')"></ion-icon>                        
-                        <button style="display:none" id="guardarEdit'.$consulta['id_tipo'].'" onclick="guardarCatEdit('.$consulta['id_tipo'].')">OK</button> <!-- inicia oculto-->
-                    </td>
-                    <td><ion-icon name="trash-outline" class="icono-eliminar" onclick="eliminarCat('.$consulta['id_tipo'].')"></ion-icon></td> 
+                        <td>'.$id_tipo.'</td>
+                        <td>
+                            <span  id="nombre_tipoSpan'.$id_tipo.'">'.$nombre_tipo.'</span>                        
+                            <input style="display:none" type="text" id="nombre_tipoTxt'.$id_tipo.'" value="'.$nombre_tipo.'"> <!-- inicia oculto-->
+                        </td>
+                        <td>
+                            <ion-icon id="btnEditCat'.$id_tipo.'" name="pencil-outline" class="icono-editar" onclick="editarCat('.$id_tipo.')"></ion-icon>                        
+                            <button style="display:none" id="guardarEditCat'.$id_tipo.'" onclick="guardarCatEdit('.$id_tipo.')">OK</button> <!-- inicia oculto-->
+                        </td>
+                        <td><ion-icon name="trash-outline" class="icono-eliminar" onclick="eliminarCat('.$id_tipo.')"></ion-icon></td> 
                     </tr>
                 ';
-            }	     
-
-                            
+            }            
         }
+
+
 
         //editar
 
@@ -150,8 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
 
-	  
-	}
+	
 
 } 
 else

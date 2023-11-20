@@ -20,7 +20,6 @@
     <!-- ====================== ESTILOS CSS ==================== -->
     <link rel="stylesheet" href="../../public/css/ccs/carta-administrador-carta.css">
     <!-- ====================== JS ==================== -->
-    <script src="../../public/js"></script>
     <script src="../../public/js/scripts.js"></script>
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../../public/js/js-maestro.js"></script>
@@ -188,26 +187,22 @@
     <div class="popup" id="popup2">
         <div class="popup-contenido">
             <h2>Categorias</h2>
-            <div class="formulario">
-                <hr>
-                <div class="row text-center">
-                    <div class="col">
-                        <label for="buscador">Añadir nueva categoria: </label>
-                        <input type="text" name="buscador" id="buscador" class="form-control">
-                        <div class="row"> 
-                            <button class="boton-pagar" type="submit" name="agregar" value="agregarCat" onclick="gestionarCat(1);"  onmouseout="gestionarCat(2);"><ion-icon name="add-circle-outline"></ion-icon></button>              
-                        </div>
-                    </div>
+            
+            <form class="formulario" onsubmit="return agregarCat(event)" id="formCat" method="post">
+                <div>
+                    <label for="nombreCatTxt">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre" autocomplete="off" placeholder="Nombre" pattern=".{2,}" title="Al menos 2 caracteres"  required>
+                
+                    <input type="submit" value="Guardar">
                 </div>
-                <hr>
-                <div class="row justify-content-md-center">
-                    <div class="col-md-8">
-                        <div id="mostrar_mensaje"></div> <!-- div que mostrará el contenido del ajax -->
-                    </div>
-                </div>
-            </div>
+            </form>
+            <hr>
+                <tbody>
+                    <div id="verCat"></div>
+                </tbody>
+            </table>
             <div class="cerrar-popup" onclick="cerrarPopup2()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
-    </div>
+    </div>
 </body>
 </html>

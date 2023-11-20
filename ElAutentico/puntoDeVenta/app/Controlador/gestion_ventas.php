@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tipo_producto = $consulta['tipo_producto_id_tipo'];
 
         echo'
-        <div class="producto">
+        <div class="producto" onclick="agregarAlCarrito(\''.$nombre.'\','.(int)$precio.');">
             <div class="imagen-producto">
                 <img src="'.$imagen.'" style="height: 80px">
             </div>
