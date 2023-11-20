@@ -114,8 +114,7 @@
                 <div class="fixed">
                     <thead class="contenedor-datos">
                         <div class="rounded-buttons-container">
-                            <button class="boton-pagar" onclick="
-                            Popup()">Añadir producto</button>
+                            <button class="boton-pagar" onclick="mostrarPopup()">Añadir producto</button>
                             <button class="boton-pagar2" onclick="mostrarPopup2()">Categorias</button>
                             <p></p>   
                         </div>
@@ -169,7 +168,7 @@
             </div>
 
             <div class="form-element">
-                <div id="mostrarCat" class="form-element"></div> <!-- listar Categorias de los productos en combobox -->
+                <div id="mostrarCategorias" class="form-element"></div> <!-- listar Categorias de los productos en combobox -->
             </div>
             
             <p></p>
@@ -196,7 +195,7 @@
                         <label for="buscador">Añadir nueva categoria: </label>
                         <input type="text" name="buscador" id="buscador" class="form-control">
                         <div class="row"> 
-                            <button class="boton-pagar" type="submit" name="agregar" value="AgregarCat" onclick="gestionarCat(1);"  onmouseout="gestionarCat(2);"><ion-icon name="add-circle-outline"></ion-icon></button>              
+                            <button class="boton-pagar" type="submit" name="agregar" value="agregarCat" onclick="gestionarCat(1);"  onmouseout="gestionarCat(2);"><ion-icon name="add-circle-outline"></ion-icon></button>              
                         </div>
                     </div>
                 </div>

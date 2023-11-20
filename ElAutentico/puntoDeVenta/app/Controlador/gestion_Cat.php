@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <table class="table table-hover">
             <tr>
             <th scope="col">#ID</th>
-            <th scope="col">NOMBRE ROL</th>
+            <th scope="col">NOMBRE CATEGORIA</th>
             <th>EDITAR</th>
             <th>ELIMINAR</th> 
             </tr>
@@ -114,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $categorias = new Categorias();
                 $resultado = $categorias->actualizarCat($id_tipo, $nombreCategorias);
                 if($resultado > 0){
-                echo "se actualizó la categoria: ".$nombreCategorias;
+                echo "Se actualizó la categoria: ".$nombreCategorias;
                 }        
 
             }

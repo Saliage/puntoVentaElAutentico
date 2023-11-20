@@ -2,27 +2,27 @@
 
 require_once('conexion.php');
 
-class Trabajador {
+class Productos {
 
-    // Agregar trabajador
-    public function agregarTrabajador($rut, $nombre, $apellido, $usuario, $clave, $activo, $rol_id) {
+    // Agregar producto
+    public function agregarProductos($nombre_producto, $codigo_producto, $imagen, $costo_unitario, $precio_venta, $descripcion, $categorias_id) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "INSERT INTO trabajador (rut, nombre, apellido, usuario, clave, activo, rol_id_rol)
-                     VALUES ('$rut', '$nombre', '$apellido', '$usuario', '$clave', '$activo', '$rol_id')";
+        $consulta = "INSERT INTO producto (nombre_producto, codigo_producto, imagen, costo_unitario, precio_venta, descripcion, tipo_producto_id_tipo)
+                     VALUES ('$nombre_producto', '$codigo_producto', '$imagen', '$costo_unitario', '$precio_venta', '$descripcion', '$categorias_id')";
 
         $resultado = $conn->query($consulta);
 
         return $resultado;
     }
 
-    // Obtener todos los trabajadores
-    public function listarTrabajadores() {
+    // Obtener todos los productos
+    public function listarProductos() {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "SELECT * FROM trabajador";
+        $consulta = "SELECT * FROM producto";
 
         $resultado = $conn->query($consulta);
 
@@ -30,12 +30,12 @@ class Trabajador {
         $conn->close();
     }
 
-    // Buscar trabajador por id
-    public function buscarTrabajadorId($id) {
+    // Buscar producto por id
+    public function buscarProductosId($id) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "SELECT * FROM trabajador WHERE id_trabajador = '$id'";
+        $consulta = "SELECT * FROM producto WHERE id_producto = '$id'";
 
         $resultado = $conn->query($consulta);
 
@@ -60,32 +60,32 @@ class Trabajador {
 
 
 
-    // Actualizar datos de trabajador
-    public function actualizarTrabajador($id, $rut, $nombre, $apellido, $usuario, $clave, $activo, $rol_id) {
+    // Actualizar datos de Producto
+    public function actualizarProductos($id, $nombre_producto, $codigo_producto, $imagen, $costo_unitario, $precio_venta, $descripcion, $categorias_id) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "UPDATE trabajador SET
-                    rut = '$rut',
-                    nombre = '$nombre',
-                    apellido = '$apellido',
-                    usuario = '$usuario',
-                    clave = '$clave',
-                    activo = '$activo',
-                    rol_id_rol = '$rol_id'
-                    WHERE id_trabajador = '$id'";
+        $consulta = "UPDATE producto SET
+                    nombre_producto = '$nombre_producto',
+                    codigo_producto = '$codigo_producto',
+                    imagen = '$imagen',
+                    costo_unitario = '$costo_unitario',
+                    precio_venta = '$precio_venta',
+                    descripcion = '$descripcion',
+                    tipo_producto_id_tipo = '$categorias_id'
+                    WHERE id_productor = '$id'";
 
         $resultado = $conn->query($consulta);
 
         return $resultado;
     }
 
-    // Eliminar trabajador por id
-    public function eliminarTrabajador($id) {
+    // Eliminar producto por id
+    public function eliminarProductos($id) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "DELETE FROM trabajador WHERE id_trabajador = '$id'";
+        $consulta = "DELETE FROM producto WHERE id_producto = '$id'";
 
         $resultado = $conn->query($consulta);
 
