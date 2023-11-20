@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <th>Categoría</th>
                         <th>Formato</th>
                         <th>Perecible</th>
-                        <th>Detalles</th>
+                        <th colspan="2">Detalles</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -115,9 +115,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span id="estadoSpan'.$id.'">'.$icono.'</span>                   
                         </select>
                     </td>
-                    <td>
-                        <button class="btn btn-link" title="Desplegar">
-                            <ion-icon name="chevron-down-circle-outline" role="img" class="md hydrated" aria-label="chevron down circle outline"></ion-icon>
+                    <td colspan="2">
+                        <button class="btn btn-primary" title="Desplegar">
+                            <ion-icon name="chevron-down-circle-outline"></ion-icon>
                         </button>
                     </td>
 
@@ -133,29 +133,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <td>Fecha Vencimiento</td>
                     <td>Almacen</td>
                     <td >Zona</td>
+                    <td> </td>
                 </tr>
                 ';
-            $detalles = $inventario->obtenerInsumosPorFecha($id);
-            while($insumo = mysqli_fetch_array($detalles)){
 
-                $id_insumo = $insumo['id_insumo'];
-                $nombre_insumo = $insumo['nombre_insumo'];
-                $cantidad = $insumo['cantidad'];
-                $costo_unitario = $insumo['costo_unitario'];
-                $fecha_vencimiento = $insumo['fecha_vencimiento'];
-                $nombre = $insumo['nombre'];
-                $nombre_zona = $insumo['nombre_zona']; 
-                echo'
+                $detalles = $inventario->obtenerInsumosPorFecha($id);
+                while($insumo = mysqli_fetch_array($detalles)){
+                    
+                    $nFormato = $formato;
+                    $n_registro = $insumo['numero_registro'];
+                    $id_insumo = $insumo['id_insumo'];
+                    $nombre_insumo = $insumo['nombre_insumo'];
+                    $cantidad = $insumo['cantidad'];
+                    $costo_unitario = $insumo['costo_unitario'];
+                    $fecha_vencimiento = $insumo['fecha_vencimiento'];
+                    $nombre = $insumo['nombre'];
+                    $nombre_zona = $insumo['nombre_zona']; 
+                    echo'
                 
-                <tr id="detalles'.$id.'" class="collapse in table-light">
-                    <td>'.$id_insumo.'</td>
-                    <td colspan="2">'.$nombre_insumo.'</td>
-                    <td>'.$cantidad.'</td>
-                    <td>'.$costo_unitario.'</td>
-                    <td>'.$fecha_vencimiento.'</td>
-                    <td>'.$nombre.'</td>
-                    <td>'.$nombre_zona.'</td>
-                </tr>
+                    <tr id="detalles'.$id.'" class="collapse in table-light">
+                        <td>'.$id_insumo.'</td>
+                        <td colspan="2">'.$nombre_insumo.'</td>
+                        <td>'.$cantidad.'</td>
+                        <td>'.$costo_unitario.'</td>
+                        <td>'.$fecha_vencimiento.'</td>
+                        <td>'.$nombre.'</td>
+                        <td>'.$nombre_zona.'</td>
+                        <td>
+                        <button class="btn btn-danger" onclick="nuevaSalidaInsumo(\'' . $n_registro . '\', \'' . $id_insumo . '\', \'' . $nombre_insumo . '\', \'' .$nFormato . '\', \'' . $cantidad . '\')">Salida</button>
+                        </td>
+                    </tr>
                 
                 ';
             }

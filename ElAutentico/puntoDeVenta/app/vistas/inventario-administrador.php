@@ -124,7 +124,7 @@
                     <button class="boton-pagar2" onclick="mostrarPopup5()">Proovedores</button>
                     <button class="boton-pagar2" onclick="mostrarPopup7()">Tipos Movimientos</button>
                     <button class="boton-pagar" onclick="mostrarPopup8()">Entrada insumo</button>
-                    <button class="boton-pagar3" onclick="mostrarPopup9()">Salida insumo</button>
+                    
                <br><br>   
                
                     <div id="mostrarInventario"></div>
@@ -278,11 +278,13 @@
     <div class="popup" id="popup9">
         <div class="popup-contenido">
             <h2>Registrar salida insumo</h2>
-            <P></P>
-            <form action="" method="POST" class="formulario">
+            <h6>Va a registrar la salida del insumo: #<span id="insumoSpan">$</span>.- <span id="nombreSpan">$</span>  en formato: <span id="formatoSapn">$</span>.</h6>
+            <h6>Por favor ingrese la cantidad que retirará.</h6> <h6>De este registro puede retirar un maximo de <span id="cantidadSpan"></span> articulos.</h6>
+            <form action="" method="POST" class="formularioSalida">
+
                 <div class="form-element">
                     <label for="user">Cantidad</label>
-                    <input type="number" min="1" name="stock" placeholder="Cantidad" required>
+                    <input type="number" min="1" name="stock" id="stock" placeholder="Cantidad" required>
                 </div>
                 <button class="boton-pagar-mas" type="submit" name="agregar" value="Agregar"><ion-icon name="remove-circle-outline"></ion-icon></button>
             </form>

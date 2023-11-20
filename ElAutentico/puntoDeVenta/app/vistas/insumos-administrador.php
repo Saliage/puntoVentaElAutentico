@@ -110,7 +110,7 @@
             </div>
         </div>
 
-        <div class="tabla-inventario">
+        <div class="tabla-inventario" style="width: 100%;">
 
             <table class="table">
                 <thead>
