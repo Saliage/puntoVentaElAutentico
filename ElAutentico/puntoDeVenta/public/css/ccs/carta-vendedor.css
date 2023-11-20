@@ -514,7 +514,7 @@ body::-webkit-scrollbar-thumb {
 
 /* Estilos para el botón de Pagar en el carrito */
 .boton-pagar {
-  background-color: #red;
+  background-color: red;
   color: white;
   font-weight: bold;
   padding: 10px 20px;
