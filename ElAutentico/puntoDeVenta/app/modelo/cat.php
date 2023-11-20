@@ -59,7 +59,7 @@ class Categorias {
         $conn->close();
     }
 
-    // Actualizar datos de rol
+    // Actualizar datos de categoria
     public function actualizarCat($id, $nombre) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
@@ -74,7 +74,7 @@ class Categorias {
         $conn->close();
     }
 
-    // Eliminar rol por id
+    // Eliminar categoria por id
     public function eliminarCat($id) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
