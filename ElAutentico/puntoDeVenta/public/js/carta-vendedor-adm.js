@@ -24,6 +24,10 @@ function verProductos(){
 
 function agregarAlCarrito(nombre,precio) {
 
-    alert(nombre + precio);
+    const carritoContainer = document.getElementById('carrito');
+    const itemDiv = document.createElement('div');
+    itemDiv.classList.add('item');
+    itemDiv.innerHTML = `<span>${nombre}</span><span>$${precio}</span>`;
+    carritoContainer.appendChild(itemDiv);    
 
 }
