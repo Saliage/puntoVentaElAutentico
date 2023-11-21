@@ -96,7 +96,7 @@
             <div class="seccion-izquierda">
     
                 <!-- Barra de categorias de la carta -->
-                
+                  
                 <div class="barra-categorias">
                         <ion-icon name="arrow-back-outline"></ion-icon>
                     </a>

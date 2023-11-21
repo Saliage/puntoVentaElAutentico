@@ -48,6 +48,7 @@
   /* =====================================   Estilos barra de navegacion  =========================================== */
   
   .navbar {
+    
     width: 5rem;
     height: 100vh;
     position: fixed;

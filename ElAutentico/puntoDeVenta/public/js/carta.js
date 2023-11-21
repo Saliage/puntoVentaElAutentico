@@ -333,8 +333,8 @@ function agregarCat(event){
 
 function editarCat(id) {
 
-    var categoriasSpan = document.getElementById('nombreCategoriasSpan'+id);
-    var categoriasTxt = document.getElementById('nombreCategoriasTxt'+id);
+    var categoriasSpan = document.getElementById('nombre_tipoSpan'+id);
+    var categoriasTxt = document.getElementById('nombre_tipoTxt'+id);
     var btnOK = document.getElementById('guardarEditCat'+id);
     var btnEdit = document.getElementById('btnEditCat'+id);
 

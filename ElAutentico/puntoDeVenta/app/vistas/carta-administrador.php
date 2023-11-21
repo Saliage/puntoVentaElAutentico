@@ -93,7 +93,7 @@
         </ul>
     </nav>
 
-    <!-- Contenido principal que deseas desenfocar -->
+    <!-- Contenido principal que deseas desenfocar --> 
     <main class="contenido-a-desenfocar">
 
         <!-- Barra de busqueda y usuario -->
