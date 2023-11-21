@@ -175,8 +175,8 @@ function mostrarPopup() {
   popup.style.display = 'flex';
 
               // Reproducir el sonido cuando se muestra el popup
-              const audio = new Audio('../../public/music/sonido_de_dinero.mp3');
-            audio.play();
+            //const audio = new Audio('../../public/music/sonido_de_dinero.mp3');
+            //audio.play();
 }
 
 // Función para realizar el pago

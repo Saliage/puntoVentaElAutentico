@@ -20,14 +20,15 @@
     <title>Carta Vendedor</title>
 
     <!-- ====================== ESTILOS CSS ==================== -->
-    <link rel="stylesheet" href="../../public/css/ccs/carta-vendedor.css">
+    <link rel="stylesheet" href="../../public/css/ccs/carta-vendedor-2.css">
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../../public/js/logOut.js"></script>
+    <script src="../../public/js/carta-vendedor-adm.js"></script>
 </head>
 
-<body>
+<body onload="verProductos()">
  
     <!-- -------- BARRA DE NAVEGACION ------- -->
     <nav class="navbar">
@@ -122,246 +123,7 @@
                 <div class="todos-los-productos">
                     
                     <!-- Productos-->
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="producto">
-                        <div class="imagen-producto">
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Producto 1">
-                        </div>
-                        <div class="informacion-producto">
-                            <h3><strong>Cola Cola Zero 600 ml</strong></h3>
-                            <div class="precio-container">
-                                <p class="precio">$1.000</p>
-                            </div>
-                        </div>
-                    </div>
- 
+                    <div id="mostrarProductos"></div>                     
                 </div>
             </div>
             
@@ -369,133 +131,24 @@
             <div class="seccion-derecha">
     
                 <!-- Sección "Calcular Productos" -->
-                <div class="calcular-productos">
-                    <div class="producto-carrito">
-                        <ion-icon name="remove-circle-outline"></ion-icon>
-                        <div class="numero">1</div>
-                        <ion-icon name="add-circle-outline"></ion-icon>
-                        <h3>Cola Cola Zero 600 ml</h3>
-                        <h3>$1.000</h3>
-                        <ion-icon name="close-outline"></ion-icon>
-                    </div>
+                <div class="calcular-productos" id="carrito">
 
-                    <div class="producto-carrito">
-                        <ion-icon name="remove-circle-outline"></ion-icon>
-                        <div class="numero">1</div>
-                        <ion-icon name="add-circle-outline"></ion-icon>
-                        <h3>Cola Cola Zero 600 ml</h3>
-                        <h3>$1.000</h3>
-                        <ion-icon name="close-outline"></ion-icon>
-                    </div>
-
-                    <div class="producto-carrito">
-                        <ion-icon name="remove-circle-outline"></ion-icon>
-                        <div class="numero">1</div>
-                        <ion-icon name="add-circle-outline"></ion-icon>
-                        <h3>Cola Cola Zero 600 ml</h3>
-                        <h3>$1.000</h3>
-                        <ion-icon name="close-outline"></ion-icon>
-                    </div>
-
-                    <div class="producto-carrito">
-                        <ion-icon name="remove-circle-outline"></ion-icon>
-                        <div class="numero">1</div>
-                        <ion-icon name="add-circle-outline"></ion-icon>
-                        <h3>Cola Cola Zero 600 ml</h3>
-                        <h3>$1.000</h3>
-                        <ion-icon name="close-outline"></ion-icon>
-                    </div>
-
-                    <div class="producto-carrito">
-                        <ion-icon name="remove-circle-outline"></ion-icon>
-                        <div class="numero">1</div>
-                        <ion-icon name="add-circle-outline"></ion-icon>
-                        <h3>Cola Cola Zero 600 ml</h3>
-                        <h3>$1.000</h3>
-                        <ion-icon name="close-outline"></ion-icon>
-                    </div>
-
-                    <div class="producto-carrito">
-                        <ion-icon name="remove-circle-outline"></ion-icon>
-                        <div class="numero">1</div>
-                        <ion-icon name="add-circle-outline"></ion-icon>
-                        <h3>Cola Cola Zero 600 ml</h3>
-                        <h3>$1.000</h3>
-                        <ion-icon name="close-outline"></ion-icon>
-                    </div>
-
-                    <div class="producto-carrito">
-                        <ion-icon name="remove-circle-outline"></ion-icon>
-                        <div class="numero">1</div>
-                        <ion-icon name="add-circle-outline"></ion-icon>
-                        <h3>Cola Cola Zero 600 ml</h3>
-                        <h3>$1.000</h3>
-                        <ion-icon name="close-outline"></ion-icon>
-                    </div>
-
-                    <div class="producto-carrito">
-                        <ion-icon name="remove-circle-outline"></ion-icon>
-                        <div class="numero">1</div>
-                        <ion-icon name="add-circle-outline"></ion-icon>
-                        <h3>Cola Cola Zero 600 ml</h3>
-                        <h3>$1.000</h3>
-                        <ion-icon name="close-outline"></ion-icon>
-                    </div>
-
-                    <div class="producto-carrito">
-                        <ion-icon name="remove-circle-outline"></ion-icon>
-                        <div class="numero">1</div>
-                        <ion-icon name="add-circle-outline"></ion-icon>
-                        <h3>Cola Cola Zero 600 ml</h3>
-                        <h3>$1.000</h3>
-                        <ion-icon name="close-outline"></ion-icon>
-                    </div>
-
-                    <div class="producto-carrito">
-                        <ion-icon name="remove-circle-outline"></ion-icon>
-                        <div class="numero">1</div>
-                        <ion-icon name="add-circle-outline"></ion-icon>
-                        <h3>Cola Cola Zero 600 ml</h3>
-                        <h3>$1.000</h3>
-                        <ion-icon name="close-outline"></ion-icon>
-                    </div>
-
-                    <div class="producto-carrito">
-                        <ion-icon name="remove-circle-outline"></ion-icon>
-                        <div class="numero">1</div>
-                        <ion-icon name="add-circle-outline"></ion-icon>
-                        <h3>Cola Cola Zero 600 ml</h3>
-                        <h3>$1.000</h3>
-                        <ion-icon name="close-outline"></ion-icon>
-                    </div>
-
-                    <div class="producto-carrito">
-                        <ion-icon name="remove-circle-outline"></ion-icon>
-                        <div class="numero">1</div>
-                        <ion-icon name="add-circle-outline"></ion-icon>
-                        <h3>Cola Cola Zero 600 ml</h3>
-                        <h3>$1.000</h3>
-                        <ion-icon name="close-outline"></ion-icon>
-                    </div>
-                    
                 </div>
-    
                 <!-- Sección "Subtotal" -->
                 <div class="subtotal">
-                    <div class="subtotal-carrito">
-                        <h3>SUBTOTAL</h3>
-                        <h3 id="subtotalAmount">$4000</h3>
+                        <div class="subtotal-carrito"> 
+                            <h3>SUBTOTAL</h3>
+                            <h3>$<span id="totalPagar">0</span></h3> <!-- resume el total de la suma de todos los productos y sus cantidades -->
+                        </div>
                     </div>
-                </div>
-                
                 <!-- Sección "Pagar" -->
-                <!-- Agrega el botón de Pagar -->
-                <div class="pagar-carrito">
-                    <button class="boton-pagar" onclick="mostrarPopup()">Pagar</button>
-                </div>
+                    <!-- Agrega el botón de Pagar -->
+                    <div class="pagar-carrito">
+                        <button class="boton-pagar" onclick="mostrarPopup()">Pagar</button>
+                    </div>
             </div>
-        </div>
-        
+
+        </div>        
     </main>
     <!-- El contenedor del popup (inicialmente oculto) -->
     <div class="popup" id="popup">
@@ -503,11 +156,12 @@
             <h2>Medio de pago:</h2>
             <p> </p>
             <a href="" onclick="realizarPago('Efectivo')" class="boton-pago" >Efectivo</a>
-            <a href="../../transbank-sdk-php-master/examples/webpay-plus/index.php?action=create" class="boton-pago">Tarjeta</a>
+            <a href="#" id="enlacePago" class="boton-pago">Tarjeta</a>
         </div>
      </div>
     <!-- JavaScript para manejar el evento de clic y agregar/eliminar la clase "seleccionado" al elemento seleccionado. -->
     <script>
+        let enlace ="";
         // Obtenemos todos los elementos de categoría
         const itemsCategoria = document.querySelectorAll('.item-categoria'); 
         // Agregamos un controlador de eventos de clic a cada elemento de categoría    
@@ -526,15 +180,17 @@
         popup.style.display = 'flex';
 
         // Reproducir el sonido cuando se muestra el popup
-        const audio = new Audio('../../public/music/sonido_de_dinero.mp3');
-        audio.play();
+        //const audio = new Audio('../../public/music/sonido_de_dinero.mp3');
+        //audio.play();
 
         // Obtener el monto actual del subtotal
-        const montoSubtotal = document.getElementById('subtotalAmount').innerText;
+        var montoTotal = document.getElementById('totalPagar').innerText;
+        const montoSubtotal = parseInt(montoTotal);
 
         // Actualizar el enlace con el nuevo monto
         const enlacePago = document.getElementById('enlacePago');
         enlacePago.href = `../../transbank-sdk-php-master/examples/webpay-plus/index.php?action=create&monto=${montoSubtotal}`;
+        enlace = `../../transbank-sdk-php-master/examples/webpay-plus/index.php?action=create&monto=${montoSubtotal}`;
         }
 
         // Función para realizar el pago
