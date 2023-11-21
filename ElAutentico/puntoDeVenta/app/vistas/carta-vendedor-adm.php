@@ -130,31 +130,19 @@
                 <!-- Sección "Calcular Productos" -->
                 <div class="calcular-productos" id="carrito">
 
-                    <div class="producto-carrito">
-                        <ion-icon name="remove-circle-outline"></ion-icon>
-                        <div class="numero">1</div>
-                        <ion-icon name="add-circle-outline"></ion-icon>
-                        <h3>Cola Cola Zero 600 ml</h3>
-                        <h3>$1.000</h3>
-                        <ion-icon name="close-outline"></ion-icon>
-                    </div>
-
-                    
-    
-                    <!-- Sección "Subtotal" -->
-                    <div class="subtotal">
-                        <div class="subtotal-carrito">
+                </div>
+                <!-- Sección "Subtotal" -->
+                <div class="subtotal">
+                        <div class="subtotal-carrito"> 
                             <h3>SUBTOTAL</h3>
-                            <h3>$3.000</h3>
+                            <h3>$<span id="totalPagar">0</span></h3> <!-- resume el total de la suma de todos los productos y sus cantidades -->
                         </div>
                     </div>
-                
-                    <!-- Sección "Pagar" -->
+                <!-- Sección "Pagar" -->
                     <!-- Agrega el botón de Pagar -->
                     <div class="pagar-carrito">
                         <button class="boton-pagar" onclick="mostrarPopup()">Pagar</button>
                     </div>
-                </div>
             </div>
         </div>
     </main>

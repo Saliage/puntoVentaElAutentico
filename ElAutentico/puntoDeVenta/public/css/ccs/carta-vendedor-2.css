@@ -352,8 +352,8 @@
   
   /* =================Estilos para la sección "Calcular Productos" (75%)====================== */
   .calcular-productos {
-    height: 19rem;
-    margin-left: 20%;
+    height: 550px;
+    margin-left: 22%;
     margin-right: 3%;
     background-color: white;
     border-radius: 15px;
@@ -413,13 +413,13 @@
   
   /* =========================== Estilos para la sección "Subtotal" (10%)================================== */
   .subtotal {
-    height: 4rem;
-    margin-left: 20%;
+    height: 3rem;
+    margin-left: 22%;
     margin-right: 3%;
     background-color: white;
     border-radius: 15px;
     margin-bottom: 10px; /* Espacio entre secciones */
-    max-height: 10%
+    max-height: 8%
   }
   
   /* Estilos para el contenedor "subtotal-carrito" */
@@ -453,8 +453,8 @@
     background-color: #000dffd7; /* Fondo con color específico */
     border-radius: 15px; /* Bordes redondeados */
     max-height: 10%; /* Máxima altura del contenedor */
-    height: 4rem; /* Misma altura que .pagar */
-    margin-left: 20%; /* Mismo margen izquierdo que .pagar */
+    height: 3rem; /* Misma altura que .pagar */
+    margin-left: 22%; /* Mismo margen izquierdo que .pagar */
     margin-right: 3%; /* Mismo margen derecho que .pagar */
     overflow: hidden; /* Oculta el desbordamiento del botón */
   }
@@ -473,10 +473,7 @@
     transition: background-color 0.3s; /* Animación de cambio de color de fondo */
   }
   
-  .boton-pagar:hover {
-    background-color: red; /* Cambia el color de fondo al pasar por encima */
-  }
-  
+
   /* Estilos para el popup */
   .popup {
     display: none;
@@ -514,13 +511,14 @@
   
   /* Estilos para el botón de Pagar en el carrito */
   .boton-pagar {
-    background-color: red;
+    background-color: #030edb;
     color: white;
     font-weight: bold;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-bottom: 10px;
   }  
   
   
