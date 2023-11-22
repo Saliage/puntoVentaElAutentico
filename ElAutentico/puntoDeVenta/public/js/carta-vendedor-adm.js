@@ -108,4 +108,5 @@ function actualizarInterfazPrecioTotal(precioTotal) {
 
     // Actualiza el contenido del elemento con el precio total
     subtotalElemento.textContent = `$${precioTotal}`;
-}
+} 
+

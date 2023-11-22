@@ -14,6 +14,10 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+CREATE USER 'autentico'@'localhost' IDENTIFIED BY 'autentico';
+GRANT SELECT, ALTER, CREATE, DELETE, INSERT, REFERENCES, UPDATE  ON *.* TO 'autentico'@'localhost';
+FLUSH PRIVILEGES;
+SHOW GRANTS FOR 'autentico'@'localhost';
 
 -- Volcando estructura de base de datos para autentico
 DROP DATABASE IF EXISTS `autentico`;
@@ -304,8 +308,8 @@ CREATE TABLE IF NOT EXISTS `tipo_movimiento` (
 
 -- poblar tabla con movimeintos necesarios
 REPLACE INTO `tipo_movimiento` (`id_tipo_mov`, `nombre_tipo_mov`)VALUES
-  (1, 'Entrada')
-  (2, 'Salida';
+  (1, 'Entrada'),
+  (2, 'Salida');
 
 -- EVITAR BORRA LOS TIPOS DE MOVIMIENTOS ENTRADA Y SALIDA
 DELIMITER //
@@ -401,7 +405,31 @@ CREATE TABLE IF NOT EXISTS `zona` (
   CONSTRAINT `zona_ibfk_1` FOREIGN KEY (`almacen_id_almacen`) REFERENCES `almacen` (`id_almacen`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- La exportación de datos fue deseleccionada.
+
+---------------------------------------------------------------------------------------------
+-- INSERSION PARA EFECTOS DE PRUEBAS, LO CUALES DEBEN SER ELIMINADO PARA EL PASO A PRODUCCIÓN
+---------------------------------------------------------------------------------------------
+
+INSERT INTO `tipo_producto` (nombre_tipo) VALUES 
+('sandwich'),('bebidas'),('pizza'),('as'),('completos'),('hamburguesas'),('fritura');
+
+SELECT * FROM tipo_producto;
+
+INSERT INTO `producto` (`nombre_producto`,`imagen`,`costo_unitario`,`precio_venta`,`descripcion`, `tipo_producto_id_tipo`)VALUES 
+('barros luco','../../public/imagenes/barros-luco.jpeg',1700,3500,'tomate, pata, mayo',1),
+('te','../../public/imagenes/te.jpg',300,1000,'té',2),
+('monster','../../public/imagenes/monster.webp',1200,2000,'Bebida energética',2),
+('pizza individual','../../public/imagenes/pizza.webp',800,1500,'tomate, queso, jamon, aceitunas',3),
+('completo italiano','../../public/imagenes/completo-italiano.jpg',700,1500,'tomate, pata, mayo',5),
+('café','../../public/imagenes/cafe.jpeg',600,1200,'Café de maquina',2),
+('te','../../public/imagenes/te.jpg',300,1000,'té',2),
+('Coca-cola zero','../../public/imagenes/coca-cola-zero.jpg',1000,1500,'coca zero 59 0ml',2),
+('papas fritas','../../public/imagenes/papas-fritas.webp',1300,2000,'porcion de papas',7),
+('Salchi','../../public/imagenes/salchipapa.jpg',1800,2500,'porcion salchi',7), 
+('as','../../public/imagenes/as.webp',1800,3500,'as solo',4),
+('as queso','../../public/imagenes/as-queso.webp',2000,3700,'as queso',4);  
+  
+SELECT * FROM producto;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
