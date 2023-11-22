@@ -103,7 +103,7 @@
                     </a>
                 
                     <div class="container-categorias">
-                    <div class="item-categoria">Todos</div>
+                        <div class="item-categoria">Todos</div>
                         <div class="item-categoria">Sándwiches</div>
                         <div class="item-categoria">Bebidas</div>
                         <div class="item-categoria">Frituras</div>

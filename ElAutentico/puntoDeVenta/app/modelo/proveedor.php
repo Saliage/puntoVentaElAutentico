@@ -4,77 +4,87 @@ require_once('conexion.php');
 
 class Proveedor {
 
+    private $conn;
+
+    public function __construct() {
+        $conectar = new Conexion();
+        $this->conn = $conectar->abrirConexion();
+    }
+
     // Agregar proveedor
     public function agregarProveedor($nombre, $rut, $fono, $mail, $direccion) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "INSERT INTO proveedor (nombre_proveedor, rut_proveedor, fono, mail, direccion)
-                     VALUES ('$nombre', '$rut', '$fono', '$mail', '$direccion')";
+                        VALUES (?, ?, ?, ?, ?)";
 
-        $resultado = $conn->query($consulta);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("sssss", $nombre, $rut, $fono, $mail, $direccion);
+
+        $resultado = $sql->execute();
+
+        $sql->close();
+        $this->conn->close();
 
         return $resultado;
-        $conn->close();
     }
 
     // Obtener todos los proveedores
     public function listarProveedores() {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "SELECT * FROM proveedor";
-
-        $resultado = $conn->query($consulta);
+        
+        $resultado = $this->conn->query($consulta);
 
         return $resultado;
-        $conn->close();
     }
 
     // Buscar proveedor por id
     public function buscarProveedorId($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "SELECT * FROM proveedor WHERE id_proveedor = ?";
+        
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
+        
+        $sql->execute();
+        $resultado = $sql->get_result();
 
-        $consulta = "SELECT * FROM proveedor WHERE id_proveedor = '$id'";
-
-        $resultado = $conn->query($consulta);
+        $sql->close();
 
         return $resultado;
-        $conn->close();
     }
 
     // Actualizar datos de proveedor
     public function actualizarProveedor($id, $nombre, $rut, $fono, $mail, $direccion) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "UPDATE proveedor SET
-                    nombre_proveedor = '$nombre',
-                    rut_proveedor = '$rut',
-                    fono = '$fono',
-                    mail = '$mail',
-                    direccion = '$direccion'
-                    WHERE id_proveedor = '$id'";
+                    nombre_proveedor = ?,
+                    rut_proveedor = ?,
+                    fono = ?,
+                    mail = ?,
+                    direccion = ?
+                    WHERE id_proveedor = ?";
 
-        $resultado = $conn->query($consulta);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("sssssi", $nombre, $rut, $fono, $mail, $direccion, $id);
+
+        $resultado = $sql->execute();
+
+        $sql->close();
+        $this->conn->close();
 
         return $resultado;
-        $conn->close();
     }
 
     // Eliminar proveedor por id
     public function eliminarProveedor($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "DELETE FROM proveedor WHERE id_proveedor = ?";
 
-        $consulta = "DELETE FROM proveedor WHERE id_proveedor = '$id'";
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $sql->execute();
+
+        $sql->close();
+        $this->conn->close();
 
         return $resultado;
-        $conn->close();
-
     }
 }
 ?>

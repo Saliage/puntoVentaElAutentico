@@ -1,27 +1,6 @@
 
 <?php
-/*
-INSERT INTO `tipo_producto` (nombre_tipo) VALUES 
-('sandwich'),('bebidas'),('pizza'),('as'),('completos'),('hamburguesas'),('fritura');
 
-SELECT * FROM tipo_producto;
-
-INSERT INTO `producto` (`nombre_producto`,`imagen`,`costo_unitario`,`precio_venta`,`descripcion`, `tipo_producto_id_tipo`)VALUES 
-('barros luco','../../public/imagenes/barros-luco.jpeg',1700,3500,'tomate, pata, mayo',1),
-('te','../../public/imagenes/te.jpg',300,1000,'té',2),
-('monster','../../public/imagenes/monster.webp',1200,2000,'Bebida energética',2),
-('pizza individual','../../public/imagenes/pizza.webp',800,1500,'tomate, queso, jamon, aceitunas',3),
-('completo italiano','../../public/imagenes/completo-italiano.jpg',700,1500,'tomate, pata, mayo',5),
-('café','../../public/imagenes/cafe.jpeg',600,1200,'Café de maquina',2),
-('te','../../public/imagenes/te.jpg',300,1000,'té',2),
-('Coca-cola zero','../../public/imagenes/coca-cola-zero.jpg',1000,1500,'coca zero 59 0ml',2),
-('papas fritas','../../public/imagenes/papas-fritas.webp',1300,2000,'porcion de papas',7),
-('Salchi','../../public/imagenes/salchipapa.jpg',1800,2500,'porcion salchi',7), 
-('as','../../public/imagenes/as.webp',1800,3500,'as solo',4),
-('as queso','../../public/imagenes/as-queso.webp',2000,3700,'as queso',4);  
-  
-SELECT * FROM producto;
- */
 require_once("../modelo/productos.php");
 session_start();
 ob_start();
@@ -33,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     $producto = new Productos();
-    $resultado = $producto->listarProductos();
+    $resultado = $producto->listarProductosDisponibles();
     while($consulta = mysqli_fetch_array($resultado))
 	{
         $id = $consulta['id_producto'];

@@ -30,6 +30,19 @@ class Productos {
         $conn->close();
     }
 
+        // Obtener todos los productos
+        public function listarProductosDisponibles() {
+            $conectar = new Conexion();
+            $conn = $conectar->abrirConexion();
+    
+            $consulta = "SELECT * FROM producto WHERE disponible = 1";
+    
+            $resultado = $conn->query($consulta);
+    
+            return $resultado;
+            $conn->close();
+        }
+
     // Buscar producto por id
     public function buscarProductosId($id) {
         $conectar = new Conexion();
