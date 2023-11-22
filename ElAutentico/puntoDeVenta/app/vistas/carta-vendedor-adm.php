@@ -83,6 +83,7 @@
                 <input type="text" placeholder="Buscar producto">
                 <ion-icon name="search" class="icono-busqueda"></ion-icon>
             </div>
+            <ion-icon name="notifications-outline" onclick="mostrarPopup9()"></ion-icon>
             <div class="vendedor">
                 <ion-icon name="person" class="icono-vendedor"></ion-icon>
                 <span class="nombre-vendedor"><?php echo $_SESSION['nombre'].' '.$_SESSION['apellido'] ?></span>
