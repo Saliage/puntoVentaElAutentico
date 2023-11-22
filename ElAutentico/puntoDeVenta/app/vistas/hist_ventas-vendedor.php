@@ -102,100 +102,16 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>001</td>
-                        <td>10-10-2023</td>
-                        <td>10123</td>
+                        <td>1</td>
+                        <td>19-11-2023</td>
+                        <td>$16.900</td>
                         <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
                     </tr>
                     <tr>
-                        <td>001</td>
-                        <td>10-10-2023</td>
-                        <td>10123</td>
+                        <td>2</td>
+                        <td>19-11-2023</td>
+                        <td>$13.000</td>
                         <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>10-10-2023</td>
-                        <td>10123</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>10-10-2023</td>
-                        <td>10123</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>10-10-2023</td>
-                        <td>10123</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>10-10-2023</td>
-                        <td>10123</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>10-10-2023</td>
-                        <td>10123</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>10-10-2023</td>
-                        <td>10123</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>10-10-2023</td>
-                        <td>10123</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>10-10-2023</td>
-                        <td>10123</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>10-10-2023</td>
-                        <td>10123</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>10-10-2023</td>
-                        <td>10123</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>10-10-2023</td>
-                        <td>10123</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>10-10-2023</td>
-                        <td>10123</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>10-10-2023</td>
-                        <td>10123</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>10-10-2023</td>
-                        <td>10123</td>
-                        <td><a href="#">Ver detalles</a></td>
                     </tr>
                 </tbody>
             </table>

@@ -103,13 +103,11 @@
                     </a>
                 
                     <div class="container-categorias">
-                        <div class="item-categoria">Favoritos</div>
-                        <div class="item-categoria">Hot Dogs</div>
+                    <div class="item-categoria">Todos</div>
                         <div class="item-categoria">Sándwiches</div>
                         <div class="item-categoria">Bebidas</div>
-                        <div class="item-categoria">Promociones</div>
-                        <div class="item-categoria">Postres</div>
-                        <div class="item-categoria">Golosinas</div>
+                        <div class="item-categoria">Frituras</div>
+                        <div class="item-categoria">Hot Dogs</div>
                         <div class="item-categoria">Otros</div>
                     </div>
                 
@@ -155,8 +153,8 @@
         <div class="popup-contenido">
             <h2>Medio de pago:</h2>
             <p> </p>
-            <a href="" onclick="realizarPago('Efectivo')" class="boton-pago" >Efectivo</a>
-            <a href="#" id="enlacePago" class="boton-pago">Tarjeta</a>
+            <a href="" onclick="#" class="boton-pago" >Efectivo</a>
+            <a href="../controlador/transbank.php" class="boton-pago">Tarjeta</a>
         </div>
      </div>
     <!-- JavaScript para manejar el evento de clic y agregar/eliminar la clase "seleccionado" al elemento seleccionado. -->

@@ -123,42 +123,18 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>001</td>
-                        <td>Juan Villegas</td>
-                        <td>10-10-2023</td>
-                        <td>$10123</td>
-                        <td>Efectivo</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>Juan Villegas</td>
-                        <td>10-10-2023</td>
-                        <td>$10123</td>
+                        <td>1</td>
+                        <td>Roberto Cifuentes</td>
+                        <td>19-11-2023</td>
+                        <td>$16.900</td>
                         <td>Debito</td>
                         <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
                     </tr>
                     <tr>
-                        <td>001</td>
-                        <td>Juan Villegas</td>
-                        <td>10-10-2023</td>
-                        <td>$10123</td>
-                        <td>Transferencia</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>Juan Villegas</td>
-                        <td>10-10-2023</td>
-                        <td>$10123</td>
-                        <td>Credito</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>Juan Villegas</td>
-                        <td>10-10-2023</td>
-                        <td>$10123</td>
+                        <td>2</td>
+                        <td>Roberto</td>
+                        <td>19-11-2023</td>
+                        <td>$13.000</td>
                         <td>Efectivo</td>
                         <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
                     </tr>

@@ -102,16 +102,16 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>001</td>
+                        <td>8</td>
                         <td>
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Insumo 1">
+                            <img src="../../public/imagenes/coca-cola-normal.jpg" alt="Insumo 1">
                         </td>
-                        <td>Cola Cola Zero 591ml</td>
-                        <td>49</td>
+                        <td>Coca-Cola 590ml</td>
+                        <td>50</td>
                         <td>2024-05-31</td>
                     </tr>
                     <tr>
-                        <td>002</td>
+                        <td>13</td>
                         <td>
                             <img src="../../public/imagenes/fanta-zero.jpeg" alt="Insumo 2">
                         </td>
@@ -120,130 +120,22 @@
                         <td>2024-06-15</td>
                     </tr>
                     <tr>
-                        <td>001</td>
+                        <td>16</td>
                         <td>
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Insumo 1">
+                            <img src="../../public/imagenes/tomates.png" alt="Insumo 2">
                         </td>
-                        <td>Cola Cola Zero 591ml</td>
-                        <td>49</td>
-                        <td>2024-05-31</td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>
-                            <img src="../../public/imagenes/fanta-zero.jpeg" alt="Insumo 2">
-                        </td>
-                        <td>Fanta Zero 591ml</td>
+                        <td>Tomates</td>
                         <td>30</td>
-                        <td>2024-06-15</td>
+                        <td>2023-11-29</td>
                     </tr>
                     <tr>
-                        <td>001</td>
+                        <td>17</td>
                         <td>
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Insumo 1">
+                            <img src="../../public/imagenes/redbull.jpg" alt="Insumo 2">
                         </td>
-                        <td>Cola Cola Zero 591ml</td>
-                        <td>49</td>
-                        <td>2024-05-31</td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>
-                            <img src="../../public/imagenes/fanta-zero.jpeg" alt="Insumo 2">
-                        </td>
-                        <td>Fanta Zero 591ml</td>
+                        <td>Red Bull</td>
                         <td>30</td>
-                        <td>2024-06-15</td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Insumo 1">
-                        </td>
-                        <td>Cola Cola Zero 591ml</td>
-                        <td>49</td>
-                        <td>2024-05-31</td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>
-                            <img src="../../public/imagenes/fanta-zero.jpeg" alt="Insumo 2">
-                        </td>
-                        <td>Fanta Zero 591ml</td>
-                        <td>30</td>
-                        <td>2024-06-15</td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Insumo 1">
-                        </td>
-                        <td>Cola Cola Zero 591ml</td>
-                        <td>49</td>
-                        <td>2024-05-31</td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>
-                            <img src="../../public/imagenes/fanta-zero.jpeg" alt="Insumo 2">
-                        </td>
-                        <td>Fanta Zero 591ml</td>
-                        <td>30</td>
-                        <td>2024-06-15</td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Insumo 1">
-                        </td>
-                        <td>Cola Cola Zero 591ml</td>
-                        <td>49</td>
-                        <td>2024-05-31</td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>
-                            <img src="../../public/imagenes/fanta-zero.jpeg" alt="Insumo 2">
-                        </td>
-                        <td>Fanta Zero 591ml</td>
-                        <td>30</td>
-                        <td>2024-06-15</td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Insumo 1">
-                        </td>
-                        <td>Cola Cola Zero 591ml</td>
-                        <td>49</td>
-                        <td>2024-05-31</td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>
-                            <img src="../../public/imagenes/fanta-zero.jpeg" alt="Insumo 2">
-                        </td>
-                        <td>Fanta Zero 591ml</td>
-                        <td>30</td>
-                        <td>2024-06-15</td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>
-                            <img src="../../public/imagenes/coca-cola-zero.jpg" alt="Insumo 1">
-                        </td>
-                        <td>Cola Cola Zero 591ml</td>
-                        <td>49</td>
-                        <td>2024-05-31</td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>
-                            <img src="../../public/imagenes/fanta-zero.jpeg" alt="Insumo 2">
-                        </td>
-                        <td>Fanta Zero 591ml</td>
-                        <td>30</td>
-                        <td>2024-06-15</td>
+                        <td>2024-09-08</td>
                     </tr>
                 </tbody>
             </table>
