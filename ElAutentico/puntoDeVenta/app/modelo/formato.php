@@ -4,66 +4,78 @@ require_once('conexion.php');
 
 class Formato {
 
+    private $conn;
+
+    public function __construct() {
+        $conectar = new Conexion();
+        $this->conn = $conectar->abrirConexion();
+    }
+
     // Agregar formato
     public function agregarFormato($nombre) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "INSERT INTO formato (nombre_formato) VALUES (?)";
 
-        $nombre = mysqli_real_escape_string($conn, $nombre);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("s", $nombre);
 
-        $consulta = "INSERT INTO formato (nombre_formato) VALUES ('$nombre')";
+        $resultado = $sql->execute();
 
-        $resultado = $conn->query($consulta);
+        $sql->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Obtener todos los formatos
     public function listarFormatos() {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "SELECT * FROM formato";
 
-        $resultado = $conn->query($consulta);
+        $resultado = $this->conn->query($consulta);
 
         return $resultado;
     }
 
     // Buscar formato por id
     public function buscarFormatoId($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "SELECT * FROM formato WHERE id_formato = ?";
 
-        $consulta = "SELECT * FROM formato WHERE id_formato = '$id'";
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
+        
+        $sql->execute();
+        $resultado = $sql->get_result();
 
-        $resultado = $conn->query($consulta);
+        $sql->close();
 
         return $resultado;
     }
 
     // Actualizar datos de formato
     public function actualizarFormato($id, $nombre) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "UPDATE formato SET nombre_formato = ? WHERE id_formato = ?";
 
-        $nombre = mysqli_real_escape_string($conn, $nombre);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("si", $nombre, $id);
 
-        $consulta = "UPDATE formato SET nombre_formato = '$nombre' WHERE id_formato = '$id'";
+        $resultado = $sql->execute();
 
-        $resultado = $conn->query($consulta);
+        $sql->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Eliminar formato por id
     public function eliminarFormato($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "DELETE FROM formato WHERE id_formato = ?";
 
-        $consulta = "DELETE FROM formato WHERE id_formato = '$id'";
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $sql->execute();
+
+        $sql->close();
+        $this->conn->close();
 
         return $resultado;
     }
