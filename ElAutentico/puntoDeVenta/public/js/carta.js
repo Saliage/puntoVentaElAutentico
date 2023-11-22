@@ -14,11 +14,11 @@ function cerrarPopup() {
 
     function inicializar(){
         listarProductos();
-        mostrarCat();
+        mostrarTiposP();
     }
 
 //--------------------------------------------------------------------------------------------------------------------------------------->
-//----------------------------------------------           LISTAR PRODUCTOS           --------------------------------------------------->
+//----------------------------------------------           GESION PRODUCTOS           --------------------------------------------------->
 //--------------------------------------------------------------------------------------------------------------------------------------->
 
 function listarProductos() {
@@ -30,7 +30,7 @@ function listarProductos() {
     
     $.ajax({
         data : parametros,
-        url: '../Controlador/gestion_Productos.php',
+        url: '../Controlador/gestion_productos.php',
         type: 'POST',
         beforeSend: function() {
             //$('#mostrarProductos').html("No hay Productos en la carta para mostrar");
@@ -43,10 +43,6 @@ function listarProductos() {
         }
     });
 }
-
-//--------------------------------------------------------------------------------------------------------------------------------------->
-//----------------------------------------------           EDITAR PRODUCTOS           --------------------------------------------------->
-//--------------------------------------------------------------------------------------------------------------------------------------->
 
 function editarProductos(id){
 
@@ -98,10 +94,6 @@ function editarProductos(id){
     descripcionTxt = descripcionSpan.innerText;
 
 }
-
-//--------------------------------------------------------------------------------------------------------------------------------------->
-//----------------------------------------------           GUARDAR PRODUCTOS           --------------------------------------------------->
-//--------------------------------------------------------------------------------------------------------------------------------------->
 
 function guardarProductosEdit(id){
 
@@ -160,7 +152,7 @@ function guardarProductosEdit(id){
 
 $.ajax({
         data : parametros,
-        url: '../Controlador/gestion_Productos.php',
+        url: '../Controlador/gestion_productos.php',
         type: 'POST',
     beforeSend: function()
     {
@@ -177,10 +169,6 @@ $.ajax({
 
 }
 
-//--------------------------------------------------------------------------------------------------------------------------------------->
-//----------------------------------------------           ELIMINAR PRODUCTOS           --------------------------------------------------->
-//--------------------------------------------------------------------------------------------------------------------------------------->
-
 function eliminarProductos(id){
 
     var confirmacion = confirm("¿Estás seguro de que deseas eliminar el producto: "+id+"?");
@@ -195,7 +183,7 @@ function eliminarProductos(id){
  
         $.ajax({
         data: parametros,
-        url: '../Controlador/gestion_Productos.php',
+        url: '../Controlador/gestion_productos.php',
         type: 'POST',
         
         beforeSend: function()
@@ -218,10 +206,6 @@ function eliminarProductos(id){
     
 }
 
-//--------------------------------------------------------------------------------------------------------------------------------------->
-//----------------------------------------------           AGREGAR PRODUCTOS           --------------------------------------------------->
-//--------------------------------------------------------------------------------------------------------------------------------------->
-
 function agregarProductos(event)
 { 
     event.preventDefault(); // Evita que el formulario se envíe a la nada
@@ -230,7 +214,7 @@ function agregarProductos(event)
     var formulario = document.getElementById('formAgregarProductos');
     var nombre_producto = formulario.elements['nombre_producto'].value;
     var codigo_producto = formulario.elements['codigo_producto'].value;
-    var imagen = formulario.elements['imagen'].value;
+    var imagen = formulario.elements['imagen'];
     var costo_unitario = formulario.elements['costo_unitario'].value;
     var precio_venta = formulario.elements['precio_venta'].value;
     var descripcion = formulario.elements['descripcion'].value;
@@ -250,7 +234,7 @@ function agregarProductos(event)
     
     $.ajax({
         data: parametros,
-        url: '../Controlador/gestion_Productos.php',
+        url: '../Controlador/gestion_productos.php',
         type: 'POST',
             
         beforeSend: function()
@@ -274,7 +258,30 @@ function agregarProductos(event)
 //----------------------------------------------               GESTION CATEGORIAS            ----------------------------------------------->
 //--------------------------------------------------------------------------------------------------------------------------------------->
 
-function mostrarCat(){
+function listarTiposP(){
+    var parametros =
+    {
+        "opcion":"listar"
+    }
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_formato.php',
+        type: 'POST',
+        
+        beforesend: function()
+        {
+        $('#listarTipo').html("Error de comunicación");
+        },
+
+        success: function(mensaje)
+        {
+        $('#listarTipo').html(mensaje);
+        }
+    });
+}
+
+function mostrarTiposP(){
     var parametros =
     {
         "opcion":"mostrar"
@@ -282,22 +289,22 @@ function mostrarCat(){
 
     $.ajax({
         data: parametros,
-        url: '../Controlador/gestion_Cat.php',
+        url: '../Controlador/gestion_tipo_producto.php',
         type: 'POST',
         
         beforesend: function()
         {
-        $('#verCat').html("Error de comunicación");
+        $('#verTipoP').html("Error de comunicación");
         },
 
         success: function(mensaje)
         {
-        $('#verCat').html(mensaje);
+        $('#verTipoP').html(mensaje);
         }
     });
 }
 
-function agregarCat(event){ 
+function agregarTiposP(event){ 
     
     event.preventDefault(); // Evita que el formulario se envíe a la nada
     // rescatar valores del form
@@ -311,90 +318,81 @@ function agregarCat(event){
     };
     $.ajax({
         data: parametros,
-        url: '../Controlador/gestion_Cat.php',
+        url: '../Controlador/gestion_tipo_producto.php',
         type: 'POST',
         
         beforeSend: function()
         {
+            mostrarTiposP();
         },
 
         success: function(mensaje)
-        {            
-            
+        {           
+            mostrarTiposP();
         }
         
     });
     
     document.getElementById("formCat").reset(); //limpia formulario
-    mostrarCat();
-    inicializar();
+    mostrarTiposP();
 
 }
 
-function editarCat(id) {
+function editarTipoP(id) {
 
-    var categoriasSpan = document.getElementById('nombre_tipoSpan'+id);
-    var categoriasTxt = document.getElementById('nombre_tipoTxt'+id);
-    var btnOK = document.getElementById('guardarEditCat'+id);
-    var btnEdit = document.getElementById('btnEditCat'+id);
+    var tipoProdSpan = document.getElementById('nombre_tipoSpan'+id);
+    var tipoProdTxt = document.getElementById('nombre_tipoTxt'+id);
+    var btnEdit = document.getElementById('btnEditTipo'+id);
+    var btnOK = document.getElementById('guardarTipoEdit'+id);    
 
     // Mostrar el campo de texto y ocultar el span
-    categoriasSpan.style.display = 'none';
-    categoriasTxt.style.display = 'inline';
+    tipoProdSpan.style.display = 'none';
+    tipoProdTxt.style.display = 'inline';
     btnEdit.style.display = 'none';
     btnOK.style.display = 'inline';
-
-    // Agregar el valor del texto al valor original del span
-    categoriasTxt.value = categoriasSpan.innerText;
-
 }
 
-function guardarCatEdit(id){
+function guardarTipoPEdit(id){
 
-    var categoriasSpan = document.getElementById('categoriasSpan'+id);
-    var categoriasTxt = document.getElementById('categoriasTxt'+id);
-    var btnOK = document.getElementById('guardarEditCat'+id);
-    var btnEdit = document.getElementById('btnEditCat'+id);
-
+    var tipoProdSpan = document.getElementById('nombre_tipoSpan'+id);
+    var tipoProdTxt = document.getElementById('nombre_tipoTxt'+id);
+    var btnEdit = document.getElementById('btnEditTipo'+id);
+    var btnOK = document.getElementById('guardarTipoEdit'+id);
 
 
     var parametros = 
     {
         "id" : id,
-        "nombre" : categoriasTxt.value,
+        "nombre" : tipoProdTxt.value,
         "opcion" : 'editar'
     };
-    categoriasSpan.style.display = 'inline';
-    categoriasTxt.style.display = 'none';
+    tipoProdSpan.style.display = 'inline';
+    tipoProdTxt.style.display = 'none';
     btnEdit.style.display = 'inline';
     btnOK.style.display = 'none';
 
     $.ajax({
         data: parametros,
-        url: '../Controlador/gestion_Cat.php',
+        url: '../Controlador/gestion_tipo_producto.php',
         type: 'POST',
         
         beforeSend: function()
         {
-            mostrarCat();
+            mostrarTiposP();
         },
 
         success: function(mensaje)
         {
-            mostrarCat();
+            mostrarTiposP();
         }
-        
-        
 
     });
-    mostrarCat();
-    inicializar();
-    
+    mostrarTiposP();
 }
 
-function eliminarCat(id){
+function eliminarTipoP(id){
 
-    var confirmacion = confirm("¿Estás seguro de que deseas eliminar la categoria: "+id+"?");
+    var confirmacion = confirm("¿Estás seguro de que deseas eliminar el tipo: "+id+"?");
 
     if (confirmacion) {
         
@@ -406,25 +404,23 @@ function eliminarCat(id){
 
         $.ajax({
         data: parametros,
-        url: '../Controlador/gestion_Cat.php',
+        url: '../Controlador/gestion_tipo_producto.php',
         type: 'POST',
         
         beforeSend: function()
         {
-        $('#verCat').html("Error! No se puede realizar la operación.");
-        $('#verCat').css('color', 'red');
-        mostrarCat();
+        $('#verTipoP').html("Error! No se puede realizar la operación.");
+        $('#verTipoP').css('color', 'red');
         },
 
         success: function(mensaje)
         {
-        $('#verCat').html(mensaje);
-        mostrarCat();
+        $('#verTipoP').html(mensaje);
+        mostrarTiposP();
         }
         
         });
-
-        mostrarCat();
+        mostrarTiposP();
 
     }
 }

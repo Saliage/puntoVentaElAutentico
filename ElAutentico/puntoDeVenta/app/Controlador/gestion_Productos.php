@@ -1,6 +1,6 @@
 <?php
 require_once("../modelo/productos.php");
-require_once("../modelo/cat.php");
+require_once ("../modelo/tipo_producto.php");
 
 
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.

@@ -142,7 +142,7 @@
             </div>
 
             <div class="form-element">
-                <label for="codigo_producto">Codigo:</label>
+                <label for="codigo_producto">Codigo de barras:</label>
                 <input type="number" name="codigo_producto" id="codigo_producto" autocomplete="off" minlength="7" maxlength="25" placeholder="Codigo de barras, Ej: 123456789234" required>
             </div>
 
@@ -150,6 +150,10 @@
                 <label for="imagen">Imagen:</label>
                 <input type="file" name="imagen" id="imagen" accept=".jpg, .jpeg, .png">
             </div>  
+            
+            <div class="form-element">
+                <div id="listarTipo" class="form-element"></div> <!-- listar Categorias de los productos en combobox -->
+            </div>
 
             <div class="form-element">
                 <label for="costo_unitario">Costo unitario:</label>
@@ -165,10 +169,11 @@
                 <label for="descripcion">Descripción:</label>
                 <input type="text" name="descripcion" id="descripcion" autocomplete="off"  placeholder="(Opcional) Breve descripción del producto)">
             </div>
-
             <div class="form-element">
-                <div id="mostrarCategorias" class="form-element"></div> <!-- listar Categorias de los productos en combobox -->
+                <label for="disponible">Disponible:</label>
+                <input type="checkbox" id="disponible" name="disponible">
             </div>
+
             
             <p></p>
 
@@ -188,9 +193,9 @@
         <div class="popup-contenido">
             <h2>Categorias</h2>
             
-            <form class="formulario" onsubmit="return agregarCat(event)" id="formCat" method="post">
+            <form class="formulario" onsubmit="return agregarTiposP(event)" id="formCat" method="post">
                 <div>
-                    <label for="nombreCatTxt">Nombre:</label>
+                    <label for="nombre">Nombre:</label>
                     <input type="text" name="nombre" id="nombre" autocomplete="off" placeholder="Nombre" pattern=".{2,}" title="Al menos 2 caracteres"  required>
                 
                     <input type="submit" value="Guardar">
@@ -198,7 +203,7 @@
             </form>
             <hr>
                 <tbody>
-                    <div id="verCat"></div>
+                    <div id="verTipoP"></div>
                 </tbody>
             </table>
             <div class="cerrar-popup" onclick="cerrarPopup2()"><ion-icon name="close-circle"></ion-icon></div>
