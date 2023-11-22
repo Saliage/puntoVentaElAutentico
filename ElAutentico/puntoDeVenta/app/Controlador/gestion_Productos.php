@@ -9,58 +9,89 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $opcion = $_POST['opcion']; //obtener valor de la opción para controlar eventos
 
     //guardar
-        if($opcion == "guardar")
-        {   
-            $nombre_producto = $_POST['nombre_producto'];
-            $codigo_producto = $_POST['codigo_producto'];
-            $imagen = $_POST['imagen'];
-            $costo_unitario = $_POST['costo_unitario'];
-            $precio_venta = $_POST['precio_venta'];
-            $descripcion = $_POST['descripcion'];
-            $categorias = $_POST['categorias']; 
+    if ($opcion == "listar") {
 
-            if($nombre_producto != "" && $codigo_producto != "" && $imagen != "" && $costo_unitario != "" && $precio_venta != "" && $descripcion!= "" && $categorias != ""){
+        $tipoProd = new TipoProducto();
+        $resultado = $tipoProd->listarTiposProductos();
+    
+        echo '<select name="TipoProd" id="TipoProd" required>';
+        echo '<option disabled selected hidden>--seleccionar--</option>';
+    
+        if ($resultado->num_rows > 0) {
+            // Recorrer insumos presentes
+            while ($dato = $resultado->fetch_assoc()) {
+                echo '<option value="' . $dato['id_tipo'] . '" >' . $dato['nombre_tipo'] . '</option>';
+            }
+        } else {
+            echo '<option value="0">NULL</option>';
+        }
+    
+        echo '</select>';
+    }        
+    else{
 
-                $productos = new productos();
-                try{
+        echo
+            '
+            <tr>
+                <th>Id producto</th>
+                <th>Nombre</th>
+                <th>Codigo</th>
+                <th>Imagen</th>
+                <th>Costo unitario</th>
+                <th>Precio venta</th>
+                <th>Descripcion</th>
+                <th>Categoria</th>
+                <th>Editar</th> 
+                <th>Elimnar</th> 
+            </tr>
+            
+        ';
+    }
+        
+    if ($opcion == "guardar") {   
 
-                    $resultado = $productos->agregarProductos($nombre_producto,$codigo_producto,$imagen,$costo_unitario,$precio_venta,$descripciono,$categorias);
-                    if($resultado > 0){
-                    echo "Se agregó se agrego el producto: ".$nombre_producto;
-                    }
-
+        $nombre = $_POST['nombre'];
+        $codigo = $_POST['codigo'];
+        $tipo   = $_POST['tipo'];
+        $costo_u = $_POST['costo_u'];
+        $precio_v = $_POST['precio_v'];
+        $descripcion   = $_POST['descripcion'];
+        $disponible = $_POST['disponible'];
+    
+        $ruta_imagen = "../../public/imagenes/NoImage.png"; //asiga una imagen fija
+        if($codigo == ""){
+            $codigo = 0; // si no se ingresa un codigo, se asiga 0
+        }
+    
+        if (isset($_FILES["imagen"])) {
+            $imagen = $_FILES["imagen"];
+            $nombre_imagen = $imagen["name"];
+            $ruta_imagen = "../../public/imagenes/".$nombre_imagen;
+    
+            if (move_uploaded_file($imagen["tmp_name"], $ruta_imagen)) {
+                echo "La imagen se ha subido correctamente a: ". $ruta_imagen;
+            } else {
+                $ruta_imagen = null;
+                echo "Error al subir la imagen. ". $ruta_imagen;
+            }
+        } else {
+            echo "Error: No se ha recibido la imagen. ".$ruta_imagen;
+        }
+    
+        if ($nombre != "" && $tipo != "" && $costo_u != "" && $precio_v != "") {
+            $productos = new Productos();
+            try {
+                $resultado = $productos->agregarProductos($nombre,$codigo,$imagen,$costo_u,$precio_v,$descripcion,$disponible,$tipo);
+                if ($resultado > 0) {
+                    echo "Se agregó el producto: ".$nombre;
+                } else {
+                    echo "No se pudo agregar el producto: ".$nombre;
                 }
-                catch(Exception $e)
-                {
-                    echo "Error, no se puede guardar el producto, asegurese ".$nombre_producto." no se encuentre registrado";
-                }     
-            }   
-
-            
-                
+            } catch (Exception $e) {
+                echo "Error, no se pudo guardar el producto: ".$e->getMessage();
+            }
         }
-        
-        else{
-
-            echo
-                '
-                <tr>
-                    <th>Id producto</th>
-                    <th>Nombre</th>
-                    <th>Codigo</th>
-                    <th>Imagen</th>
-                    <th>Costo unitario</th>
-                    <th>Precio venta</th>
-                    <th>Descripcion</th>
-                    <th>Categoria</th>
-                    <th>Editar</th> 
-                    <th>Elimnar</th> 
-                </tr>
-                
-            ';
-        }
-            
-        
+    } 
 
 
     if($opcion == "mostrar")

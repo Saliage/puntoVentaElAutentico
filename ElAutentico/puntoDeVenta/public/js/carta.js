@@ -15,6 +15,7 @@ function cerrarPopup() {
     function inicializar(){
         listarProductos();
         mostrarTiposP();
+        listarTiposP();
     }
 
 //--------------------------------------------------------------------------------------------------------------------------------------->
@@ -215,22 +216,22 @@ function agregarProductos(event)
     var nombre_producto = formulario.elements['nombre_producto'].value;
     var codigo_producto = formulario.elements['codigo_producto'].value;
     var imagen = formulario.elements['imagen'];
+    var TipoProd = formulario.elements['TipoProd'].value;
     var costo_unitario = formulario.elements['costo_unitario'].value;
     var precio_venta = formulario.elements['precio_venta'].value;
     var descripcion = formulario.elements['descripcion'].value;
-    var categorias = formulario.elements['categorias'].value;
+    var disponible = formulario.elements['disponible'].checked;
 
-    var parametros = 
-    {
-        "nombre_producto" : nombre_producto,
-        "codigo_producto" : codigo_producto,
-        "imagen" : imagen,
-        "costo_unitario" : costo_unitario,
-        "precio_venta" : precio_venta,
-        "descripcion" : descripcion,
-        "categorias" : categorias,
-        "opcion" : 'guardar'
-    };
+    var parametros = new FormData();
+    parametros.append('nombre', nombre_producto);
+    parametros.append('codigo', codigo_producto);
+    parametros.append('imagen', imagen.files[0]);
+    parametros.append('tipo', TipoProd);
+    parametros.append('costo_u', costo_unitario);
+    parametros.append('precio_v', precio_venta);
+    parametros.append('descripcion', descripcion);
+    parametros.append('disponible', Number(disponible));
+    parametros.append('opcion', 'guardar');
     
     $.ajax({
         data: parametros,
@@ -266,7 +267,7 @@ function listarTiposP(){
 
     $.ajax({
         data: parametros,
-        url: '../Controlador/gestion_formato.php',
+        url: '../Controlador/gestion_productos.php',
         type: 'POST',
         
         beforesend: function()
