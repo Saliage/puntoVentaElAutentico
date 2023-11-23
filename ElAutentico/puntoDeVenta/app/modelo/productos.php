@@ -5,12 +5,12 @@ require_once('conexion.php');
 class Productos {
 
     // Agregar producto
-    public function agregarProductos($nombre_producto, $codigo_producto, $imagen, $costo_unitario, $precio_venta, $descripcion, $categorias_id) {
+    public function agregarProductos($nombre_producto, $codigo_producto, $imagen, $costo_unitario, $precio_venta, $descripcion,$disponible, $categorias_id) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "INSERT INTO producto (nombre_producto, codigo_producto, imagen, costo_unitario, precio_venta, descripcion, tipo_producto_id_tipo)
-                     VALUES ('$nombre_producto', '$codigo_producto', '$imagen', '$costo_unitario', '$precio_venta', '$descripcion', '$categorias_id')";
+        $consulta = "INSERT INTO producto (nombre_producto, codigo_producto, imagen, costo_unitario, precio_venta, descripcion,disponible, tipo_producto_id_tipo)
+                     VALUES ('$nombre_producto', '$codigo_producto', '$imagen', '$costo_unitario', '$precio_venta', '$descripcion','$disponible', '$categorias_id')";
 
         $resultado = $conn->query($consulta);
 

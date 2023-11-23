@@ -153,7 +153,8 @@
             </div>  
             
             <div class="form-element">
-                <div id="listarTipo" class="form-element"></div> <!-- listar Categorias de los productos en combobox -->
+                <label for="listarTipoDIV">Tipo de Producto:</label>
+                <div id="listarTipoDIV" ></div> <!-- listar Categorias de los productos en combobox -->
             </div>
 
             <div class="form-element">
