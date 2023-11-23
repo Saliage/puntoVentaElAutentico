@@ -30,6 +30,27 @@ class Productos {
         $conn->close();
     }
 
+
+    public function buscarProductos($busqueda) {
+        $conectar = new Conexion();
+        $conn = $conectar->abrirConexion();
+
+        // preparamos cadena de busqueda para insertar en LIKE
+        $nombre_prod = '%' . $busqueda . '%'; 
+
+        $consulta = "SELECT * FROM producto WHERE nombre_producto LIKE ?";
+        $stmt = $conn->prepare($consulta);
+        $stmt->bind_param("s", $nombre_prod);
+        $stmt->execute();
+        
+        $resultado = $stmt->get_result();
+
+        $stmt->close();
+        $conectar->cerrarConexion();
+
+        return $resultado;
+    }
+
         // Obtener todos los productos
         public function listarProductosDisponibles() {
             $conectar = new Conexion();

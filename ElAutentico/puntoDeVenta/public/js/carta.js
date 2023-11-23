@@ -140,8 +140,6 @@ function guardarProductosEdit(id){
     parametros.append('disponible', Number(disponibleCHK.checked));
     parametros.append('opcion', 'editar');
 
-    alert ('no imprime');
-
     $.ajax({
             data : parametros,
             url: '../Controlador/gestion_productos.php',
@@ -156,7 +154,7 @@ function guardarProductosEdit(id){
         },
 
         success: function(mensaje)
-        {   alert(mensaje);
+        {   
             $('#mostrarProductos').html(mensaje);
             listarProductos();
         }
@@ -248,7 +246,6 @@ function agregarProductos(event)
         success: function(mensaje)
         {
         //$('#mostrar_mensaje').html(mensaje);
-        alert(mensaje);
         listarProductos();
         cerrarPopup();
         document.getElementById("formAgregarProductos").reset();
