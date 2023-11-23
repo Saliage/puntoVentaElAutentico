@@ -24,6 +24,7 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../../public/js/logOut.js"></script>
+    <script src="../../public/js/js-maestro.js"></script>
     <script src="../../public/js/carta-vendedor-adm.js"></script>
 </head>
 
@@ -79,7 +80,7 @@
         <!-- Barra de busqueda y usuario -->
         <div class="barra-busqueda">
             <div class="entrada-busqueda">
-                <input type="text" placeholder="Buscar producto">
+                <input type="search" placeholder="Buscar producto">
                 <ion-icon name="search" class="icono-busqueda"></ion-icon>
             </div>
             <div class="vendedor">
@@ -147,7 +148,7 @@
 
         </div>        
     </main>
-    <!-- El contenedor del popup (inicialmente oculto) -->
+    <!-- El contenedor del popup tipo de pago (inicialmente oculto) -->
     <div class="popup" id="popup">
         <div class="popup-contenido">
             <h2>Medio de pago:</h2>
@@ -155,7 +156,15 @@
             <a href="" onclick="#" class="boton-pago" >Efectivo</a>
             <a href="../controlador/transbank.php" class="boton-pago">Tarjeta</a>
         </div>
-     </div>
+    </div>
+
+    <div class="popup" id="popup9">
+        <div class="popup-contenido">
+            Inventario de palta bajo (5 unidades)
+        </div>
+        <div class="cerrar-popup" onclick="cerrarPopup9()"><ion-icon name="close-circle"></ion-icon></div>
+    </div>
+
     <!-- JavaScript para manejar el evento de clic y agregar/eliminar la clase "seleccionado" al elemento seleccionado. -->
     <script>
         let enlace ="";
@@ -175,20 +184,6 @@
         function mostrarPopup() {
         const popup = document.getElementById('popup');
         popup.style.display = 'flex';
-
-        // Reproducir el sonido cuando se muestra el popup
-        //const audio = new Audio('../../public/music/sonido_de_dinero.mp3');
-        //audio.play();
-
-        // Obtener el monto actual del subtotal
-        var montoTotal = document.getElementById('totalPagar').innerText;
-        const montoSubtotal = parseInt(montoTotal);
-
-        // Actualizar el enlace con el nuevo monto
-        const enlacePago = document.getElementById('enlacePago');
-        enlacePago.href = `../../transbank-sdk-php-master/examples/webpay-plus/index.php?action=create&monto=${montoSubtotal}`;
-        enlace = `../../transbank-sdk-php-master/examples/webpay-plus/index.php?action=create&monto=${montoSubtotal}`;
-        }
 
         // Función para realizar el pago
         function realizarPago(medioPago) {

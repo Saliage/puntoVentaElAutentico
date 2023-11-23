@@ -188,6 +188,7 @@
     width: 60%;
     float: left;
     z-index: 2;
+    margin-top: 6%;
   }
   
   /* Se le agrega z-index para decir que seccion derecha va POR DEBAJO de seccion izquierda*/
