@@ -272,12 +272,12 @@ function listarTiposP(){
         
         beforesend: function()
         {
-        $('#listarTipo').html("Error de comunicación");
+        $('#listarTipoDIV').html("Error de comunicación");
         },
 
         success: function(mensaje)
         {
-        $('#listarTipo').html(mensaje);
+        $('#listarTipoDIV').html(mensaje);
         }
     });
 }
