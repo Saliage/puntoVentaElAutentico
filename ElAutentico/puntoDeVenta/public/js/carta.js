@@ -130,24 +130,25 @@ function guardarProductosEdit(id){
     
     var parametros = new FormData();
     parametros.append('id', id);
-    parametros.append('nombre', nombre_productoTxt);
-    parametros.append('codigo', codigo_productoTxt);
+    parametros.append('nombre', nombre_productoTxt.value);
+    parametros.append('codigo', codigo_productoTxt.value);
     parametros.append('rutaImagen', imagenIMG.src);
     parametros.append('imagen', imagenInput.files[0]);
-    parametros.append('tipo', TipoProd);
-    parametros.append('costo_u', costo_unitarioTxt);
-    parametros.append('precio_v', precio_venta);
-    parametros.append('descripcion', descripcion);
-    parametros.append('disponible', Number(disponible));
+    parametros.append('costo_u', costo_unitarioTxt.value);
+    parametros.append('precio_v', precio_ventaTxt.value);
+    parametros.append('descripcion', descripcionTxt.value);
+    parametros.append('disponible', Number(disponibleCHK.checked));
     parametros.append('opcion', 'editar');
 
-
-
+    alert ('no imprime');
 
     $.ajax({
             data : parametros,
             url: '../Controlador/gestion_productos.php',
-            type: 'POST',
+            type: 'POST',            
+            contentType: false, //desactivar para que jQuery no lo configure incorrectamente
+            processData: false, //desactivar para que jQuery no convierta FormData en cadena
+
         beforeSend: function()
         {
             $('#mostrarProductos').html("Error de comunicación");
@@ -155,13 +156,15 @@ function guardarProductosEdit(id){
         },
 
         success: function(mensaje)
-        {
+        {   alert(mensaje);
             $('#mostrarProductos').html(mensaje);
             listarProductos();
         }
     });
     listarProductos();
 }
+
+
 
 function eliminarProductos(id){
 

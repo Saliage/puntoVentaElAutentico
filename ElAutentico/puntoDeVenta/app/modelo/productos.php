@@ -86,7 +86,7 @@ class Productos {
                     precio_venta = '$precio_venta',
                     descripcion = '$descripcion',
                     disponible = '$disponible'
-                    WHERE id_productor = '$id'";
+                    WHERE id_producto = '$id'";
 
         $resultado = $conn->query($consulta);
 

@@ -59,10 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $disponible = $_POST['disponible'];
     
         $ruta_imagen = "../../public/imagenes/NoImage.png"; //asiga una imagen fija
-        if($codigo == ""){
-            $codigo = 0; // si no se ingresa un codigo, se asiga 0
-        }        
-    
+
         if (isset($_FILES["imagen"])) {
             $imagen = $_FILES["imagen"];
             $nombre_imagen = $imagen["name"];
@@ -176,23 +173,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $codigo = $_POST['codigo'];
             $costo_u = $_POST['costo_u'];
             $precio_v = $_POST['precio_v'];
-            $tipo = $_POST['tipo'];
             $descripcion = $_POST['descripcion'];
             $disponible = $_POST['disponible'];
-            $rutaImagen = $_POST['rutaImagen'];
+            $ruta_imagen = $_POST['rutaImagen'];
 
-    
-            if ($id != "") {
-                $productos = new productos();
-                $resultado = $productos->actualizarProductos($id,$nombre_producto, $codigo_producto, $rutaImagen, $costo_unitario, $precio_venta, $descripcion,$disponible);
-    
-                if ($resultado > 0) {
-                    echo "Se actualizó el producto: " . $nombre_producto;
+            echo' <scrtip>alert('.$id.'|'.$nombre.'|'.$codigo.'|'.$costo_u.'|'.$precio_v.'|'.$descripcion.'|'.$disponible.'|'.$ruta_imagen.');</scrtip>';
+
+            if (isset($_FILES["imagen"])) {
+                $imagen = $_FILES["imagen"];
+                $nombre_imagen = $imagen["name"];
+                $ruta_imagen = "../../public/imagenes/".$nombre_imagen;
+        
+                if (move_uploaded_file($imagen["tmp_name"], $ruta_imagen)) {
+                    echo "La imagen se ha subido correctamente a: ". $ruta_imagen;
                 } else {
-                    echo "Error, no se puede editar el producto ".$nombre_producto;
+                    $ruta_imagen = null;
+                    echo "Error al subir la imagen. ". $ruta_imagen;
+                }
+            } else {
+                echo "Error: No se ha recibido la imagen. ".$ruta_imagen;
+            }
+            echo'<script>alert(tenemos: '.$nombre.'|'.$codigo.'|'.$ruta_imagen.'|'.$costo_u.'|'.$precio_v.'|'.$descripcion.'|'.$disponible.');</script>';
+            if ($nombre != "" && $costo_u != "" && $precio_v != "") {
+                $productos = new Productos();
+                try {
+                    $resultado = $productos->actualizarProductos($id,$nombre,$codigo,$ruta_imagen,$costo_u,$precio_v,$descripcion,$disponible);
+                    if ($resultado > 0) {
+                        echo "Se agregó el producto: ".$nombre;
+                    } else {
+                        echo "No se pudo agregar el producto: ".$nombre;
+                    }
+                } catch (Exception $e) {
+                    echo "Error, no se pudo guardar el producto: ".$e->getMessage();
                 }
             }
         }
+
+
+
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }
