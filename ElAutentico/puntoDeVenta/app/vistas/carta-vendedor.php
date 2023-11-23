@@ -153,7 +153,7 @@
         <div class="popup-contenido">
             <h2>Medio de pago:</h2>
             <p> </p>
-            <a href="" onclick="#" class="boton-pago" >Efectivo</a>
+            <a href="" onclick="" class="boton-pago" >Efectivo</a>
             <a href="../controlador/transbank.php" class="boton-pago">Tarjeta</a>
         </div>
     </div>
@@ -184,6 +184,7 @@
         function mostrarPopup() {
         const popup = document.getElementById('popup');
         popup.style.display = 'flex';
+        }
 
         // Función para realizar el pago
         function realizarPago(medioPago) {

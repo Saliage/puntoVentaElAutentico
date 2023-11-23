@@ -144,7 +144,7 @@
 
             <div class="form-element">
                 <label for="codigo_producto">Codigo de barras:</label>
-                <input type="number" name="codigo_producto" id="codigo_producto" autocomplete="off" minlength="7" maxlength="25" placeholder="Codigo de barras, Ej: 123456789234" required>
+                <input type="number" name="codigo_producto" id="codigo_producto" autocomplete="off" minlength="7" maxlength="25" placeholder="Codigo de barras, Ej: 123456789234">
             </div>
 
             <div class="form-element">

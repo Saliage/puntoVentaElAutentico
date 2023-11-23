@@ -74,7 +74,7 @@ class Productos {
 
 
     // Actualizar datos de Producto
-    public function actualizarProductos($id, $nombre_producto, $codigo_producto, $imagen, $costo_unitario, $precio_venta, $descripcion, $categorias_id) {
+    public function actualizarProductos($id, $nombre_producto, $codigo_producto, $imagen, $costo_unitario, $precio_venta, $descripcion, $disponible) {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
@@ -85,7 +85,7 @@ class Productos {
                     costo_unitario = '$costo_unitario',
                     precio_venta = '$precio_venta',
                     descripcion = '$descripcion',
-                    tipo_producto_id_tipo = '$categorias_id'
+                    disponible = '$disponible'
                     WHERE id_productor = '$id'";
 
         $resultado = $conn->query($consulta);
