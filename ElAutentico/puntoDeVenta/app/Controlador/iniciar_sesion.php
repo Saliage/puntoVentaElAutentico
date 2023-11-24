@@ -65,37 +65,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //validar que el acceso no sea media
 
     //redireccionar o mostrar mensaje según el estado de sesión
 
-    if($_SESSION['sesion'] == 1)
-    {
-        $respuesta = array('mensaje'=>'ok');
-        echo json_encode($respuesta);
+    if ($_SESSION['sesion'] == 1) {
+        $respuesta = array('mensaje' => 'ok');
+    } elseif ($_SESSION['sesion'] == 0) {
+        $respuesta = array('mensaje' => 'Inicie sesión');
+    } elseif ($_SESSION['sesion'] == 2) {
+        $respuesta = array('mensaje' => 'Los campos son obligatorios');
+    } elseif ($_SESSION['sesion'] == 3) {
+        $respuesta = array('mensaje' => 'Usuario o clave incorrectos');
+    } elseif ($_SESSION['sesion'] == 4) {
+        $respuesta = array('mensaje' => 'Cerrar');
+        $_SESSION['sesion'] = 0;
     }
     
-    if($_SESSION['sesion'] == 0)
-    {
-        $respuesta = array('mensaje'=>'Ininicie sesion');
-        echo json_encode($respuesta);
-    }
-    
-    if($_SESSION['sesion'] == 2)
-    {
-        $respuesta = array('mensaje'=>'Los campos son obligatorios');
-        echo json_encode($respuesta);
-    }
-    
-    if($_SESSION['sesion'] == 3)
-    {
-        $respuesta = array('mensaje'=>'usuario o clave incorrecto');
-        echo json_encode($respuesta);
-    }
-    
-    if($_SESSION['sesion'] == 4)
-    {
-        $respuesta = array('mensaje'=>'cerrar');
-        echo json_encode($respuesta);
-        $_SESSION['sesion'] = 0; 
-    }
-    
+    echo json_encode($respuesta);
            
 }
 else
