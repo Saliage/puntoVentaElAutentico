@@ -608,6 +608,16 @@ input, select {
 .fixed{
   position: absolute;
 }
+
+.dashboard {
+  position: absolute;
+  
+  top: 90px; /* Adjust this value to move it down */
+  left: 100px; /* Adjust this value to move it to the right */
+  width: 93%;
+  height: 700px;
+}
+
 /* ========================================= Pantallas largas ========================================= */
 @media (min-width: 600px) {
 
