@@ -177,6 +177,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $disponible = $_POST['disponible'];
             $ruta_imagen = $_POST['rutaImagen'];
 
+            $id = intval($id); //asegurar que el id sea un entero
+
             echo' <scrtip>alert('.$id.'|'.$nombre.'|'.$codigo.'|'.$costo_u.'|'.$precio_v.'|'.$descripcion.'|'.$disponible.'|'.$ruta_imagen.');</scrtip>';
 
             if (isset($_FILES["imagen"])) {
@@ -193,11 +195,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 echo "Error: No se ha recibido la imagen. ".$ruta_imagen;
             }
-            echo'<script>alert(tenemos: '.$nombre.'|'.$codigo.'|'.$ruta_imagen.'|'.$costo_u.'|'.$precio_v.'|'.$descripcion.'|'.$disponible.');</script>';
+            echo'<script>alert(tenemos: '.$id.'|'.$nombre.'|'.$codigo.'|'.$ruta_imagen.'|'.$costo_u.'|'.$precio_v.'|'.$descripcion.'|'.$disponible.');</script>';
             if ($nombre != "" && $costo_u != "" && $precio_v != "") {
                 $productos = new Productos();
                 try {
-                    $resultado = $productos->actualizarProductos($id,$nombre,$codigo,$ruta_imagen,$costo_u,$precio_v,$descripcion,$disponible);
+                    $resultado = $productos->actualizarProductos($id, $nombre, $codigo,$ruta_imagen,$costo_u,$precio_v,$descripcion,$disponible);
                     if ($resultado > 0) {
                         echo "Se agregó el producto: ".$nombre;
                     } else {
