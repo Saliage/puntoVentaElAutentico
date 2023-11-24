@@ -66,20 +66,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //validar que el acceso no sea media
     //redireccionar o mostrar mensaje según el estado de sesión
 
     if ($_SESSION['sesion'] == 1) {
-        $respuesta = array('mensaje' => 'ok');
+        echo 'OK';
     } elseif ($_SESSION['sesion'] == 0) {
-        $respuesta = array('mensaje' => 'Inicie sesión');
+        echo 'Inicie sesión';
     } elseif ($_SESSION['sesion'] == 2) {
-        $respuesta = array('mensaje' => 'Los campos son obligatorios');
+        echo 'Los campos son obligatorios';
     } elseif ($_SESSION['sesion'] == 3) {
-        $respuesta = array('mensaje' => 'Usuario o clave incorrectos');
+        echo 'Usuario o clave incorrectos';
     } elseif ($_SESSION['sesion'] == 4) {
-        $respuesta = array('mensaje' => 'Cerrar');
+        echo 'Cerrar';
         $_SESSION['sesion'] = 0;
     }
-    
-    echo json_encode($respuesta);
-           
+               
 }
 else
 {
