@@ -84,7 +84,7 @@
                 {
                     try {
                         
-                        if(mensaje == 'ok')
+                        if(mensaje == 'OK')
                         {
                             window.location.href = "carta-vendedor-adm.php";
                         }
