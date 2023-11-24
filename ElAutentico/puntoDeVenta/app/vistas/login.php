@@ -80,13 +80,10 @@
                     $('#mostrarError').html("Error de comunicación");
                 },
 
-                success: function(json)
+                success: function(mensaje)
                 {
                     try {
-                        var data = JSON.parse(json);
-
-                        // Acceder a las propiedades específicas del JSON
-                        var mensaje = data.mensaje
+                        
                         if(mensaje == 'ok')
                         {
                             window.location.href = "carta-vendedor-adm.php";
