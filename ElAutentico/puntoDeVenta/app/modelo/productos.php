@@ -39,13 +39,13 @@ class Productos {
         $nombre_prod = '%' . $busqueda . '%'; 
 
         $consulta = "SELECT * FROM producto WHERE nombre_producto LIKE ?";
-        $stmt = $conn->prepare($consulta);
-        $stmt->bind_param("s", $nombre_prod);
-        $stmt->execute();
+        $sql = $conn->prepare($consulta);
+        $sql->bind_param("s", $nombre_prod);
+        $sql->execute();
         
-        $resultado = $stmt->get_result();
+        $resultado = $sql->get_result();
 
-        $stmt->close();
+        $sql->close();
         $conectar->cerrarConexion();
 
         return $resultado;
@@ -99,7 +99,23 @@ class Productos {
         $conectar = new Conexion();
         $conn = $conectar->abrirConexion();
 
-        $consulta = "UPDATE producto SET
+        if($codigo_producto == null){
+
+            $consulta = "UPDATE producto SET
+                    nombre_producto = '$nombre_producto',
+                    imagen = '$imagen',
+                    costo_unitario = '$costo_unitario',
+                    precio_venta = '$precio_venta',
+                    descripcion = '$descripcion',
+                    disponible = '$disponible'
+                    WHERE id_producto = '$id'";
+
+            $resultado = $conn->query($consulta);
+
+        }
+        else
+        {
+            $consulta = "UPDATE producto SET
                     nombre_producto = '$nombre_producto',
                     codigo_producto = '$codigo_producto',
                     imagen = '$imagen',
@@ -109,7 +125,8 @@ class Productos {
                     disponible = '$disponible'
                     WHERE id_producto = '$id'";
 
-        $resultado = $conn->query($consulta);
+            $resultado = $conn->query($consulta);
+        }
 
         return $resultado;
     }

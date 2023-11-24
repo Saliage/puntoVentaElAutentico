@@ -155,7 +155,6 @@ function guardarProductosEdit(id){
 
         success: function(mensaje)
         {   
-            alert(mensaje);
             $('#mostrarProductos').html(mensaje);
             listarProductos();
         }

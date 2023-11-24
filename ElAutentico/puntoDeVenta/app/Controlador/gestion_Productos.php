@@ -179,8 +179,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $id = intval($id); //asegurar que el id sea un entero
 
-            echo' <scrtip>alert('.$id.'|'.$nombre.'|'.$codigo.'|'.$costo_u.'|'.$precio_v.'|'.$descripcion.'|'.$disponible.'|'.$ruta_imagen.');</scrtip>';
-
+            if($codigo == ""){
+                $codigo = null;
+            }
+           
             if (isset($_FILES["imagen"])) {
                 $imagen = $_FILES["imagen"];
                 $nombre_imagen = $imagen["name"];
@@ -195,7 +197,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 echo "Error: No se ha recibido la imagen. ".$ruta_imagen;
             }
-            echo'<script>alert(tenemos: '.$id.'|'.$nombre.'|'.$codigo.'|'.$ruta_imagen.'|'.$costo_u.'|'.$precio_v.'|'.$descripcion.'|'.$disponible.');</script>';
+            
             if ($nombre != "" && $costo_u != "" && $precio_v != "") {
                 $productos = new Productos();
                 try {
