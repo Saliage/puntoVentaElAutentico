@@ -107,5 +107,7 @@
         </div>        
     </main>
 </body>
-<iframe title="autentico" width="100%" height="735px" src="https://app.powerbi.com/reportEmbed?reportId=48ce4ef4-3cc3-4928-966f-e6e56e19282c&autoAuth=true&embeddedDemo=true" frameborder="0" allowFullScreen="true"></iframe>
+<div class="dashboard">
+    <iframe title="autentico" width="100%" height="715px" src="https://app.powerbi.com/reportEmbed?reportId=48ce4ef4-3cc3-4928-966f-e6e56e19282c&autoAuth=true&embeddedDemo=true" frameborder="0" allowFullScreen="true"></iframe>
+</div>
 </html>
