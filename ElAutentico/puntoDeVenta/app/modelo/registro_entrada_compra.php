@@ -15,12 +15,12 @@ class RegEntradaCompra {
     public function agregarRegEntradaCompra($compra_id, $fecha) {
         $consulta = "INSERT INTO reg_entrada_compra (compra_id_compra, fecha) VALUES (?, ?)";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("is", $compra_id, $fecha);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("is", $compra_id, $fecha);
 
-        $resultado = $stmt->execute();
+        $resultado = $sql->execute();
 
-        $stmt->close();
+        $sql->close();
         $this->conn->close();
 
         return $resultado;
@@ -39,13 +39,13 @@ class RegEntradaCompra {
     public function buscarRegEntradaCompraId($id) {
         $consulta = "SELECT * FROM reg_entrada_compra WHERE id_reg_entrada_compra = ?";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("i", $id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
 
-        $stmt->execute();
-        $resultado = $stmt->get_result();
+        $sql->execute();
+        $resultado = $sql->get_result();
 
-        $stmt->close();
+        $sql->close();
 
         return $resultado;
     }
@@ -54,12 +54,12 @@ class RegEntradaCompra {
     public function actualizarRegEntradaCompra($id, $compra_id, $fecha) {
         $consulta = "UPDATE reg_entrada_compra SET compra_id_compra = ?, fecha = ? WHERE id_reg_entrada_compra = ?";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("isi", $compra_id, $fecha, $id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("isi", $compra_id, $fecha, $id);
 
-        $resultado = $stmt->execute();
+        $resultado = $sql->execute();
 
-        $stmt->close();
+        $sql->close();
         $this->conn->close();
 
         return $resultado;
@@ -69,12 +69,12 @@ class RegEntradaCompra {
     public function eliminarRegEntradaCompra($id) {
         $consulta = "DELETE FROM reg_entrada_compra WHERE id_reg_entrada_compra = ?";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("i", $id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
 
-        $resultado = $stmt->execute();
+        $resultado = $sql->execute();
 
-        $stmt->close();
+        $sql->close();
         $this->conn->close();
 
         return $resultado;

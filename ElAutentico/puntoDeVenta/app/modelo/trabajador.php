@@ -16,12 +16,12 @@ class Trabajador {
         $consulta = "INSERT INTO trabajador (rut, nombre, apellido, usuario, clave, activo, rol_id_rol)
                      VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("ssssssi", $rut, $nombre, $apellido, $usuario, $clave, $activo, $rol_id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("ssssssi", $rut, $nombre, $apellido, $usuario, $clave, $activo, $rol_id);
 
-        $resultado = $stmt->execute();
+        $resultado = $sql->execute();
 
-        $stmt->close();
+        $sql->close();
         $this->conn->close();
 
         return $resultado;
@@ -40,13 +40,13 @@ class Trabajador {
     public function buscarTrabajadorId($id) {
         $consulta = "SELECT * FROM trabajador WHERE id_trabajador = ?";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("i", $id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
 
-        $stmt->execute();
-        $resultado = $stmt->get_result();
+        $sql->execute();
+        $resultado = $sql->get_result();
 
-        $stmt->close();
+        $sql->close();
 
         return $resultado;
     }
@@ -55,13 +55,13 @@ class Trabajador {
     public function verificarTrabajador($usuario, $clave) {
         $consulta = "SELECT * FROM trabajador WHERE usuario = ? AND clave = ? AND activo != 0";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("ss", $usuario, $clave);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("ss", $usuario, $clave);
 
-        $stmt->execute();
-        $resultado = $stmt->get_result();
+        $sql->execute();
+        $resultado = $sql->get_result();
 
-        $stmt->close();
+        $sql->close();
 
         return $resultado;
     }
@@ -78,12 +78,12 @@ class Trabajador {
                     rol_id_rol = ?
                     WHERE id_trabajador = ?";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("ssssssii", $rut, $nombre, $apellido, $usuario, $clave, $activo, $rol_id, $id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("ssssssii", $rut, $nombre, $apellido, $usuario, $clave, $activo, $rol_id, $id);
 
-        $resultado = $stmt->execute();
+        $resultado = $sql->execute();
 
-        $stmt->close();
+        $sql->close();
         $this->conn->close();
 
         return $resultado;
@@ -93,12 +93,12 @@ class Trabajador {
     public function eliminarTrabajador($id) {
         $consulta = "DELETE FROM trabajador WHERE id_trabajador = ?";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("i", $id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
 
-        $resultado = $stmt->execute();
+        $resultado = $sql->execute();
 
-        $stmt->close();
+        $sql->close();
         $this->conn->close();
 
         return $resultado;

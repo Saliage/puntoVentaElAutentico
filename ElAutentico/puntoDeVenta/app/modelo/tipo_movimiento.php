@@ -15,12 +15,12 @@ class TipoMovimiento {
     public function agregarTipoMovimiento($nombre) {
         $consulta = "INSERT INTO tipo_movimiento (nombre_tipo_mov) VALUES (?)";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("s", $nombre);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("s", $nombre);
 
-        $resultado = $stmt->execute();
+        $resultado = $sql->execute();
 
-        $stmt->close();
+        $sql->close();
         $this->conn->close();
 
         return $resultado;
@@ -39,13 +39,13 @@ class TipoMovimiento {
     public function buscarTipoMovimientoId($id) {
         $consulta = "SELECT * FROM tipo_movimiento WHERE id_tipo_mov = ?";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("i", $id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
 
-        $stmt->execute();
-        $resultado = $stmt->get_result();
+        $sql->execute();
+        $resultado = $sql->get_result();
 
-        $stmt->close();
+        $sql->close();
 
         return $resultado;
     }
@@ -54,12 +54,12 @@ class TipoMovimiento {
     public function actualizarTipoMovimiento($id, $nombre) {
         $consulta = "UPDATE tipo_movimiento SET nombre_tipo_mov = ? WHERE id_tipo_mov = ?";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("si", $nombre, $id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("si", $nombre, $id);
 
-        $resultado = $stmt->execute();
+        $resultado = $sql->execute();
 
-        $stmt->close();
+        $sql->close();
         $this->conn->close();
 
         return $resultado;
@@ -69,12 +69,12 @@ class TipoMovimiento {
     public function eliminarTipoMovimiento($id) {
         $consulta = "DELETE FROM tipo_movimiento WHERE id_tipo_mov = ?";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("i", $id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
 
-        $resultado = $stmt->execute();
+        $resultado = $sql->execute();
 
-        $stmt->close();
+        $sql->close();
         $this->conn->close();
 
         return $resultado;

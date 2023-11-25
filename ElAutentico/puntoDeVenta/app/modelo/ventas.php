@@ -16,12 +16,12 @@ class Ventas {
         $consulta = "INSERT INTO ventas (fecha_venta, monto, tipo_documento, numero_documento, trabajador_id_trabajador, forma_pago_id_forma_pago)
                      VALUES (?, ?, ?, ?, ?, ?)";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("sdsiii", $fecha_venta, $monto, $tipo_documento, $numero_documento, $trabajador_id, $forma_pago_id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("sdsiii", $fecha_venta, $monto, $tipo_documento, $numero_documento, $trabajador_id, $forma_pago_id);
 
-        $resultado = $stmt->execute();
+        $resultado = $sql->execute();
 
-        $stmt->close();
+        $sql->close();
         $this->conn->close();
 
         return $resultado;
@@ -40,13 +40,13 @@ class Ventas {
     public function buscarVentaId($id) {
         $consulta = "SELECT * FROM ventas WHERE id_venta = ?";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("i", $id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
 
-        $stmt->execute();
-        $resultado = $stmt->get_result();
+        $sql->execute();
+        $resultado = $sql->get_result();
 
-        $stmt->close();
+        $sql->close();
 
         return $resultado;
     }
@@ -62,12 +62,12 @@ class Ventas {
                     forma_pago_id_forma_pago = ?
                     WHERE id_venta = ?";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("sdsiiii", $fecha_venta, $monto, $tipo_documento, $numero_documento, $trabajador_id, $forma_pago_id, $id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("sdsiiii", $fecha_venta, $monto, $tipo_documento, $numero_documento, $trabajador_id, $forma_pago_id, $id);
 
-        $resultado = $stmt->execute();
+        $resultado = $sql->execute();
 
-        $stmt->close();
+        $sql->close();
         $this->conn->close();
 
         return $resultado;
@@ -77,12 +77,12 @@ class Ventas {
     public function eliminarVenta($id) {
         $consulta = "DELETE FROM ventas WHERE id_venta = ?";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("i", $id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
 
-        $resultado = $stmt->execute();
+        $resultado = $sql->execute();
 
-        $stmt->close();
+        $sql->close();
         $this->conn->close();
 
         return $resultado;

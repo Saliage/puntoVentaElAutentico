@@ -15,12 +15,12 @@ class Zona {
     public function agregarZona($nombre, $almacen_id) {
         $consulta = "INSERT INTO zona (nombre_zona, almacen_id_almacen) VALUES (?, ?)";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("si", $nombre, $almacen_id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("si", $nombre, $almacen_id);
 
-        $resultado = $stmt->execute();
+        $resultado = $sql->execute();
 
-        $stmt->close();
+        $sql->close();
         $this->conn->close();
 
         return $resultado;
@@ -39,13 +39,13 @@ class Zona {
     public function buscarZonaId($id) {
         $consulta = "SELECT * FROM zona WHERE id_zona = ?";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("i", $id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
 
-        $stmt->execute();
-        $resultado = $stmt->get_result();
+        $sql->execute();
+        $resultado = $sql->get_result();
 
-        $stmt->close();
+        $sql->close();
 
         return $resultado;
     }
@@ -54,13 +54,13 @@ class Zona {
     public function buscarZonaPorAlmacen($id_almacen){
         $consulta = "SELECT * FROM zona WHERE almacen_id_almacen = ?";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("i", $id_almacen);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id_almacen);
 
-        $stmt->execute();
-        $resultado = $stmt->get_result();
+        $sql->execute();
+        $resultado = $sql->get_result();
 
-        $stmt->close();
+        $sql->close();
 
         return $resultado;
     }
@@ -69,12 +69,12 @@ class Zona {
     public function actualizarZona($id, $nombre, $almacen_id) {
         $consulta = "UPDATE zona SET nombre_zona = ?, almacen_id_almacen = ? WHERE id_zona = ?";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("sii", $nombre, $almacen_id, $id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("sii", $nombre, $almacen_id, $id);
 
-        $resultado = $stmt->execute();
+        $resultado = $sql->execute();
 
-        $stmt->close();
+        $sql->close();
         $this->conn->close();
 
         return $resultado;
@@ -84,12 +84,12 @@ class Zona {
     public function eliminarZona($id) {
         $consulta = "DELETE FROM zona WHERE id_zona = ?";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("i", $id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
 
-        $resultado = $stmt->execute();
+        $resultado = $sql->execute();
 
-        $stmt->close();
+        $sql->close();
         $this->conn->close();
 
         return $resultado;

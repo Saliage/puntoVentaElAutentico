@@ -15,12 +15,12 @@ class Rol {
     public function agregarRol($nombre) {
         $consulta = "INSERT INTO rol (nombre_rol) VALUES (?)";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("s", $nombre);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("s", $nombre);
 
-        $resultado = $stmt->execute();
+        $resultado = $sql->execute();
 
-        $stmt->close();
+        $sql->close();
         $this->conn->close();
 
         return $resultado;
@@ -39,13 +39,13 @@ class Rol {
     public function buscarRolId($id) {
         $consulta = "SELECT * FROM rol WHERE id_rol = ?";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("i", $id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
 
-        $stmt->execute();
-        $resultado = $stmt->get_result();
+        $sql->execute();
+        $resultado = $sql->get_result();
 
-        $stmt->close();
+        $sql->close();
 
         return $resultado;
     }
@@ -55,13 +55,13 @@ class Rol {
         $consulta = "SELECT * FROM rol WHERE nombre_rol LIKE ? LIMIT 5";
         $busqueda = "%$busqueda%";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("s", $busqueda);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("s", $busqueda);
 
-        $stmt->execute();
-        $resultado = $stmt->get_result();
+        $sql->execute();
+        $resultado = $sql->get_result();
 
-        $stmt->close();
+        $sql->close();
 
         return $resultado;
     }
@@ -70,12 +70,12 @@ class Rol {
     public function actualizarRol($id, $nombre) {
         $consulta = "UPDATE rol SET nombre_rol = ? WHERE id_rol = ?";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("si", $nombre, $id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("si", $nombre, $id);
 
-        $resultado = $stmt->execute();
+        $resultado = $sql->execute();
 
-        $stmt->close();
+        $sql->close();
         $this->conn->close();
 
         return $resultado;
@@ -85,12 +85,12 @@ class Rol {
     public function eliminarRol($id) {
         $consulta = "DELETE FROM rol WHERE id_rol = ?";
 
-        $stmt = $this->conn->prepare($consulta);
-        $stmt->bind_param("i", $id);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
 
-        $resultado = $stmt->execute();
+        $resultado = $sql->execute();
 
-        $stmt->close();
+        $sql->close();
         $this->conn->close();
 
         return $resultado;
