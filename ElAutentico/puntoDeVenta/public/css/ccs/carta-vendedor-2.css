@@ -275,7 +275,7 @@
     top: 4px;
     overflow-y: auto; /* Activa la barra de desplazamiento vertical cuando sea necesario */
     max-height: 600px;
-    margin-top: 100px;
+    margin-top: 10px;
     margin-left: 100px;
     width: 100%;
     user-select: none;
