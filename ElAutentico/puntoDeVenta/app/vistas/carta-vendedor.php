@@ -28,7 +28,7 @@
     <script src="../../public/js/carta-vendedor-adm.js"></script>
 </head>
 
-<body onload="verProductos()">
+<body onload="inicializar()">
  
     <!-- -------- BARRA DE NAVEGACION ------- -->
     <nav class="navbar">
@@ -80,7 +80,7 @@
         <!-- Barra de busqueda y usuario -->
         <div class="barra-busqueda">
             <div class="entrada-busqueda">
-                <input type="search" placeholder="Buscar producto">
+                <input type="search" placeholder="Buscar producto" oninput="buscarProducto()" id="busqueda">
                 <ion-icon name="search" class="icono-busqueda"></ion-icon>
             </div>
             <div class="vendedor">
@@ -98,22 +98,12 @@
                 <!-- Barra de categorias de la carta -->
                 
                 <div class="barra-categorias">
-                    <a href="#" class="category-arrow left-arrow">
-                        <ion-icon name="arrow-back-outline"></ion-icon>
-                    </a>
                 
                     <div class="container-categorias">
-                        <div class="item-categoria">Todos</div>
-                        <div class="item-categoria">Sándwiches</div>
-                        <div class="item-categoria">Bebidas</div>
-                        <div class="item-categoria">Frituras</div>
-                        <div class="item-categoria">Hot Dogs</div>
-                        <div class="item-categoria">Otros</div>
+                        <div class="item-categoria" onclick="verProductos()">Todos</div>
+                        <div id="verPorCat"></div>
                     </div>
                 
-                    <a href="#" class="category-arrow right-arrow">
-                        <ion-icon name="arrow-forward-outline"></ion-icon>
-                    </a>
                 </div>
                 
                 <!-- Contenedor para los productos -->

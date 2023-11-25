@@ -36,11 +36,41 @@ class Productos {
         return $resultado;
     }
 
+    public function verDisponiblesXTipo($tipo) {
+        $consulta = "SELECT * FROM producto WHERE tipo_producto_id_tipo = ? AND disponible = 1";
+
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $tipo);
+        $sql->execute();
+        
+        $resultado = $sql->get_result();
+
+        $sql->close();
+
+        return $resultado;
+    }
+
     public function buscarProductos($busqueda) {
         //preparar cadena de busqueda con like
         $nombre_prod = '%' . $busqueda . '%';
 
         $consulta = "SELECT * FROM producto WHERE nombre_producto LIKE ?";
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("s", $nombre_prod);
+        $sql->execute();
+        
+        $resultado = $sql->get_result();
+
+        $sql->close();
+
+        return $resultado;
+    }
+
+    public function buscarProductosDisponibles($busqueda) {
+        //preparar cadena de busqueda con like
+        $nombre_prod = '%' . $busqueda . '%';
+
+        $consulta = "SELECT * FROM producto WHERE nombre_producto LIKE ? AND disponible = 1";
         $sql = $this->conn->prepare($consulta);
         $sql->bind_param("s", $nombre_prod);
         $sql->execute();

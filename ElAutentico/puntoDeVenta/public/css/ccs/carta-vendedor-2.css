@@ -242,6 +242,12 @@
     display: flex;
     align-items: center;
   }
+
+  #verPorCat {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
   
   .category-arrow ion-icon {
     font-size: 1.5rem;
@@ -250,13 +256,13 @@
   }
   
   .item-categoria {
-    padding: 7px 50px;
+    padding: 7px 20px;
     background-color: black;
     color: #ffffff;
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
-    margin: 0 5px; /* Espacio uniforme entre categorías */
+    margin: 0 3px; /* Espacio uniforme entre categorías */
     white-space: nowrap; /* Evitar que el texto se divida en múltiples líneas */
     flex: 0 0 auto; /* Los recuadros tienen un ancho fijo */
   

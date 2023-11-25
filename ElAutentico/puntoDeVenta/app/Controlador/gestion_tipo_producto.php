@@ -61,7 +61,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
 
-
         //editar
 
         if($opcion == "editar")
