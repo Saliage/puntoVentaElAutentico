@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "Error: No se ha recibido la imagen. ".$ruta_imagen;
         }
-        echo'<script>alert(tenemos: '.$nombre.'|'.$codigo.'|'.$ruta_imagen.'|'.$tipo.'|'.$costo_u.'|'.$precio_v.'|'.$descripcion.'|'.$disponible.');</script>';
+       
         if ($nombre != "" && $tipo != "" && $costo_u != "" && $precio_v != "") {
             $productos = new Productos();
             try {
@@ -145,8 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </td>
 
                 <td>
-                <span id="disponibleSpan'. $id . '">' .$icono . '</span>
-                <input type="checkbox" style="display:none" id="disponibleCHK'.$id .'" ' . ($disponible == 1 ? 'checked' : '') . '>
+                <input type="checkbox" id="disponibleCHK'.$id .'" ' . ($disponible == 1 ? 'checked' : '') . '>
                  
                 </td>
                 <td>
@@ -175,13 +174,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $precio_v = $_POST['precio_v'];
             $descripcion = $_POST['descripcion'];
             $disponible = $_POST['disponible'];
-            $ruta_imagen = $_POST['rutaImagen'];
 
             $id = intval($id); //asegurar que el id sea un entero
 
             if($codigo == ""){
                 $codigo = null;
             }
+            //recortar ruta imagen
+            $ruta_imagen = recortarRutaImagen( $_POST['rutaImagen'] ); 
            
             if (isset($_FILES["imagen"])) {
                 $imagen = $_FILES["imagen"];
@@ -261,6 +261,22 @@ else
 
 }
 
+function recortarRutaImagen($ruta_completa_imagen) {
+    // Buscar la posición de "public/imagenes/" en la ruta completa
+    $posicion_inicio = strpos($ruta_completa_imagen, "public/imagenes/");
+
+    // Verificar si se encontró la subcadena
+    if ($posicion_inicio !== false) {
+        // Recortar la parte de la ruta después de "public/imagenes/"
+        $ruta_relacionada = substr($ruta_completa_imagen, $posicion_inicio);
+
+        $ruta_final = "../../" . $ruta_relacionada;
+
+        return $ruta_final;
+    }
+
+    return null;
+}
 
 
 
