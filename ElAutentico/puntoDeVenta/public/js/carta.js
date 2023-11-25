@@ -21,6 +21,52 @@ function cerrarPopup() {
 //--------------------------------------------------------------------------------------------------------------------------------------->
 //----------------------------------------------           GESION PRODUCTOS           --------------------------------------------------->
 //--------------------------------------------------------------------------------------------------------------------------------------->
+function buscarProducto() {
+    var busqueda = document.getElementById('busqueda').value;
+    var parametros = 
+    {
+        "busqueda" : busqueda,
+        "opcion" : "buscar"
+    };
+    
+    $.ajax({
+        data : parametros,
+        url: '../Controlador/gestion_productos.php',
+        type: 'POST',
+        beforeSend: function() {
+            //$('#mostrarProductos').html("No hay Productos en la carta para mostrar");
+        },
+        success: function(mensaje) {
+            $('#mostrarProductos').html(mensaje);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error en la solicitud AJAX:', textStatus, errorThrown); //ver errores
+        }
+    });
+}
+
+function buscarProductoTipo(categoria) {
+    var parametros = 
+    {
+        "categoria" : categoria,
+        "opcion" : "mostrar"
+    };
+    
+    $.ajax({
+        data : parametros,
+        url: '../Controlador/gestion_productos.php',
+        type: 'POST',
+        beforeSend: function() {
+            //$('#mostrarProductos').html("No hay Productos en la carta para mostrar");
+        },
+        success: function(mensaje) {
+            $('#mostrarProductos').html(mensaje);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error en la solicitud AJAX:', textStatus, errorThrown); //ver errores
+        }
+    });
+}
 
 function listarProductos() {
 

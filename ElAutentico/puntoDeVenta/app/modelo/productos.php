@@ -37,6 +37,7 @@ class Productos {
     }
 
     public function buscarProductos($busqueda) {
+        //preparar cadena de busqueda con like
         $nombre_prod = '%' . $busqueda . '%';
 
         $consulta = "SELECT * FROM producto WHERE nombre_producto LIKE ?";

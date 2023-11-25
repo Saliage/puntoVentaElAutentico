@@ -91,10 +91,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } 
 
 
-    if($opcion == "mostrar")
+    if($opcion == "mostrar" || $opcion =="buscar")
 	{
+
         $productos = new Productos();
-        $resultado = $productos->listarProductos();        
+        if($opcion =="buscar")
+        {
+            $busqueda = $_POST['busqueda'];
+            $resultado = $productos->buscarProductos($busqueda);
+        }else{
+            $resultado = $productos->listarProductos();        
+        }
 
 	  while($consulta = mysqli_fetch_array($resultado))
 	  {
@@ -160,6 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	}
 
+    
     
 
     //editar

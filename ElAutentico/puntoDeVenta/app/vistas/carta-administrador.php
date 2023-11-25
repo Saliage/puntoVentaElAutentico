@@ -100,7 +100,7 @@
         <!-- Barra de busqueda y usuario -->
         <div class="barra-busqueda">
             <div class="entrada-busqueda">
-                <input type="search" placeholder="Buscar producto" >
+                <input type="search" placeholder="Buscar producto" oninput="buscarProducto()" id="busqueda" >
                 <ion-icon name="search" class="icono-busqueda"></ion-icon>
             </div>
             <div class="vendedor">
