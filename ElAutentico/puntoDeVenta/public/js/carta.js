@@ -53,7 +53,6 @@ function editarProductos(id){
     var costo_unitarioSpan = document.getElementById('costo_unitarioSpan'+id);
     var precio_ventaSpan = document.getElementById('precio_ventaSpan'+id);
     var descripcionSpan = document.getElementById('descripcionSpan'+id);
-    var disponibleSpan = document.getElementById('disponibleSpan'+id);
     var btnProductosEdit = document.getElementById('btnproductoEdit'+id);
     
 
@@ -63,7 +62,6 @@ function editarProductos(id){
     var costo_unitarioTxt = document.getElementById('costo_unitarioTxt'+id);
     var precio_ventaTxt = document.getElementById('precio_ventaTxt'+id);
     var descripcionTxt = document.getElementById('descripcionTxt'+id);
-    var disponibleCHK = document.getElementById('disponibleCHK'+id);
     var guardarProductoEdit = document.getElementById('guardarProductoEdit'+id);
 
     // Mostrar el campo de texto y ocultar el span
@@ -74,7 +72,6 @@ function editarProductos(id){
     costo_unitarioSpan.style.display = 'none';
     precio_ventaSpan.style.display = 'none';
     descripcionSpan.style.display = 'none';
-    disponibleSpan.style.display = 'none';
     btnProductosEdit.style.display = 'none';
 
     nombre_productoTxt.style.display = 'inline';
@@ -83,7 +80,6 @@ function editarProductos(id){
     costo_unitarioTxt.style.display = 'inline';
     precio_ventaTxt.style.display = 'inline';
     descripcionTxt.style.display = 'inline';
-    disponibleCHK.style.display = 'inline';
     guardarProductoEdit.style.display = 'inline';
 }
 
@@ -159,6 +155,33 @@ function guardarProductosEdit(id){
     listarProductos();
 }
 
+function actualizarDisponible(id){
+     
+    var disponibleCHK = document.getElementById('disponibleCHK'+id);
+    var disponible = Number(disponibleCHK.checked);
+
+    var parametros = 
+    {
+        "id" : id,
+        "disponible" : disponible,
+        "opcion" : 'estado'
+    };  
+
+    $.ajax({
+        data : parametros,
+        url: '../Controlador/gestion_productos.php',
+        type: 'POST', 
+    beforeSend: function()
+    {
+    },
+
+    success: function(mensaje)
+    {   
+
+    }
+});
+
+}
 
 
 function eliminarProductos(id){

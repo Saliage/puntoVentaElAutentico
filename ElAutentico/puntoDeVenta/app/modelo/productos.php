@@ -92,7 +92,17 @@ class Productos {
     
     }
 
-
+    public function actualizarDisponibilidad($id, $disponible) {
+        $conectar = new Conexion();
+        $conn = $conectar->abrirConexion();
+    
+        $consulta = "UPDATE producto SET disponible = '$disponible' WHERE id_producto = '$id'";
+        
+        $resultado = $conn->query($consulta);
+    
+        return $resultado;
+    }
+    
 
     // Actualizar datos de Producto
     public function actualizarProductos($id, $nombre_producto, $codigo_producto, $imagen, $costo_unitario, $precio_venta, $descripcion, $disponible) {

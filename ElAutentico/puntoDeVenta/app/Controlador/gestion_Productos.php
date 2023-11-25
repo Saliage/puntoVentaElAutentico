@@ -145,8 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </td>
 
                 <td>
-                <input type="checkbox" id="disponibleCHK'.$id .'" ' . ($disponible == 1 ? 'checked' : '') . '>
-                 
+                    <input type="checkbox" id="disponibleCHK'.$id .'" ' . ($disponible == 1 ? 'checked' : '') . ' onclick="actualizarDisponible('.$id .')">                 
                 </td>
                 <td>
                     <ion-icon id="btnproductoEdit'.$id.'" name="pencil-outline" class="icono-editar" onclick="editarProductos('.$id.')"></ion-icon>
@@ -251,6 +250,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $e->getMessage();
     }
     
+
+    // cambiar disponibilidad
+    if($opcion == "estado"){
+        $id = $_POST['id'];
+        $disponible = $_POST['disponible'];
+
+        $producto = new Productos();
+        $resultado = $producto -> actualizarDisponibilidad($id,$disponible);
+
+    }
     
 } 
 else
