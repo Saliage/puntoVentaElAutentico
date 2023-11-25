@@ -135,8 +135,8 @@ body::-webkit-scrollbar-thumb {
 .entrada-busqueda {
   display: flex;
   align-items: center;
-  background: rgb(255, 255, 255); 
-  border: 2.5px solid #000dffd7; /* Borde */
+  background: #141418; 
+  border: 2.5px solid #141418; /* Borde */
   border-radius: 7px;
   width: 30%; /* Hacerlo 100% de ancho */
   height: 35px;
