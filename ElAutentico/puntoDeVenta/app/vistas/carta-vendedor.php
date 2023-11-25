@@ -142,11 +142,10 @@
     <div class="popup" id="popup">
         <div class="popup-contenido">
             <h2>Medio de pago:</h2>
-            <p> </p>
-            <a href="" onclick="" class="boton-pago" >Efectivo</a>
-            <a href="../controlador/transbank.php" class="boton-pago">Tarjeta</a>
+            <button class="boton-pago" onclick="realizarPago('Efectivo')">Efectivo</button>
+            <button class="boton-pago" onclick="realizarPago('Tarjeta')">Tarjeta</button>
         </div>
-    </div>
+     </div>
 
     <div class="popup" id="popup9">
         <div class="popup-contenido">
@@ -177,12 +176,7 @@
         }
 
         // Función para realizar el pago
-        function realizarPago(medioPago) {
-        alert(`Has elegido pagar con ${medioPago}`);
-        // Puedes agregar aquí la lógica para procesar el pago
-        const popup = document.getElementById('popup');
-        popup.style.display = 'none'; // Cierra el popup
-        }
+      
 
     </script>
 

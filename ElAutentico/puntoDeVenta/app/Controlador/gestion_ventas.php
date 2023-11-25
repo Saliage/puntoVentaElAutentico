@@ -3,6 +3,8 @@
 
 require_once("../modelo/productos.php");
 require_once("../modelo/tipo_producto.php");
+require_once("../modelo/ventas.php");
+
 session_start();
 ob_start();
 
@@ -54,22 +56,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-            //muestra categorías para ver productos de ese tipo
-            if($opcion == "verCat"){
+    //muestra categorías para ver productos de ese tipo
+    if($opcion == "verCat"){
 
-                $tipo_producto = new TipoProducto();
-                $resultado = $tipo_producto->listarTiposProductos();
-                while($consulta = mysqli_fetch_array($resultado))         
-                {
-                    $id_tipo = $consulta['id_tipo'];
-                    $nombre_tipo = $consulta['nombre_tipo'];
-        
-                    echo'
-                        <div class="item-categoria" onclick="verProdByCat('.$id_tipo.')">'.$nombre_tipo.'</div>
-                    ';
-                }            
-            }
-    
+        $tipo_producto = new TipoProducto();
+        $resultado = $tipo_producto->listarTiposProductos();
+        while($consulta = mysqli_fetch_array($resultado))         
+        {
+            $id_tipo = $consulta['id_tipo'];
+            $nombre_tipo = $consulta['nombre_tipo'];
+
+            echo'
+                <div class="item-categoria" onclick="verProdByCat('.$id_tipo.')">'.$nombre_tipo.'</div>
+            ';
+        }            
+    }
+
+
+    if($opcion == "procesarPago"){
+
+        $formaPago = $_POST['formaPago'];
+        $monto = $_POST['monto'];
+        $operador = $_SESSION['id'];
+        $carrito = json_decode($_POST['carrito'], true);
+
+        $venta = new Ventas();
+        $resultado = $venta->agregarVenta($monto,$operador,$formaPago, $carrito);
+
+    }
+
  
 } 
 else

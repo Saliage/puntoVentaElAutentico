@@ -158,7 +158,7 @@ function actualizarInterfazCarrito() {
     // Limpia el contenido del contenedor
     contenedorCarrito.innerHTML = '';
 
-    // Itera sobre los artículos en el carrito y crea elementos HTML para cada uno
+    // revisa los articulos en el carrito y crea elementos HTML para cada uno
     carrito.forEach(articulo => {
         const elementoArticulo = document.createElement('div');
         elementoArticulo.classList.add('producto-carrito');
@@ -190,3 +190,47 @@ function actualizarInterfazPrecioTotal(precioTotal) {
     subtotalElemento.textContent = `$${precioTotal}`;
 } 
 
+function realizarPago(medioPago) {
+
+    alert(`Se registra el pago con ${medioPago}`);
+
+    var formaPago = 1; //Se asume pago con efectivo
+
+    if(medioPago == "Tarjeta"){
+       formaPago == 2;
+    }
+
+    var monto = calcularPrecioTotal();
+    var parametros =
+    {
+        "formaPago" : formaPago,
+        "monto" : monto,
+        "carrito": JSON.stringify(carrito),
+        "opcion":"procesarPago"
+    }
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_ventas.php',
+        type: 'POST',
+        
+        beforesend: function()
+        {
+        },
+
+        success: function()
+        {
+            //vaciar carrito
+            carrito = [];
+            // Actualizar la interfaz del carrito después de vaciarlo
+            actualizarInterfazCarrito();
+        }
+    });
+
+    
+
+
+
+    const popup = document.getElementById('popup');
+    popup.style.display = 'none'; // Cierra el popup
+    }

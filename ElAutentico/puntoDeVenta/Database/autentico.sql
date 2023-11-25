@@ -113,6 +113,9 @@ CREATE TABLE IF NOT EXISTS `forma_pago` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- La exportación de datos fue deseleccionada.
+REPLACE INTO `forma_pago` (`id_forma_pago`, `forma_pago`) VALUES
+	(1, 'efectivo'),
+	(2, 'tarjeta');
 
 -- Volcando estructura para tabla autentico.insumos
 DROP TABLE IF EXISTS `insumos`;
