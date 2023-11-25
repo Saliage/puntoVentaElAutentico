@@ -95,7 +95,6 @@ function guardarProductosEdit(id){
     var costo_unitarioSpan = document.getElementById('costo_unitarioSpan'+id);
     var precio_ventaSpan = document.getElementById('precio_ventaSpan'+id);
     var descripcionSpan = document.getElementById('descripcionSpan'+id);
-    var disponibleSpan = document.getElementById('disponibleSpan'+id);
     var btnProductosEdit = document.getElementById('btnproductoEdit'+id);
     
 
@@ -116,7 +115,6 @@ function guardarProductosEdit(id){
     costo_unitarioSpan.style.display = 'inline';
     precio_ventaSpan.style.display = 'inline';
     descripcionSpan.style.display = 'inline';
-    disponibleSpan.style.display = 'inline';
     btnProductosEdit.style.display = 'inline';
 
     nombre_productoTxt.style.display = 'none';
@@ -125,7 +123,6 @@ function guardarProductosEdit(id){
     costo_unitarioTxt.style.display = 'none';
     precio_ventaTxt.style.display = 'none';
     descripcionTxt.style.display = 'none';
-    disponibleCHK.style.display = 'none';
     guardarProductoEdit.style.display = 'none';
     
     var parametros = new FormData();
