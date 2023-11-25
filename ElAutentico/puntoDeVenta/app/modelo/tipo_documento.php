@@ -4,68 +4,78 @@ require_once('conexion.php');
 
 class TipoDocumento {
 
+    private $conn;
+
+    public function __construct() {
+        $conectar = new Conexion();
+        $this->conn = $conectar->abrirConexion();
+    }
+
     // Agregar tipo de documento
     public function agregarTipoDocumento($nombre) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "INSERT INTO tipo_documento (nombre_tipo_documento) VALUES (?)";
 
-        $consulta = "INSERT INTO tipo_documento (nombre_tipo_documento)
-                     VALUES ('$nombre')";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("s", $nombre);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Obtener todos los tipos de documento
     public function listarTiposDocumento() {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "SELECT * FROM tipo_documento";
 
-        $resultado = $conn->query($consulta);
+        $resultado = $this->conn->query($consulta);
 
         return $resultado;
-        $conn->close();
     }
 
     // Buscar tipo de documento por id
     public function buscarTipoDocumentoId($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "SELECT * FROM tipo_documento WHERE id_tipo_documento = ?";
 
-        $consulta = "SELECT * FROM tipo_documento WHERE id_tipo_documento = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+
+        $stmt->close();
 
         return $resultado;
-        $conn->close();
-    
     }
 
     // Actualizar datos de tipo de documento
     public function actualizarTipoDocumento($id, $nombre) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "UPDATE tipo_documento SET nombre_tipo_documento = ? WHERE id_tipo_documento = ?";
 
-        $consulta = "UPDATE tipo_documento SET
-                    nombre_tipo_documento = '$nombre'
-                    WHERE id_tipo_documento = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("si", $nombre, $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Eliminar tipo de documento por id
     public function eliminarTipoDocumento($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "DELETE FROM tipo_documento WHERE id_tipo_documento = ?";
 
-        $consulta = "DELETE FROM tipo_documento WHERE id_tipo_documento = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }

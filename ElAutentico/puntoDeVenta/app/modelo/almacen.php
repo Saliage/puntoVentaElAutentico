@@ -4,79 +4,92 @@ require_once('conexion.php');
 
 class Almacen {
 
+    private $conn;
+
+    public function __construct() {
+        $conectar = new Conexion();
+        $this->conn = $conectar->abrirConexion();
+    }
+
     // Agregar almacen
     public function agregarAlmacen($nombre, $sala_venta) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "INSERT INTO almacen (nombre, sala_venta) VALUES (?, ?)";
 
-        $consulta = "INSERT INTO almacen (nombre, sala_venta) VALUES ('$nombre','$sala_venta')";
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("si", $nombre, $sala_venta);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $sql->execute();
+
+        $sql->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Obtener todos los almacenes
     public function listarAlmacenes() {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "SELECT * FROM almacen";
 
-        $resultado = $conn->query($consulta);
+        $resultado = $this->conn->query($consulta);
 
         return $resultado;
-        $conn ->close();
     }
 
     // Buscar almacen por id
     public function buscarAlmacenId($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "SELECT * FROM almacen WHERE id_almacen = ?";
 
-        $consulta = "SELECT * FROM almacen WHERE id_almacen = '$id'";
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
+        
+        $sql->execute();
+        $resultado = $sql->get_result();
 
-        $resultado = $conn->query($consulta);
+        $sql->close();
 
         return $resultado;
     }
 
-        // Buscar almacen por sala
-        public function listarAlmacenesEnSala(){
+    // Buscar almacenes por sala
+    public function listarAlmacenesEnSala() {
+        $consulta = "SELECT * FROM almacen WHERE sala_venta = 1";
         
-            $conectar = new Conexion();
-            $conn = $conectar->abrirConexion();
-    
-            $consulta = "SELECT * FROM almacen WHERE sala_venta = 1" ;
-    
-            $resultado = $conn->query($consulta);
-            return $resultado;
-        }
+        $resultado = $this->conn->query($consulta);
+
+        return $resultado;
+    }
 
     // Actualizar datos de almacen
     public function actualizarAlmacen($id, $nombre, $sala_venta) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $nombre = mysqli_real_escape_string($this->conn, $nombre);
 
-        $nombre = mysqli_real_escape_string($conn, $nombre);
+        $consulta = "UPDATE almacen SET nombre = ?, sala_venta = ? WHERE id_almacen = ?";
 
-        $consulta = "UPDATE almacen SET nombre = '$nombre', sala_venta = '$sala_venta' WHERE id_almacen = '$id'";
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("sii", $nombre, $sala_venta, $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $sql->execute();
+
+        $sql->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Eliminar almacen por id
     public function eliminarAlmacen($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "DELETE FROM almacen WHERE id_almacen = ?";
 
-        $consulta = "DELETE FROM almacen WHERE id_almacen = '$id'";
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $sql->execute();
+
+        $sql->close();
+        $this->conn->close();
 
         return $resultado;
     }
 }
 ?>
+

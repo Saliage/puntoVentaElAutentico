@@ -4,69 +4,78 @@ require_once('conexion.php');
 
 class RegEntradaCompra {
 
+    private $conn;
+
+    public function __construct() {
+        $conectar = new Conexion();
+        $this->conn = $conectar->abrirConexion();
+    }
+
     // Agregar registro de entrada por compra
     public function agregarRegEntradaCompra($compra_id, $fecha) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "INSERT INTO reg_entrada_compra (compra_id_compra, fecha) VALUES (?, ?)";
 
-        $consulta = "INSERT INTO reg_entrada_compra (compra_id_compra, fecha)
-                     VALUES ('$compra_id', '$fecha')";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("is", $compra_id, $fecha);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Obtener todos los registros de entrada por compra
     public function listarRegEntradaCompra() {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "SELECT * FROM reg_entrada_compra";
 
-        $resultado = $conn->query($consulta);
+        $resultado = $this->conn->query($consulta);
 
         return $resultado;
-        $conn->close();
     }
 
     // Buscar registro de entrada por compra por id
     public function buscarRegEntradaCompraId($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "SELECT * FROM reg_entrada_compra WHERE id_reg_entrada_compra = ?";
 
-        $consulta = "SELECT * FROM reg_entrada_compra WHERE id_reg_entrada_compra = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+
+        $stmt->close();
 
         return $resultado;
-        $conn->close();
-    
     }
 
     // Actualizar datos de registro de entrada por compra
     public function actualizarRegEntradaCompra($id, $compra_id, $fecha) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "UPDATE reg_entrada_compra SET compra_id_compra = ?, fecha = ? WHERE id_reg_entrada_compra = ?";
 
-        $consulta = "UPDATE reg_entrada_compra SET
-                    compra_id_compra = '$compra_id',
-                    fecha = '$fecha'
-                    WHERE id_reg_entrada_compra = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("isi", $compra_id, $fecha, $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Eliminar registro de entrada por compra por id
     public function eliminarRegEntradaCompra($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "DELETE FROM reg_entrada_compra WHERE id_reg_entrada_compra = ?";
 
-        $consulta = "DELETE FROM reg_entrada_compra WHERE id_reg_entrada_compra = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }

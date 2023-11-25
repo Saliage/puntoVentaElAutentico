@@ -4,72 +4,84 @@ require_once('conexion.php');
 
 class Promocion {
 
+    private $conn;
+
+    public function __construct() {
+        $conectar = new Conexion();
+        $this->conn = $conectar->abrirConexion();
+    }
+
     // Agregar promoción
     public function agregarPromocion($nombre, $precio, $fecha_inicio, $fecha_fin) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
-        $nombre = mysqli_real_escape_string($conn, $nombre);
-
         $consulta = "INSERT INTO promocion (nombre_promocion, precio, fecha_inicio, fecha_fin)
-                     VALUES ('$nombre', '$precio', '$fecha_inicio', '$fecha_fin')";
+                     VALUES (?, ?, ?, ?)";
 
-        $resultado = $conn->query($consulta);
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("sdss", $nombre, $precio, $fecha_inicio, $fecha_fin);
+
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Obtener todas las promociones
     public function listarPromociones() {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "SELECT * FROM promocion";
 
-        $resultado = $conn->query($consulta);
+        $resultado = $this->conn->query($consulta);
 
         return $resultado;
     }
 
     // Buscar promoción por id
     public function buscarPromocionId($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "SELECT * FROM promocion WHERE id_promocion = ?";
 
-        $consulta = "SELECT * FROM promocion WHERE id_promocion = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+
+        $stmt->close();
 
         return $resultado;
     }
 
     // Actualizar datos de promoción
     public function actualizarPromocion($id, $nombre, $precio, $fecha_inicio, $fecha_fin) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
-        $nombre = mysqli_real_escape_string($conn, $nombre);
-
         $consulta = "UPDATE promocion SET
-                    nombre_promocion = '$nombre',
-                    precio = '$precio',
-                    fecha_inicio = '$fecha_inicio',
-                    fecha_fin = '$fecha_fin'
-                    WHERE id_promocion = '$id'";
+                    nombre_promocion = ?,
+                    precio = ?,
+                    fecha_inicio = ?,
+                    fecha_fin = ?
+                    WHERE id_promocion = ?";
 
-        $resultado = $conn->query($consulta);
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("sdssi", $nombre, $precio, $fecha_inicio, $fecha_fin, $id);
+
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Eliminar promoción por id
     public function eliminarPromocion($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "DELETE FROM promocion WHERE id_promocion = ?";
 
-        $consulta = "DELETE FROM promocion WHERE id_promocion = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
