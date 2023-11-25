@@ -4,71 +4,84 @@ require_once('conexion.php');
 
 class MovimientoInsumo {
 
+    private $conn;
+
+    public function __construct() {
+        $conectar = new Conexion();
+        $this->conn = $conectar->abrirConexion();
+    }
+
     // Agregar movimiento de insumo
     public function agregarMovimientoInsumo($insumo_id, $tipo_movimiento_id, $cantidad, $fecha) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "INSERT INTO movimiento_insumo (insumo_id_insumo, tipo_movimiento_id, cantidad, fecha)
-                     VALUES ('$insumo_id', '$tipo_movimiento_id', '$cantidad', '$fecha')";
+                     VALUES (?, ?, ?, ?)";
 
-        $resultado = $conn->query($consulta);
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("iids", $insumo_id, $tipo_movimiento_id, $cantidad, $fecha);
+
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Obtener todos los movimientos de insumo
     public function listarMovimientosInsumo() {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "SELECT * FROM movimiento_insumo";
 
-        $resultado = $conn->query($consulta);
+        $resultado = $this->conn->query($consulta);
 
         return $resultado;
-        $conn->close();
     }
 
     // Buscar movimiento de insumo por id
     public function buscarMovimientoInsumoId($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "SELECT * FROM movimiento_insumo WHERE id_movimiento_insumo = ?";
 
-        $consulta = "SELECT * FROM movimiento_insumo WHERE id_movimiento_insumo = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+
+        $stmt->close();
 
         return $resultado;
-        $conn->close();
-    
     }
 
     // Actualizar datos de movimiento de insumo
     public function actualizarMovimientoInsumo($id, $insumo_id, $tipo_movimiento_id, $cantidad, $fecha) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "UPDATE movimiento_insumo SET
-                    insumo_id_insumo = '$insumo_id',
-                    tipo_movimiento_id = '$tipo_movimiento_id',
-                    cantidad = '$cantidad',
-                    fecha = '$fecha'
-                    WHERE id_movimiento_insumo = '$id'";
+                    insumo_id_insumo = ?,
+                    tipo_movimiento_id = ?,
+                    cantidad = ?,
+                    fecha = ?
+                    WHERE id_movimiento_insumo = ?";
 
-        $resultado = $conn->query($consulta);
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("iidsi", $insumo_id, $tipo_movimiento_id, $cantidad, $fecha, $id);
+
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Eliminar movimiento de insumo por id
     public function eliminarMovimientoInsumo($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "DELETE FROM movimiento_insumo WHERE id_movimiento_insumo = ?";
 
-        $consulta = "DELETE FROM movimiento_insumo WHERE id_movimiento_insumo = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }

@@ -4,69 +4,85 @@ require_once('conexion.php');
 
 class Compra {
 
+    private $conn;
+
+    public function __construct() {
+        $conectar = new Conexion();
+        $this->conn = $conectar->abrirConexion();
+    }
+
     // Agregar compra
     public function agregarCompra($fecha, $tipo_documento, $numero_documento, $total, $proveedor_id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "INSERT INTO compra (fecha_compra, tipo_documento, numero_documento, total, proveedor_id_proveedor)
-                     VALUES ('$fecha', '$tipo_documento', '$numero_documento', '$total', '$proveedor_id')";
+                     VALUES (?, ?, ?, ?, ?)";
 
-        $resultado = $conn->query($consulta);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("siidi", $fecha, $tipo_documento, $numero_documento, $total, $proveedor_id);
+
+        $resultado = $sql->execute();
+
+        $sql->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Obtener todas las compras
     public function listarCompras() {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "SELECT * FROM compra";
 
-        $resultado = $conn->query($consulta);
+        $resultado = $this->conn->query($consulta);
 
         return $resultado;
     }
 
     // Buscar compra por id
     public function buscarCompraId($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "SELECT * FROM compra WHERE id_compra = ?";
 
-        $consulta = "SELECT * FROM compra WHERE id_compra = '$id'";
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
+        
+        $sql->execute();
+        $resultado = $sql->get_result();
 
-        $resultado = $conn->query($consulta);
+        $sql->close();
 
         return $resultado;
     }
 
     // Actualizar datos de compra
     public function actualizarCompra($id, $fecha, $tipo_documento, $numero_documento, $total, $proveedor_id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "UPDATE compra SET 
-                    fecha_compra = '$fecha',
-                    tipo_documento = '$tipo_documento',
-                    numero_documento = '$numero_documento',
-                    total = '$total',
-                    proveedor_id_proveedor = '$proveedor_id'
-                    WHERE id_compra = '$id'";
+                    fecha_compra = ?,
+                    tipo_documento = ?,
+                    numero_documento = ?,
+                    total = ?,
+                    proveedor_id_proveedor = ?
+                    WHERE id_compra = ?";
 
-        $resultado = $conn->query($consulta);
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("siidii", $fecha, $tipo_documento, $numero_documento, $total, $proveedor_id, $id);
+
+        $resultado = $sql->execute();
+
+        $sql->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Eliminar compra por id
     public function eliminarCompra($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "DELETE FROM compra WHERE id_compra = ?";
 
-        $consulta = "DELETE FROM compra WHERE id_compra = '$id'";
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $sql->execute();
+
+        $sql->close();
+        $this->conn->close();
 
         return $resultado;
     }

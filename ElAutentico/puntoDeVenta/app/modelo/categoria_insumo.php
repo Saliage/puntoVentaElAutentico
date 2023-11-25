@@ -4,66 +4,82 @@ require_once('conexion.php');
 
 class CategoriaInsumo {
 
+    private $conn;
+
+    public function __construct() {
+        $conectar = new Conexion();
+        $this->conn = $conectar->abrirConexion();
+    }
+
     // Agregar categoría de insumo
     public function agregarCategoriaInsumo($nombre) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $nombre = mysqli_real_escape_string($this->conn, $nombre);
 
-        $nombre = mysqli_real_escape_string($conn, $nombre);
+        $consulta = "INSERT INTO categoria_insumo (nombre_categoria) VALUES (?)";
 
-        $consulta = "INSERT INTO categoria_insumo (nombre_categoria) VALUES ('$nombre')";
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("s", $nombre);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $sql->execute();
+
+        $sql->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Obtener todas las categorías de insumo
     public function listarCategoriasInsumo() {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "SELECT * FROM categoria_insumo";
 
-        $resultado = $conn->query($consulta);
+        $resultado = $this->conn->query($consulta);
 
         return $resultado;
     }
 
     // Buscar categoría de insumo por id
     public function buscarCategoriaInsumoId($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "SELECT * FROM categoria_insumo WHERE id_categoria = ?";
 
-        $consulta = "SELECT * FROM categoria_insumo WHERE id_categoria = '$id'";
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
+        
+        $sql->execute();
+        $resultado = $sql->get_result();
 
-        $resultado = $conn->query($consulta);
+        $sql->close();
 
         return $resultado;
     }
 
     // Actualizar datos de categoría de insumo
     public function actualizarCategoriaInsumo($id, $nombre) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $nombre = mysqli_real_escape_string($this->conn, $nombre);
 
-        $nombre = mysqli_real_escape_string($conn, $nombre);
+        $consulta = "UPDATE categoria_insumo SET nombre_categoria = ? WHERE id_categoria = ?";
 
-        $consulta = "UPDATE categoria_insumo SET nombre_categoria = '$nombre' WHERE id_categoria = '$id'";
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("si", $nombre, $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $sql->execute();
+
+        $sql->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Eliminar categoría de insumo por id
     public function eliminarCategoriaInsumo($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "DELETE FROM categoria_insumo WHERE id_categoria = ?";
 
-        $consulta = "DELETE FROM categoria_insumo WHERE id_categoria = '$id'";
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $sql->execute();
+
+        $sql->close();
+        $this->conn->close();
 
         return $resultado;
     }

@@ -4,90 +4,102 @@ require_once('conexion.php');
 
 class Trabajador {
 
+    private $conn;
+
+    public function __construct() {
+        $conectar = new Conexion();
+        $this->conn = $conectar->abrirConexion();
+    }
+
     // Agregar trabajador
     public function agregarTrabajador($rut, $nombre, $apellido, $usuario, $clave, $activo, $rol_id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "INSERT INTO trabajador (rut, nombre, apellido, usuario, clave, activo, rol_id_rol)
-                     VALUES ('$rut', '$nombre', '$apellido', '$usuario', '$clave', '$activo', '$rol_id')";
+                     VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        $resultado = $conn->query($consulta);
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("ssssssi", $rut, $nombre, $apellido, $usuario, $clave, $activo, $rol_id);
+
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Obtener todos los trabajadores
     public function listarTrabajadores() {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "SELECT * FROM trabajador";
 
-        $resultado = $conn->query($consulta);
+        $resultado = $this->conn->query($consulta);
 
         return $resultado;
-        $conn->close();
     }
 
     // Buscar trabajador por id
     public function buscarTrabajadorId($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "SELECT * FROM trabajador WHERE id_trabajador = ?";
 
-        $consulta = "SELECT * FROM trabajador WHERE id_trabajador = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+
+        $stmt->close();
 
         return $resultado;
-        $conn->close();
-    
     }
 
-    // verificar sesion
+    // Verificar sesión
     public function verificarTrabajador($usuario, $clave) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "SELECT * FROM trabajador WHERE usuario = ? AND clave = ? AND activo != 0";
 
-        $consulta = "SELECT * FROM trabajador WHERE usuario = '$usuario' and clave = '$clave' and activo != 0";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("ss", $usuario, $clave);
 
-        $resultado = $conn->query($consulta);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+
+        $stmt->close();
 
         return $resultado;
-        $conn->close();
-    
     }
-
-
 
     // Actualizar datos de trabajador
     public function actualizarTrabajador($id, $rut, $nombre, $apellido, $usuario, $clave, $activo, $rol_id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "UPDATE trabajador SET
-                    rut = '$rut',
-                    nombre = '$nombre',
-                    apellido = '$apellido',
-                    usuario = '$usuario',
-                    clave = '$clave',
-                    activo = '$activo',
-                    rol_id_rol = '$rol_id'
-                    WHERE id_trabajador = '$id'";
+                    rut = ?,
+                    nombre = ?,
+                    apellido = ?,
+                    usuario = ?,
+                    clave = ?,
+                    activo = ?,
+                    rol_id_rol = ?
+                    WHERE id_trabajador = ?";
 
-        $resultado = $conn->query($consulta);
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("ssssssii", $rut, $nombre, $apellido, $usuario, $clave, $activo, $rol_id, $id);
+
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Eliminar trabajador por id
     public function eliminarTrabajador($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "DELETE FROM trabajador WHERE id_trabajador = ?";
 
-        $consulta = "DELETE FROM trabajador WHERE id_trabajador = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }

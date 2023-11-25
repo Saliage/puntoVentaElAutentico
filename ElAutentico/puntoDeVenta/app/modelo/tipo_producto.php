@@ -4,61 +4,78 @@ require_once('conexion.php');
 
 class TipoProducto {
 
+    private $conn;
+
+    public function __construct() {
+        $conectar = new Conexion();
+        $this->conn = $conectar->abrirConexion();
+    }
+
     // Agregar tipo de producto
     public function agregarTipoProducto($nombre) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "INSERT INTO tipo_producto (nombre_tipo) VALUES (?)";
 
-        $consulta = "INSERT INTO tipo_producto (nombre_tipo) VALUES ('$nombre')";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("s", $nombre);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Obtener todos los tipos de productos
     public function listarTiposProductos() {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "SELECT * FROM tipo_producto";
 
-        $resultado = $conn->query($consulta);
+        $resultado = $this->conn->query($consulta);
 
         return $resultado;
     }
 
     // Buscar tipo de producto por id
     public function buscarTipoProductoId($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "SELECT * FROM tipo_producto WHERE id_tipo = ?";
 
-        $consulta = "SELECT * FROM tipo_producto WHERE id_tipo = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+
+        $stmt->close();
 
         return $resultado;
     }
 
     // Actualizar datos de tipo de producto
     public function actualizarTipoProducto($id, $nombre) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-        $consulta = "UPDATE tipo_producto SET nombre_tipo = '$nombre' WHERE id_tipo = '$id'";
+        $consulta = "UPDATE tipo_producto SET nombre_tipo = ? WHERE id_tipo = ?";
 
-        $resultado = $conn->query($consulta);
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("si", $nombre, $id);
+
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Eliminar tipo de producto por id
     public function eliminarTipoProducto($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "DELETE FROM tipo_producto WHERE id_tipo = ?";
 
-        $consulta = "DELETE FROM tipo_producto WHERE id_tipo = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }

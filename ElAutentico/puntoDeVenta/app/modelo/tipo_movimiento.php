@@ -4,68 +4,78 @@ require_once('conexion.php');
 
 class TipoMovimiento {
 
+    private $conn;
+
+    public function __construct() {
+        $conectar = new Conexion();
+        $this->conn = $conectar->abrirConexion();
+    }
+
     // Agregar tipo de movimiento
     public function agregarTipoMovimiento($nombre) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "INSERT INTO tipo_movimiento (nombre_tipo_mov) VALUES (?)";
 
-        $consulta = "INSERT INTO tipo_movimiento (nombre_tipo_mov)
-                     VALUES ('$nombre')";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("s", $nombre);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Obtener todos los tipos de movimiento
     public function listarTiposMovimiento() {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "SELECT * FROM tipo_movimiento";
 
-        $resultado = $conn->query($consulta);
+        $resultado = $this->conn->query($consulta);
 
         return $resultado;
-        $conn->close();
     }
 
     // Buscar tipo de movimiento por id
     public function buscarTipoMovimientoId($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "SELECT * FROM tipo_movimiento WHERE id_tipo_mov = ?";
 
-        $consulta = "SELECT * FROM tipo_movimiento WHERE id_tipo_mov = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+
+        $stmt->close();
 
         return $resultado;
-        $conn->close();
-    
     }
 
     // Actualizar datos de tipo de movimiento
     public function actualizarTipoMovimiento($id, $nombre) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "UPDATE tipo_movimiento SET nombre_tipo_mov = ? WHERE id_tipo_mov = ?";
 
-        $consulta = "UPDATE tipo_movimiento SET
-                    nombre_tipo_mov = '$nombre'
-                    WHERE id_tipo_mov = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("si", $nombre, $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Eliminar tipo de movimiento por id
     public function eliminarTipoMovimiento($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "DELETE FROM tipo_movimiento WHERE id_tipo_mov = ?";
 
-        $consulta = "DELETE FROM tipo_movimiento WHERE id_tipo_mov = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }

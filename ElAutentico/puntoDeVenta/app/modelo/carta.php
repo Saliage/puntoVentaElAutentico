@@ -4,87 +4,101 @@ require_once('conexion.php');
 
 class Tipo_producto {
 
+    private $conn;
+
+    public function __construct() {
+        $conectar = new Conexion();
+        $this->conn = $conectar->abrirConexion();
+    }
+
     // Agregar Productos
     public function agregarProductos($nombre) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $nombre = mysqli_real_escape_string($this->conn, $nombre);
 
-        $nombre = mysqli_real_escape_string($conn, $nombre);
+        $consulta = "INSERT INTO tipo_producto (nombre_tipo) VALUES (?)";
 
-        $consulta = "INSERT INTO tipo_producto (nombre_tipo) VALUES ('$nombre')";
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("s", $nombre);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $sql->execute();
 
-        
+        $sql->close();
+        $this->conn->close();
+
         return $resultado;
-        $conn->close();
     }
 
     // Obtener todos los roles
     public function listarCat() {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "SELECT * FROM tipo_producto";
 
-        $resultado = $conn->query($consulta);
+        $resultado = $this->conn->query($consulta);
 
         return $resultado;
-        $conn->close();
     }
 
     // Buscar categoria por id
     public function buscarProductosId($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "SELECT * FROM tipo_producto WHERE id_tipo = ?";
 
-        $consulta = "SELECT * FROM tipo_producto WHERE id_tipo = '$id'";
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
+        
+        $sql->execute();
+        $resultado = $sql->get_result();
 
-        $resultado = $conn->query($consulta);
+        $sql->close();
 
         return $resultado;
-        $conn->close();
     }
 
     // Buscar Categoria por parte del nombre
     public function buscarProductosNombre($busqueda){
+        $consulta = "SELECT * FROM tipo_producto WHERE nombre_tipo LIKE ? LIMIT 5";
+
+        $busqueda = "%$busqueda%";
         
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("s", $busqueda);
 
-        $consulta = "SELECT * FROM tipo_producto WHERE nombre_tipo LIKE '%$busqueda%' LIMIT 5";
+        $sql->execute();
+        $resultado = $sql->get_result();
 
-        $resultado = $conn->query($consulta);
+        $sql->close();
+
         return $resultado;
-        $conn->close();
     }
 
     // Actualizar datos de productos
     public function actualizarProductos($id, $nombre) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $nombre = mysqli_real_escape_string($this->conn, $nombre);
 
-        $nombre = mysqli_real_escape_string($conn, $nombre);
+        $consulta = "UPDATE tipo_producto SET nombre_tipo = ? WHERE id_tipo = ?";
 
-        $consulta = "UPDATE tipo_producto SET nombre_tipo = '$nombre' WHERE id_tipo = '$id'";
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("si", $nombre, $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $sql->execute();
+
+        $sql->close();
+        $this->conn->close();
 
         return $resultado;
-        $conn->close();
     }
 
     // Eliminar rol por id
     public function eliminarProductos($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "DELETE FROM tipo_producto WHERE id_tipo = ?";
 
-        $consulta = "DELETE FROM tipo_producto WHERE id_tipo = '$id'";
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $sql->execute();
+
+        $sql->close();
+        $this->conn->close();
 
         return $resultado;
-        $conn->close();
     }
 }
 ?>

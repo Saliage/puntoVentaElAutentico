@@ -4,66 +4,82 @@ require_once('conexion.php');
 
 class ProductoPromocion {
 
+    private $conn;
+
+    public function __construct() {
+        $conectar = new Conexion();
+        $this->conn = $conectar->abrirConexion();
+    }
+
     // Agregar relación producto-promoción
     public function agregarProductoPromocion($producto_id, $promocion_id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "INSERT INTO producto_promocion (producto_id_producto, promocion_id_promocion)
-                     VALUES ('$producto_id', '$promocion_id')";
+                     VALUES (?, ?)";
 
-        $resultado = $conn->query($consulta);
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("ii", $producto_id, $promocion_id);
+
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Obtener todas las relaciones producto-promoción
     public function listarProductoPromocion() {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "SELECT * FROM producto_promocion";
 
-        $resultado = $conn->query($consulta);
+        $resultado = $this->conn->query($consulta);
 
         return $resultado;
     }
 
     // Buscar relación producto-promoción por id
     public function buscarProductoPromocionId($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "SELECT * FROM producto_promocion WHERE id_producto_promocion = ?";
 
-        $consulta = "SELECT * FROM producto_promocion WHERE id_producto_promocion = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+
+        $stmt->close();
 
         return $resultado;
     }
 
     // Actualizar datos de relación producto-promoción
     public function actualizarProductoPromocion($id, $producto_id, $promocion_id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "UPDATE producto_promocion SET
-                    producto_id_producto = '$producto_id',
-                    promocion_id_promocion = '$promocion_id'
-                    WHERE id_producto_promocion = '$id'";
+                    producto_id_producto = ?,
+                    promocion_id_promocion = ?
+                    WHERE id_producto_promocion = ?";
 
-        $resultado = $conn->query($consulta);
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("iii", $producto_id, $promocion_id, $id);
+
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Eliminar relación producto-promoción por id
     public function eliminarProductoPromocion($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "DELETE FROM producto_promocion WHERE id_producto_promocion = ?";
 
-        $consulta = "DELETE FROM producto_promocion WHERE id_producto_promocion = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }

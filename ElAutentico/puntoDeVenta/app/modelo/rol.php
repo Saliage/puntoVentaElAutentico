@@ -4,87 +4,97 @@ require_once('conexion.php');
 
 class Rol {
 
+    private $conn;
+
+    public function __construct() {
+        $conectar = new Conexion();
+        $this->conn = $conectar->abrirConexion();
+    }
+
     // Agregar rol
     public function agregarRol($nombre) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "INSERT INTO rol (nombre_rol) VALUES (?)";
 
-        $nombre = mysqli_real_escape_string($conn, $nombre);
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("s", $nombre);
 
-        $consulta = "INSERT INTO rol (nombre_rol) VALUES ('$nombre')";
+        $resultado = $stmt->execute();
 
-        $resultado = $conn->query($consulta);
+        $stmt->close();
+        $this->conn->close();
 
-        
         return $resultado;
-        $conn->close();
     }
 
     // Obtener todos los roles
     public function listarRoles() {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "SELECT * FROM rol";
 
-        $resultado = $conn->query($consulta);
+        $resultado = $this->conn->query($consulta);
 
         return $resultado;
-        $conn->close();
     }
 
     // Buscar rol por id
     public function buscarRolId($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "SELECT * FROM rol WHERE id_rol = ?";
 
-        $consulta = "SELECT * FROM rol WHERE id_rol = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+
+        $stmt->close();
 
         return $resultado;
-        $conn->close();
     }
 
     // Buscar rol por parte del nombre
-    public function buscarRolNombre($busqueda){
-        
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+    public function buscarRolNombre($busqueda) {
+        $consulta = "SELECT * FROM rol WHERE nombre_rol LIKE ? LIMIT 5";
+        $busqueda = "%$busqueda%";
 
-        $consulta = "SELECT * FROM rol WHERE nombre_rol LIKE '%$busqueda%' LIMIT 5";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("s", $busqueda);
 
-        $resultado = $conn->query($consulta);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+
+        $stmt->close();
+
         return $resultado;
-        $conn->close();
     }
 
     // Actualizar datos de rol
     public function actualizarRol($id, $nombre) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "UPDATE rol SET nombre_rol = ? WHERE id_rol = ?";
 
-        $nombre = mysqli_real_escape_string($conn, $nombre);
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("si", $nombre, $id);
 
-        $consulta = "UPDATE rol SET nombre_rol = '$nombre' WHERE id_rol = '$id'";
+        $resultado = $stmt->execute();
 
-        $resultado = $conn->query($consulta);
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
-        $conn->close();
     }
 
     // Eliminar rol por id
     public function eliminarRol($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "DELETE FROM rol WHERE id_rol = ?";
 
-        $consulta = "DELETE FROM rol WHERE id_rol = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
-        $conn->close();
     }
 }
+
 ?>

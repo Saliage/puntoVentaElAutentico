@@ -4,151 +4,125 @@ require_once('conexion.php');
 
 class Productos {
 
-    // Agregar producto
-    public function agregarProductos($nombre_producto, $codigo_producto, $imagen, $costo_unitario, $precio_venta, $descripcion,$disponible, $categorias_id) {
+    private $conn;
+
+    public function __construct() {
         $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $this->conn = $conectar->abrirConexion();
+    }
 
-        $consulta = "INSERT INTO producto (nombre_producto, codigo_producto, imagen, costo_unitario, precio_venta, descripcion,disponible, tipo_producto_id_tipo)
-                     VALUES ('$nombre_producto', '$codigo_producto', '$imagen', '$costo_unitario', '$precio_venta', '$descripcion','$disponible', '$categorias_id')";
+    // Agregar producto
+    public function agregarProductos($nombre_producto, $codigo_producto, $imagen, $costo_unitario, $precio_venta, $descripcion, $disponible, $categorias_id) {
+        $consulta = "INSERT INTO producto (nombre_producto, codigo_producto, imagen, costo_unitario, precio_venta, descripcion, disponible, tipo_producto_id_tipo)
+                     VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        $resultado = $conn->query($consulta);
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("sisddsii", $nombre_producto, $codigo_producto, $imagen, $costo_unitario, $precio_venta, $descripcion, $disponible, $categorias_id);
+
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Obtener todos los productos
     public function listarProductos() {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
         $consulta = "SELECT * FROM producto";
 
-        $resultado = $conn->query($consulta);
+        $resultado = $this->conn->query($consulta);
 
         return $resultado;
-        $conn->close();
     }
-
 
     public function buscarProductos($busqueda) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
-        // preparamos cadena de busqueda para insertar en LIKE
-        $nombre_prod = '%' . $busqueda . '%'; 
+        $nombre_prod = '%' . $busqueda . '%';
 
         $consulta = "SELECT * FROM producto WHERE nombre_producto LIKE ?";
-        $sql = $conn->prepare($consulta);
-        $sql->bind_param("s", $nombre_prod);
-        $sql->execute();
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("s", $nombre_prod);
+        $stmt->execute();
         
-        $resultado = $sql->get_result();
+        $resultado = $stmt->get_result();
 
-        $sql->close();
-        $conectar->cerrarConexion();
+        $stmt->close();
 
         return $resultado;
     }
 
-        // Obtener todos los productos
-        public function listarProductosDisponibles() {
-            $conectar = new Conexion();
-            $conn = $conectar->abrirConexion();
-    
-            $consulta = "SELECT * FROM producto WHERE disponible = 1";
-    
-            $resultado = $conn->query($consulta);
-    
-            return $resultado;
-            $conn->close();
-        }
+    // Obtener todos los productos disponibles
+    public function listarProductosDisponibles() {
+        $consulta = "SELECT * FROM producto WHERE disponible = 1";
+
+        $resultado = $this->conn->query($consulta);
+
+        return $resultado;
+    }
 
     // Buscar producto por id
     public function buscarProductosId($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "SELECT * FROM producto WHERE id_producto = ?";
 
-        $consulta = "SELECT * FROM producto WHERE id_producto = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
 
-        return $resultado;
-        $conn->close();
-    
-    }
-
-    // verificar sesion
-    public function verificarTrabajador($usuario, $clave) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
-        $consulta = "SELECT * FROM trabajador WHERE usuario = '$usuario' and clave = '$clave' and activo != 0";
-
-        $resultado = $conn->query($consulta);
+        $stmt->close();
 
         return $resultado;
-        $conn->close();
-    
     }
-
-    public function actualizarDisponibilidad($id, $disponible) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-    
-        $consulta = "UPDATE producto SET disponible = '$disponible' WHERE id_producto = '$id'";
-        
-        $resultado = $conn->query($consulta);
-    
-        return $resultado;
-    }
-    
 
     // Actualizar datos de Producto
     public function actualizarProductos($id, $nombre_producto, $codigo_producto, $imagen, $costo_unitario, $precio_venta, $descripcion, $disponible) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
-
-        if($codigo_producto == null){
-
+        if ($codigo_producto == null) {
             $consulta = "UPDATE producto SET
-                    nombre_producto = '$nombre_producto',
-                    imagen = '$imagen',
-                    costo_unitario = '$costo_unitario',
-                    precio_venta = '$precio_venta',
-                    descripcion = '$descripcion',
-                    disponible = '$disponible'
-                    WHERE id_producto = '$id'";
+                        nombre_producto = ?,
+                        imagen = ?,
+                        costo_unitario = ?,
+                        precio_venta = ?,
+                        descripcion = ?,
+                        disponible = ?
+                        WHERE id_producto = ?";
 
-            $resultado = $conn->query($consulta);
-
-        }
-        else
-        {
+            $stmt = $this->conn->prepare($consulta);
+            $stmt->bind_param("ssddsii", $nombre_producto, $imagen, $costo_unitario, $precio_venta, $descripcion, $disponible, $id);
+        } else {
             $consulta = "UPDATE producto SET
-                    nombre_producto = '$nombre_producto',
-                    codigo_producto = '$codigo_producto',
-                    imagen = '$imagen',
-                    costo_unitario = '$costo_unitario',
-                    precio_venta = '$precio_venta',
-                    descripcion = '$descripcion',
-                    disponible = '$disponible'
-                    WHERE id_producto = '$id'";
+                        nombre_producto = ?,
+                        codigo_producto = ?,
+                        imagen = ?,
+                        costo_unitario = ?,
+                        precio_venta = ?,
+                        descripcion = ?,
+                        disponible = ?
+                        WHERE id_producto = ?";
 
-            $resultado = $conn->query($consulta);
+            $stmt = $this->conn->prepare($consulta);
+            $stmt->bind_param("sisddsii", $nombre_producto, $codigo_producto, $imagen, $costo_unitario, $precio_venta, $descripcion, $disponible, $id);
         }
+
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
 
     // Eliminar producto por id
     public function eliminarProductos($id) {
-        $conectar = new Conexion();
-        $conn = $conectar->abrirConexion();
+        $consulta = "DELETE FROM producto WHERE id_producto = ?";
 
-        $consulta = "DELETE FROM producto WHERE id_producto = '$id'";
+        $stmt = $this->conn->prepare($consulta);
+        $stmt->bind_param("i", $id);
 
-        $resultado = $conn->query($consulta);
+        $resultado = $stmt->execute();
+
+        $stmt->close();
+        $this->conn->close();
 
         return $resultado;
     }
