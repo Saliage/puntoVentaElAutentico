@@ -47,18 +47,65 @@ class Ventas {
     public function listarVentas() {
         $consulta = "SELECT v.id_venta as id, v.fecha_venta as fecha, CONCAT(t.nombre, ' ', t.apellido) as nombre, v.monto as monto, f.forma_pago AS fPago
                     FROM ventas v INNER JOIN forma_pago f on f.id_forma_pago = v.forma_pago_id_forma_pago
-                    INNER JOIN trabajador t ON t.id_trabajador = v.trabajador_id_trabajador";
+                    INNER JOIN trabajador t ON t.id_trabajador = v.trabajador_id_trabajador
+                    ORDER BY v.fecha_venta DESC
+                    LIMIT 30";
 
         $resultado = $this->conn->query($consulta);
 
         return $resultado;
     }
 
+    public function buscarVentasTodos($busqueda) {
+        $buscar = '%' . $busqueda . '%';
+    
+        $consulta = "SELECT v.id_venta as id, v.fecha_venta as fecha, CONCAT(t.nombre, ' ', t.apellido) as nombre, v.monto as monto, f.forma_pago AS fPago
+                    FROM ventas v 
+                    INNER JOIN forma_pago f ON f.id_forma_pago = v.forma_pago_id_forma_pago
+                    INNER JOIN trabajador t ON t.id_trabajador = v.trabajador_id_trabajador
+                    WHERE v.id_venta LIKE ? OR v.fecha_venta LIKE ? OR t.nombre LIKE ? OR t.apellido LIKE ? OR f.forma_pago LIKE ?
+                    ORDER BY v.fecha_venta DESC
+                    LIMIT 30";
+    
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("sssss", $buscar, $buscar, $buscar, $buscar, $buscar);
+        $sql->execute();
+    
+        $resultado = $sql->get_result();
+    
+        return $resultado;
+    }
+    
+    public function buscarMisVentas($busqueda,$trabajador) {
+        $buscar = '%' . $busqueda . '%';
+    
+        $consulta = "SELECT v.id_venta as id, v.fecha_venta as fecha, CONCAT(t.nombre, ' ', t.apellido) as nombre, v.monto as monto, f.forma_pago AS fPago
+                    FROM ventas v 
+                    INNER JOIN forma_pago f ON f.id_forma_pago = v.forma_pago_id_forma_pago
+                    INNER JOIN trabajador t ON t.id_trabajador = v.trabajador_id_trabajador
+                    WHERE (v.id_venta LIKE ? OR v.fecha_venta LIKE ? OR f.forma_pago LIKE ?)
+                    AND v.trabajador_id_trabajador = ?
+                    ORDER BY v.fecha_venta DESC
+                    LIMIT 30";
+    
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("sssi", $buscar, $buscar, $buscar,$trabajador);
+        $sql->execute();
+    
+        $resultado = $sql->get_result();
+    
+        return $resultado;
+    }
+    
+
     // Obtener todas las ventas
     public function listarVentasVendedor($id_vendedor) {
         $consulta = "SELECT v.id_venta as id, v.fecha_venta as fecha, v.monto as monto, f.forma_pago AS fPago
-                    FROM ventas v INNER JOIN forma_pago f on f.id_forma_pago = v.forma_pago_id_forma_pago
-                    WHERE v.trabajador_id_trabajador = ?";
+                    FROM ventas v
+                    INNER JOIN forma_pago f ON f.id_forma_pago = v.forma_pago_id_forma_pago
+                    WHERE v.trabajador_id_trabajador = ?
+                    ORDER BY v.fecha_venta DESC
+                    LIMIT 30";
     
         $sql = $this->conn->prepare($consulta);
         $sql->bind_param("i", $id_vendedor);

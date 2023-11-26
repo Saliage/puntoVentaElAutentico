@@ -80,7 +80,7 @@
         <!-- Barra de busqueda y usuario -->
         <div class="barra-busqueda">
             <div class="entrada-busqueda">
-                <input type="text" placeholder="Buscar por fecha">
+                <input type="text" placeholder="Buscar" oninput="buscarMisVentas();" id="buscar" >
                 <ion-icon name="search" class="icono-busqueda"></ion-icon>
             </div>
             <div class="vendedor">

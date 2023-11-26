@@ -99,5 +99,14 @@ class Insumo {
 
         return $resultado;
     }
+
+    public function buscarInsumo($busqueda){
+
+        $buscar = '%'.$busqueda.'%';
+        
+
+    }
+
+
 }
 ?>
