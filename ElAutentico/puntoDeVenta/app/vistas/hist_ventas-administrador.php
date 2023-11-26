@@ -24,12 +24,12 @@
     <!-- ====================== ESTILOS CSS ==================== -->
     <link rel="stylesheet" href="../../public/css/ccs/carta-administrador.css">
     <!-- ====================== JS ==================== -->
-    <script src="../../public/js"></script>
+    <script src="../../public/js/historial-ventas.js" ></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>
 
-<body>
+<body onload="verTodasVentas()">
  
     <!-- -------- BARRA DE NAVEGACION ------- -->
     <nav class="navbar">
@@ -109,40 +109,10 @@
         </div>
 
         <div class="tabla-inventario">
-            
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Id Venta</th>
-                        <th>Nombre Vendedor</th>
-                        <th>Fecha</th>
-                        <th>Monto</th>
-                        <th>Medio de pago</th>
-                        <th colspan="2"></th> 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Roberto Cifuentes</td>
-                        <td>19-11-2023</td>
-                        <td>$16.900</td>
-                        <td>Debito</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Roberto</td>
-                        <td>19-11-2023</td>
-                        <td>$13.000</td>
-                        <td>Efectivo</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
 
-        
+            <div id="mostrarVentas"></div>           
+            
+        </div>        
     </main>
 </body>
 </html>

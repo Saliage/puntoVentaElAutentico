@@ -45,7 +45,9 @@ class Ventas {
 
     // Obtener todas las ventas
     public function listarVentas() {
-        $consulta = "SELECT * FROM ventas";
+        $consulta = "SELECT v.id_venta as id, v.fecha_venta as fecha, CONCAT(t.nombre, ' ', t.apellido) as nombre, v.monto as monto, f.forma_pago AS fPago
+                    FROM ventas v INNER JOIN forma_pago f on f.id_forma_pago = v.forma_pago_id_forma_pago
+                    INNER JOIN trabajador t ON t.id_trabajador = v.trabajador_id_trabajador";
 
         $resultado = $this->conn->query($consulta);
 
