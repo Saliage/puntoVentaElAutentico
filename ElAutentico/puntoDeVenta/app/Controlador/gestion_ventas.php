@@ -85,6 +85,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     }
 
+    if($opcion == "verVentas"){
+
+        $id_vendedor = $_POST['vendedor'];
+
+        $venta = new Ventas();
+        $resultado = $venta->listarVentasVendedor($id_vendedor);
+
+        echo '
+            <table class="table">
+                <thead>
+                    <tr class="container">
+                        <th>Código Venta</th>
+                        <th>Fecha</th>
+                        <th>Monto</th>
+                        <th>Forma de pago</th>
+                        <th>Detalle</th> 
+                    </tr>
+                </thead>
+                <tbody>
+
+                ';
+                while($consulta = mysqli_fetch_array($resultado)){
+
+                    $id = $consulta['id'];
+                    $fecha = $consulta['fecha'];
+                    $monto = number_format($consulta['monto'], 0, ',', '.'); //dar formato al monto
+                    $fPago = $consulta['fPago'];
+
+                    echo '
+                        <tr>
+                            <td>'.$id.'</td>
+                            <td>'.$fecha.'</td>
+                            <td>$'.$monto.'</td>
+                            <td>'.$fPago.'</td>
+                            <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
+                        </tr>                     
+                    ';
+                }
+                echo'
+            </tbody>
+            </table>                    
+        ';
+    }
+
  
 } 
 else

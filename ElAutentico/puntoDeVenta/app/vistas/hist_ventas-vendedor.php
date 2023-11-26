@@ -24,11 +24,12 @@
     <!-- ====================== JS ==================== -->
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../../public/js/logOut.js"></script>
+    <script src="../../public/js/historial-ventas.js" ></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>
 
-<body>
+<body onload="verVentas(<?php echo $_SESSION['id']?>);"> <!-- envia datos de la session -->
     <!-- -------- BARRA DE NAVEGACION ------- -->
     <nav class="navbar">
         <ul class="navbar-nav">
@@ -91,30 +92,7 @@
         <!-- Tabla para mostrar los insumos con Bootstrap -->
         <div>
         <div class="tabla-inventario">
-            <table class="table">
-                <thead>
-                    <tr class="container">
-                        <th>Código Venta</th>
-                        <th>Fecha</th>
-                        <th>Monto</th>
-                        <th colspan="1"></th> 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>19-11-2023</td>
-                        <td>$16.900</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>19-11-2023</td>
-                        <td>$13.000</td>
-                        <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div id="mostrarVentas"></div>
         </div>
     </div>
     </main>
