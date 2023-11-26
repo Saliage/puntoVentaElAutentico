@@ -59,12 +59,19 @@
                     <span class="link-text">Historial Ventas</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="../../app/vistas/carta-administrador.php" class="nav-link">
-                    <span class="link-icon"><ion-icon name="person-outline"></ion-icon></i></span>
-                    <span class="link-text">Vista administrador</span>
-                </a>
-            </li>
+
+            <?php
+                if($_SESSION['rol'] == 1){
+                echo'
+                    <li class="nav-item">
+                        <a href="../../app/vistas/carta-administrador.php" class="nav-link">
+                            <span class="link-icon"><ion-icon name="person-outline"></ion-icon></i></span>
+                            <span class="link-text">Vista administrador</span>
+                        </a>
+                    </li>
+                ';
+                }
+            ?>
             <li class="nav-item">
             <a class="nav-link" onclick="confirmarCerrarSesion();">
                     <span class="link-icon"><ion-icon name="log-in-outline"></ion-icon></i></span>
