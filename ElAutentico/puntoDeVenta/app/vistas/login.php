@@ -8,13 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
-        
-        
-        <link rel="stylesheet" href="../../public/css/ccs/login-v2.css">
-        <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">
-        
-
-        
+    <link rel="stylesheet" href="../../public/css/ccs/login-v2.css">
+    <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">    
 
     <title>Iniciar sesion</title>
 </head>
