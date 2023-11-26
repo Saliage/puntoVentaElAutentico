@@ -19,15 +19,20 @@
     <title>Inventario Vendedor</title>
 
     <!-- ====================== ESTILOS CSS ==================== -->
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../../public/css/ccs/carta-administrador.css">
-    <!-- ====================== JS ==================== -->
+        <!-- ====================== JS ==================== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../../public/js/logOut.js"></script>
+    <script src="../../public/js/inventario-administrador.js"></script>
+    <script src="../../public/js/inventario.js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>
 
-<body>
+<body onload="listarInventario();">
     <!-- -------- BARRA DE NAVEGACION ------- -->
     <nav class="navbar">
         <ul class="navbar-nav">
@@ -89,56 +94,8 @@
 
         <!-- Tabla para mostrar los insumos con Bootstrap -->
         <div>
-        <div class="tabla-inventario">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Id de Insumo</th>
-                        <th>Imagen de Insumo</th>
-                        <th>Nombre de Insumo</th>
-                        <th>Cantidad Disponible</th>
-                        <th>Fecha de Vencimiento</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>8</td>
-                        <td>
-                            <img src="../../public/imagenes/coca-cola-normal.jpg" alt="Insumo 1">
-                        </td>
-                        <td>Coca-Cola 590ml</td>
-                        <td>50</td>
-                        <td>2024-05-31</td>
-                    </tr>
-                    <tr>
-                        <td>13</td>
-                        <td>
-                            <img src="../../public/imagenes/fanta-zero.jpeg" alt="Insumo 2">
-                        </td>
-                        <td>Fanta Zero 591ml</td>
-                        <td>30</td>
-                        <td>2024-06-15</td>
-                    </tr>
-                    <tr>
-                        <td>16</td>
-                        <td>
-                            <img src="../../public/imagenes/tomates.png" alt="Insumo 2">
-                        </td>
-                        <td>Tomates</td>
-                        <td>30</td>
-                        <td>2023-11-29</td>
-                    </tr>
-                    <tr>
-                        <td>17</td>
-                        <td>
-                            <img src="../../public/imagenes/redbull.jpg" alt="Insumo 2">
-                        </td>
-                        <td>Red Bull</td>
-                        <td>30</td>
-                        <td>2024-09-08</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="tabla-inventario" style="width: 100%;">
+            <div id="mostrarInventario"></div>
         </div>
     </div>
     </main>
