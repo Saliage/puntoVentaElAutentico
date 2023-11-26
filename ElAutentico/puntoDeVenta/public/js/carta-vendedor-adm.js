@@ -168,7 +168,7 @@ function actualizarInterfazCarrito() {
             <ion-icon name="remove-circle-outline" onclick="disminuirCantidad(${articulo.id})"></ion-icon>
             <div class="numero">${articulo.cantidad}</div>
             <ion-icon name="add-circle-outline" onclick="aumentarCantidad(${articulo.id})"></ion-icon>
-            <h3>${articulo.id}</h3>
+            <h3>${articulo.nombre}</h3>
             <h3>$<span id="totalPagar">${articulo.precio * articulo.cantidad}</span></h3>
             <ion-icon name="close-outline" onclick="eliminarDelCarrito(${articulo.id})"></ion-icon>
         `;
