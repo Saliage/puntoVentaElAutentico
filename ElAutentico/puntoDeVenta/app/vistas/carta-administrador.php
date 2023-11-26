@@ -210,6 +210,72 @@
             </table>
             <div class="cerrar-popup" onclick="cerrarPopup2()"><ion-icon name="close-circle"></ion-icon></div>
         </div>
-    </div>
+    </div>
+
+        <!------------------------------------------------------------------->
+    <!-- Contenedor del popup DETALLES PRODUCTOS (inicialmente oculto) ----->
+    <!------------------------------------------------------------------->
+
+    <div class="popup" id="popup">
+        <div class="popup-contenido">
+            <h2>Agregar producto:</h2>
+            <p></p>
+            <form id="formAgregarProductos" onsubmit="return agregarProductos(event)" method="post" class="formulario">
+
+            <div class="form-element">
+                <label for="nombre_producto">Nombre:</label>
+                <input type="text" name="nombre_producto" id="nombre_producto" autocomplete="off"  placeholder="Ej: Coca-Cola, Italiano Gigante, etc" required>
+            </div>
+
+            <div class="form-element">
+                <label for="codigo_producto">Codigo de barras:</label>
+                <input type="number" name="codigo_producto" id="codigo_producto" autocomplete="off" minlength="7" maxlength="25" placeholder="Codigo de barras, Ej: 123456789234">
+            </div>
+
+            <div class="form-element">
+                <label for="imagen">Imagen:</label>
+                <input type="file" name="imagen" id="imagen" accept=".jpg, .jpeg, .png">
+            </div>  
+            
+            <div class="form-element">
+                <label for="listarTipoDIV">Tipo de Producto:</label>
+                <div id="listarTipoDIV" ></div> <!-- listar Categorias de los productos en combobox -->
+            </div>
+
+            <div class="form-element">
+                <label for="costo_unitario">Costo unitario:</label>
+                <input type="number" name="costo_unitario" id="costo_unitario" autocomplete="off" minlength="3" maxlength="5" placeholder="Ej: 1500" required>
+            </div>
+
+            <div class="form-element">
+                <label for="precio_venta">Precio venta:</label>
+                <input type="number" name="precio_venta" id="precio_venta" autocomplete="off" minlength="3" maxlength="5" placeholder="Ej: 2000" required>
+            </div>
+
+            <div class="form-element">
+                <label for="descripcion">Descripción:</label>
+                <input type="text" name="descripcion" id="descripcion" autocomplete="off"  placeholder="(Opcional) Breve descripción del producto)">
+            </div>
+            <div class="form-element">
+                <label for="disponible">Disponible:</label>
+                <input type="checkbox" id="disponible" name="disponible">
+            </div>
+
+            
+            <p></p>
+
+            <input class="boton-pagar-mas" type="submit" name="agregar">
+
+            </form>
+                                
+            <div class="cerrar-popup" onclick="cerrarPopup()"><ion-icon name="close-circle"></ion-icon></div>
+        </div>
+    </div>
+
+
+
+
+
+
 </body>
 </html>
