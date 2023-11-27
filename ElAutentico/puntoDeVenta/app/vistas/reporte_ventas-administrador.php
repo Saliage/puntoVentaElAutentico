@@ -23,6 +23,7 @@
     <!-- ====================== JS ==================== -->
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../../public/js/logOut.js"></script>
+    <script src="../../public/js/notificacion.js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>
@@ -96,8 +97,17 @@
 
         <!-- Barra de busqueda y usuario -->
         <div class="barra-busqueda">
-            <div class="entrada-busqueda">
+            <div class="entrada-busqueda"></div>
+            <div class="vendedor" id="notificacion-icono">
+                <ion-icon name="notifications" class="icono-vendedor"></ion-icon>
+                <span class="notificacion-numero" id="notificacion-numero"></span>
             </div>
+
+            <div class="notificacion-popup" id="notificacion-popup">
+                <!-- Contenido de las notificaciones -->
+                <ul id="lista-notificaciones"></ul>
+            </div>
+
             <div class="vendedor">
                 <ion-icon name="person" class="icono-vendedor"></ion-icon>
                 <span class="nombre-vendedor"><?php echo $_SESSION['nombre'].' '.$_SESSION['apellido'] ?></span>
