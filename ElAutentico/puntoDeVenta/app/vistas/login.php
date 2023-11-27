@@ -8,13 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
-        
-        
-        <link rel="stylesheet" href="../../public/css/ccs/login-v2.css">
-        <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">
-        
-
-        
+    <link rel="stylesheet" href="../../public/css/ccs/login-v2.css">
+    <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">    
 
     <title>Iniciar sesion</title>
 </head>
@@ -33,13 +28,13 @@
 
             <!-- Usuario -->
             <div class="form-label-group">
-                <input type="text" id="usuario" class="form-control" placeholder="Usuario" required="">
+                <input type="text" id="usuario" class="form-control" placeholder="Usuario" required="" onkeydown="checkEnter(event)">
                 <label for="usuario">Nombre de usuario</label>
             </div>
 
             <!-- Contraseña -->
             <div class="form-label-group">
-                <input type="password" id="clave" class="form-control no-select" placeholder="Contraseña" required="">
+                <input type="password" id="clave" class="form-control no-select" placeholder="Contraseña" required="" onkeydown="checkEnter(event)">
                 <label for="clave">Contraseña</label>
             </div>
 
@@ -102,6 +97,13 @@
                 }
             });
         }
+
+        function checkEnter(event) {
+        if (event.keyCode === 13) {
+            // 13 es el código de la tecla Enter
+            iniciarSesion();
+        }
+    }
 
 
     </script>
