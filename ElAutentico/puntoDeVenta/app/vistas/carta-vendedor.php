@@ -60,7 +60,7 @@
                 </a>
             </li>
             <?php
-                if($_SESSION['rol'] == 1){
+                if($_SESSION['rol'] == 1){ //rol 1 = administrador
                 echo'
                     <li class="nav-item">
                         <a href="../../app/vistas/carta-administrador.php" class="nav-link">

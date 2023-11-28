@@ -4,7 +4,11 @@
 
     if($_SESSION['sesion'] <>1)
     {
-      header('Location:login.php');
+        header('Location:login.php');
+    }
+    if($_SESSION['rol'] <> 1){
+
+        header('Location:carta-vendedor.php');
     }
 ?>
 <!DOCTYPE html>
