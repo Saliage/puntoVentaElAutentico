@@ -48,13 +48,14 @@ body::-webkit-scrollbar-thumb {
 /* =====================================   Estilos barra de navegacion  =========================================== */
 
 .navbar {
-  user-select: none;
+    
   width: 5rem;
   height: 100vh;
   position: fixed;
   background: var(--bg-primary);
   transition: width 0.6s ease;
-  z-index: 5; /* Asegurar que esté en la parte superior de otros elementos */  
+  z-index: 100; /* Asegurar que esté en la parte superior de otros elementos */  
+  user-select: none;
 }
 .navbar-nav {
   list-style: none;
@@ -78,7 +79,6 @@ body::-webkit-scrollbar-thumb {
   color: var(--text-primary);
   text-decoration: none;
   transition: 0.5s;
-  z-index: 100;
 }
 .nav-link-menu {
   display: flex;
@@ -102,7 +102,7 @@ body::-webkit-scrollbar-thumb {
 .link-icon-io {
   font-size: 2.2rem;
   margin-left: 1.5rem;
-  color: #ffffffd7;
+  color: #000dffd7;
 }
 .logo {
   font-weight: bold;
@@ -114,7 +114,6 @@ body::-webkit-scrollbar-thumb {
   letter-spacing: 0.3ch;
   width: 100%;
 }
-
 /* Aplicar desenfoque al contenido cuando la barra de navegación se expande */
 .navbar:hover ~ .contenido-a-desenfocar {
   filter: blur(2px); /* Valor de desenfoque  */

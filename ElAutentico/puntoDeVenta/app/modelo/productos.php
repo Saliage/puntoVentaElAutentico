@@ -9,6 +9,8 @@ class Productos {
     public function __construct() {
         $conectar = new Conexion();
         $this->conn = $conectar->abrirConexion();
+        $this->conn->set_charset("utf8");
+
     }
 
     // Agregar producto
