@@ -116,6 +116,7 @@
                         <div class="rounded-buttons-container">
                             <button class="boton-pagar" onclick="mostrarPopup()">Añadir producto</button>
                             <button class="boton-pagar2" onclick="mostrarPopup2()">Categorias</button>
+                            <button class="boton-pagar4" onclick="mostrarPopup3()">Promociones</button>
                             <p></p>   
                         </div>
                     </thead>
@@ -272,10 +273,30 @@
         </div>
     </div>
 
-
-
-
-
+    <div class="popup" id="popup3">
+        <div class="popup-contenido">
+            <h2>Añadir promocion</h2>
+            <p></p>
+            
+            <div class="formulario" id="formZonas">
+                <div>
+                    <label for="nombreZonaTxt">Nombre:</label>
+                    <input type="text" name="nombre" id="nombreZonaTxt" autocomplete="off"  pattern=".{5,}"   required>
+                </div>
+                <div>
+                    <label for="almacen_id">Producto:</label>
+                    <div id="slectAlmacenes" style="display: inline;"></div>                   
+                </div>
+                <button onclick="agregarZona();"><ion-icon name="add-circle-outline" ></ion-icon></button>
+            </div>
+            <hr>
+                <tbody>
+                    <div id="mostrarZonas"></div>
+                </tbody>
+            </table>
+            <div class="cerrar-popup" onclick="cerrarPopup3()"><ion-icon name="close-circle"></ion-icon></div>
+        </div>
+    </div>
 
 </body>
 </html>
