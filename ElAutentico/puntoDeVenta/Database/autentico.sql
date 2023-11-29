@@ -182,6 +182,7 @@ CREATE TABLE IF NOT EXISTS `producto` (
   `costo_unitario` decimal(10,2) NOT NULL,
   `precio_venta` decimal(10,2) NOT NULL,
   `descripcion` varchar(200) DEFAULT NULL,
+  `disponible` tinyint(4) DEFAULT 0,
   `tipo_producto_id_tipo` int(11) NOT NULL,
   PRIMARY KEY (`id_producto`),
   KEY `tipo_producto_id_tipo` (`tipo_producto_id_tipo`),
@@ -409,12 +410,12 @@ CREATE TABLE IF NOT EXISTS `zona` (
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 
----------------------------------------------------------------------------------------------
+
 -- INSERSION PARA EFECTOS DE PRUEBAS, LO CUALES DEBEN SER ELIMINADO PARA EL PASO A PRODUCCIÓN
----------------------------------------------------------------------------------------------
+
 
 INSERT INTO `tipo_producto` (nombre_tipo) VALUES 
-('sandwich'),('bebidas'),('pizza'),('as'),('completos'),('hamburguesas'),('fritura');
+('Promociones'),('Bebidas'),('Pizza'),('As'),('Completos'),('Cafeteria'),('Fritura'),('Sandwich');
 
 SELECT * FROM tipo_producto;
 
