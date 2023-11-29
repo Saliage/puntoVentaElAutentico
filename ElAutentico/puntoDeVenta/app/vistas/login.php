@@ -12,6 +12,8 @@
     <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">    
 
     <title>Iniciar sesion</title>
+
+    <script src="../../public/js/jquery-3.7.1.min.js"></script>
 </head>
 
 <body class="animacion-fondo">
@@ -20,7 +22,7 @@
 
             <!-- Logo y texto debajo del logo -->
             <div class="text-center mb-4 d-flex-custom">
-                <img class="mb-3 mt-2 user-select-none" src="../../public/imagenes/LogoFoodTruck.jpg" alt="Logo-LogoFoodTruck"
+                <img class="imagen" src="../../public/imagenes/LogoFoodTruck.jpg" alt="Logo-LogoFoodTruck"
                     width="auto" height="72" draggable="false">
                 <h1 class="mb-3">Bienvenido</h1>
                 <p class="d-block-custom">Ingrese su nombre de usuario y contraseña</p>
@@ -36,7 +38,16 @@
             <div class="form-label-group">
                 <input type="password" id="clave" class="form-control no-select" placeholder="Contraseña" required="" onkeydown="checkEnter(event)">
                 <label for="clave">Contraseña</label>
+                <p></p>
+
+                <!-- Checkbox para mostrar/ocultar contraseña -->
+                <div class="show-password-checkbox">
+                    <input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()">
+                    <label for="showPassword">Mostrar Contraseña</label>
+                </div>
             </div>
+            <p></p>
+
 
             <!-- Mensaje -->
             <div class="mb-4 mt-4" id="mostrarError">
@@ -45,7 +56,8 @@
 
             
             <!-- Boton -->
-            <button class="btn btn-primary btn-lg w-100 py-2" type="submit" onclick="iniciarSesion()">Iniciar sesion</button>
+            <p></p>
+            <button class="btn btn-primary btn-lg w-100 py-2"; type="submit" onclick="iniciarSesion()">Iniciar sesion</button>
 
             
         </div>
@@ -107,6 +119,14 @@
 
 
     </script>
+    <script>
+  function togglePasswordVisibility() {
+    var passwordInput = document.getElementById("clave");
+    var showPasswordCheckbox = document.getElementById("showPassword");
+
+    passwordInput.type = showPasswordCheckbox.checked ? "text" : "password";
+  }
+</script>
 
 
 </html>

@@ -49,17 +49,26 @@
     max-width: 420px;
     padding: 15px;
     margin: 0 auto;
+    text-align: center;
   }
+
+  .form-login h1 {
+    color: #000dffd7;
+    font-weight: bold;
+}
   
   .form-label-group {
     position: relative;
     margin-bottom: 1rem;
   }
   
+  
   .form-label-group > input,
   .form-label-group > label {
     padding: var(--input-padding-y) var(--input-padding-x);
     user-select: none;
+    border: 1px solid #000dffd7;
+    border-radius: 5px;
   }
   
   .form-label-group > label {
@@ -131,6 +140,23 @@
     transition: 0.1s;
   } 
   
+  .btn-primary {
+    background-color: #000dffd7;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    position: -webkit-sticky;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+  /* Estilos cuando el cursor está sobre el botón (hover) */
+  background-color: #000dff; /* Cambia el color de fondo al pasar el cursor */
+  box-shadow: 0 0 5px 5px rgba(0, 13, 255, 0.7); /* Agrega un efecto de destello */
+}
   /* Boton */
   .btn-primary {
     --bs-btn-bg: rgb(206, 49, 49);
