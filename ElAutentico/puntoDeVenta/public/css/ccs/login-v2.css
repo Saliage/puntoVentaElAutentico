@@ -80,6 +80,9 @@ body::-webkit-scrollbar-thumb {
     margin-bottom: 1rem;
   }
   
+  .form-label-group > label {
+    margin-left: -3%;
+  }
   
   .form-label-group > input,
   .form-label-group > label {
@@ -87,6 +90,7 @@ body::-webkit-scrollbar-thumb {
     user-select: none;
     border: 1px solid #000dffd7;
     border-radius: 5px;
+    text-align: center;
   }
   
   .form-label-group > label {
@@ -101,6 +105,7 @@ body::-webkit-scrollbar-thumb {
     border: 1px solid transparent;
     border-radius: .25rem;
     transition: all .1s ease-in-out;
+    text-align: center;
   }
   
   .form-label-group input::-webkit-input-placeholder {

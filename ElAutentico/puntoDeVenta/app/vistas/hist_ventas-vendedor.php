@@ -56,7 +56,7 @@
             <li class="nav-item">
                 <a href="../../app/vistas/hist_ventas-vendedor.php" class="nav-link">
                     <span class="link-icon-io"><ion-icon name="book-outline"></ion-icon></i></span>
-                    <span class="link-text">Historial Ventas</span>
+                    <span class="link-text">Mis ventas</span>
                 </a>
             </li>
             <?php
