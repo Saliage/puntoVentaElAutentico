@@ -116,7 +116,8 @@
                         <div class="rounded-buttons-container">
                             <button class="boton-pagar" onclick="mostrarPopup()">Añadir producto</button>
                             <button class="boton-pagar2" onclick="mostrarPopup2()">Categorias</button>
-                            <button class="boton-pagar4" onclick="mostrarPopup3()">Promociones</button>
+                            <button class="boton-pagar2" onclick="mostrarPopup3()">Crear Promocion</button>
+                            <button class="boton-pagar2" onclick="mostrarPopup3()">Detalle Productos</button>
                             <p></p>   
                         </div>
                     </thead>
@@ -273,9 +274,35 @@
         </div>
     </div>
 
+    
     <div class="popup" id="popup3">
         <div class="popup-contenido">
-            <h2>Añadir promocion</h2>
+            <h2>Crear promocion</h2>
+            <p></p>
+            
+            <div class="formulario" id="formZonas">
+                <div>
+                    <label for="nombreZonaTxt">Nombre Promocion:</label>
+                    <input type="text" name="nombre" id="nombreZonaTxt" autocomplete="off"  pattern=".{5,}"   required>
+                </div>
+                <div>
+                    <label for="almacen_id">Producto:</label>
+                    <div id="slectAlmacenes" style="display: inline;"></div>                   
+                </div>
+                <button onclick="agregarZona();"><ion-icon name="add-circle-outline" ></ion-icon></button>
+            </div>
+            <hr>
+                <tbody>
+                    <div id="mostraPromociones"></div>
+                </tbody>
+            </table>
+            <div class="cerrar-popup" onclick="cerrarPopup3()"><ion-icon name="close-circle"></ion-icon></div>
+        </div>
+    </div>
+
+    <div class="popup" id="popup3">
+        <div class="popup-contenido">
+            <h2>Detalles Producto</h2>
             <p></p>
             
             <div class="formulario" id="formZonas">
