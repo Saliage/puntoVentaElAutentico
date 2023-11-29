@@ -15,8 +15,21 @@
     align-items: center;
     justify-content: center;
     padding-top: 40px;
+    overflow: hidden;
     padding-bottom: 40px;
   }
+
+  /* Scrollbar */
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+body::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+body::-webkit-scrollbar-thumb {
+  background: #000dffd7;
+}
   
   .animacion-fondo {
     background: linear-gradient(10deg, #e6e6e6, #a8d6f5, #f7d298, #a0d4f798);
@@ -40,7 +53,12 @@
   .container {
     background-color: white;
     width: auto;
+    min-width: 20%;
     border-radius: 3%;
+  }
+
+  #mostrarError {
+    color: red;
   }
   
   /* Formulario */
@@ -48,7 +66,7 @@
     width: 100%;
     max-width: 420px;
     padding: 15px;
-    margin: 0 auto;
+    margin: 0 -5%;
     text-align: center;
   }
 
