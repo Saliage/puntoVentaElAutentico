@@ -16,6 +16,7 @@ function cerrarPopup() {
         listarProductos();
         mostrarTiposP();
         listarTiposP();
+        mostrarProductos();
     }
 
 //--------------------------------------------------------------------------------------------------------------------------------------->
@@ -495,17 +496,40 @@ function eliminarTipoP(id){
 //----------------------------------------------             GESTION PROMOCIONES          ----------------------------------------------->
 //--------------------------------------------------------------------------------------------------------------------------------------->
 
+function mostrarProductos(){
 
+    var parametros = 
+    {
+        "opcion" : 'listarProd'
+    };                
+
+    $.ajax({
+    data: parametros,
+    url: '../Controlador/gestion-carta.php',
+    type: 'POST',
+    
+    beforeSend: function()
+    {
+    },
+
+    success: function(mensaje)
+    {
+    $('#selectProducto').html(mensaje);
+    }
+    
+    });
+}
 
 var productos = []; // Array para almacenar los elementos creados
+var contadorProductos = 0; // Contador para asignar índices a los productos
 
 function agregarOtroProducto() {
     var productoClone = document.querySelector('.producto').cloneNode(true);
     var selectProducto = productoClone.querySelector('select');
     var cantidadProducto = productoClone.querySelector('input');
 
-    // Asignar un ID único al clon
-    selectProducto.id = 'selectProducto' + (productos.length + 1);
+    // Asignar un ID único al clon con el índice actual
+    selectProducto.id = 'selectProducto' + contadorProductos;
 
     document.getElementById('productosContainer').appendChild(productoClone);
 
@@ -514,6 +538,9 @@ function agregarOtroProducto() {
         select: selectProducto,
         cantidad: cantidadProducto
     });
+
+    // Incrementar el contador de productos
+    contadorProductos++;
 }
 
 function eliminarProducto(elemento) {
@@ -534,9 +561,9 @@ function eliminarProducto(elemento) {
     }
 }
 
-function enviarDatosPorAjax() {
-    // Lógica para enviar los datos por AJAX
-    // Aquí puedes usar 'productos' para acceder a los elementos selectProducto y cantidadProducto
+function guardarPromo() {
+    
+    var listaProductos = []; //guardar productos y cantidad para enviar a la BD
 
     // Ejemplo de uso:
     for (var i = 0; i < productos.length; i++) {

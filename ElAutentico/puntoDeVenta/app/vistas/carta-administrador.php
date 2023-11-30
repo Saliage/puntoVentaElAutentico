@@ -301,14 +301,11 @@
                 <div id="productosContainer">
                 <div class="form-element producto">
                     <label for="selectProducto">Products:</label>
-                    <div class="selectProducto" style="display: inline;">
-                        <select name="producto">
-                            <!-- Puedes agregar opciones específicas si es necesario -->
-                        </select>
-                        <label for="cantidadProducto">Cantidad:</label>
+                    <div id="selectProducto" style="display: inline;"></div>
+                    <label for="cantidadProducto">Cantidad:</label>
                         <input type="number" name="cantidadProducto" value="1" min="1">
                         <button type="button" onclick="eliminarProducto(this);">Eliminar</button>
-                    </div>
+                    
                 </div>
             </div>
             <button type="button" onclick="agregarOtroProducto();"><ion-icon name="add-circle-outline" ></ion-icon> Agregar otro producto</button> <br>
