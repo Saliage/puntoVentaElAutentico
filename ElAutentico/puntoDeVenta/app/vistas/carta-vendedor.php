@@ -138,26 +138,23 @@
                 <!-- Sección "Pagar" -->
                     <!-- Agrega el botón de Pagar -->
                     <div class="pagar-carrito">
-                        <button class="boton-pagar" onclick="mostrarPopup()">Pagar</button>
+                        <button class="boton-pagar" onclick="mostrarPopup2()">Pagar</button>
                     </div>
             </div>
 
         </div>        
     </main>
     <!-- El contenedor del popup tipo de pago (inicialmente oculto) -->
-    <div class="popup" id="popup">
+
+    <div class="popup" id="popup2">
         <div class="popup-contenido">
             <h2>Medio de pago:</h2>
-            <button class="boton-pago" onclick="realizarPago('Efectivo')">Efectivo</button>
-            <button class="boton-pago" onclick="realizarPago('Tarjeta')">Tarjeta</button>
-        </div>
-     </div>
-
-    <div class="popup" id="popup9">
-        <div class="popup-contenido">
-            Inventario de palta bajo (5 unidades)
-        </div>
-        <div class="cerrar-popup" onclick="cerrarPopup9()"><ion-icon name="close-circle"></ion-icon></div>
+            <div class="formulario">
+                <button class="boton-pago" onclick="realizarPago('Efectivo')">Efectivo</button>
+                <button class="boton-pago" onclick="realizarPago('Tarjeta')">Tarjeta</button>
+            </div>
+            <div class="cerrar-popup" onclick="cerrarPopup2()"><ion-icon name="close-circle"></ion-icon></div>
+        </div>        
     </div>
 
     <!-- JavaScript para manejar el evento de clic y agregar/eliminar la clase "seleccionado" al elemento seleccionado. -->
@@ -179,10 +176,7 @@
         function mostrarPopup() {
         const popup = document.getElementById('popup');
         popup.style.display = 'flex';
-        }
-
-        // Función para realizar el pago
-      
+        }     
 
     </script>
 

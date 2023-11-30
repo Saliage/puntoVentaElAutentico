@@ -84,7 +84,7 @@
                 
                 beforeSend: function()
                 {
-                    $('#mostrarError').html("Error de comunicación");
+                    $('#mostrarError').html("Ingreso exitoso");
                 },
 
                 success: function(mensaje)

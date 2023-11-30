@@ -138,16 +138,16 @@
                 </div>                
                 <div class="form-element">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" name="nombre" id="nombre" autocomplete="off" placeholder="Nombre" required>
+                    <input type="text" name="nombre" id="nombre" autocomplete="off" placeholder="Ej: Juan" required>
                 </div>                
                     
-                <div class="form-element"><label for="apellido">Apellido:</label>
-                    <input type="text" name="apellido" id="apellido" autocomplete="off" placeholder="Apellido" required>
+                <div class="form-element"><label for="apellido">Apellidos:</label>
+                    <input type="text" name="apellido" id="apellido" autocomplete="off" placeholder="Ej: Riquelme Palma" required>
                 </div>
 
                 <div class="form-element">
                     <label for="usuario">Usuario:</label>
-                    <input type="text" name="usuario" id="usuario" autocomplete="off" placeholder="Nombre de usuario" required>
+                    <input type="text" name="usuario" id="usuario" autocomplete="off" placeholder="Ej: Riquelme Palma" required>
                 </div>
 
                 <div class="form-element">
@@ -157,11 +157,11 @@
                 </div>
                     
                 <div id="mostrarRoles" class="form-element"> <!-- listar roles en combobox -->
-                   
-                </div>
-                <input class="boton-pagar-mas" type="submit" name="agregar">
-                </form>
                 <p></p>
+                </div>
+                <p></p>
+                <button class="boton-pagar-mas" type="submit" name="agregar"> <ion-icon name="add-circle-outline"></ion-icon> </button>  
+                </form>
                 
                 <div class="cerrar-popup" onclick="cerrarPopup()"><ion-icon name="close-circle"></ion-icon></div>
             </div>
@@ -180,12 +180,9 @@
                     <hr>
                     <div class="row text-center">
                         <div class="col">
-                            <label for="buscador">Crear nuevo ROL: </label>
-                            <input type="text" name="buscador" id="buscador" class="form-control">
-                            <div class="row"> 
-                                <button class="boton-pagar" type="submit" name="agregar" value="Agregar Rol" onclick="gestionarRol(1);"  onmouseout="gestionarRol(2);"><ion-icon name="add-circle-outline"></ion-icon></button>              
-                            </div>
-                    
+                            <label  class="label-crear-roles for="buscador">Nuevo ROL: </label>
+                            <input  class="input-crear-roles" type="text" name="buscador" id="buscador" class="form-control">
+                            <button class="boton-agregar-roles" type="submit" name="agregar" value="Agregar Rol" onclick="gestionarRol(1);"  onmouseout="gestionarRol(2);"><ion-icon name="add-circle-outline"></ion-icon></button>              
                         </div>
                     </div>
                     <hr>

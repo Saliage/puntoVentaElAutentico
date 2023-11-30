@@ -48,14 +48,13 @@ body::-webkit-scrollbar-thumb {
 /* =====================================   Estilos barra de navegacion  =========================================== */
 
 .navbar {
-    
+  user-select: none;
   width: 5rem;
   height: 100vh;
   position: fixed;
   background: var(--bg-primary);
   transition: width 0.6s ease;
-  z-index: 100; /* Asegurar que esté en la parte superior de otros elementos */  
-  user-select: none;
+  z-index: 5; /* Asegurar que esté en la parte superior de otros elementos */  
 }
 .navbar-nav {
   list-style: none;
@@ -79,6 +78,7 @@ body::-webkit-scrollbar-thumb {
   color: var(--text-primary);
   text-decoration: none;
   transition: 0.5s;
+  z-index: 100;
 }
 .nav-link-menu {
   display: flex;
@@ -102,7 +102,7 @@ body::-webkit-scrollbar-thumb {
 .link-icon-io {
   font-size: 2.2rem;
   margin-left: 1.5rem;
-  color: #000dffd7;
+  color: #ffffffd7;
 }
 .logo {
   font-weight: bold;
@@ -114,6 +114,7 @@ body::-webkit-scrollbar-thumb {
   letter-spacing: 0.3ch;
   width: 100%;
 }
+
 /* Aplicar desenfoque al contenido cuando la barra de navegación se expande */
 .navbar:hover ~ .contenido-a-desenfocar {
   filter: blur(2px); /* Valor de desenfoque  */
@@ -139,6 +140,7 @@ body::-webkit-scrollbar-thumb {
   border-radius: 7px;
   width: 30%; /* Hacerlo 100% de ancho */
   height: 35px;
+  margin-left: 30px;
 }
 
 .entrada-busqueda input {
@@ -148,7 +150,8 @@ body::-webkit-scrollbar-thumb {
   font-size: 1rem;
   font-weight: bold; /* texto en negrita*/
   margin-left: 2%;
-  width: 100%;
+  width: 90%;
+  margin-left: 30px;
   padding: 5px;
   color: rgb(0, 0, 0);
   font-weight: black; /* color texto barra busqueda*/
@@ -416,8 +419,18 @@ th {
   border-radius: 15px;
   border-color: #ffffff;
   margin-right: 1%;
-  width: 100px; /* Ajusta el valor en píxeles según el ancho deseado */
+  width: 50%; /* Ajusta el valor en píxeles según el ancho deseado */
   margin: 0 auto;
+  height: 40px;
+  display: block;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  position: -webkit-sticky;
+  margin-top: 10%;
+}
+.boton-pagar-mas:hover {
+  /* Estilos cuando el cursor está sobre el botón (hover) */
+  background-color: #358911; /* Cambia el color de fondo al pasar el cursor */
+  box-shadow: 0 0 5px 5px rgba(53, 137, 17, 0.7); /* Agrega un efecto de destello */
 }
 
 .boton-pagar-mas ion-icon {
@@ -446,10 +459,10 @@ th {
   background: linear-gradient(10deg, #e6e6e6, #a8d6f5, #f7d298, #a0d4f7);
   border: 2px solid #000dffd7;
   border-radius: 15px;
-  max-width: 50%;
+  max-width: 25%;
   max-height: 75%;
-  min-width: 400px;
-  min-height: 20%;
+  min-width: 30%;
+  min-height: 40%;
   padding: 20px;
   text-align: left;
   display: flex;
@@ -461,14 +474,24 @@ th {
   flex: 2;
   animation: animacionDegrade 5s linear infinite;
   overflow-y: auto;
+  justify-content: center;
 }
+
+/* Estilos para la fila de elementos en el popup */
+.popup-contenido .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
 .popup-contenido {
   background: linear-gradient(10deg, #e6e6e6, #a8d6f5, #f7d298, #a0d4f7);
   border: 2px solid #000dffd7;
   border-radius: 15px;
-  max-width: 50%;
+  max-width: 10%;
   max-height: 75%;
-  min-width: 400px;
   min-height: 20%;
   padding: 20px;
   text-align: left;
@@ -560,6 +583,11 @@ input, select {
   font-size: 24px;
 }
 
+.entrada-busqueda input,
+.entrada-busqueda button {
+  width: 50%; /* Ajusta según sea necesario */
+}
+
 /* Estilos para los botones de pago en el popup */
 .boton-pago {
   user-select: none;
@@ -593,6 +621,12 @@ input, select {
   color: black;
   margin-bottom: 10px;
   text-align: left;
+  margin-right: 10px; /* Ajusta según sea necesario */
+}
+
+.popup-contenido .row.text-center .col {
+  display: flex;
+  align-items: center;
 }
 
 /* Estilos para los campos de entrada y selección en el popup */
@@ -614,10 +648,67 @@ input, select {
   top: 90px; /* Adjust this value to move it down */
   left: 100px; /* Adjust this value to move it to the right */
   width: 93%;
-  height: 500px;
-  position: fixed;
+  height: 700px;
 }
 
+.botonroles{
+  border: none;
+  border-radius: 5px;
+  border-color: #ffffff;
+  background-color: #358911d7;
+  color: white;
+  cursor: pointer;
+  width: 9%;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.botonroles:hover {
+  /* Estilos cuando el cursor está sobre el botón (hover) */
+  background-color: #358911; /* Cambia el color de fondo al pasar el cursor */
+  box-shadow: 0 0 5px 5px rgba(53, 137, 17, 0.7); /* Agrega un efecto de destello */
+}
+
+.botonroles ion-icon {
+  font-size: 18px; /* Ajusta el tamaño del icono según tus preferencias */
+  font-weight: bold; /* Aplica negrita al icono */
+  /* Otros estilos del icono, como color, pueden seguir aquí */
+}
+
+/* Agrega esta clase única para el input de crear roles */
+.input-crear-roles {
+  width: 150px; /* Puedes ajustar el ancho según tus preferencias */
+  margin-right: 10px; /* Ajusta el margen derecho según sea necesario */
+  padding: 8px; /* Ajusta el relleno según sea necesario */
+  border: 2px solid #000dffd7;
+  border-radius: 5px;
+  margin-right: 12%;
+  margin-left: 5%;
+}
+
+
+/* Modifica el botón de agregar para que tenga el mismo ancho que el input */
+.boton-agregar-roles {
+  height:30px;
+  width:50px; /* Ajusta el ancho para que coincida con el input */
+  border: none;
+  border-radius: 5px;
+  background-color: #358911d7;
+  color: white;
+  cursor: pointer;
+  margin-top: -7px;
+  margin-left: -10px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.boton-agregar-roles:hover {
+  background-color: #358911;
+  box-shadow: 0 0 5px 5px rgba(53, 137, 17, 0.7);
+}
+
+.boton-agregar-roles ion-icon {
+  font-size: 18px;
+  font-weight: bold;
+}
 /* ========================================= Pantallas largas ========================================= */
 @media (min-width: 600px) {
 

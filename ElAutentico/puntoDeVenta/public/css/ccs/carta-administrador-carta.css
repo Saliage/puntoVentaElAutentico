@@ -411,14 +411,23 @@ th {
   color: white;
   font-weight: bold;
   padding: 10px 20px;
+  transition: background-color 0.3s, box-shadow 0.3s;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   border-radius: 15px;
   border-color: #ffffff;
   margin-right: 1%;
+  position: -webkit-sticky;
+  position: sticky;
   width: 100px; /* Ajusta el valor en píxeles según el ancho deseado */
   margin: 0 auto;
+}
+
+.boton-pagar-mas:hover {
+  /* Estilos cuando el cursor está sobre el botón (hover) */
+  background-color: rgba(68, 68, 67, 0.5); /* Cambia el color de fondo al pasar el cursor */
+  box-shadow: 0 0 5px 5px rgba(68, 68, 67, 0.7); /* Agrega un efecto de destello */
 }
 
 .boton-pagar-mas ion-icon {
