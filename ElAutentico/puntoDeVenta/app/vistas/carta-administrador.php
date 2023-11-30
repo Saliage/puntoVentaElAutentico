@@ -116,7 +116,8 @@
                         <div class="rounded-buttons-container">
                             <button class="boton-pagar" onclick="mostrarPopup()">Añadir producto</button>
                             <button class="boton-pagar2" onclick="mostrarPopup2()">Categorias</button>
-                            <button class="boton-pagar4" onclick="mostrarPopup3()">Promociones</button>
+                            <button class="boton-pagar2" onclick="mostrarPopup3()">Crear Promocion</button>
+                            <button class="boton-pagar2" onclick="mostrarPopup3()">Detalle Productos</button>
                             <p></p>   
                         </div>
                     </thead>
@@ -273,9 +274,57 @@
         </div>
     </div>
 
+    
     <div class="popup" id="popup3">
         <div class="popup-contenido">
-            <h2>Añadir promocion</h2>
+            <h2>Crear promocion</h2>
+            <p></p>
+            
+            <form class="formulario" id="formPromocion" method="post">
+            <div class="form-element">
+                <label for="nombrePromo">Nombre Promoción:</label>
+                <input type="text" name="nombre" id="nombrePromo" autocomplete="off" pattern=".{5,}" required>
+            </div>
+            <div class="form-element">
+                <label for="precioPromo">Precio Promoción:</label>
+                <input type="number" name="precio" id="precioPromo" autocomplete="off" min="1">
+            </div>
+            <div class="form-element">
+                <label for="fechaInicio">Fecha inicio:</label>
+                <input type="date" id="fechaInicio" name="fecha" min="<?php echo date('Y-m-d'); ?>">
+            </div>
+            <div class="form-element">
+                <label for="fechaFin">Fecha fin:</label>
+                <input type="date" id="fechaFin" name="fecha" min="<?php echo date('Y-m-d'); ?>">
+            </div>
+            <!-- Mostrar cada vez que apretan el botón -->
+                <div id="productosContainer">
+                <div class="form-element producto">
+                    <label for="selectProducto">Products:</label>
+                    <div class="selectProducto" style="display: inline;">
+                        <select name="producto">
+                            <!-- Puedes agregar opciones específicas si es necesario -->
+                        </select>
+                        <label for="cantidadProducto">Cantidad:</label>
+                        <input type="number" name="cantidadProducto" value="1" min="1">
+                        <button type="button" onclick="eliminarProducto(this);">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+            <button type="button" onclick="agregarOtroProducto();"><ion-icon name="add-circle-outline" ></ion-icon> Agregar otro producto</button> <br>
+            <input type="button" value="Crear Promoción" onclick="enviarDatosPorAjax()">
+        </form>
+        <hr>
+        <tbody>
+            <div id="mostraPromociones"></div>
+        </tbody>
+        <div class="cerrar-popup" onclick="cerrarPopup3()"><ion-icon name="close-circle"></ion-icon></div>
+    </div>
+    </div>
+
+    <div class="popup" id="popup3">
+        <div class="popup-contenido">
+            <h2>Detalles Producto</h2>
             <p></p>
             
             <div class="formulario" id="formZonas">
