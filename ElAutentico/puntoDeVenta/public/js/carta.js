@@ -320,7 +320,7 @@ function agregarProductos(event)
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------->
-//----------------------------------------------               GESTION CATEGORIAS            ----------------------------------------------->
+//----------------------------------------------              GESTION CATEGORIAS          ----------------------------------------------->
 //--------------------------------------------------------------------------------------------------------------------------------------->
 
 function listarTiposP(){
@@ -488,4 +488,64 @@ function eliminarTipoP(id){
         mostrarTiposP();
 
     }
+}
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------->
+//----------------------------------------------             GESTION PROMOCIONES          ----------------------------------------------->
+//--------------------------------------------------------------------------------------------------------------------------------------->
+
+
+
+var productos = []; // Array para almacenar los elementos creados
+
+function agregarOtroProducto() {
+    var productoClone = document.querySelector('.producto').cloneNode(true);
+    var selectProducto = productoClone.querySelector('select');
+    var cantidadProducto = productoClone.querySelector('input');
+
+    // Asignar un ID único al clon
+    selectProducto.id = 'selectProducto' + (productos.length + 1);
+
+    document.getElementById('productosContainer').appendChild(productoClone);
+
+    // Agregar el nuevo elemento al array
+    productos.push({
+        select: selectProducto,
+        cantidad: cantidadProducto
+    });
+}
+
+function eliminarProducto(elemento) {
+    var contenedorProducto = elemento.parentNode.parentNode;
+    var selectProducto = contenedorProducto.querySelector('select');
+
+    // Verificar cuántos elementos hay antes de eliminar
+    if (productos.length > 1) {
+        contenedorProducto.parentNode.removeChild(contenedorProducto);
+
+        // Eliminar el elemento del array
+        var index = productos.findIndex(producto => producto.select === selectProducto);
+        if (index !== -1) {
+            productos.splice(index, 1);
+        }
+    } else {
+        alert("Debes dejar al menos un producto.");
+    }
+}
+
+function enviarDatosPorAjax() {
+    // Lógica para enviar los datos por AJAX
+    // Aquí puedes usar 'productos' para acceder a los elementos selectProducto y cantidadProducto
+
+    // Ejemplo de uso:
+    for (var i = 0; i < productos.length; i++) {
+        var producto = productos[i];
+        console.log('Elemento:', producto.select.value);
+        console.log('Cantidad:', producto.cantidad.value);
+        // Aquí puedes agregar la lógica para enviar los datos al servidor
+    }
+
+    // Alerta de prueba
+    alert('Datos enviados por AJAX');
 }
