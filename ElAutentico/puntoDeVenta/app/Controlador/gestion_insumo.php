@@ -119,8 +119,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $perecible = $consulta['perecible'];
             $id_formato = $consulta['formato_id_formato'];
             $id_categoria = $consulta['categoria_insumo_id_categoria']; 
-            $nombre_formato = mysqli_fetch_assoc($formato->listarFormatos($id_formato));
-            $nombre_categoria = mysqli_fetch_assoc($categoria->listarCategoriasInsumo($id_categoria));
+            $nombre_formato = mysqli_fetch_assoc($formato->buscarFormatoId($id_formato));
+            $nombre_categoria = mysqli_fetch_assoc($categoria->buscarCategoriaInsumoId($id_categoria));
                 
             if($perecible == 1)
             {

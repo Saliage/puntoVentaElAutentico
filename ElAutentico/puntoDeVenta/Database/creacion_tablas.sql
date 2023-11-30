@@ -139,6 +139,7 @@ CREATE TABLE entrada (
 );
 
 CREATE TABLE insumos (
+
     id_insumo INT NOT NULL AUTO_INCREMENT,
     nombre_insumo VARCHAR(50) NOT NULL,
     perecible CHAR(1) NOT NULL,

@@ -16,6 +16,7 @@ function cerrarPopup() {
         listarProductos();
         mostrarTiposP();
         listarTiposP();
+        mostrarProductos();
     }
 
 //--------------------------------------------------------------------------------------------------------------------------------------->
@@ -320,7 +321,7 @@ function agregarProductos(event)
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------->
-//----------------------------------------------               GESTION CATEGORIAS            ----------------------------------------------->
+//----------------------------------------------              GESTION CATEGORIAS          ----------------------------------------------->
 //--------------------------------------------------------------------------------------------------------------------------------------->
 
 function listarTiposP(){
@@ -488,4 +489,90 @@ function eliminarTipoP(id){
         mostrarTiposP();
 
     }
+}
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------->
+//----------------------------------------------             GESTION PROMOCIONES          ----------------------------------------------->
+//--------------------------------------------------------------------------------------------------------------------------------------->
+
+function mostrarProductos(){
+
+    var parametros = 
+    {
+        "opcion" : 'listarProd'
+    };                
+
+    $.ajax({
+    data: parametros,
+    url: '../Controlador/gestion-carta.php',
+    type: 'POST',
+    
+    beforeSend: function()
+    {
+    },
+
+    success: function(mensaje)
+    {
+    $('#selectProducto').html(mensaje);
+    }
+    
+    });
+}
+
+var productos = []; // Array para almacenar los elementos creados
+var contadorProductos = 0; // Contador para asignar índices a los productos
+
+function agregarOtroProducto() {
+    var productoClone = document.querySelector('.producto').cloneNode(true);
+    var selectProducto = productoClone.querySelector('select');
+    var cantidadProducto = productoClone.querySelector('input');
+
+    // Asignar un ID único al clon con el índice actual
+    selectProducto.id = 'selectProducto' + contadorProductos;
+
+    document.getElementById('productosContainer').appendChild(productoClone);
+
+    // Agregar el nuevo elemento al array
+    productos.push({
+        select: selectProducto,
+        cantidad: cantidadProducto
+    });
+
+    // Incrementar el contador de productos
+    contadorProductos++;
+}
+
+function eliminarProducto(elemento) {
+    var contenedorProducto = elemento.parentNode.parentNode;
+    var selectProducto = contenedorProducto.querySelector('select');
+
+    // Verificar cuántos elementos hay antes de eliminar
+    if (productos.length > 1) {
+        contenedorProducto.parentNode.removeChild(contenedorProducto);
+
+        // Eliminar el elemento del array
+        var index = productos.findIndex(producto => producto.select === selectProducto);
+        if (index !== -1) {
+            productos.splice(index, 1);
+        }
+    } else {
+        alert("Debes dejar al menos un producto.");
+    }
+}
+
+function guardarPromo() {
+    
+    var listaProductos = []; //guardar productos y cantidad para enviar a la BD
+
+    // Ejemplo de uso:
+    for (var i = 0; i < productos.length; i++) {
+        var producto = productos[i];
+        console.log('Elemento:', producto.select.value);
+        console.log('Cantidad:', producto.cantidad.value);
+        // Aquí puedes agregar la lógica para enviar los datos al servidor
+    }
+
+    // Alerta de prueba
+    alert('Datos enviados por AJAX');
 }
