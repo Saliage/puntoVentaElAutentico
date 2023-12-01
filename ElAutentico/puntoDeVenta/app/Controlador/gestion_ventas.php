@@ -9,21 +9,21 @@ session_start();
 ob_start();
 
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     $opcion = $_POST['opcion']; //obtener valor de la opción para controlar eventos
 
-    if($opcion =="ver" || $opcion == "buscar" || $opcion == "verXTipo"){
+    if($opcion ==="ver" || $opcion === "buscar" || $opcion === "verXTipo"){
 
         $producto = new Productos();
 
-        if($opcion =="buscar")
+        if($opcion ==="buscar")
         {
             $busqueda = $_POST['busqueda'];
             $resultado = $producto->buscarProductosDisponibles($busqueda);
         }else{
 
-            if($opcion == "verXTipo"){
+            if($opcion === "verXTipo"){
                 $idTipo = $_POST['idTipo'];
                 $resultado = $producto->verDisponiblesXTipo($idTipo);
 
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //muestra categorías para ver productos de ese tipo
-    if($opcion == "verCat"){
+    if($opcion === "verCat"){
 
         $tipo_producto = new TipoProducto();
         $resultado = $tipo_producto->listarTiposProductos();
@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 
-    if($opcion == "procesarPago"){
+    if($opcion === "procesarPago"){
 
         $formaPago = $_POST['formaPago'];
         $monto = $_POST['monto'];
@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     }
 
-    if($opcion == "verVentasVendedor"){
+    if($opcion === "verVentasVendedor"){
 
         $id_vendedor = $_POST['vendedor'];
 
@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ';
     }
 
-    if($opcion == "miBusqueda"){
+    if($opcion === "miBusqueda"){
 
         $id_vendedor = $_SESSION['id'];
         $buscar = $_POST['buscar'];
@@ -174,7 +174,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ';
     }
     
-    if($opcion == "verVentas"){
+    if($opcion === "verVentas"){
 
         $venta = new Ventas();
         $resultado = $venta->listarVentas();
@@ -218,7 +218,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 
-    if($opcion == "busqueda"){
+    if($opcion === "busqueda"){
 
         $buscar = $_POST['buscar'];
 

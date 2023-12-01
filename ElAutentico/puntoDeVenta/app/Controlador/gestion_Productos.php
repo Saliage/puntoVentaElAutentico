@@ -4,12 +4,12 @@ require_once ("../modelo/tipo_producto.php");
 
 
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     $opcion = $_POST['opcion']; //obtener valor de la opción para controlar eventos
 
     //guardar
-    if ($opcion == "listar") {
+    if ($opcion === "listar") {
 
         $tipoProd = new TipoProducto();
         $resultado = $tipoProd->listarTiposProductos();
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ';
     }
         
-    if ($opcion == "guardar") {   
+    if ($opcion === "guardar") {   
 
         $nombre = $_POST['nombre'];
         $codigo = $_POST['codigo'];
@@ -91,11 +91,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } 
 
 
-    if($opcion == "mostrar" || $opcion =="buscar")
+    if($opcion === "mostrar" || $opcion ==="buscar")
 	{
 
         $productos = new Productos();
-        if($opcion =="buscar")
+        if($opcion ==="buscar")
         {
             $busqueda = $_POST['busqueda'];
             $resultado = $productos->buscarProductos($busqueda);
@@ -115,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $descripcion   = $consulta['descripcion'];
         $disponible = $consulta['disponible'];
 
-        if($disponible == 1){
+        if($disponible === 1){
             $icono = '<ion-icon name="checkmark-outline"></ion-icon>';
         }
 
@@ -152,7 +152,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </td>
 
                 <td>
-                    <input type="checkbox" id="disponibleCHK'.$id .'" ' . ($disponible == 1 ? 'checked' : '') . ' onclick="actualizarDisponible('.$id .')">                 
+                    <input type="checkbox" id="disponibleCHK'.$id .'" ' . ($disponible === 1 ? 'checked' : '') . ' onclick="actualizarDisponible('.$id .')">                 
                 </td>
                 <td>
                     <ion-icon id="btnproductoEdit'.$id.'" name="pencil-outline" class="icono-editar" onclick="editarProductos('.$id.')"></ion-icon>
@@ -172,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //editar
     try {
-        if ($opcion == "editar") {
+        if ($opcion === "editar") {
 
             $id = $_POST['id'];
             $nombre = $_POST['nombre'];
@@ -184,7 +184,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $id = intval($id); //asegurar que el id sea un entero
 
-            if($codigo == ""){
+            if($codigo === ""){
                 $codigo = null;
             }
             //recortar ruta imagen
@@ -231,7 +231,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
 
-        if($opcion == "eliminar")
+        if($opcion === "eliminar")
         {
             $id = $_POST["id"];
 
@@ -260,7 +260,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 
     // cambiar disponibilidad
-    if($opcion == "estado"){
+    if($opcion === "estado"){
         $id = $_POST['id'];
         $disponible = $_POST['disponible'];
 

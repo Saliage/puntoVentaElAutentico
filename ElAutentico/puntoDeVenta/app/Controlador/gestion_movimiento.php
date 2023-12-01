@@ -2,11 +2,11 @@
 require_once ("../modelo/tipo_movimiento.php");
 
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $opcion = $_POST['opcion']; //obtener valor de la opción para contmovimeintoar eventos
 
-    if ($opcion == "listar") {
+    if ($opcion === "listar") {
         $movimeinto = new TipoMovimiento();
         $resultado = $movimeinto->listarTiposMovimiento();
     
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ';
     
     }
-		if($opcion == "guardar")
+		if($opcion === "guardar")
         {
             $nombremovimeinto = $_POST["nombre"];
 
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-		if($opcion == "mostrar")
+		if($opcion === "mostrar")
         {
                 
             $movimeinto = new TipoMovimiento();
@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
        
     //EDITAR movimeinto
-    if($opcion == "editar")
+    if($opcion === "editar")
     {
         $id_movimiento= $_POST["id"];
         $nombremovimeinto = $_POST["nombre"];
@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //ELIMINAR movimeinto
-    if($opcion == "eliminar")
+    if($opcion === "eliminar")
     {
         $id_movimiento= $_POST["id"];
 

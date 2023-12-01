@@ -4,7 +4,7 @@ require_once("../modelo/zona.php");
 require_once("../modelo/almacen.php");
 
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
-if ($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] === "POST"){
     
     $opcion = $_POST['opcion']; //obtener valor de la opción para contalmacenar eventos
 
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     } 
     
     
-    if($opcion == "listar"){
+    if($opcion === "listar"){
 
         $almacen = $_POST['almacen'];
         $zona = new zona();
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     }
 
-	if($opcion == "guardar")
+	if($opcion === "guardar")
     {
         $nombrezona = $_POST["nombre"];
         $almacenId = $_POST["almacen_id"];
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 
     }
 
-	if($opcion == "cargarZonas")
+	if($opcion === "cargarZonas")
     {
                 
         $zona = new zona();
@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                         <select id="almacenSelect'.$id_zona.'" style="display: none;">';
 
                         foreach ($arrayAlmacenes as $dato) {
-                            echo '<option value="' . $dato['id_almacen'] . '" ' . ($dato['id_almacen'] == $idAlmacen ? 'selected' : '') . ' >' . $dato['nombre'] . '</option>';
+                            echo '<option value="' . $dato['id_almacen'] . '" ' . ($dato['id_almacen'] === $idAlmacen ? 'selected' : '') . ' >' . $dato['nombre'] . '</option>';
                         }
                             
                         echo '</select>
@@ -121,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     }	  
 
     //EDITAR ZONA
-    if($opcion == "editar")
+    if($opcion === "editar")
     {
         $id_zona = $_POST["id"];
         $nombreZona = $_POST["nombre"];
@@ -140,7 +140,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     //ELIMINAR ZONA
-    if($opcion == "eliminar")
+    if($opcion === "eliminar")
     {
         $id_zona = $_POST["id"];
 

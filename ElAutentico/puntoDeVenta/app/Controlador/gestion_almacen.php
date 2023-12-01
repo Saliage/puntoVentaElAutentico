@@ -4,7 +4,7 @@ require_once("../modelo/almacen.php");
 
 
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
-if ($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] === "POST"){
     
     $opcion = $_POST['opcion']; //obtener valor de la opción para contalmacenar eventos
     if($opcion != "ver" && $opcion != "listar2" ){
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
         //crear select-option con almacenes    
-        if($opcion == 'ver'){
+        if($opcion === 'ver'){
 
         
             $almacen = new Almacen();
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         }
 
     // incrustar evento JS para trabajar en la vista
-    if($opcion == 'listar2'){
+    if($opcion === 'listar2'){
 
         $almacen = new Almacen();
         $almacenes = $almacen->listarAlmacenes();
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
-	if($opcion == "guardar")
+	if($opcion === "guardar")
     {
         $nombreAlmacen = $_POST["nombre"];
         $sala_venta = $_POST["sala_venta"];
@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 
     }
 
-	if($opcion == "mostrar")
+	if($opcion === "mostrar")
     {
 	    $almacen = new Almacen();
         $resultado = $almacen->listarAlmacenes();
@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
             $icono = '<ion-icon name="close-outline"></ion-icon>';
 
-            if($sala_venta == 1)
+            if($sala_venta === 1)
             {
                 $icono = '<ion-icon name="checkmark-outline"></ion-icon>';
             }
@@ -115,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                     </td>
                     <td>
                         <span id="sala_ventaSpan'.$id_almacen.'">'.$icono.'</span>
-                        <input type="checkbox" id="sala_ventachk'.$id_almacen.'" '. ($sala_venta == 1 ? 'checked' : '').' style="display:none" >
+                        <input type="checkbox" id="sala_ventachk'.$id_almacen.'" '. ($sala_venta === 1 ? 'checked' : '').' style="display:none" >
                     </td>
                     <td>
                         <ion-icon id="btnEditAlmacen'.$id_almacen.'" name="pencil-outline" class="icono-editar" onclick="editarAlmacen('.$id_almacen.')"></ion-icon>                        
@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     }	  
 
     //EDITAR ALMACEN
-    if($opcion == "editar")
+    if($opcion === "editar")
     {
         $id_almacen= $_POST["id"];
         $nombreAlmacen = $_POST["nombre"];
@@ -145,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     //ELIMINAR Almacen
-    if($opcion == "eliminar")
+    if($opcion === "eliminar")
     {
         $id_almacen= $_POST["id"];
 

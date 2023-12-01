@@ -20,14 +20,14 @@ $_SESSION['usuario'] = null;
 $_SESSION['nombre'] = null;
 $_SESSION['apellido'] = null;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") { //validar que el acceso no sea mediante URL
+if ($_SERVER["REQUEST_METHOD"] === "POST") { //validar que el acceso no sea mediante URL
 
     $usuario = $_POST['usuario'];
     $clave = $_POST['clave'];
     $llave = $_POST['llave'];
 
 
-    if($usuario == "" || $clave =="")
+    if($usuario === "" || $clave ==="")
     {
         $_SESSION['sesion'] = 2; // datos vacios
     }
@@ -58,22 +58,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //validar que el acceso no sea media
     }
     
     //Verifica si se solicitó cierre de sesion
-    if($llave == "cerrar"){
+    if($llave === "cerrar"){
 
         $_SESSION['sesion'] = 4; 
     }
 
     //redireccionar o mostrar mensaje según el estado de sesión
 
-    if ($_SESSION['sesion'] == 1) {
+    if ($_SESSION['sesion'] === 1) {
         echo 'OK';
-    } elseif ($_SESSION['sesion'] == 0) {
+    } elseif ($_SESSION['sesion'] === 0) {
         echo 'Inicie sesión';
-    } elseif ($_SESSION['sesion'] == 2) {
+    } elseif ($_SESSION['sesion'] === 2) {
         echo 'Los campos son obligatorios';
-    } elseif ($_SESSION['sesion'] == 3) {
+    } elseif ($_SESSION['sesion'] === 3) {
         echo 'Usuario o clave incorrectos';
-    } elseif ($_SESSION['sesion'] == 4) {
+    } elseif ($_SESSION['sesion'] === 4) {
         echo 'Cerrar';
         $_SESSION['sesion'] = 0;
     }

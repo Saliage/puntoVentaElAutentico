@@ -4,12 +4,12 @@ require_once("../modelo/rol.php");
 
 
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     $opcion = $_POST['opcion']; //obtener valor de la opción para controlar eventos
 
     //guardar
-        if($opcion == "guardar")
+        if($opcion === "guardar")
         {   
             $rut = $_POST['rut'];
             $nombre = $_POST['nombre'];
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
 
 
-    if($opcion == "mostrar")
+    if($opcion === "mostrar")
 	{
         $trabajador = new Trabajador();
         $resultado = $trabajador->listarTrabajadores();
@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $estado = $consulta['activo']; 
         $nombreRol = mysqli_fetch_assoc($rol->buscarRolId($consulta['rol_id_rol']));
         
-        if($estado == 1)
+        if($estado === 1)
         {
             $icono = '<ion-icon name="checkmark-outline"></ion-icon>';
         }
@@ -121,8 +121,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <td>
                     <span id="estadoSpan'.$id.'">'.$icono.'</span>
                     <select id="estadoSelect'.$id.'" style="display: none;">
-                        <option value="0" '.($estado == 0 ? 'selected' : '').' >Deshabilitado</option>
-                        <option value="1" '.($estado == 1 ? 'selected' : '').' >Habilitado</option>                        
+                        <option value="0" '.($estado === 0 ? 'selected' : '').' >Deshabilitado</option>
+                        <option value="1" '.($estado === 1 ? 'selected' : '').' >Habilitado</option>                        
                     </select>
                 </td>
                 <td>
@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <select id="rolSelect'.$id.'" style="display: none;">';
 
                     foreach ($arrayRoles as $dato) {
-                        echo '<option value="' . $dato['id_rol'] . '" ' . ($dato['id_rol'] == $consulta['rol_id_rol'] ? 'selected' : '') . ' >' . $dato['nombre_rol'] . '</option>';
+                        echo '<option value="' . $dato['id_rol'] . '" ' . ($dato['id_rol'] === $consulta['rol_id_rol'] ? 'selected' : '') . ' >' . $dato['nombre_rol'] . '</option>';
                     }
                     
                     echo '</select>
@@ -150,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //editar
     try {
-        if ($opcion == "U") {
+        if ($opcion === "U") {
             $id = $_POST['id'];
             $rut = $_POST['rut'];
             $nombre = $_POST['nombre'];
@@ -180,7 +180,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
 
-        if($opcion == "D")
+        if($opcion === "D")
         {
             $id = $_POST["id"];
 

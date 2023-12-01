@@ -2,7 +2,7 @@
 require_once("../modelo/proveedor.php");
 
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
-if ($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] === "POST"){
     
     $opcion = $_POST['opcion']; //obtener valor de la opción para contalmacenar eventos
             
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     ';
 
 	//GUARDAR
-    if($opcion == "guardar")
+    if($opcion === "guardar")
     {   
         $nombre = $_POST['nombre'];
         $rut = $_POST['rut'];
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         }              
     }
 
-	if($opcion == "mostrar")
+	if($opcion === "mostrar")
     {
 	    $proveedor = new Proveedor();
         $resultado = $proveedor->listarProveedores();
@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     }	  
 
     //EDITAR
-    if($opcion == "editar")
+    if($opcion === "editar")
     {
         $id = $_POST['id'];
         $nombre = $_POST['nombre'];
@@ -119,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     //ELIMINAR
-    if($opcion == "eliminar")
+    if($opcion === "eliminar")
     {
         $id = $_POST['id'];
 
