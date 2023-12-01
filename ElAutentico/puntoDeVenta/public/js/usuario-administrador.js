@@ -17,7 +17,7 @@ function cerrarPopup() {
 
 
     function inicializar(){
-        gestionarRol(2);
+        gestionarRol();
         listarTrabajadores();
         mostrarRoles();
     }
@@ -371,13 +371,11 @@ function validarRut(rut) {
 
 
 
-function gestionarRol(opcion)
+function gestionarRol()
 { 
-    buscar = document.getElementById('buscador').value;
 var parametros = 
 {
-    "nombre" : buscar,
-    "opcion" : opcion
+    "opcion" : "ver"
 };
 
 $.ajax({
@@ -395,6 +393,34 @@ $.ajax({
     $('#mostrar_mensaje').html(mensaje);
     }
 });
+}
+
+
+function agregarRol()
+{ 
+    var nombre = document.getElementById('nombre').value;
+    var parametros = 
+    {
+        "nombre" : nombre,
+        "opcion" : "agregar"
+    };
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_rol.php',
+        type: 'POST',
+        
+        beforesend: function()
+        {
+        $('#mostrar_mensaje').html("Error de comunicación");
+        },
+
+        success: function(mensaje)
+        {
+        $('#mostrar_mensaje').html(mensaje);
+        }
+    });
+    gestionarRol();
 }
 
 

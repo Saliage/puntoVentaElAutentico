@@ -57,9 +57,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	}
 	else
 	{
-		if($opcion === 1)
+		if($opcion === "agregar")
         {
             $nombreRol = $_POST["nombre"];
+
+            echo '<script>alert('.$nombreRol.');</script>';
 
             if($nombreRol != ""){
                 
@@ -75,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
-		if($opcion === 2)
+		if($opcion === "ver")
         {
                 
             $rol = new Rol();

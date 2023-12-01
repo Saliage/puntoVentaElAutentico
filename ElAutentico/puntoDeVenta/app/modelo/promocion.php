@@ -13,15 +13,34 @@ class Promocion {
 
     // Agregar promoción
     public function agregarPromocion($nombre, $precio, $fecha_inicio, $fecha_fin, $productos) {
-        $consulta = "INSERT INTO promocion (nombre_promocion, precio, fecha_inicio, fecha_fin)
-                     VALUES (?, ?, ?, ?)";
 
-        $sql = $this->conn->prepare($consulta);
-        $sql->bind_param("sdss", $nombre, $precio, $fecha_inicio, $fecha_fin);
+        if($fecha_fin ==''){
+
+            $consulta = "INSERT INTO promocion (nombre_promocion, precio, fecha_inicio )
+            VALUES (?, ?, ?)";
+
+            $sql = $this->conn->prepare($consulta);
+            $sql->bind_param("sds", $nombre, $precio, $fecha_inicio);
+
+        }
+        else{
+
+            $consulta = "INSERT INTO promocion (nombre_promocion, precio, fecha_inicio, fecha_fin)
+            VALUES (?, ?, ?, ?)";
+
+            $sql = $this->conn->prepare($consulta);
+            $sql->bind_param("sdss", $nombre, $precio, $fecha_inicio, $fecha_fin);
+        }       
 
         $resultado = $sql->execute();
 
+        $id_promo = $this->conn->insert_id;
         $sql->close();
+
+        $consulta = "INSERT INTO producto_promocion (promocion_id_promocion, producto_id_producto ) values  VALUES (?, ?)";
+        $sql->bind_param("i", $nombre, $precio, $fecha_inicio);
+
+        
         $this->conn->close();
 
         return $resultado;

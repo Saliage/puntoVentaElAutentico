@@ -180,9 +180,9 @@
                     <hr>
                     <div class="row text-center">
                         <div class="col">
-                            <label  class="label-crear-roles for="buscador">Nuevo ROL: </label>
-                            <input  class="input-crear-roles" type="text" name="buscador" id="buscador" class="form-control">
-                            <button class="boton-agregar-roles" type="submit" name="agregar" value="Agregar Rol" onclick="gestionarRol(1);"  onmouseout="gestionarRol(2);"><ion-icon name="add-circle-outline"></ion-icon></button>              
+                            <label  class="label-crear-roles" for="buscador">Nuevo ROL: </label>
+                            <input  class="input-crear-roles" type="text" name="nombre" id="nombreText" class="form-control">
+                            <button class="boton-agregar-roles" type="submit" name="agregar" value="Agregar Rol" onclick="agregarRol();" ><ion-icon name="add-circle-outline"></ion-icon></button>              
                         </div>
                     </div>
                     <hr>
