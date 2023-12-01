@@ -34,13 +34,17 @@ class Promocion {
 
         $resultado = $sql->execute();
 
-        $id_promo = $this->conn->insert_id;
+        $id_promo = $this->conn->insert_id; //rescatar el id de la ultima insercion
         $sql->close();
 
-        $consulta = "INSERT INTO producto_promocion (promocion_id_promocion, producto_id_producto ) values  VALUES (?, ?)";
-        $sql->bind_param("i", $nombre, $precio, $fecha_inicio);
+        foreach($productos as $prod){
 
-        
+            $consulta = "INSERT INTO producto_promocion (promocion_id_promocion, producto_id_producto, cantidad ) VALUES (?, ?, ?)";
+            $sql = $this->conn->prepare($consulta);
+            $sql->bind_param("iii", $id_promo, $prod['prod'], $prod['cantidad']);
+            $resultado = $sql->execute();
+
+        }
         $this->conn->close();
 
         return $resultado;

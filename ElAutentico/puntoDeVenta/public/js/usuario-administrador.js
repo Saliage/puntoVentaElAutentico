@@ -398,7 +398,7 @@ $.ajax({
 
 function agregarRol()
 { 
-    var nombre = document.getElementById('nombre').value;
+    var nombre = document.getElementById('nombreText').value;
     var parametros = 
     {
         "nombre" : nombre,
