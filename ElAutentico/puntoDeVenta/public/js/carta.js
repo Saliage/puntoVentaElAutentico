@@ -514,7 +514,7 @@ function mostrarProductos(){
 
     success: function(mensaje)
     {
-    $('#selectProducto').html(mensaje);
+    $('#selectorProductos').html(mensaje);
     }
     
     });
@@ -565,14 +565,55 @@ function guardarPromo() {
     
     var listaProductos = []; //guardar productos y cantidad para enviar a la BD
 
-    // Ejemplo de uso:
+    var nombrePromo = document.getElementById('nombrePromo').value;
+    var precioPromo = document.getElementById('precioPromo').value;
+    var fechaInicio = document.getElementById('fechaInicio').value;
+    var fechaFin = document.getElementById('fechaFin').value;
+
+    var prod = document.getElementById('selectProducto').value;
+    var cantidad = document.getElementById('cantidadProducto').value;
+
+    //rescatar el primer elemento sin subindice
+
+    listaProductos.push({
+        prod: prod,
+        cantidad: cantidad
+    });
+
+
+    //rescatar el resto de elementos
     for (var i = 0; i < productos.length; i++) {
         var producto = productos[i];
-        console.log('Elemento:', producto.select.value);
-        console.log('Cantidad:', producto.cantidad.value);
-        // Aquí puedes agregar la lógica para enviar los datos al servidor
+
+        listaProductos.push({
+            prod: producto.select.value,
+            cantidad: producto.cantidad.value
+        });
     }
 
-    // Alerta de prueba
-    alert('Datos enviados por AJAX');
+    var parametros = {
+        "nombrePromo" : nombrePromo,
+        "precioPromo" : precioPromo,
+        "fechaInicio" : fechaInicio,
+        "fechaFin" : fechaFin,
+        "productos": JSON.stringify(listaProductos), // Convertir arreglo a JSON
+        "opcion": 'guardar'
+    };
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion-carta.php',
+        type: 'POST',
+        dataType: 'json',
+        beforeSend: function () {
+        },
+        success: function (response) {
+            alert(JSON.stringify(response));
+
+        },
+        error: function (error) {
+            console.error(error);
+        }
+    });
+
 }

@@ -300,16 +300,16 @@
             <!-- Mostrar cada vez que apretan el botón -->
                 <div id="productosContainer">
                 <div class="form-element producto">
-                    <label for="selectProducto">Products:</label>
-                    <div id="selectProducto" style="display: inline;"></div>
+                    <label for="selectorProductos">Products:</label>
+                    <div id="selectorProductos" style="display: inline;"></div>
                     <label for="cantidadProducto">Cantidad:</label>
-                        <input type="number" name="cantidadProducto" value="1" min="1">
+                        <input type="number" name="cantidadProducto" id="cantidadProducto" value="1" min="1">
                         <button type="button" onclick="eliminarProducto(this);">Eliminar</button>
                     
                 </div>
             </div>
             <button type="button" onclick="agregarOtroProducto();"><ion-icon name="add-circle-outline" ></ion-icon> Agregar otro producto</button> <br>
-            <input type="button" value="Crear Promoción" onclick="enviarDatosPorAjax()">
+            <input type="button" value="Crear Promoción" onclick="guardarPromo()">
         </form>
         <hr>
         <tbody>

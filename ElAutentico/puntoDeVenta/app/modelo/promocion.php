@@ -12,7 +12,7 @@ class Promocion {
     }
 
     // Agregar promoción
-    public function agregarPromocion($nombre, $precio, $fecha_inicio, $fecha_fin) {
+    public function agregarPromocion($nombre, $precio, $fecha_inicio, $fecha_fin, $productos) {
         $consulta = "INSERT INTO promocion (nombre_promocion, precio, fecha_inicio, fecha_fin)
                      VALUES (?, ?, ?, ?)";
 
