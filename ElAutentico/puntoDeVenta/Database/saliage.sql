@@ -27,13 +27,10 @@ CREATE TABLE IF NOT EXISTS `almacen` (
   `nombre` varchar(50) NOT NULL,
   `sala_venta` tinyint(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_almacen`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla autentico.almacen: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla autentico.almacen: ~0 rows (aproximadamente)
 DELETE FROM `almacen`;
-INSERT INTO `almacen` (`id_almacen`, `nombre`, `sala_venta`) VALUES
-	(16, 'bebidas', 0),
-	(17, 'visicooler', 1);
 
 -- Volcando estructura para tabla autentico.categoria_insumo
 DROP TABLE IF EXISTS `categoria_insumo`;
@@ -41,14 +38,22 @@ CREATE TABLE IF NOT EXISTS `categoria_insumo` (
   `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_categoria` varchar(50) NOT NULL,
   PRIMARY KEY (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla autentico.categoria_insumo: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla autentico.categoria_insumo: ~11 rows (aproximadamente)
 DELETE FROM `categoria_insumo`;
 INSERT INTO `categoria_insumo` (`id_categoria`, `nombre_categoria`) VALUES
-	(7, 'bebidas'),
-	(8, 'empaque'),
-	(9, 'nuevo');
+	(16, 'verduras'),
+	(18, 'panes'),
+	(19, 'bebidas'),
+	(20, 'cafeteria'),
+	(21, 'carne'),
+	(22, 'snacks'),
+	(23, 'lacteos'),
+	(24, 'condimento'),
+	(25, 'salsa'),
+	(26, 'aceite'),
+	(27, 'endulzante');
 
 -- Volcando estructura para tabla autentico.compra
 DROP TABLE IF EXISTS `compra`;
@@ -97,13 +102,14 @@ CREATE TABLE IF NOT EXISTS `detalle_venta` (
   KEY `ventas_id_venta` (`ventas_id_venta`),
   CONSTRAINT `detalle_venta_ibfk_1` FOREIGN KEY (`producto_id_producto`) REFERENCES `producto` (`id_producto`),
   CONSTRAINT `detalle_venta_ibfk_2` FOREIGN KEY (`ventas_id_venta`) REFERENCES `ventas` (`id_venta`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla autentico.detalle_venta: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla autentico.detalle_venta: ~3 rows (aproximadamente)
 DELETE FROM `detalle_venta`;
 INSERT INTO `detalle_venta` (`id_detalle`, `cantidad`, `producto_id_producto`, `ventas_id_venta`) VALUES
-	(1, 2, 3, 1),
-	(2, 2, 5, 1);
+	(1, 1, 3, 1),
+	(2, 1, 9, 1),
+	(3, 1, 2, 1);
 
 -- Volcando estructura para tabla autentico.formato
 DROP TABLE IF EXISTS `formato`;
@@ -111,13 +117,24 @@ CREATE TABLE IF NOT EXISTS `formato` (
   `id_formato` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_formato` varchar(50) NOT NULL,
   PRIMARY KEY (`id_formato`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla autentico.formato: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla autentico.formato: ~13 rows (aproximadamente)
 DELETE FROM `formato`;
 INSERT INTO `formato` (`id_formato`, `nombre_formato`) VALUES
-	(1, '1 litro'),
-	(2, '500CC');
+	(3, '100cc'),
+	(4, '200cc'),
+	(5, '250cc'),
+	(6, '300cc'),
+	(7, '591cc'),
+	(8, '600cc'),
+	(9, '900cc'),
+	(10, 'litro'),
+	(11, 'kilo'),
+	(12, 'paquete'),
+	(13, 'unidad'),
+	(14, '500cc'),
+	(15, '500g');
 
 -- Volcando estructura para tabla autentico.forma_pago
 DROP TABLE IF EXISTS `forma_pago`;
@@ -147,26 +164,45 @@ CREATE TABLE IF NOT EXISTS `insumos` (
   KEY `formato_id_formato` (`formato_id_formato`),
   CONSTRAINT `insumos_ibfk_1` FOREIGN KEY (`categoria_insumo_id_categoria`) REFERENCES `categoria_insumo` (`id_categoria`),
   CONSTRAINT `insumos_ibfk_2` FOREIGN KEY (`formato_id_formato`) REFERENCES `formato` (`id_formato`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla autentico.insumos: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla autentico.insumos: ~23 rows (aproximadamente)
 DELETE FROM `insumos`;
 INSERT INTO `insumos` (`id_insumo`, `nombre_insumo`, `perecible`, `imagen`, `categoria_insumo_id_categoria`, `formato_id_formato`) VALUES
-	(8, 'coca-cola', 1, '', 7, 1),
-	(9, 'vaso polipapel', 0, '', 8, 2),
-	(10, 'fanta', 1, '../../public/imagenes/fanta-normal.png', 7, 2),
-	(11, 'Pan', 1, '../../public/imagenes/NoImage.png', 9, 1);
+	(8, 'tomate', 1, '../../public/imagenes/tomates.png', 16, 11),
+	(9, 'papas', 1, '../../public/imagenes/papa.jpeg', 16, 11),
+	(10, 'palta', 1, '../../public/imagenes/palta.jpeg', 16, 11),
+	(11, 'ajo', 1, '../../public/imagenes/ajo.jpeg', 16, 13),
+	(12, 'coca cola', 1, '../../public/imagenes/coca-cola-normal.jpg', 19, 7),
+	(13, 'vital', 1, '../../public/imagenes/vital%20sin%20gas.jpeg', 19, 8),
+	(14, 'vital con gas', 1, '../../public/imagenes/vital con gas.jpeg', 19, 8),
+	(15, 'fanta', 1, '../../public/imagenes/fanata.jpeg', 19, 7),
+	(16, 'pan de completo', 1, '../../public/imagenes/pan completo.jpeg', 18, 13),
+	(17, 'pan frica', 1, '../../public/imagenes/pan%20frica.jpeg', 18, 13),
+	(18, 'masa pizza', 1, '../../public/imagenes/pizza.jpeg', 18, 13),
+	(19, 'tortilla', 1, '../../public/imagenes/tortilla.jpeg', 18, 12),
+	(20, 'posta', 1, '../../public/imagenes/carne.jpeg', 21, 11),
+	(21, 'queso', 1, '../../public/imagenes/queso.jpeg', 24, 11),
+	(22, 'cocacola', 1, '../../public/imagenes/coca litro.jpeg', 19, 10),
+	(23, 'oregano', 0, '../../public/imagenes/oregano.jpeg', 24, 15),
+	(24, 'cafe', 0, '../../public/imagenes/cafe.jpeg', 20, 15),
+	(25, 'azucar', 0, '../../public/imagenes/azucar.jpeg', 27, 11),
+	(26, 'vienesas', 1, '../../public/imagenes/vienesas.jpeg', 21, 12),
+	(27, 'mayonesa', 1, '../../public/imagenes/mayo.jpeg', 25, 11),
+	(28, 'mostaza', 1, '../../public/imagenes/mostaza.jpeg', 25, 11),
+	(29, 'ketchup', 1, '../../public/imagenes/kectpcup.jpeg', 25, 11),
+	(30, 'te', 0, '../../public/imagenes/te.jpeg', 20, 12);
 
 -- Volcando estructura para tabla autentico.inventario
 DROP TABLE IF EXISTS `inventario`;
 CREATE TABLE IF NOT EXISTS `inventario` (
   `numero_registro` int(11) NOT NULL AUTO_INCREMENT,
   `id_insumo` int(11) NOT NULL DEFAULT 0,
+  `id_movimiento` int(11) NOT NULL DEFAULT 0,
   `cantidad` int(11) NOT NULL DEFAULT 0,
   `costo_unitario` int(11) NOT NULL DEFAULT 0,
-  `fecha_vencimiento` date NOT NULL,
+  `fecha_vencimiento` int(11) NOT NULL DEFAULT 0,
   `id_zona` int(11) NOT NULL,
-  `id_movimiento` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`numero_registro`),
   KEY `insumo_inventario_FK` (`id_insumo`),
   KEY `movmiento_inventario_FK` (`id_movimiento`),
@@ -174,17 +210,10 @@ CREATE TABLE IF NOT EXISTS `inventario` (
   CONSTRAINT `FK_inventario_zona` FOREIGN KEY (`id_zona`) REFERENCES `zona` (`id_zona`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `insumo_inventario_FK` FOREIGN KEY (`id_insumo`) REFERENCES `insumos` (`id_insumo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `movmiento_inventario_FK` FOREIGN KEY (`id_movimiento`) REFERENCES `movimiento_insumo` (`id_movimiento`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla autentico.inventario: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla autentico.inventario: ~0 rows (aproximadamente)
 DELETE FROM `inventario`;
-INSERT INTO `inventario` (`numero_registro`, `id_insumo`, `cantidad`, `costo_unitario`, `fecha_vencimiento`, `id_zona`, `id_movimiento`) VALUES
-	(8, 8, 170, 1500, '2023-11-29', 17, 3),
-	(9, 8, 0, 1500, '2023-12-05', 17, 4),
-	(11, 10, 15, 25, '2023-11-30', 17, 6),
-	(12, 10, 20, 300, '2023-12-06', 17, 7),
-	(13, 10, 0, 360, '2023-11-22', 17, 8),
-	(14, 10, 25, 250, '2023-12-09', 17, 9);
 
 -- Volcando estructura para tabla autentico.movimiento_insumo
 DROP TABLE IF EXISTS `movimiento_insumo`;
@@ -198,20 +227,10 @@ CREATE TABLE IF NOT EXISTS `movimiento_insumo` (
   KEY `movimiento_tipo_mov_fk` (`id_tipo_mov`),
   CONSTRAINT `movimiento_tipo_mov_fk` FOREIGN KEY (`id_tipo_mov`) REFERENCES `tipo_movimiento` (`id_tipo_mov`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `movimiento_trabajador_FK` FOREIGN KEY (`id_trabajador`) REFERENCES `trabajador` (`id_trabajador`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla autentico.movimiento_insumo: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla autentico.movimiento_insumo: ~0 rows (aproximadamente)
 DELETE FROM `movimiento_insumo`;
-INSERT INTO `movimiento_insumo` (`id_movimiento`, `fecha`, `id_trabajador`, `id_tipo_mov`) VALUES
-	(1, '2023-11-19', 1, 1),
-	(2, '2023-11-19', 1, 1),
-	(3, '2023-11-19', 1, 1),
-	(4, '2023-11-19', 1, 1),
-	(5, '2023-11-19', 1, 1),
-	(6, '2023-11-19', 1, 1),
-	(7, '2023-11-19', 1, 1),
-	(8, '2023-11-19', 1, 1),
-	(9, '2023-11-19', 1, 1);
 
 -- Volcando estructura para tabla autentico.producto
 DROP TABLE IF EXISTS `producto`;
@@ -219,39 +238,32 @@ CREATE TABLE IF NOT EXISTS `producto` (
   `id_producto` int(11) NOT NULL AUTO_INCREMENT,
   `codigo_producto` int(11) DEFAULT NULL,
   `nombre_producto` varchar(50) NOT NULL,
-  `imagen` varchar(100) DEFAULT NULL,
-  `costo_unitario` int(11) NOT NULL DEFAULT 0,
-  `precio_venta` int(11) NOT NULL DEFAULT 0,
+  `imagen` varchar(100) NOT NULL,
+  `costo_unitario` decimal(10,2) NOT NULL,
+  `precio_venta` decimal(10,2) NOT NULL,
   `descripcion` varchar(200) DEFAULT NULL,
   `disponible` tinyint(4) DEFAULT 0,
   `tipo_producto_id_tipo` int(11) NOT NULL,
   PRIMARY KEY (`id_producto`),
   KEY `tipo_producto_id_tipo` (`tipo_producto_id_tipo`),
   CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`tipo_producto_id_tipo`) REFERENCES `tipo_producto` (`id_tipo`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla autentico.producto: ~19 rows (aproximadamente)
+-- Volcando datos para la tabla autentico.producto: ~12 rows (aproximadamente)
 DELETE FROM `producto`;
 INSERT INTO `producto` (`id_producto`, `codigo_producto`, `nombre_producto`, `imagen`, `costo_unitario`, `precio_venta`, `descripcion`, `disponible`, `tipo_producto_id_tipo`) VALUES
-	(1, NULL, 'barros luco', '../../public/imagenes/barros-luco.jpeg', 1700, 3500, 'tomate, pata, mayo', 1, 1),
-	(2, NULL, 'te', '../../public/imagenes/te.jpg', 300, 1000, 'te', 0, 2),
-	(3, NULL, 'monster', '../../public/imagenes/monster.webp', 1200, 2000, 'Bebida energética', 1, 2),
-	(4, NULL, 'pizza individual', '../../public/imagenes/pizza.webp', 800, 1500, 'tomate, queso, jamon, aceitunas', 1, 3),
-	(5, NULL, 'completo italiano', '../../public/imagenes/completo-italiano.jpg', 700, 1500, 'tomate, pata, mayo', 1, 5),
-	(6, NULL, 'café', '../../public/imagenes/cafe.jpeg', 600, 1200, 'Café de maquina', 1, 2),
-	(7, NULL, 'te', '../../public/imagenes/te.jpg', 300, 1000, 'té', 0, 2),
-	(8, NULL, 'Coca-cola zero', '../../public/imagenes/coca-cola-zero.jpg', 1000, 1500, 'coca zero 59 0ml', 1, 2),
-	(9, NULL, 'papas fritas', '../../public/imagenes/papas-fritas.webp', 1300, 2000, 'porcion de papas', 1, 7),
-	(10, NULL, 'Salchi', '../../public/imagenes/salchipapa.jpg', 1800, 2500, 'porcion salchi', 1, 7),
-	(11, NULL, 'as', '../../public/imagenes/as.webp', 1800, 3500, 'as solo', 1, 4),
-	(12, NULL, 'café', '../../public/imagenes/cafe.jpeg', 600, 1200, 'Café de maquina', 1, 2),
-	(13, NULL, 'te', '../../public/imagenes/te.jpg', 300, 1000, 'té', 1, 2),
-	(14, NULL, 'Coca-cola zero', '../../public/imagenes/coca-cola-zero.jpg', 1000, 1500, 'coca zero 59 0ml', 1, 2),
-	(15, NULL, 'papas fritas', '../../public/imagenes/papas-fritas.webp', 1300, 2000, 'porcion de papas', 1, 7),
-	(16, NULL, 'Salchi', '../../public/imagenes/salchipapa.jpg', 1800, 2500, 'porcion salchi', 1, 7),
-	(17, NULL, 'as', '../../public/imagenes/as.webp', 1800, 3500, 'as solo', 1, 4),
-	(18, NULL, 'as queso', '../../public/imagenes/as-queso.webp', 2000, 3700, 'as queso', 1, 4),
-	(22, 123456, 'redbull', '../../public/imagenes/redbull.jpg', 1200, 2000, 'energetica', 1, 2);
+	(1, NULL, 'barros luco', '../../public/imagenes/barros-luco.jpeg', 1700.00, 3500.00, 'tomate, pata, mayo', 1, 1),
+	(2, NULL, 'te', '../../public/imagenes/te.jpg', 300.00, 1000.00, 'té', 1, 2),
+	(3, NULL, 'monster', '../../public/imagenes/monster.webp', 1200.00, 2000.00, 'Bebida energética', 1, 2),
+	(4, NULL, 'pizza individual', '../../public/imagenes/pizza.webp', 800.00, 1500.00, 'tomate, queso, jamon, aceitunas', 0, 3),
+	(5, NULL, 'completo italiano', '../../public/imagenes/completo-italiano.jpg', 700.00, 1500.00, 'tomate, pata, mayo', 0, 5),
+	(6, NULL, 'café', '../../public/imagenes/cafe.jpeg', 600.00, 1200.00, 'Café de maquina', 0, 2),
+	(7, NULL, 'te', '../../public/imagenes/te.jpg', 300.00, 1000.00, 'té', 0, 2),
+	(8, NULL, 'Coca-cola zero', '../../public/imagenes/coca-cola-zero.jpg', 1000.00, 1500.00, 'coca zero 59 0ml', 1, 2),
+	(9, NULL, 'papas fritas', '../../public/imagenes/papas-fritas.webp', 1300.00, 2000.00, 'porcion de papas', 1, 7),
+	(10, NULL, 'Salchi', '../../public/imagenes/salchipapa.jpg', 1800.00, 2500.00, 'porcion salchi', 1, 7),
+	(11, NULL, 'as', '../../public/imagenes/as.webp', 1800.00, 3500.00, 'as solo', 0, 4),
+	(12, NULL, 'as queso', '../../public/imagenes/as-queso.webp', 2000.00, 3700.00, 'as queso', 1, 4);
 
 -- Volcando estructura para tabla autentico.producto_insumo
 DROP TABLE IF EXISTS `producto_insumo`;
@@ -338,12 +350,13 @@ CREATE TABLE IF NOT EXISTS `rol` (
   `id_rol` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_rol` varchar(30) NOT NULL,
   PRIMARY KEY (`id_rol`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla autentico.rol: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla autentico.rol: ~2 rows (aproximadamente)
 DELETE FROM `rol`;
 INSERT INTO `rol` (`id_rol`, `nombre_rol`) VALUES
-	(2, 'administrador');
+	(1, 'administrador'),
+	(2, 'vendedor');
 
 -- Volcando estructura para tabla autentico.tipo_documento
 DROP TABLE IF EXISTS `tipo_documento`;
@@ -362,7 +375,7 @@ CREATE TABLE IF NOT EXISTS `tipo_movimiento` (
   `id_tipo_mov` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_tipo_mov` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_tipo_mov`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla autentico.tipo_movimiento: ~2 rows (aproximadamente)
 DELETE FROM `tipo_movimiento`;
@@ -376,18 +389,19 @@ CREATE TABLE IF NOT EXISTS `tipo_producto` (
   `id_tipo` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_tipo` varchar(50) NOT NULL,
   PRIMARY KEY (`id_tipo`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla autentico.tipo_producto: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla autentico.tipo_producto: ~8 rows (aproximadamente)
 DELETE FROM `tipo_producto`;
 INSERT INTO `tipo_producto` (`id_tipo`, `nombre_tipo`) VALUES
-	(1, 'sandwich'),
-	(2, 'bebidas'),
-	(3, 'pizza'),
-	(4, 'as'),
-	(5, 'completos'),
-	(6, 'hamburguesas'),
-	(7, 'fritura');
+	(1, 'Promociones'),
+	(2, 'Bebidas'),
+	(3, 'Pizza'),
+	(4, 'As'),
+	(5, 'Completos'),
+	(6, 'Cafeteria'),
+	(7, 'Fritura'),
+	(8, 'Sandwich');
 
 -- Volcando estructura para tabla autentico.trabajador
 DROP TABLE IF EXISTS `trabajador`;
@@ -402,20 +416,14 @@ CREATE TABLE IF NOT EXISTS `trabajador` (
   `rol_id_rol` int(11) NOT NULL,
   PRIMARY KEY (`id_trabajador`),
   UNIQUE KEY `rut` (`rut`),
-  UNIQUE KEY `usuario` (`usuario`),
   KEY `rol_id_rol` (`rol_id_rol`),
   CONSTRAINT `trabajador_ibfk_1` FOREIGN KEY (`rol_id_rol`) REFERENCES `rol` (`id_rol`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla autentico.trabajador: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla autentico.trabajador: ~1 rows (aproximadamente)
 DELETE FROM `trabajador`;
 INSERT INTO `trabajador` (`id_trabajador`, `rut`, `nombre`, `apellido`, `usuario`, `clave`, `activo`, `rol_id_rol`) VALUES
-	(1, '18250229-4', 'Gerson', 'Salinas', 'saliage', '161192-4', '1', 2),
-	(3, '12345678-9', 'trabajador', 'bueno', 'thebest', 'password', '1', 2),
-	(4, '9601285-3', 'unNombre', 'unApellido', 'unUser', '1211', '1', 2),
-	(16, '1122336654', 'asdasd', 'asdasdas', 'asdasdasd', 'dfgdfgdfgdf', '1', 2),
-	(17, '12458854-k', 'dasd', 'asdasd', 'asdasd', 'asdasdhuhi', '1', 2),
-	(19, '125468888', 'mariana', 'soto', 'masoto', 'Msoto23lk', '1', 2);
+	(1, '12345678-9', 'Usuario', 'Administrador', 'admin', 'admin', '1', 1);
 
 -- Volcando estructura para tabla autentico.ventas
 DROP TABLE IF EXISTS `ventas`;
@@ -437,7 +445,7 @@ CREATE TABLE IF NOT EXISTS `ventas` (
 -- Volcando datos para la tabla autentico.ventas: ~1 rows (aproximadamente)
 DELETE FROM `ventas`;
 INSERT INTO `ventas` (`id_venta`, `fecha_venta`, `monto`, `tipo_documento`, `numero_documento`, `trabajador_id_trabajador`, `forma_pago_id_forma_pago`) VALUES
-	(1, '2023-11-25', 7000.00, NULL, NULL, 1, 1);
+	(1, '2023-12-01', 5000.00, NULL, NULL, 1, 1);
 
 -- Volcando estructura para tabla autentico.venta_promocion
 DROP TABLE IF EXISTS `venta_promocion`;
@@ -465,17 +473,30 @@ CREATE TABLE IF NOT EXISTS `zona` (
   PRIMARY KEY (`id_zona`),
   KEY `almacen_id_almacen` (`almacen_id_almacen`),
   CONSTRAINT `zona_ibfk_1` FOREIGN KEY (`almacen_id_almacen`) REFERENCES `almacen` (`id_almacen`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla autentico.zona: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla autentico.zona: ~0 rows (aproximadamente)
 DELETE FROM `zona`;
-INSERT INTO `zona` (`id_zona`, `nombre_zona`, `almacen_id_almacen`) VALUES
-	(17, 'B01', 16),
-	(18, 'central', 17);
+
+-- Volcando estructura para disparador autentico.before_delete_forma_pago
+DROP TRIGGER IF EXISTS `before_delete_forma_pago`;
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+DELIMITER //
+CREATE TRIGGER before_delete_forma_pago
+BEFORE DELETE ON forma_pago FOR EACH ROW
+BEGIN
+   
+    IF OLD.id_forma_pago IN (1, 2) THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'No se puede eliminar la forma de pago efectivo o trajeta';
+    END IF;
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
 
 -- Volcando estructura para disparador autentico.before_delete_rol
 DROP TRIGGER IF EXISTS `before_delete_rol`;
-SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO';
 DELIMITER //
 CREATE TRIGGER before_delete_rol
 BEFORE DELETE ON rol FOR EACH ROW
@@ -491,7 +512,7 @@ SET SQL_MODE=@OLDTMP_SQL_MODE;
 
 -- Volcando estructura para disparador autentico.before_delete_tipo_movimiento
 DROP TRIGGER IF EXISTS `before_delete_tipo_movimiento`;
-SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO';
 DELIMITER //
 CREATE TRIGGER before_delete_tipo_movimiento
 BEFORE DELETE ON tipo_movimiento FOR EACH ROW

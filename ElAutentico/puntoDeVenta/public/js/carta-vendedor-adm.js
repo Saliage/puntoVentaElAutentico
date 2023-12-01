@@ -218,19 +218,16 @@ function realizarPago(medioPago) {
         {
         },
 
-        success: function()
+        success: function(mensaje)
         {
+            alert(mensaje);
             //vaciar carrito
             carrito = [];
             // Actualizar la interfaz del carrito después de vaciarlo
             actualizarInterfazCarrito();
         }
     });
-
     
+    cerrarPopup2();
 
-
-
-    const popup = document.getElementById('popup');
-    popup.style.display = 'none'; // Cierra el popup
-    }
+}

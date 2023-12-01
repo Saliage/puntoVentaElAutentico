@@ -75,6 +75,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if($opcion === "procesarPago"){
 
+        echo'esa';
+
         $formaPago = $_POST['formaPago'];
         $monto = $_POST['monto'];
         $operador = $_SESSION['id'];
