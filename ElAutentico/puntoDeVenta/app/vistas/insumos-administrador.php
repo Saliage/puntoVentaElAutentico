@@ -155,6 +155,10 @@
                         <div id="listarFormatos"></div>
                     </div>
                     <div class="form-element">
+                        <label for="stock_minimo">Stock minimo:</label>
+                        <input type="number" id="stock" name="stock">
+                    </div>
+                    <div class="form-element">
                         <label for="imagen">Imagen:</label>
                         <input type="file" name="imagen" id="imagen" accept=".jpg, .jpeg, .png">
                     </div>                

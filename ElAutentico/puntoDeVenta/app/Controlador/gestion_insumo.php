@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $categoria = $_POST['categoria'];
         $perecible = $_POST['perecible'];
         $formato = $_POST['formato'];
+        $stock_minimo = $_POST['stock_minimo'];
     
         $ruta_imagen = "../../public/imagenes/NoImage.png"; //asiga una imagen fija
     
@@ -34,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($nombre != "" && $categoria != "" && $perecible != "" && $formato != "") {
             $insumo = new Insumo();
             try {
-                $resultado = $insumo->agregarInsumo($nombre, $perecible, $ruta_imagen, $categoria, $formato);
+                $resultado = $insumo->agregarInsumo($nombre, $perecible, $ruta_imagen, $stock_minimo, $categoria, $formato);
                 if ($resultado > 0) {
                     echo "Se agregó el insumo: ".$nombre;
                 } else {
@@ -58,6 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <th>Perecible</th>
                 <th>Categoria</th>                
                 <th>Formato</th>
+                <th>Stock_minimo</th>
                 <th>Editar</th> 
                 <th>Elimnar</th> 
             </tr>
@@ -121,6 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id_categoria = $consulta['categoria_insumo_id_categoria']; 
             $nombre_formato = mysqli_fetch_assoc($formato->buscarFormatoId($id_formato));
             $nombre_categoria = mysqli_fetch_assoc($categoria->buscarCategoriaInsumoId($id_categoria));
+            $stock_minimo = $consulta['stock_minimo'];
                 
             if($perecible == 1)
             {
@@ -163,6 +166,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo '</select>
                     </td>
                     <td>
+                        <span  id="stockSpanI'.$id.'">'.$stock_minimo.'</span>
+                        <input type="text" id="stockTxt'.$id.'" value="'.$stock_minimo.'" style="display: none;">     
+                    </td>
+                    <td>
                         <ion-icon id="btnInsumoEdit'.$id.'" name="pencil-outline" class="icono-editar" onclick="editarInsumo('.$id.')"></ion-icon>                        
                         <button style="display:none" id="guardarInsumoEdit'.$id.'" onclick="guardarInsumoEdit('.$id.')">OK</button> <!-- inicia oculto-->
                     </td>
@@ -183,6 +190,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $categoria = $_POST['categoria'];
         $perecible = $_POST['perecible'];
         $formato = $_POST['formato'];
+        $stock_minimo = $_POST['stock_minimo'];
 
         //rescatar la ruta de la actual imagen si no fue editada
         $ruta_imagen = recortarRutaImagen( $_POST['ruta_imagen'] ); // formatea ruta de imagen para coincidir con "../../public/imagenes/nombre_imagen"
@@ -205,7 +213,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $insumo = new Insumo();
             try {
-                $resultado = $insumo->actualizarInsumo($id,$nombre, $perecible, $ruta_imagen, $categoria, $formato);
+                $resultado = $insumo->actualizarInsumo($id,$nombre, $perecible, $ruta_imagen, $stock_minimo, $categoria, $formato);
                 if ($resultado > 0) {
                     echo "Se actualizó el insumo: ".$nombre;
                 } else {

@@ -73,6 +73,7 @@ function agregarInsumo(event) {
     var perecible = formulario.elements['perecible'].checked;
     var formato = formulario.elements['id_formato'].value;
     var imagenInput = formulario.elements['imagen'];
+    var stock_minimo = formulario.elements['stock'].value;
 
     var parametros = new FormData();
     parametros.append('nombre', nombre);
@@ -80,6 +81,7 @@ function agregarInsumo(event) {
     parametros.append('perecible', Number(perecible));
     parametros.append('formato', formato);
     parametros.append('imagen', imagenInput.files[0]);
+    parametros.append('stock_minimo', stock_minimo);
     parametros.append('opcion', 'guardar');
 
     $.ajax({
@@ -136,6 +138,8 @@ function editarInsumo(id) {
     var categoriaSelect = document.getElementById('categoriaSelectI'+id);
     var formatoSpan = document.getElementById('formatoSpanI'+id);
     var formatoSelect = document.getElementById('formatoSelectI'+id); 
+    var stockSpan = document.getElementById('stockSpanI'+id);
+    var stockTxt = document.getElementById('stockTxt'+id); 
     var btnEdit = document.getElementById('btnInsumoEdit'+id);   
     var btnOK = document.getElementById('guardarInsumoEdit'+id);
    
@@ -154,6 +158,8 @@ function editarInsumo(id) {
     categoriaSelect.style.display='inline';
     formatoSpan.style.display='none';
     formatoSelect.style.display='inline';
+    stockSpan.style.display='none';
+    stockTxt.style.display='inline';
     
     
 
@@ -171,6 +177,8 @@ function guardarInsumoEdit(id){
     var categoriaSelect = document.getElementById('categoriaSelectI'+id);
     var formatoSpan = document.getElementById('formatoSpanI'+id);
     var formatoSelect = document.getElementById('formatoSelectI'+id);    
+    var stockSpan = document.getElementById('stockSpanI'+id);
+    var stockTxt = document.getElementById('stockTxt'+id); 
     var btnOK = document.getElementById('guardarInsumoEdit'+id);
     var btnEdit = document.getElementById('btnInsumoEdit'+id);
     
@@ -183,6 +191,7 @@ function guardarInsumoEdit(id){
     parametros.append('formato', formatoSelect.value);
     parametros.append('ruta_imagen', imagenIMG.src);
     parametros.append('imagen', imagenInput.files[0]);
+    parametros.append('stock_minimo',stockTxt.value);
     parametros.append('opcion', 'editar');
 
     //volver elementos a estado anterior
@@ -196,6 +205,8 @@ function guardarInsumoEdit(id){
     categoriaSelect.style.display='none';
     formatoSpan.style.display='inline';
     formatoSelect.style.display='none';
+    stockSpan.style.display = 'inline';
+    stockTxt.style.display = 'none';
     btnEdit.style.display='inline';
     btnOK.style.display='none';
 
