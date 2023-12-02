@@ -12,12 +12,12 @@ class Insumo {
     }
 
     // Agregar insumo
-    public function agregarInsumo($nombre_insumo, $perecible, $imagen, $categoria_id, $formato_id) {
-        $consulta = "INSERT INTO insumos (nombre_insumo, perecible, imagen, categoria_insumo_id_categoria, formato_id_formato)
+    public function agregarInsumo($nombre_insumo, $perecible, $imagen, $stock_minimo, $categoria_id, $formato_id) {
+        $consulta = "INSERT INTO insumos (nombre_insumo, perecible, imagen, stock_minimo, categoria_insumo_id_categoria, formato_id_formato)
                      VALUES (?, ?, ?, ?, ?)";
 
         $sql = $this->conn->prepare($consulta);
-        $sql->bind_param("sisii", $nombre_insumo, $perecible, $imagen, $categoria_id, $formato_id);
+        $sql->bind_param("sisiii", $nombre_insumo, $perecible, $imagen, $stock_minimo, $categoria_id, $formato_id);
 
         $resultado = $sql->execute();
 
@@ -63,19 +63,20 @@ class Insumo {
     }
 
     // Actualizar datos de insumo
-    public function actualizarInsumo($id, $nombre_insumo, $perecible, $imagen, $categoria_id, $formato_id) {
+    public function actualizarInsumo($id, $nombre_insumo, $perecible, $imagen, $stock_minimo, $categoria_id, $formato_id) {
         $nombre_insumo = mysqli_real_escape_string($this->conn, $nombre_insumo);
 
         $consulta = "UPDATE insumos SET
                     nombre_insumo = ?,
                     perecible = ?,
                     imagen = ?,
+                    stock_minimo = ?,
                     categoria_insumo_id_categoria = ?,
                     formato_id_formato = ?
                     WHERE id_insumo = ?";
 
         $sql = $this->conn->prepare($consulta);
-        $sql->bind_param("sisiii", $nombre_insumo, $perecible, $imagen, $categoria_id, $formato_id, $id);
+        $sql->bind_param("sisiiii", $nombre_insumo, $perecible, $imagen, $stock_minimo, $categoria_id, $formato_id, $id);
 
         $resultado = $sql->execute();
 
