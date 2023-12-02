@@ -190,12 +190,12 @@ function actualizarInterfazCarrito() {
 
         // Añade el nombre, cantidad, precio, iconos, etc., a elementoArticulo
         elementoArticulo.innerHTML = `
-            <ion-icon name="remove-circle-outline" onclick="disminuirCantidad(${articulo.id})"></ion-icon>
+            <h3><ion-icon name="remove-circle-outline" onclick="disminuirCantidad(${articulo.id})"></ion-icon></h3>
             <div class="numero">${articulo.cantidad}</div>
-            <ion-icon name="add-circle-outline" onclick="aumentarCantidad(${articulo.id})"></ion-icon>
+            <h3><ion-icon name="add-circle-outline" onclick="aumentarCantidad(${articulo.id})"></ion-icon></h3>
             <h3>${articulo.nombre}</h3>
             <h3>$<span id="totalPagar">${articulo.precio * articulo.cantidad}</span></h3>
-            <ion-icon name="close-outline" onclick="eliminarDelCarrito(${articulo.id})"></ion-icon>
+            <h3><ion-icon name="close-outline" onclick="eliminarDelCarrito(${articulo.id})"></ion-icon></h3>
         `;
 
         // Añade elementoArticulo al contenedorCarrito
@@ -217,18 +217,10 @@ function actualizarInterfazPrecioTotal(precioTotal) {
 
 function realizarPago(medioPago) {
 
-    alert(`Se registra el pago con ${medioPago}`);
-
-    var formaPago = 1; //Se asume pago con efectivo
-
-    if(medioPago == "Tarjeta"){
-       formaPago == 2;
-    }
-
     var monto = calcularPrecioTotal();
     var parametros =
     {
-        "formaPago" : formaPago,
+        "formaPago" : medioPago,
         "monto" : monto,
         "carrito": JSON.stringify(carrito),
         "opcion":"procesarPago"
