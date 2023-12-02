@@ -120,6 +120,33 @@ class Inventario{
         return $resultado;
     }
 
+    public function minimoStock() {
+
+        $consulta = "SELECT inv.id_insumo,  ins.nombre_insumo, a.nombre, z.nombre_zona, sum(inv.cantidad) AS cantdad_total, ins.stock_minimo
+                    FROM inventario inv INNER JOIN insumos ins ON ins.id_insumo = inv.id_insumo
+                    INNER JOIN zona z ON z.id_zona = inv.id_zona INNER JOIN almacen a ON a.id_almacen = z.almacen_id_almacen
+                    WHERE inv.cantidad >0
+                    GROUP BY inv.id_insumo,  ins.nombre_insumo, a.nombre, z.nombre_zona
+                    HAVING SUM(inv.cantidad) < ins.stock_minimo;";
+
+        $resultado = $this->conn->query($consulta);
+        return $resultado;
+    }
+
+    public function minimaFecha(){
+
+        $consulta = "SELECT ins.id_insumo, ins.nombre_insumo, inv.cantidad, inv.fecha_vencimiento, a.nombre, z.nombre_zona
+                    FROM inventario inv INNER JOIN insumos ins ON ins.id_insumo = inv.id_insumo
+                    INNER JOIN zona z ON z.id_zona = inv.id_zona
+                    INNER JOIN almacen a ON a.id_almacen = z.almacen_id_almacen
+                    WHERE inv.cantidad > 0 AND DATEDIFF(inv.fecha_vencimiento, CURDATE()) <= 15
+                    ORDER BY fecha_vencimiento ASC";
+
+        $resultado = $this->conn->query($consulta);
+        return $resultado;
+    }
+
+
     public function TotalPorInsumoEspecifico($id_insumo) {
 
         $sql = $this->conn->prepare("SELECT id_insumo, SUM(cantidad) AS total_insumos 
