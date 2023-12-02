@@ -115,7 +115,7 @@
             <table class="table">
                 <thead>
                     <div class="rounded-buttons-container">
-                    <button class="boton-pagar2" onclick="mostrarPopup()">Añadir insumo</button>
+                    <button class="boton-pagar" onclick="mostrarPopup()">Añadir insumo</button>
                     <button class="boton-pagar2" onclick="mostrarPopup2()">Categorias</button>
                     <button class="boton-pagar2" onclick="mostrarPopup8()">Formatos</button>
                     <p></p>   

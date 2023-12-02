@@ -21,12 +21,14 @@
     <link rel="icon" href="../../public/imagenes/LogoFoodTruck.jpg">
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../../public/js/logOut.js"></script>
+    <script src="../../public/js/js-maestro.js"></script>
     
 
     <title>Historial ventas Administrador</title>
 
     <!-- ====================== ESTILOS CSS ==================== -->
     <link rel="stylesheet" href="../../public/css/ccs/carta-administrador.css">
+    <link rel="stylesheet" href="../../public/css/ccs/notificacion.css">
     <!-- ====================== JS ==================== -->
     <script src="../../public/js/historial-ventas.js" ></script>
     <!-- ====== ionicons ======= -->
@@ -118,6 +120,17 @@
             
         </div>        
     </main>
+
+    <!----------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------                  SALIDA INSUMO             -------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------->
+
+<div class="popup" id="popup9">
+        <div class="popup-contenido">
+            <h2>Mostrar productos vendidos</h2>
+            <div class="cerrar-popup" onclick="cerrarPopup9()"><ion-icon name="close-circle"></ion-icon></div>
+        </div>
+</div>
 
     
 </body>

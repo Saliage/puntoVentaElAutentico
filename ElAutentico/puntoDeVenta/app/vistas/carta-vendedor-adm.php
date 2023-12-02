@@ -20,6 +20,7 @@
     <script src="../../public/js/logOut.js"></script>
     <script src="../../public/js/carta-vendedor-adm.js"></script>
     <script src="../../public/js/notificacion.js"></script>
+    <script src="../../public/js/js-maestro.js"></script>
 
     <title>Carta Vendedor</title>
 
