@@ -157,8 +157,7 @@
         <div id="popupNotificacion" class="popup" onclick="cerrarPopupNotificacion()">
         <div class="popup-contenido">
             <button class="cerrar-popup" onclick="cerrarPopupNotificacion()"><ion-icon name="close-outline"></ion-icon></button>
-            <div id="mensajeNotificacion"></div> <!-- Agrega esta línea -->
-            <h2 id="mensajeNotificacion">No hay notificaciones o alertas</h2>
+            <div id="mensajeNotificacion">
         </div>
     </div>
     

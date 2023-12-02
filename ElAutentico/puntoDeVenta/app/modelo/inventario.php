@@ -135,7 +135,7 @@ class Inventario{
 
     public function minimaFecha(){
 
-        $consulta = "SELECT ins.id_insumo, ins.nombre_insumo, inv.cantidad, inv.fecha_vencimiento, a.nombre, z.nombre_zona
+        $consulta = "SELECT ins.id_insumo, ins.nombre_insumo, inv.cantidad AS cantidad, inv.fecha_vencimiento, a.nombre, z.nombre_zona
                     FROM inventario inv INNER JOIN insumos ins ON ins.id_insumo = inv.id_insumo
                     INNER JOIN zona z ON z.id_zona = inv.id_zona
                     INNER JOIN almacen a ON a.id_almacen = z.almacen_id_almacen

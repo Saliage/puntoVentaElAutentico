@@ -19,26 +19,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     else{
-        //preparar enunciado tablas        
-        echo
-        '
-        <div class="container">
-            <table class="table table-dark">
-                <thead>
-                    <tr>
-                        <th>#ID</th>
-                        <th>Imagen</th>
-                        <th>Nombre</th>
-                        <th>Stock</th>
-                        <th>Categoría</th>
-                        <th>Formato</th>
-                        <th>Perecible</th>
-                        <th colspan="2">Detalles</th>
-                    </tr>
-                </thead>
-                <tbody>
-            
-        ';
+        
+        if($opcion != "minStock" && $opcion != "fechas"){
+            echo
+            '
+            <div class="container">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th>#ID</th>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Stock</th>
+                            <th>Categoría</th>
+                            <th>Formato</th>
+                            <th>Perecible</th>
+                            <th colspan="2">Detalles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                
+            ';
+        }
     }
 
 
@@ -197,6 +199,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     
+
+    if ($opcion == "minStock") {
+
+        $inventario = new Inventario();
+        $resultados = $inventario->minimoStock();
+
+        if ($resultados->num_rows > 0) {
+            echo 'Insumos con bajo stock: <br>';
+            // Recorrer los resultados e imprimirlos
+            foreach ($resultados as $resultado) {
+                echo "ID Insumo: " . $resultado['id_insumo'] . "<br>";
+                echo "Nombre Insumo: " . $resultado['nombre_insumo'] . "<br>";
+                echo "Nombre Almacen: " . $resultado['nombre'] . "<br>";
+                echo "Nombre Zona: " . $resultado['nombre_zona'] . "<br>";
+                echo "Cantidad Total: " . $resultado['cantdad_total'] . "<br>";
+                echo "Stock Mínimo: " . $resultado['stock_minimo'] . "<br>";
+                echo "-------------------------<br>";
+            }
+        } else {
+            echo 'No hay insumos con bajo stock.<br>';
+        }
+    }
+    
+
+    if($opcion == "fechas"){
+
+        $inventario = new Inventario();
+        $resultados = $inventario->minimaFecha();
+
+        if ($resultados->num_rows > 0) {
+            echo 'Insumos proximos a vencer: <br>';
+            // Recorrer los resultados e imprimirlos
+            foreach ($resultados as $resultado) {
+                echo "ID Insumo: " . $resultado['id_insumo'] . "<br>";
+                echo "Nombre Insumo: " . $resultado['nombre_insumo'] . "<br>";
+                echo "Cantidad: " . $resultado['cantidad'] . "<br>";
+                echo "Fecha Vencimiento: " . $resultado['fecha_vencimiento'] . "<br>";
+                echo "Nombre Almacen: " . $resultado['nombre'] . "<br>";
+                echo "Nombre Zona: " . $resultado['nombre_zona'] . "<br>";
+                echo "-------------------------<br>";
+            }
+        } else {
+            echo 'No hay insumos proximos a vencer.<br>';
+        }
+        
+    }
 
 
 

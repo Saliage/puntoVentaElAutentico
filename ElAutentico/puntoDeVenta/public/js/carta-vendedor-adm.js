@@ -2,6 +2,8 @@ function inicializar(){
 
     verProductos();
     verTiposProd();
+    comprobarStock();
+    comprobarFechas();
 }
 
 function verProductos(){
@@ -246,4 +248,54 @@ function realizarPago(medioPago) {
 
     cerrarPopup2();
 
+}
+
+function comprobarStock(){
+
+    var parametros =
+    {
+        "opcion":"minStock"
+    }
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_inventario.php',
+        type: 'POST',
+        
+        beforesend: function()
+        {
+        },
+
+        success: function(mensaje)
+        {
+            mostrarPopupNotificacion();
+            $('#mensajeNotificacion').html(mensaje);
+            
+        }
+    });
+}
+
+function comprobarFechas(){
+
+    var parametros =
+    {
+        "opcion":"fechas"
+    }
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion_inventario.php',
+        type: 'POST',
+        
+        beforesend: function()
+        {
+        },
+
+        success: function(mensaje)
+        {
+            mostrarPopupNotificacion();
+            $('#mensajeNotificacion').html(mensaje);
+            
+        }
+    });
 }

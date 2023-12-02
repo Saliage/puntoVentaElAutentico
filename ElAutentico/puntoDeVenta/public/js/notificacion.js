@@ -89,3 +89,4 @@ function verificarNotificaciones() {
 
 // Llamada inicial para verificar las notificaciones al cargar la página
 verificarNotificaciones();
+
