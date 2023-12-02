@@ -119,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <td>'.$fecha.'</td>
                             <td>$'.$monto.'</td>
                             <td>'.$fPago.'</td>
-                            <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
+                            <td><ion-icon name="ellipsis-vertical-outline" onclick="mostrarPopup9()" class="icono-editar"></ion-icon></td>
                         </tr>                     
                     ';
                 }
@@ -164,7 +164,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <td>'.$fecha.'</td>
                             <td>$'.$monto.'</td>
                             <td>'.$fPago.'</td>
-                            <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
+                            <td><ion-icon name="ellipsis-vertical-outline" onclick="mostrarPopup9()" class="icono-editar"></ion-icon></td>
                         </tr>                     
                     ';
                 }
@@ -207,7 +207,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <td>'.$fecha.'</td>
                                 <td>$'.$monto.'</td>
                                 <td>'.$fPago.'</td>
-                                <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
+                                <td><ion-icon name="ellipsis-vertical-outline" onclick="mostrarPopup9()" class="icono-editar"></ion-icon></td>
                             </tr>                     
                         ';
                     }
@@ -253,7 +253,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <td>'.$fecha.'</td>
                                 <td>$'.$monto.'</td>
                                 <td>'.$fPago.'</td>
-                                <td><ion-icon name="ellipsis-vertical-outline" class="icono-editar"></ion-icon></td>
+                                <td><ion-icon name="ellipsis-vertical-outline" onclick="mostrarPopup9()" class="icono-editar"></ion-icon></td>
                             </tr>                     
                         ';
                     }

@@ -21,10 +21,12 @@
 
     <!-- ====================== ESTILOS CSS ==================== -->
     <link rel="stylesheet" href="../../public/css/ccs/carta-administrador.css">
+    <link rel="stylesheet" href="../../public/css/ccs/notificacion.css">
     <!-- ====================== JS ==================== -->
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../../public/js/logOut.js"></script>
     <script src="../../public/js/historial-ventas.js" ></script>
+    <script src="../../public/js/js-maestro.js"></script>
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>
@@ -102,6 +104,12 @@
         </div>
     </div>
     </main>
+    <div class="popup" id="popup9">
+        <div class="popup-contenido">
+            <h2>Mostrar productos vendidos</h2>
+            <div class="cerrar-popup" onclick="cerrarPopup9()"><ion-icon name="close-circle"></ion-icon></div>
+        </div>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
