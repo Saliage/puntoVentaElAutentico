@@ -4,15 +4,15 @@ session_start();
 ob_start();
 
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $opcion = $_POST['opcion']; //obtener valor de la opción para controlar eventos
     
-    if($opcion === "validar"){
+    if($opcion == "validar"){
 
         $perecible = $_POST["perecible"];
 
-        if($perecible === 1){
+        if($perecible == 1){
             echo '
             <input type="date" id="fecha" name="fecha" min="'.date('Y-m-d').'" required>
             ';
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
    
     //guardar
-    if($opcion === "guardar")
+    if($opcion == "guardar")
     {   
         $insumo = $_POST["insumo"];
         $cantidad = $_POST["cantidad"];
@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     //muestra todo el contenido
-    if($opcion === "mostrar")
+    if($opcion == "mostrar")
 	{
         $inventario = new Inventario();
         $resultado = $inventario->inventarioInnerJoin();
@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $formato = $consulta['formato'];
             $perecible = $consulta['perecible']; 
             
-            if($perecible === 1)
+            if($perecible == 1)
             {
                 $icono = '<ion-icon name="checkmark-outline"></ion-icon>';
             }
@@ -177,7 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       </div>  
     ';
 
-    if ($opcion === "salida") {
+    if ($opcion == "salida") {
 
         $registro = $_POST["registro"];
         $insumo = $_POST["insumo"];

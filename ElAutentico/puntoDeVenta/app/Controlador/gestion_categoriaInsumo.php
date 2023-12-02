@@ -2,7 +2,7 @@
 require_once("../modelo/categoria_insumo.php");
 
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
-if ($_SERVER["REQUEST_METHOD"] === "POST"){
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
     
     $opcion = $_POST['opcion']; //obtener valor de la opción para controlar eventos
     
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
         ';
     }
 
-	if($opcion === "guardar")
+	if($opcion == "guardar")
     {
         $nombreCategoria = $_POST["nombre"];
 
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     }
 
      //crear select con datos de Categoría
-     if($opcion === 'listar'){
+     if($opcion == 'listar'){
 
         $categoria = new CategoriaInsumo();
         $categorias = $categoria->listarCategoriasInsumo();
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
     }
 
-	if($opcion === "mostar")
+	if($opcion == "mostar")
     {
 	    $categoria = new CategoriaInsumo();
         $resultado = $categoria->listarCategoriasInsumo();
@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     }	  
 
     //EDITAR Categoria
-    if($opcion === "editar")
+    if($opcion == "editar")
     {
         $id_categoria= $_POST["id"];
         $nombreCategoria = $_POST["nombre"];
@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     }
 
     //ELIMINAR Categoria
-    if($opcion === "eliminar")
+    if($opcion == "eliminar")
     {
         $id_categoria= $_POST["id"];
 

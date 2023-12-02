@@ -2,7 +2,7 @@
 require_once("../modelo/formato.php");
 
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
-if ($_SERVER["REQUEST_METHOD"] === "POST"){
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
     
     $opcion = $_POST['opcion']; //obtener valor de la opción para controlar eventos
     
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
         ';
     }
 
-	if($opcion === "guardar")
+	if($opcion == "guardar")
     {
         $nombre_formato = $_POST["nombre"];
 
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     }
 
     //crear select con datos de almacen
-    if($opcion === 'listar'){
+    if($opcion == 'listar'){
 
         $formato = new Formato();
         $formatos = $formato->listarFormatos();
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
     }
 
-	if($opcion === "mostar")
+	if($opcion == "mostar")
     {
 	    $formato = new Formato();
         $resultado = $formato->listarFormatos();
@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     }	  
 
     //EDITAR FORMATO
-    if($opcion === "editar")
+    if($opcion == "editar")
     {
         $id_formato= $_POST["id"];
         $nombre_formato = $_POST["nombre"];
@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     }
 
     //ELIMINAR FORMATO
-    if($opcion === "eliminar")
+    if($opcion == "eliminar")
     {
         $id_formato= $_POST["id"];
 

@@ -5,7 +5,7 @@ require_once ("../modelo/tipo_producto.php");
 
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $opcion = $_POST['opcion']; //obtener valor de la opción para controlar eventos
 
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </tr>
     ';
 
-		if($opcion === "guardar")
+		if($opcion == "guardar")
         {
             $nombreTipoProducto = $_POST["nombre"];
 
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 
         }
 
-        if($opcion === "mostrar"){
+        if($opcion == "mostrar"){
             $tipo_producto = new TipoProducto();
             $resultado = $tipo_producto->listarTiposProductos();
             while($consulta = mysqli_fetch_array($resultado))         
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         //editar
 
-        if($opcion === "editar")
+        if($opcion == "editar")
         {
             $id_tipo = $_POST["id"];
             $nombreTipoProducto = $_POST["nombre"];
@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
 
         // eliminar
-        if($opcion === "eliminar")
+        if($opcion == "eliminar")
         {
             $id_tipo = $_POST["id"];
 

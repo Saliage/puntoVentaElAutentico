@@ -30,15 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
 
     }
-    else{
-
-        echo '
-        
-        
-        
-        ';
-
-    }
 
     if ($opcion === 'guardar') {
 
@@ -52,8 +43,58 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $resultado = $promocion->agregarPromocion($nombrePromo, $precioPromo, $fechaInicio,$fechaFin,$productos);
       
 
-        $respuesta = array('mensaje' => 'Datos guardados exitosamente');
+        $respuesta = array('mensaje' => 'Promocion creada exitosamente');
         echo json_encode($respuesta);
+
+    }
+
+    if($opcion ==='mostrar'){
+
+        echo
+        '
+            <tr>
+                <th>Id Promoción</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Disponible</th>
+                <th>Detalle</th>
+            </tr>
+        
+        ';
+        $promocion = new Promocion();
+        $resultado = $promocion->listarPromociones();
+        while($consulta = mysqli_fetch_array($resultado))
+        {
+            $id = $consulta['id_promocion'];
+            $nombre = $consulta['nombre_promocion'];
+            $precio = $consulta['precio'];
+            $disponible = $consulta['disponible'];
+    
+            echo 
+            '
+                <tr>
+                    <td>'.$id.'</td>
+                    <td>    
+                        <span  id="nombre_promocionSpan'.$id.'">'.$nombre.'</span>
+                    </td>
+                    <td>   
+                        <span  id="precio_promocionSpan'.$id.'">'.$precio.'</span>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="disponibleCHK'.$id .'" ' . ($disponible === 1 ? 'checked' : '') . ' onclick="actualizarDisponible('.$id .')">                 
+                    </td>
+                    <td>
+                        <ion-icon id="btnpromocionEdit'.$id.'" name="pencil-outline" class="icono-editar" onclick="editarpromocions('.$id.')"></ion-icon>
+                        <button style="display:none" id="guardarpromocionEdit'.$id.'" onclick="guardarpromocionsEdit('.$id.')">OK</button> <!-- inicia oculto-->
+                    </td>
+                    <td>
+                        <ion-icon name="trash-outline" class="icono-eliminar" onclick="eliminarpromocions('.$id.')"></ion-icon>
+                    </td> 
+                </tr><br>
+            ';
+        }	
+
+
 
     }
 
