@@ -480,6 +480,28 @@ th {
   justify-content: center;
 }
 
+
+.popup-contenido4 {
+  background: linear-gradient(10deg, #e6e6e6, #a8d6f5, #f7d298, #a0d4f7);
+  border: 2px solid #000dffd7;
+  border-radius: 15px;
+  max-width: 25%;
+  max-height: 75%;
+  min-width: 50%;
+  min-height: 60%;
+  padding: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-top: 8%;
+  margin-bottom: 20px; /* Ajusta el valor según el espacio deseado */
+  flex: 2;
+  animation: animacionDegrade 5s linear infinite;
+  overflow-y: auto;
+  justify-content: center;
+}
 /* Estilos para la fila de elementos en el popup */
 .popup-contenido .row {
   display: flex;

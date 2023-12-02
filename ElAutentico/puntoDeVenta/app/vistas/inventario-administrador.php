@@ -24,7 +24,7 @@
 
     <!-- ====================== ESTILOS CSS ==================== -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../public/css/ccs/carta-administrador-v2.css">
+    <link rel="stylesheet" href="../../public/css/ccs/carta-administrador_v3.css">
     <!-- ====================== JS ==================== -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="../../public/js/logOut.js"></script>
@@ -139,7 +139,9 @@
 
     <div class="popup" id="popup3">
         <div class="popup-contenido">
+            <p></p>
             <h2>Zonas</h2>
+            <p></p>
             
             <div class="formulario" id="formZonas">
                 <div>
@@ -167,7 +169,9 @@
 
     <div class="popup" id="popup4">
         <div class="popup-contenido">
+        <p></p>
             <h2>Almacenes</h2>
+            <p></p>
             
             <div class="formulario" id="formAlmacenes">
                 <div>
@@ -194,7 +198,9 @@
 
     <div class="popup" id="popup5">
         <div class="popup-contenido">
+        <p></p>
             <h2>Proovedores</h2>
+            <p></p>
 
                 <form id="formAgregarProveedor" onsubmit="return agregarProveedor(event)" method="post">
                 
@@ -238,7 +244,9 @@
 
     <div class="popup" id="popup8">
         <div class="popup-contenido">
+        <p></p>
             <h2>Registrar entrada insumo</h2>
+            <p></p>
             <P></P>
             <form id="formEntradaInsumo" onsubmit="return entradaInsumo(event)" method="GET">
                 
@@ -277,6 +285,7 @@
 
     <div class="popup" id="popup9">
         <div class="popup-contenido">
+        <p></p>
             <h2>Registrar salida insumo</h2>
             <h6>Va a registrar la salida del insumo: #<span id="insumoSpan">$</span>.- <span id="nombreSpan">$</span>  en formato: <span id="formatoSapn">$</span>.</h6>
             <h6>Por favor ingrese la cantidad que retirará.</h6> <h6>De este registro puede retirar un maximo de <span id="cantidadSpan"></span> articulos.</h6>
@@ -302,6 +311,7 @@
 
     <div class="popup" id="popup7">
         <div class="popup-contenido">
+        <p></p>
             <h2>Tipo de Movimientos</h2>
             
             <div class="formulario" id="formMov">

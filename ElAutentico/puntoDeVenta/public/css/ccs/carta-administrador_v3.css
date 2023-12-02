@@ -55,6 +55,8 @@ body::-webkit-scrollbar-thumb {
   background: var(--bg-primary);
   transition: width 0.6s ease;
   z-index: 5; /* Asegurar que esté en la parte superior de otros elementos */  
+  display: unset;
+  --bs-navbar-padding-x: unset;
 }
 .navbar-nav {
   list-style: none;
