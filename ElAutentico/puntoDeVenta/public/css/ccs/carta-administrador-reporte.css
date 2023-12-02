@@ -587,36 +587,6 @@ input, select {
   border-radius: 5px;
   cursor: pointer;
 }
-.notificacion-popup {
-  display: none;
-  position: absolute;
-  top: 40px;
-  right: 10px;
-  width: 200px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 1;
-  margin-left: 50px;
-  margin-right: 30px;
-
-}
-
-.notificacion-popup.visible {
-  display: block;
-}
-
-.notificacion-numero {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background-color: red;
-  color: white;
-  font-size: 12px;
-  padding: 2px 5px;
-  border-radius: 50%;
-}
-
 
 .fixed{
   position: absolute;
@@ -630,6 +600,7 @@ input, select {
   width: 93%;
   height: 500px;
   position: fixed;
+  z-index: 4;
 }
 
 /* ========================================= Pantallas largas ========================================= */

@@ -1,41 +1,91 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const iconoNotificacion = document.getElementById("notificacion-icono");
-    const notificacionNumero = document.getElementById("notificacion-numero");
-    const notificacionPopup = document.getElementById("notificacion-popup");
-    const listaNotificaciones = document.getElementById("lista-notificaciones");
+// Variable para verificar si hay notificaciones
+let hayNotificaciones = false;
 
-    // Obtener notificaciones desde el servidor (puedes usar AJAX o fetch)
+// Función para mostrar el popup de notificaciones
+function mostrarPopupNotificacion(mensaje) {
+    const popupNotificacion = document.getElementById('popupNotificacion');
+    const mensajeNotificacion = document.getElementById('mensajeNotificacion');
 
-    // Simulación de notificaciones (puedes reemplazar esto con datos reales desde el servidor)
-    const notificaciones = [
-        { mensaje: "Producto X está cerca de vencer", eliminada: false },
-        { mensaje: "Producto Y tiene poca cantidad", eliminada: false },
-        // Agrega más notificaciones según tus criterios
-    ];
+    // Mostrar el mensaje en el popup
+    mensajeNotificacion.innerText = mensaje;
 
-    // Filtrar notificaciones no eliminadas
-    const notificacionesActivas = notificaciones.filter(notif => !notif.eliminada);
+    // Cambiar el color y hacer parpadear el icono de notificaciones si hay notificaciones
+    const iconoNotificaciones = document.querySelector('.icono-notificaciones');
+    if (hayNotificaciones) {
+        iconoNotificaciones.style.color = 'red';
+        hacerParpadear(iconoNotificaciones);
+    } else {
+        iconoNotificaciones.style.color = ''; // Restablecer el color normal
+    }
 
-    // Mostrar número de notificaciones
-    notificacionNumero.textContent = notificacionesActivas.length;
+    // Mostrar el popup
+    popupNotificacion.style.display = 'flex';
 
-    // Mostrar notificaciones en el popup
-    notificacionesActivas.forEach(notif => {
-        const li = document.createElement("li");
-        li.textContent = notif.mensaje;
+    // Cerrar el popup después de 10 segundos
+    setTimeout(() => {
+        cerrarPopupNotificacion();
+    }, 10000);
+}
 
-        // Agregar lógica para eliminar notificación al hacer clic
-        li.addEventListener("click", function() {
-            notif.eliminada = true;
-            listaNotificaciones.removeChild(li);
-            notificacionNumero.textContent = notificaciones.filter(notif => !notif.eliminada).length;
-        });
+// Función para hacer parpadear un elemento
+function hacerParpadear(elemento) {
+    let intervalo;
+    let visible = true;
 
-        listaNotificaciones.appendChild(li);
+    intervalo = setInterval(() => {
+        if (visible) {
+            elemento.style.visibility = 'hidden';
+        } else {
+            elemento.style.visibility = 'visible';
+        }
+        visible = !visible;
+    }, 500); // Cambia la visibilidad cada 500 milisegundos
+
+    // Detener el parpadeo después de 3 segundos
+    setTimeout(() => {
+        clearInterval(intervalo);
+        elemento.style.visibility = 'visible'; // Asegurarse de que el elemento sea visible al final
+    }, 3000);
+}
+
+// Función para cerrar el popup de notificaciones
+function cerrarPopupNotificacion() {
+    const popupNotificacion = document.getElementById('popupNotificacion');
+    popupNotificacion.style.display = 'none';
+}
+
+// Función para verificar las notificaciones y actualizar el estado
+function verificarNotificaciones() {
+    // Realizar solicitud AJAX al servidor para obtener datos
+    $.ajax({
+        url: 'ruta/al/script/que/obtiene/notificaciones.php', // Reemplaza con la ruta correcta a tu script PHP
+        method: 'GET',
+        success: function (response) {
+            try {
+                const data = JSON.parse(response);
+                const cantidad = data.cantidad; // Obtén estos valores desde la respuesta JSON
+                const diasVencimiento = data.diasVencimiento;
+
+                // Verificar las condiciones para mostrar el mensaje de notificación
+                if (cantidad <= 5) {
+                    hayNotificaciones = true;
+                    mostrarPopupNotificacion(`Quedan ${cantidad} unidades de "${data.nombreInsumo}"`);
+                } else if (diasVencimiento <= 7) {
+                    hayNotificaciones = true;
+                    mostrarPopupNotificacion(`El insumo "${data.nombreInsumo}" vence en ${diasVencimiento} días`);
+                } else {
+                    hayNotificaciones = false;
+                    mostrarPopupNotificacion('No hay notificaciones o alertas');
+                }
+            } catch (error) {
+                console.error('Error al analizar la respuesta JSON:', error);
+            }
+        },
+        error: function (error) {
+            console.error('Error en la solicitud AJAX:', error);
+        }
     });
+}
 
-    // Mostrar o esconder el popup al hacer clic en el icono
-    iconoNotificacion.addEventListener("click", function() {
-        notificacionPopup.classList.toggle("visible");
-    });
-});
+// Llamada inicial para verificar las notificaciones al cargar la página
+verificarNotificaciones();

@@ -19,11 +19,13 @@
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../../public/js/logOut.js"></script>
     <script src="../../public/js/carta-vendedor-adm.js"></script>
+    <script src="../../public/js/notificacion.js"></script>
 
     <title>Carta Vendedor</title>
 
     <!-- ====================== ESTILOS CSS ==================== -->
     <link rel="stylesheet" href="../../public/css/ccs/carta-vendedor-2.css">
+        <link rel="stylesheet" href="../../public/css/ccs/notificacion.css">
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>
@@ -90,7 +92,11 @@
                 <input type="text" placeholder="Buscar producto">
                 <ion-icon name="search" class="icono-busqueda"></ion-icon>
             </div>
-            <ion-icon name="notifications-outline" onclick="mostrarPopup9()"></ion-icon>
+
+            <div class="notificaciones" onclick="mostrarPopupNotificacion()">
+                 <ion-icon name="notifications-circle" class="icono-notificaciones"></ion-icon>
+            </div>
+
             <div class="vendedor">
                 <ion-icon name="person" class="icono-vendedor"></ion-icon>
                 <span class="nombre-vendedor"><?php echo $_SESSION['nombre'].' '.$_SESSION['apellido'] ?></span>
@@ -153,6 +159,15 @@
             </div>
         </div>
     </main>
+    <!-- Contenedor del popup de notificaciones(inicialmente oculto) -->
+    <div id="popupNotificacion" class="popup" onclick="cerrarPopupNotificacion()">
+        <div class="popup-contenido">
+            <button class="cerrar-popup" onclick="cerrarPopupNotificacion()"><ion-icon name="close-outline"></ion-icon></button>
+            <div id="mensajeNotificacion"></div> <!-- Agrega esta línea -->
+            <h2 id="mensajeNotificacion">No hay notificaciones o alertas</h2>
+        </div>
+    </div>
+
     <!-- El contenedor del popup (inicialmente oculto) -->
     <div class="popup" id="popup">
         <div class="popup-contenido">
