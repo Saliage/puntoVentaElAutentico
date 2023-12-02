@@ -85,6 +85,9 @@ function listarProductos() {
         },
         success: function(mensaje) {
             $('#mostrarProductos').html(mensaje);
+            
+            document.getElementById('PROM').style.display = 'inline';
+            document.getElementById('PROD').style.display = 'none';
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.error('Error en la solicitud AJAX:', textStatus, errorThrown); //ver errores

@@ -84,12 +84,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <input type="checkbox" id="disponibleCHK'.$id .'" ' . ($disponible === 1 ? 'checked' : '') . ' onclick="actualizarDisponible('.$id .')">                 
                     </td>
                     <td>
-                        <ion-icon id="btnpromocionEdit'.$id.'" name="pencil-outline" class="icono-editar" onclick="editarpromocions('.$id.')"></ion-icon>
-                        <button style="display:none" id="guardarpromocionEdit'.$id.'" onclick="guardarpromocionsEdit('.$id.')">OK</button> <!-- inicia oculto-->
+                        <details>
+                            <summary>Detalles</summary>
+                            <tr>
+                                <td>
+                                    crear una nueva fila
+                                </td>
+                            </tr>
+                        </details>                    
                     </td>
-                    <td>
-                        <ion-icon name="trash-outline" class="icono-eliminar" onclick="eliminarpromocions('.$id.')"></ion-icon>
-                    </td> 
                 </tr><br>
             ';
         }	
