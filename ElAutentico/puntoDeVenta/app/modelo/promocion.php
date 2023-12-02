@@ -52,7 +52,7 @@ class Promocion {
 
     // Obtener todas las promociones
     public function listarPromociones() {
-        $consulta = "SELECT * FROM promocion";
+        $consulta = "SELECT * FROM promocion ";
 
         $resultado = $this->conn->query($consulta);
 
@@ -60,8 +60,11 @@ class Promocion {
     }
 
     // Buscar promoción por id
-    public function buscarPromocionId($id) {
-        $consulta = "SELECT * FROM promocion WHERE id_promocion = ?";
+    public function detallePromocionId($id) {
+        $consulta = "SELECT p.id_promocion AS id,pro.nombre_producto AS producto, pp.cantidad
+                    FROM promocion p INNER JOIN producto_promocion pp ON pp.promocion_id_promocion = p.id_promocion
+                    INNER JOIN producto pro ON pro.id_producto = pp.producto_id_producto 
+                    WHERE p.id_promocion = ?";
 
         $sql = $this->conn->prepare($consulta);
         $sql->bind_param("i", $id);

@@ -4,11 +4,11 @@
 require_once ("../modelo/rol.php");
 // Validar que se ingresó de manera correcta, de lo contrario, devolver a pagina anterior.
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $opcion = $_POST['opcion']; //obtener valor de la opción para controlar eventos
 
-    if ($opcion === "mostrar") {
+    if ($opcion == "mostrar") {
         $rol = new Rol();
         $resultado = $rol->listarRoles();
     
@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     }
 
-    if($opcion === 3)
+    if($opcion == 3)
 	{
         $mi_busqueda = $_POST['mi_busqueda'];
 		$rol = new Rol();
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	}
 	else
 	{
-		if($opcion === "agregar")
+		if($opcion == "agregar")
         {
             $nombreRol = $_POST["nombre"];
 
@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
-		if($opcion === "ver")
+		if($opcion == "ver")
         {
                 
             $rol = new Rol();
@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         //editar
 
-        if($opcion === "U")
+        if($opcion == "U")
         {
             $id_rol = $_POST["id"];
             $nombreRol = $_POST["nombre"];
@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
 
         // eliminar
-        if($opcion === "D")
+        if($opcion == "D")
         {
             $id_rol = $_POST["id"];
 

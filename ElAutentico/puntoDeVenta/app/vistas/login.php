@@ -93,7 +93,7 @@
                         
                         if(mensaje == 'OK')
                         {
-                            window.location.href = "carta-vendedor-adm.php";
+                            window.location.href = "carta-vendedor.php";
                         }
                         else
                         {

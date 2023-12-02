@@ -16,7 +16,7 @@ function cerrarPopup() {
         listarProductos();
         mostrarTiposP();
         listarTiposP();
-        mostrarProductos();
+        mostrarProductos(); //para promociones
     }
 
 //--------------------------------------------------------------------------------------------------------------------------------------->
@@ -517,6 +517,31 @@ function mostrarProductos(){
     $('#selectorProductos').html(mensaje);
     }
     
+    });
+}
+
+function mostrarPromociones() {
+
+    var parametros = 
+    {
+        "opcion" : "mostrar"
+    };
+    
+    $.ajax({
+        data : parametros,
+        url: '../Controlador/gestion-carta.php',
+        type: 'POST',
+        beforeSend: function() {
+            //$('#mostrarProductos').html("No hay Productos en la carta para mostrar");
+        },
+        success: function(mensaje) {
+            $('#mostrarProductos').html(mensaje);
+            document.getElementById('PROM').style.display = 'none';
+            document.getElementById('PROD').style.display = 'inline';
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error en la solicitud AJAX:', textStatus, errorThrown); //ver errores
+        }
     });
 }
 

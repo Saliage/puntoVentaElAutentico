@@ -117,7 +117,9 @@
                             <button class="boton-pagar" onclick="mostrarPopup()">Añadir producto</button>
                             <button class="boton-pagar2" onclick="mostrarPopup2()">Categorias</button>
                             <button class="boton-pagar2" onclick="mostrarPopup3()">Crear Promocion</button>
-                            <button class="boton-pagar2" onclick="mostrarPopup3()">Detalle Productos</button>
+                            <button class="boton-pagar2" id="PROM" onclick="mostrarPromociones()">Ver Promociones</button>
+                            <button class="boton-pagar2" id="PROD" onclick="listarProductos()" style="display : none">Ver Productos</button>
+                            <button class="boton-pagar2" onclick="mostrarPopup4()">Detalle Productos</button>
                             <p></p>   
                         </div>
                     </thead>
