@@ -115,7 +115,7 @@
             </div>
         </div>    
         <div class="dashboard">
-            <iframe title="Informe El autentico" width="100%" height="800px" src="https://app.powerbi.com/reportEmbed?reportId=62b072f9-8759-45e9-b79d-43c6f48e6831&autoAuth=true&ctid=72fd0b5a-8a6a-4cff-89f6-bde961f7e250" frameborder="0" allowFullScreen="true"></iframe>
+            <iframe title="Informe El autentico" width="100%" height="800px" src="https://app.powerbi.com/reportEmbed?reportId=03436a72-a2dc-4923-a3ab-2bdf8e948f72&autoAuth=true&ctid=72fd0b5a-8a6a-4cff-89f6-bde961f7e250" frameborder="0" allowFullScreen="true"></iframe>
         </div>    
     </main>
 </body>
