@@ -108,6 +108,7 @@
                 
                     <div class="container-categorias">
                         <div class="item-categoria" onclick="verProductos()">Todos</div>
+                        <div class="item-categoria" onclick="verPromociones()">Promociones</div>
                         <div id="verPorCat"></div>
                     </div>
                 

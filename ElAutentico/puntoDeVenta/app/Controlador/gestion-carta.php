@@ -81,16 +81,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <span  id="precio_promocionSpan'.$id.'">'.$precio.'</span>
                     </td>
                     <td>
-                        <input type="checkbox" id="disponibleCHK'.$id .'" ' . ($disponible === 1 ? 'checked' : '') . ' onclick="actualizarDisponible('.$id .')">                 
+                        <input type="checkbox" id="disponibleCHK'.$id .'" ' . ($disponible == 1 ? 'checked' : '') . ' onchange="actualizarDisponiblePromo('.$id .')">                 
                     </td>
                     <td>
                         <details>
                             <summary>Detalles</summary>
-                            <tr>
-                                <td>
-                                    crear una nueva fila
-                                </td>
-                            </tr>
+                            ';
+                                $productos = $promocion->detallePromocionId($id);
+                                while($prod = mysqli_fetch_array($productos))
+                                {
+                                    echo '<p>'.$prod['cantidad'].' x '.$prod['producto'].'</p>';
+                                }
+
+                            echo'
                         </details>                    
                     </td>
                 </tr><br>
@@ -101,7 +104,49 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     }
 
+    // cambiar disponibilidad
+    if ($opcion == "estado") {
+        $id = $_POST['id'];
+        $disp = $_POST['disponible'];
 
+        $promocion = new Promocion();
+        try {
+            $resultado = $promocion->actualizarDisponibilidad($id, $disp);
+            echo "Éxito";  
+        } catch (Exception $e) {
+            echo $e->getMessage(); 
+        }
+    }
+
+
+    if ($opcion == "verPromos") {
+
+        $promocion = new Promocion();
+        $resultado = $promocion->listarPromocionesDisp();
+        while($consulta = mysqli_fetch_array($resultado))
+        {
+            $id = $consulta['id_promocion'];
+            $nombre  = $consulta['nombre_promocion'];
+            $imagen = "../../public/imagenes/NoImage.png";
+            $precio = $consulta['precio'];
+
+            echo'
+            <div class="producto" data-id="' . $id . '" onclick="agregarAlCarrito(' . $id . ', \'' . $nombre . '\',' . (int)$precio . ');">
+                <div class="imagen-producto">
+                    <img src="'.$imagen.'" style="height: 80px">
+                </div>
+                <div class="informacion-producto">
+                    <h3><strong>'.$nombre.'</strong></h3>
+                    <div class="precio-container">
+                        <p class="precio">$'.(int)$precio.'</p>
+                    </div>
+                </div>
+            </div>
+
+
+            ';
+        }
+    }
 
 
 

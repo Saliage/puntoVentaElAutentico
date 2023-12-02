@@ -59,6 +59,16 @@ class Promocion {
         return $resultado;
     }
 
+    
+        // Obtener todas las promociones
+        public function listarPromocionesDisp() {
+            $consulta = "SELECT * FROM promocion WHERE disponible = 1";
+    
+            $resultado = $this->conn->query($consulta);
+    
+            return $resultado;
+        }
+
     // Buscar promoción por id
     public function detallePromocionId($id) {
         $consulta = "SELECT p.id_promocion AS id,pro.nombre_producto AS producto, pp.cantidad
@@ -94,6 +104,20 @@ class Promocion {
         $sql->close();
         $this->conn->close();
 
+        return $resultado;
+    }
+
+    public function actualizarDisponibilidad($id, $disponible) {
+          
+        $consulta = "UPDATE promocion SET disponible = ? WHERE id_promocion = ?";
+        
+        $sql = $this->conn->prepare($consulta);
+        $sql->bind_param("ii", $disponible, $id);
+    
+        $resultado = $sql->execute();
+    
+        $sql->close();
+    
         return $resultado;
     }
 

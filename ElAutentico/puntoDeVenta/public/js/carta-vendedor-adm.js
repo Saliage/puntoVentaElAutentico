@@ -76,6 +76,31 @@ function verProdByCat(id){
 
 }
 
+function verPromociones(){
+
+    var parametros =
+    {
+        "opcion":"verPromos"
+    }
+
+    $.ajax({
+        data: parametros,
+        url: '../Controlador/gestion-carta.php',
+        type: 'POST',
+        
+        beforesend: function()
+        {
+            $('#mostrarProductos').html("Error de comunicación");
+        },
+
+        success: function(mensaje)
+        {
+            $('#mostrarProductos').html(mensaje);
+        }
+    });
+
+}
+
 function buscarProducto() {
     var busqueda = document.getElementById('busqueda').value;
     var parametros = 

@@ -645,3 +645,33 @@ function guardarPromo() {
     });
 
 }
+
+function actualizarDisponiblePromo(id){
+     
+    var disponibleCHK = document.getElementById('disponibleCHK'+id);
+    var disponible = Number(disponibleCHK.checked);
+
+    var parametros = 
+    {
+        "id" : id,
+        "disponible" : disponible,
+        "opcion" : 'estado'
+    };  
+
+    $.ajax({
+        data : parametros,
+        url: '../Controlador/gestion-carta.php',
+        type: 'POST', 
+    beforeSend: function()
+    {
+    },
+
+    success: function(mensaje)
+    {   
+        alert(mensaje);
+    }
+});
+
+}
+
+
