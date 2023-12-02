@@ -1,0 +1,61 @@
+/* Estilos para el icono de notificaciones */
+.icono-notificaciones {
+    color: #000dffd7;
+    font-size: 2rem;
+    margin-right: 2rem;
+}
+
+/* Estilos para el contenedor de notificaciones */
+.notificaciones {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.popupNotificacion {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    z-index: 3; /* Coloca el popup encima de todo */
+    justify-content: center;
+    align-items: center;
+}
+
+.popupNotificacion-contenido {
+    background-color: white;
+    border: 2px solid #000dffd7; /* Bordes de color #000dffd7 */
+    border-radius: 15px;
+    max-width: 400px;
+    padding: 20px;
+    text-align: center; /* Centra el texto */
+}
+
+.cerrar-popup {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #000dffd7; /* Color del icono */
+    font-size: 1.5rem; /* Tamaño del icono */
+}
+
+@keyframes parpadeo {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+.icono-notificaciones.notificaciones-activas {
+    color: red;
+    animation: parpadeo 1s infinite;
+}

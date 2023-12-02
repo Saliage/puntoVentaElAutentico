@@ -20,6 +20,7 @@
 
     <!-- ====================== ESTILOS CSS ==================== -->
     <link rel="stylesheet" href="../../public/css/ccs/carta-administrador-reporte.css">
+    <link rel="stylesheet" href="../../public/css/ccs/notificacion.css">
     <!-- ====================== JS ==================== -->
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../../public/js/logOut.js"></script>
